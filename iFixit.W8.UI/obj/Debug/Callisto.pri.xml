@@ -1,0 +1,2942 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<PriInfo>
+	<ResourceMap name="Callisto" version="1.0" primary="true">
+		<Qualifiers>
+			<Language>EN-ZA, EN-US, EN-GB, EN, CS, DA, DE-DE, EL, ES-ES, FI, FR-FR, HU, IT-IT, JA, KO, NB-NO, NL-NL, PL, PT-BR, PT-PT, RU, SV-SE, ZH-CN, ZH-TW</Language>
+		</Qualifiers>
+		<ResourceMapSubtree name="Callisto">
+			<ResourceMapSubtree name="Resources">
+				<NamedResource name="AboutAMinuteAgo" uri="ms-resource://Callisto/Callisto/Resources/AboutAMinuteAgo">
+					<Candidate qualifiers="Language-ZH-TW" type="String">
+						<Value>約 1 分鐘前</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-ZH-CN" type="String">
+						<Value>约 1 分钟前</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-SV-SE" type="String">
+						<Value>för cirka en minut sedan</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-RU" type="String">
+						<Value>около минуты назад</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PT-PT" type="String">
+						<Value>há cerca de um minuto</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PT-BR" type="String">
+						<Value>há cerca de um minuto</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PL" type="String">
+						<Value>około minutę temu</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-NL-NL" type="String">
+						<Value>ong. een minuut geleden</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-NB-NO" type="String">
+						<Value>for omtrent ett minutt siden</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-KO" type="String">
+						<Value>약 1분 전</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-JA" type="String">
+						<Value>約1分前</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-IT-IT" type="String">
+						<Value>circa un minuto fa</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-HU" type="String">
+						<Value>körülbelül egy perce</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-FR-FR" type="String">
+						<Value>il y a environ une minute</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-FI" type="String">
+						<Value>noin minuutti sitten</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-ES-ES" type="String">
+						<Value>hace un minuto aproximadamente</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN-ZA" isDefault="true" type="String">
+						<Value>about a minute ago</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN-US" isDefault="true" type="String">
+						<Value>about a minute ago</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN-GB" isDefault="true" type="String">
+						<Value>about a minute ago</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN" isDefault="true" type="String">
+						<Value>about a minute ago</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EL" type="String">
+						<Value>πριν από ένα λεπτό</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-DE-DE" type="String">
+						<Value>vor etwa einer Minute</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-DA" type="String">
+						<Value>for et minut siden</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-CS" type="String">
+						<Value>asi před minutou</Value>
+					</Candidate>
+				</NamedResource>
+				<NamedResource name="AboutAMonthAgo" uri="ms-resource://Callisto/Callisto/Resources/AboutAMonthAgo">
+					<Candidate qualifiers="Language-ZH-TW" type="String">
+						<Value>約 1 個月前</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-ZH-CN" type="String">
+						<Value>约 1 个月前</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-SV-SE" type="String">
+						<Value>för en månad sedan</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-RU" type="String">
+						<Value>около месяца назад</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PT-PT" type="String">
+						<Value>há cerca de um mês</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PT-BR" type="String">
+						<Value>há cerca de um mês</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PL" type="String">
+						<Value>około miesiąc temu</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-NL-NL" type="String">
+						<Value>ong. een maand geleden</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-NB-NO" type="String">
+						<Value>for en måned siden</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-KO" type="String">
+						<Value>약 한 달 전</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-JA" type="String">
+						<Value>約1か月前</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-IT-IT" type="String">
+						<Value>circa un mese fa</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-HU" type="String">
+						<Value>körülbelül egy hónapja</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-FR-FR" type="String">
+						<Value>il y a environ un mois</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-FI" type="String">
+						<Value>noin kuukausi sitten</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-ES-ES" type="String">
+						<Value>hace un mes aproximadamente</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN-ZA" isDefault="true" type="String">
+						<Value>about a month ago</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN-US" isDefault="true" type="String">
+						<Value>about a month ago</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN-GB" isDefault="true" type="String">
+						<Value>about a month ago</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN" isDefault="true" type="String">
+						<Value>about a month ago</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EL" type="String">
+						<Value>πριν από ένα μήνα</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-DE-DE" type="String">
+						<Value>vor etwa einem Monat</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-DA" type="String">
+						<Value>for ca. en måned siden</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-CS" type="String">
+						<Value>asi před měsícem</Value>
+					</Candidate>
+				</NamedResource>
+				<NamedResource name="AboutAnHourAgo" uri="ms-resource://Callisto/Callisto/Resources/AboutAnHourAgo">
+					<Candidate qualifiers="Language-ZH-TW" type="String">
+						<Value>約 1 小時前</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-ZH-CN" type="String">
+						<Value>约 1 小时前</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-SV-SE" type="String">
+						<Value>för cirka en timme sedan</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-RU" type="String">
+						<Value>около часа назад</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PT-PT" type="String">
+						<Value>há cerca de uma hora</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PT-BR" type="String">
+						<Value>há cerca de uma hora</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PL" type="String">
+						<Value>około godzinę temu</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-NL-NL" type="String">
+						<Value>ong. een uur geleden</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-NB-NO" type="String">
+						<Value>for omtrent en time siden</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-KO" type="String">
+						<Value>약 1시간 전</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-JA" type="String">
+						<Value>約1時間前</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-IT-IT" type="String">
+						<Value>circa un'ora fa</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-HU" type="String">
+						<Value>körülbelül egy órája</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-FR-FR" type="String">
+						<Value>il y a environ une heure</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-FI" type="String">
+						<Value>noin tunti sitten</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-ES-ES" type="String">
+						<Value>hace una hora aproximadamente</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN-ZA" isDefault="true" type="String">
+						<Value>about an hour ago</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN-US" isDefault="true" type="String">
+						<Value>about an hour ago</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN-GB" isDefault="true" type="String">
+						<Value>about an hour ago</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN" isDefault="true" type="String">
+						<Value>about an hour ago</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EL" type="String">
+						<Value>πριν από μία ώρα</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-DE-DE" type="String">
+						<Value>vor etwa einer Stunde</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-DA" type="String">
+						<Value>for ca. en time siden</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-CS" type="String">
+						<Value>asi před hodinou</Value>
+					</Candidate>
+				</NamedResource>
+				<NamedResource name="AboutAWeekAgo" uri="ms-resource://Callisto/Callisto/Resources/AboutAWeekAgo">
+					<Candidate qualifiers="Language-ZH-TW" type="String">
+						<Value>約 1 週前</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-ZH-CN" type="String">
+						<Value>约 1 周前</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-SV-SE" type="String">
+						<Value>för en vecka sedan</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-RU" type="String">
+						<Value>около недели назад</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PT-PT" type="String">
+						<Value>há cerca de uma semana</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PT-BR" type="String">
+						<Value>há cerca de uma semana</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PL" type="String">
+						<Value>około tydzień temu</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-NL-NL" type="String">
+						<Value>ong. een week geleden</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-NB-NO" type="String">
+						<Value>for omtrent en uke siden</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-KO" type="String">
+						<Value>약 1주 전</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-JA" type="String">
+						<Value>約1週間前</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-IT-IT" type="String">
+						<Value>circa una settimana fa</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-HU" type="String">
+						<Value>körülbelül egy hete</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-FR-FR" type="String">
+						<Value>il y a environ une semaine</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-FI" type="String">
+						<Value>noin viikko sitten</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-ES-ES" type="String">
+						<Value>hace una semana aproximadamente</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN-ZA" isDefault="true" type="String">
+						<Value>about a week ago</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN-US" isDefault="true" type="String">
+						<Value>about a week ago</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN-GB" isDefault="true" type="String">
+						<Value>about a week ago</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN" isDefault="true" type="String">
+						<Value>about a week ago</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EL" type="String">
+						<Value>πριν από μία εβδομάδα</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-DE-DE" type="String">
+						<Value>vor etwa einer Woche</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-DA" type="String">
+						<Value>for ca. en uge siden</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-CS" type="String">
+						<Value>asi před týdnem</Value>
+					</Candidate>
+				</NamedResource>
+				<NamedResource name="AlarmRepeatsOn" uri="ms-resource://Callisto/Callisto/Resources/AlarmRepeatsOn">
+					<Candidate qualifiers="Language-ZH-TW" type="String">
+						<Value>鬧鐘重複日期</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-ZH-CN" type="String">
+						<Value>闹钟重复时间</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-SV-SE" type="String">
+						<Value>ALARMET UPPREPAS PÅ</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-RU" type="String">
+						<Value>ДЕНЬ</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PT-PT" type="String">
+						<Value>O ALARME REPETE À/AO</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PT-BR" type="String">
+						<Value>TOCAR ALARME</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PL" type="String">
+						<Value>ALARM JEST POWTARZANY W</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-NL-NL" type="String">
+						<Value>ALARM HERHALEN OP</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-NB-NO" type="String">
+						<Value>ALARM GJENTAS PÅ</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-KO" type="String">
+						<Value>알람 반복 요일</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-JA" type="String">
+						<Value>アラームの繰り返し</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-IT-IT" type="String">
+						<Value>RIPETI LA SVEGLIA</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-HU" type="String">
+						<Value>A RIASZTÁS ISMÉTLŐDIK:</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-FR-FR" type="String">
+						<Value>ALARME RÉPÉTÉE LE</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-FI" type="String">
+						<Value>HÄLYTYKSEN TOISTO KÄYTÖSSÄ</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-ES-ES" type="String">
+						<Value>REPETIR ALARMA CADA</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN-ZA" isDefault="true" type="String">
+						<Value>ALARM REPEATS ON</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN-US" isDefault="true" type="String">
+						<Value>ALARM REPEATS ON</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN-GB" isDefault="true" type="String">
+						<Value>ALARM REPEATS ON</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN" isDefault="true" type="String">
+						<Value>ALARM REPEATS ON</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EL" type="String">
+						<Value>Επαναλήψεις αφύπνισης κάθε</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-DE-DE" type="String">
+						<Value>WECKWIEDERHOLUNG</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-DA" type="String">
+						<Value>ALARM GENTAGES</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-CS" type="String">
+						<Value>OPAKOVÁNÍ BUDÍKU</Value>
+					</Candidate>
+				</NamedResource>
+				<NamedResource name="DatePickerTitle" uri="ms-resource://Callisto/Callisto/Resources/DatePickerTitle">
+					<Candidate qualifiers="Language-ZH-TW" type="String">
+						<Value>選擇日期</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-ZH-CN" type="String">
+						<Value>选择日期</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-SV-SE" type="String">
+						<Value>VÄLJ DATUM</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-RU" type="String">
+						<Value>ВЫБЕРИТЕ ДАТУ</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PT-PT" type="String">
+						<Value>ESCOLHER DATA</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PT-BR" type="String">
+						<Value>ESCOLHER DATA</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PL" type="String">
+						<Value>WYBIERZ DATĘ</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-NL-NL" type="String">
+						<Value>DATUM KIEZEN</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-NB-NO" type="String">
+						<Value>VELG DATO</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-KO" type="String">
+						<Value>날짜 선택</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-JA" type="String">
+						<Value>年月を選択</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-IT-IT" type="String">
+						<Value>SCEGLI LA DATA</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-HU" type="String">
+						<Value>DÁTUM MEGADÁSA</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-FR-FR" type="String">
+						<Value>CHOISIR LA DATE</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-FI" type="String">
+						<Value>VALITSE PÄIVÄMÄÄRÄ</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-ES-ES" type="String">
+						<Value>ELIGE UNA FECHA</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN-ZA" isDefault="true" type="String">
+						<Value>CHOOSE DATE</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN-US" isDefault="true" type="String">
+						<Value>CHOOSE DATE</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN-GB" isDefault="true" type="String">
+						<Value>CHOOSE DATE</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN" isDefault="true" type="String">
+						<Value>CHOOSE DATE</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EL" type="String">
+						<Value>Επιλογή ημερομηνίας</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-DE-DE" type="String">
+						<Value>Datum wählen</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-DA" type="String">
+						<Value>VÆLG EN DATO</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-CS" type="String">
+						<Value>ZVOLTE DATUM</Value>
+					</Candidate>
+				</NamedResource>
+				<NamedResource name="DateTimePickerCancelText" uri="ms-resource://Callisto/Callisto/Resources/DateTimePickerCancelText">
+					<Candidate qualifiers="Language-ZH-TW" type="String">
+						<Value>取消</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-ZH-CN" type="String">
+						<Value>取消</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-SV-SE" type="String">
+						<Value>avbryt</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-RU" type="String">
+						<Value>Отмена</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PT-PT" type="String">
+						<Value>cancelar</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PT-BR" type="String">
+						<Value>cancelar</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PL" type="String">
+						<Value>anuluj</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-NL-NL" type="String">
+						<Value>annuleren</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-NB-NO" type="String">
+						<Value>avbryt</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-KO" type="String">
+						<Value>취소</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-JA" type="String">
+						<Value>キャンセル</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-IT-IT" type="String">
+						<Value>annulla</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-HU" type="String">
+						<Value>mégse</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-FR-FR" type="String">
+						<Value>annuler</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-FI" type="String">
+						<Value>peruuta</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-ES-ES" type="String">
+						<Value>cancelar</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN-ZA" isDefault="true" type="String">
+						<Value>cancel</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN-US" isDefault="true" type="String">
+						<Value>cancel</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN-GB" isDefault="true" type="String">
+						<Value>cancel</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN" isDefault="true" type="String">
+						<Value>cancel</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EL" type="String">
+						<Value>άκυρο</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-DE-DE" type="String">
+						<Value>Abbrechen</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-DA" type="String">
+						<Value>annuller</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-CS" type="String">
+						<Value>storno</Value>
+					</Candidate>
+				</NamedResource>
+				<NamedResource name="DateTimePickerDoneText" uri="ms-resource://Callisto/Callisto/Resources/DateTimePickerDoneText">
+					<Candidate qualifiers="Language-ZH-TW" type="String">
+						<Value>完成</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-ZH-CN" type="String">
+						<Value>完成</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-SV-SE" type="String">
+						<Value>klart</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-RU" type="String">
+						<Value>готово</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PT-PT" type="String">
+						<Value>concluído</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PT-BR" type="String">
+						<Value>concluído</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PL" type="String">
+						<Value>gotowe</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-NL-NL" type="String">
+						<Value>gereed</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-NB-NO" type="String">
+						<Value>fullført</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-KO" type="String">
+						<Value>완료</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-JA" type="String">
+						<Value>完了</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-IT-IT" type="String">
+						<Value>fatto</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-HU" type="String">
+						<Value>kész</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-FR-FR" type="String">
+						<Value>terminé</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-FI" type="String">
+						<Value>valmis</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-ES-ES" type="String">
+						<Value>listo</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN-ZA" isDefault="true" type="String">
+						<Value>done</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN-US" isDefault="true" type="String">
+						<Value>done</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN-GB" isDefault="true" type="String">
+						<Value>done</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN" isDefault="true" type="String">
+						<Value>done</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EL" type="String">
+						<Value>τέλος</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-DE-DE" type="String">
+						<Value>Fertig</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-DA" type="String">
+						<Value>udført</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-CS" type="String">
+						<Value>hotovo</Value>
+					</Candidate>
+				</NamedResource>
+				<NamedResource name="Friday" uri="ms-resource://Callisto/Callisto/Resources/Friday">
+					<Candidate qualifiers="Language-ZH-TW" type="String">
+						<Value>週五</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-ZH-CN" type="String">
+						<Value>周五</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-SV-SE" type="String">
+						<Value>fredag</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-RU" type="String">
+						<Value>пятницу</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PT-PT" type="String">
+						<Value>Sexta-feira</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PT-BR" type="String">
+						<Value>sexta-feira</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PL" type="String">
+						<Value>piątek</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-NL-NL" type="String">
+						<Value>vrijdag</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-NB-NO" type="String">
+						<Value>fredag</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-KO" type="String">
+						<Value>금요일</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-JA" type="String">
+						<Value>金曜日</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-IT-IT" type="String">
+						<Value>venerdì</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-HU" type="String">
+						<Value>péntek</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-FR-FR" type="String">
+						<Value>vendredi</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-FI" type="String">
+						<Value>perjantai</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-ES-ES" type="String">
+						<Value>viernes</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN-ZA" isDefault="true" type="String">
+						<Value>Friday</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN-US" isDefault="true" type="String">
+						<Value>Friday</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN-GB" isDefault="true" type="String">
+						<Value>Friday</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN" isDefault="true" type="String">
+						<Value>Friday</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EL" type="String">
+						<Value>Παρασκευή</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-DE-DE" type="String">
+						<Value>Freitag</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-DA" type="String">
+						<Value>fredag</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-CS" type="String">
+						<Value>pátek</Value>
+					</Candidate>
+				</NamedResource>
+				<NamedResource name="InvalidNumberOfMonths" uri="ms-resource://Callisto/Callisto/Resources/InvalidNumberOfMonths">
+					<Candidate qualifiers="Language-EN-ZA" isDefault="true" type="String">
+						<Value>Invalid argument. The number of months should be greater than 1 and less than 12.</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN-US" isDefault="true" type="String">
+						<Value>Invalid argument. The number of months should be greater than 1 and less than 12.</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN" isDefault="true" type="String">
+						<Value>Invalid argument. The number of months should be greater than 1 and less than 12.</Value>
+					</Candidate>
+				</NamedResource>
+				<NamedResource name="InvalidNumberOfTimeUnits" uri="ms-resource://Callisto/Callisto/Resources/InvalidNumberOfTimeUnits">
+					<Candidate qualifiers="Language-EN-ZA" isDefault="true" type="String">
+						<Value>Invalid argument. The number of time units should be greater than 1.</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN-US" isDefault="true" type="String">
+						<Value>Invalid argument. The number of time units should be greater than 1.</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN" isDefault="true" type="String">
+						<Value>Invalid argument. The number of time units should be greater than 1.</Value>
+					</Candidate>
+				</NamedResource>
+				<NamedResource name="LastDayOfWeek" uri="ms-resource://Callisto/Callisto/Resources/LastDayOfWeek">
+					<Candidate qualifiers="Language-ZH-TW" type="String">
+						<Value>上{0}</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-ZH-CN" type="String">
+						<Value>上{0}</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-SV-SE" type="String">
+						<Value>förra {0}en</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-RU" type="String">
+						<Value>в прошл. {0}</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PT-PT" type="String">
+						<Value>última(o) {0}</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PT-BR" type="String">
+						<Value>último(a) {0}</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PL" type="String">
+						<Value>ostatni(a) {0}</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-NL-NL" type="String">
+						<Value>afgelopen {0}</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-NB-NO" type="String">
+						<Value>forrige {0}</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-KO" type="String">
+						<Value>지난 {0}</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-JA" type="String">
+						<Value>先週の{0}</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-IT-IT" type="String">
+						<Value>{0} scorso</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-HU" type="String">
+						<Value>múlt {0}</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-FR-FR" type="String">
+						<Value>{0} dernier</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-FI" type="String">
+						<Value>viime {0}</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-ES-ES" type="String">
+						<Value>el {0} pasado</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN-ZA" isDefault="true" type="String">
+						<Value>last {0}</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN-US" isDefault="true" type="String">
+						<Value>last {0}</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN-GB" isDefault="true" type="String">
+						<Value>last {0}</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN" isDefault="true" type="String">
+						<Value>last {0}</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EL" type="String">
+						<Value>τελευταία {0}</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-DE-DE" type="String">
+						<Value>letzten {0}</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-DA" type="String">
+						<Value>sidste {0}</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-CS" type="String">
+						<Value>předchozí {0}</Value>
+					</Candidate>
+				</NamedResource>
+				<NamedResource name="Monday" uri="ms-resource://Callisto/Callisto/Resources/Monday">
+					<Candidate qualifiers="Language-ZH-TW" type="String">
+						<Value>週一</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-ZH-CN" type="String">
+						<Value>周一</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-SV-SE" type="String">
+						<Value>måndag</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-RU" type="String">
+						<Value>понедельник</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PT-PT" type="String">
+						<Value>Segunda-feira</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PT-BR" type="String">
+						<Value>segunda-feira</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PL" type="String">
+						<Value>poniedziałek</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-NL-NL" type="String">
+						<Value>maandag</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-NB-NO" type="String">
+						<Value>mandag</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-KO" type="String">
+						<Value>월요일</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-JA" type="String">
+						<Value>月曜日</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-IT-IT" type="String">
+						<Value>lunedì</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-HU" type="String">
+						<Value>hétfő</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-FR-FR" type="String">
+						<Value>lundi</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-FI" type="String">
+						<Value>maanantai</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-ES-ES" type="String">
+						<Value>lunes</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN-ZA" isDefault="true" type="String">
+						<Value>Monday</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN-US" isDefault="true" type="String">
+						<Value>Monday</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN-GB" isDefault="true" type="String">
+						<Value>Monday</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN" isDefault="true" type="String">
+						<Value>Monday</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EL" type="String">
+						<Value>Δευτέρα</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-DE-DE" type="String">
+						<Value>Montag</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-DA" type="String">
+						<Value>mandag</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-CS" type="String">
+						<Value>pondělí</Value>
+					</Candidate>
+				</NamedResource>
+				<NamedResource name="OnDayOfWeek_Other" uri="ms-resource://Callisto/Callisto/Resources/OnDayOfWeek_Other">
+					<Candidate qualifiers="Language-ZH-TW" type="String">
+						<Value>本{0}</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-ZH-CN" type="String">
+						<Value>在{0}</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-SV-SE" type="String">
+						<Value>på {0}</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-RU" type="String">
+						<Value>в {0}</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PT-PT" type="String">
+						<Value>no(a) {0}</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PT-BR" type="String">
+						<Value>no(a) {0}</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PL" type="String">
+						<Value>({0})</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-NL-NL" type="String">
+						<Value>op {0}</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-NB-NO" type="String">
+						<Value>på {0}</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-KO" type="String">
+						<Value>{0}</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-JA" type="String">
+						<Value>{0}</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-IT-IT" type="String">
+						<Value>{0}</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-HU" type="String">
+						<Value>{0}</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-FR-FR" type="String">
+						<Value>{0}</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-FI" type="String">
+						<Value>{0}</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-ES-ES" type="String">
+						<Value>el {0}</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN-ZA" isDefault="true" type="String">
+						<Value>on {0}</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN-US" isDefault="true" type="String">
+						<Value>on {0}</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN-GB" isDefault="true" type="String">
+						<Value>on {0}</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN" isDefault="true" type="String">
+						<Value>on {0}</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EL" type="String">
+						<Value>- {0}</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-DE-DE" type="String">
+						<Value>am {0}</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-DA" type="String">
+						<Value>{0}</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-CS" type="String">
+						<Value>{0}</Value>
+					</Candidate>
+				</NamedResource>
+				<NamedResource name="OnDayOfWeek_Tuesday" uri="ms-resource://Callisto/Callisto/Resources/OnDayOfWeek_Tuesday">
+					<Candidate qualifiers="Language-ZH-TW" type="String">
+						<Value>本{0}</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-ZH-CN" type="String">
+						<Value>在{0}</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-SV-SE" type="String">
+						<Value>på {0}</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-RU" type="String">
+						<Value>во {0}</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PT-PT" type="String">
+						<Value>no(a) {0}</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PT-BR" type="String">
+						<Value>no(a) {0}</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PL" type="String">
+						<Value>({0})</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-NL-NL" type="String">
+						<Value>op {0}</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-NB-NO" type="String">
+						<Value>på {0}</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-KO" type="String">
+						<Value>{0}</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-JA" type="String">
+						<Value>{0}</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-IT-IT" type="String">
+						<Value>{0}</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-HU" type="String">
+						<Value>{0}</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-FR-FR" type="String">
+						<Value>{0}</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-FI" type="String">
+						<Value>{0}</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-ES-ES" type="String">
+						<Value>el {0}</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN-ZA" isDefault="true" type="String">
+						<Value>on {0}</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN-US" isDefault="true" type="String">
+						<Value>on {0}</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN-GB" isDefault="true" type="String">
+						<Value>on {0}</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN" isDefault="true" type="String">
+						<Value>on {0}</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EL" type="String">
+						<Value>- {0}</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-DE-DE" type="String">
+						<Value>am {0}</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-DA" type="String">
+						<Value>{0}</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-CS" type="String">
+						<Value>{0}</Value>
+					</Candidate>
+				</NamedResource>
+				<NamedResource name="OverAYearAgo" uri="ms-resource://Callisto/Callisto/Resources/OverAYearAgo">
+					<Candidate qualifiers="Language-ZH-TW" type="String">
+						<Value>1 年前</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-ZH-CN" type="String">
+						<Value>数年前</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-SV-SE" type="String">
+						<Value>för över ett år sedan</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-RU" type="String">
+						<Value>больше года назад</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PT-PT" type="String">
+						<Value>há mais de um ano</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PT-BR" type="String">
+						<Value>há mais de um ano</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PL" type="String">
+						<Value>ponad rok temu</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-NL-NL" type="String">
+						<Value>meer dan een jaar geleden</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-NB-NO" type="String">
+						<Value>for over et år siden</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-KO" type="String">
+						<Value>1년여 전</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-JA" type="String">
+						<Value>1年以上前</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-IT-IT" type="String">
+						<Value>più di un anno fa</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-HU" type="String">
+						<Value>egy évnél régebben</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-FR-FR" type="String">
+						<Value>il y a plus d'un an</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-FI" type="String">
+						<Value>yli vuosi sitten</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-ES-ES" type="String">
+						<Value>hace más de un año</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN-ZA" isDefault="true" type="String">
+						<Value>over a year ago</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN-US" isDefault="true" type="String">
+						<Value>over a year ago</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN-GB" isDefault="true" type="String">
+						<Value>over a year ago</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN" isDefault="true" type="String">
+						<Value>over a year ago</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EL" type="String">
+						<Value>πριν από ένα έτος</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-DE-DE" type="String">
+						<Value>vor über einem Jahr</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-DA" type="String">
+						<Value>for mere end et år siden</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-CS" type="String">
+						<Value>před více než rokem</Value>
+					</Candidate>
+				</NamedResource>
+				<NamedResource name="RepeatsEveryDay" uri="ms-resource://Callisto/Callisto/Resources/RepeatsEveryDay">
+					<Candidate qualifiers="Language-ZH-TW" type="String">
+						<Value>每天</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-ZH-CN" type="String">
+						<Value>每天</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-SV-SE" type="String">
+						<Value>varje dag</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-RU" type="String">
+						<Value>каждый день</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PT-PT" type="String">
+						<Value>todos os dias</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PT-BR" type="String">
+						<Value>todos os dias</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PL" type="String">
+						<Value>codziennie</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-NL-NL" type="String">
+						<Value>elke dag</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-NB-NO" type="String">
+						<Value>hver dag</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-KO" type="String">
+						<Value>매일</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-JA" type="String">
+						<Value>毎日</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-IT-IT" type="String">
+						<Value>ogni giorno</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-HU" type="String">
+						<Value>mindennap</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-FR-FR" type="String">
+						<Value>tous les jours</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-FI" type="String">
+						<Value>joka päivä</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-ES-ES" type="String">
+						<Value>todos los días</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN-ZA" isDefault="true" type="String">
+						<Value>every day</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN-US" isDefault="true" type="String">
+						<Value>every day</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN-GB" isDefault="true" type="String">
+						<Value>every day</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN" isDefault="true" type="String">
+						<Value>every day</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EL" type="String">
+						<Value>καθημερινά</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-DE-DE" type="String">
+						<Value>Täglich</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-DA" type="String">
+						<Value>hver dag</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-CS" type="String">
+						<Value>každý den</Value>
+					</Candidate>
+				</NamedResource>
+				<NamedResource name="RepeatsOnlyOnce" uri="ms-resource://Callisto/Callisto/Resources/RepeatsOnlyOnce">
+					<Candidate qualifiers="Language-ZH-TW" type="String">
+						<Value>僅只一次</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-ZH-CN" type="String">
+						<Value>仅一次</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-SV-SE" type="String">
+						<Value>endast en gång</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-RU" type="String">
+						<Value>только 1 раз</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PT-PT" type="String">
+						<Value>apenas uma vez</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PT-BR" type="String">
+						<Value>somente uma vez</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PL" type="String">
+						<Value>tylko raz</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-NL-NL" type="String">
+						<Value>één keer</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-NB-NO" type="String">
+						<Value>bare én gang</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-KO" type="String">
+						<Value>한 번</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-JA" type="String">
+						<Value>なし</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-IT-IT" type="String">
+						<Value>una volta</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-HU" type="String">
+						<Value>csak egyszer</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-FR-FR" type="String">
+						<Value>une seule fois</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-FI" type="String">
+						<Value>vain kerran</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-ES-ES" type="String">
+						<Value>solo una vez</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN-ZA" isDefault="true" type="String">
+						<Value>only once</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN-US" isDefault="true" type="String">
+						<Value>only once</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN-GB" isDefault="true" type="String">
+						<Value>only once</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN" isDefault="true" type="String">
+						<Value>only once</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EL" type="String">
+						<Value>μόνο μία φορά</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-DE-DE" type="String">
+						<Value>Nur einmal</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-DA" type="String">
+						<Value>kun én gang</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-CS" type="String">
+						<Value>pouze jednou</Value>
+					</Candidate>
+				</NamedResource>
+				<NamedResource name="RepeatsOnWeekdays" uri="ms-resource://Callisto/Callisto/Resources/RepeatsOnWeekdays">
+					<Candidate qualifiers="Language-ZH-TW" type="String">
+						<Value>工作日</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-ZH-CN" type="String">
+						<Value>工作日</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-SV-SE" type="String">
+						<Value>vardagar</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-RU" type="String">
+						<Value>по будним дням</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PT-PT" type="String">
+						<Value>dias da semana</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PT-BR" type="String">
+						<Value>dias úteis</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PL" type="String">
+						<Value>dni robocze</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-NL-NL" type="String">
+						<Value>werkdagen</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-NB-NO" type="String">
+						<Value>ukedager</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-KO" type="String">
+						<Value>평일</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-JA" type="String">
+						<Value>平日</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-IT-IT" type="String">
+						<Value>giorni feriali</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-HU" type="String">
+						<Value>hétköznapokon</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-FR-FR" type="String">
+						<Value>jours ouvrables</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-FI" type="String">
+						<Value>arkipäivisin</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-ES-ES" type="String">
+						<Value>días laborables</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN-ZA" isDefault="true" type="String">
+						<Value>weekdays</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN-US" isDefault="true" type="String">
+						<Value>weekdays</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN-GB" isDefault="true" type="String">
+						<Value>weekdays</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN" isDefault="true" type="String">
+						<Value>weekdays</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EL" type="String">
+						<Value>εργάσιμες ημέρες</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-DE-DE" type="String">
+						<Value>Mo-Fr</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-DA" type="String">
+						<Value>hverdage</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-CS" type="String">
+						<Value>pracovní dny</Value>
+					</Candidate>
+				</NamedResource>
+				<NamedResource name="RepeatsOnWeekends" uri="ms-resource://Callisto/Callisto/Resources/RepeatsOnWeekends">
+					<Candidate qualifiers="Language-ZH-TW" type="String">
+						<Value>週末</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-ZH-CN" type="String">
+						<Value>周末</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-SV-SE" type="String">
+						<Value>helger</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-RU" type="String">
+						<Value>по выходным</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PT-PT" type="String">
+						<Value>fins de semana</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PT-BR" type="String">
+						<Value>finais de semana</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PL" type="String">
+						<Value>weekendy</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-NL-NL" type="String">
+						<Value>weekend</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-NB-NO" type="String">
+						<Value>helger</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-KO" type="String">
+						<Value>주말</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-JA" type="String">
+						<Value>週末</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-IT-IT" type="String">
+						<Value>fine settimana</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-HU" type="String">
+						<Value>hétvégéken</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-FR-FR" type="String">
+						<Value>week-ends</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-FI" type="String">
+						<Value>viikonloppuisin</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-ES-ES" type="String">
+						<Value>fines de semana</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN-ZA" isDefault="true" type="String">
+						<Value>weekends</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN-US" isDefault="true" type="String">
+						<Value>weekends</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN-GB" isDefault="true" type="String">
+						<Value>weekends</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN" isDefault="true" type="String">
+						<Value>weekends</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EL" type="String">
+						<Value>Σαββατοκύριακα</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-DE-DE" type="String">
+						<Value>An Wochenenden</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-DA" type="String">
+						<Value>weekender</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-CS" type="String">
+						<Value>víkendy</Value>
+					</Candidate>
+				</NamedResource>
+				<NamedResource name="Saturday" uri="ms-resource://Callisto/Callisto/Resources/Saturday">
+					<Candidate qualifiers="Language-ZH-TW" type="String">
+						<Value>週六</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-ZH-CN" type="String">
+						<Value>周六</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-SV-SE" type="String">
+						<Value>lördag</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-RU" type="String">
+						<Value>субботу</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PT-PT" type="String">
+						<Value>Sábado</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PT-BR" type="String">
+						<Value>sábado</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PL" type="String">
+						<Value>sobota</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-NL-NL" type="String">
+						<Value>zaterdag</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-NB-NO" type="String">
+						<Value>lørdag</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-KO" type="String">
+						<Value>토요일</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-JA" type="String">
+						<Value>土曜日</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-IT-IT" type="String">
+						<Value>sabato</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-HU" type="String">
+						<Value>szombat</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-FR-FR" type="String">
+						<Value>samedi</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-FI" type="String">
+						<Value>lauantai</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-ES-ES" type="String">
+						<Value>sábado</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN-ZA" isDefault="true" type="String">
+						<Value>Saturday</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN-US" isDefault="true" type="String">
+						<Value>Saturday</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN-GB" isDefault="true" type="String">
+						<Value>Saturday</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN" isDefault="true" type="String">
+						<Value>Saturday</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EL" type="String">
+						<Value>Σάββατο</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-DE-DE" type="String">
+						<Value>Samstag</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-DA" type="String">
+						<Value>lørdag</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-CS" type="String">
+						<Value>sobota</Value>
+					</Candidate>
+				</NamedResource>
+				<NamedResource name="Sunday" uri="ms-resource://Callisto/Callisto/Resources/Sunday">
+					<Candidate qualifiers="Language-ZH-TW" type="String">
+						<Value>週日</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-ZH-CN" type="String">
+						<Value>周日</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-SV-SE" type="String">
+						<Value>söndag</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-RU" type="String">
+						<Value>воскресенье</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PT-PT" type="String">
+						<Value>Domingo</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PT-BR" type="String">
+						<Value>domingo</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PL" type="String">
+						<Value>niedziela</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-NL-NL" type="String">
+						<Value>zondag</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-NB-NO" type="String">
+						<Value>søndag</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-KO" type="String">
+						<Value>일요일</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-JA" type="String">
+						<Value>日曜日</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-IT-IT" type="String">
+						<Value>domenica</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-HU" type="String">
+						<Value>vasárnap</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-FR-FR" type="String">
+						<Value>dimanche</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-FI" type="String">
+						<Value>sunnuntai</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-ES-ES" type="String">
+						<Value>domingo</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN-ZA" isDefault="true" type="String">
+						<Value>Sunday</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN-US" isDefault="true" type="String">
+						<Value>Sunday</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN-GB" isDefault="true" type="String">
+						<Value>Sunday</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN" isDefault="true" type="String">
+						<Value>Sunday</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EL" type="String">
+						<Value>Κυριακή</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-DE-DE" type="String">
+						<Value>Sonntag</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-DA" type="String">
+						<Value>søndag</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-CS" type="String">
+						<Value>neděle</Value>
+					</Candidate>
+				</NamedResource>
+				<NamedResource name="Thursday" uri="ms-resource://Callisto/Callisto/Resources/Thursday">
+					<Candidate qualifiers="Language-ZH-TW" type="String">
+						<Value>週四</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-ZH-CN" type="String">
+						<Value>周四</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-SV-SE" type="String">
+						<Value>torsdag</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-RU" type="String">
+						<Value>четверг</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PT-PT" type="String">
+						<Value>Quinta-feira</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PT-BR" type="String">
+						<Value>quinta-feira</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PL" type="String">
+						<Value>czwartek</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-NL-NL" type="String">
+						<Value>donderdag</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-NB-NO" type="String">
+						<Value>torsdag</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-KO" type="String">
+						<Value>목요일</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-JA" type="String">
+						<Value>木曜日</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-IT-IT" type="String">
+						<Value>giovedì</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-HU" type="String">
+						<Value>csütörtök</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-FR-FR" type="String">
+						<Value>jeudi</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-FI" type="String">
+						<Value>torstai</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-ES-ES" type="String">
+						<Value>jueves</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN-ZA" isDefault="true" type="String">
+						<Value>Thursday</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN-US" isDefault="true" type="String">
+						<Value>Thursday</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN-GB" isDefault="true" type="String">
+						<Value>Thursday</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN" isDefault="true" type="String">
+						<Value>Thursday</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EL" type="String">
+						<Value>Πέμπτη</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-DE-DE" type="String">
+						<Value>Donnerstag</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-DA" type="String">
+						<Value>torsdag</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-CS" type="String">
+						<Value>čtvrtek</Value>
+					</Candidate>
+				</NamedResource>
+				<NamedResource name="TimePickerTitle" uri="ms-resource://Callisto/Callisto/Resources/TimePickerTitle">
+					<Candidate qualifiers="Language-ZH-TW" type="String">
+						<Value>選擇時間</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-ZH-CN" type="String">
+						<Value>选择时间</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-SV-SE" type="String">
+						<Value>VÄLJ TID</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-RU" type="String">
+						<Value>ВЫБЕРИТЕ ВРЕМЯ</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PT-PT" type="String">
+						<Value>ESCOLHER HORA</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PT-BR" type="String">
+						<Value>ESCOLHER HORA</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PL" type="String">
+						<Value>WYBIERZ GODZINĘ</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-NL-NL" type="String">
+						<Value>TIJD KIEZEN</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-NB-NO" type="String">
+						<Value>VELG KLOKKESLETT</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-KO" type="String">
+						<Value>시간 선택</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-JA" type="String">
+						<Value>時刻を選択</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-IT-IT" type="String">
+						<Value>SCEGLI L'ORA</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-HU" type="String">
+						<Value>IDŐ MEGADÁSA</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-FR-FR" type="String">
+						<Value>CHOISIR L'HEURE</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-FI" type="String">
+						<Value>VALITSE KELLONAIKA</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-ES-ES" type="String">
+						<Value>ELIGE UNA HORA</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN-ZA" isDefault="true" type="String">
+						<Value>CHOOSE TIME</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN-US" isDefault="true" type="String">
+						<Value>CHOOSE TIME</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN-GB" isDefault="true" type="String">
+						<Value>CHOOSE TIME</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN" isDefault="true" type="String">
+						<Value>CHOOSE TIME</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EL" type="String">
+						<Value>Επιλογή ώρας</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-DE-DE" type="String">
+						<Value>Uhrzeit wählen</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-DA" type="String">
+						<Value>VÆLG ET KLOKKESLÆT</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-CS" type="String">
+						<Value>ZVOLTE ČAS</Value>
+					</Candidate>
+				</NamedResource>
+				<NamedResource name="Tuesday" uri="ms-resource://Callisto/Callisto/Resources/Tuesday">
+					<Candidate qualifiers="Language-ZH-TW" type="String">
+						<Value>週二</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-ZH-CN" type="String">
+						<Value>周二</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-SV-SE" type="String">
+						<Value>tisdag</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-RU" type="String">
+						<Value>вторник</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PT-PT" type="String">
+						<Value>Terça-feira</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PT-BR" type="String">
+						<Value>terça-feira</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PL" type="String">
+						<Value>wtorek</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-NL-NL" type="String">
+						<Value>dinsdag</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-NB-NO" type="String">
+						<Value>tirsdag</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-KO" type="String">
+						<Value>화요일</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-JA" type="String">
+						<Value>火曜日</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-IT-IT" type="String">
+						<Value>martedì</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-HU" type="String">
+						<Value>kedd</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-FR-FR" type="String">
+						<Value>mardi</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-FI" type="String">
+						<Value>tiistai</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-ES-ES" type="String">
+						<Value>martes</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN-ZA" isDefault="true" type="String">
+						<Value>Tuesday</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN-US" isDefault="true" type="String">
+						<Value>Tuesday</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN-GB" isDefault="true" type="String">
+						<Value>Tuesday</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN" isDefault="true" type="String">
+						<Value>Tuesday</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EL" type="String">
+						<Value>Τρίτη</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-DE-DE" type="String">
+						<Value>Dienstag</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-DA" type="String">
+						<Value>tirsdag</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-CS" type="String">
+						<Value>úterý</Value>
+					</Candidate>
+				</NamedResource>
+				<NamedResource name="WatermarkTextBoxDefault" uri="ms-resource://Callisto/Callisto/Resources/WatermarkTextBoxDefault">
+					<Candidate qualifiers="Language-EN-ZA" isDefault="true" type="String">
+						<Value>Enter some text...</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN-US" isDefault="true" type="String">
+						<Value>Enter some text...</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN" isDefault="true" type="String">
+						<Value>Enter some text...</Value>
+					</Candidate>
+				</NamedResource>
+				<NamedResource name="Wednesday" uri="ms-resource://Callisto/Callisto/Resources/Wednesday">
+					<Candidate qualifiers="Language-ZH-TW" type="String">
+						<Value>週三</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-ZH-CN" type="String">
+						<Value>周三</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-SV-SE" type="String">
+						<Value>onsdag</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-RU" type="String">
+						<Value>среду</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PT-PT" type="String">
+						<Value>Quarta-feira</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PT-BR" type="String">
+						<Value>quarta-feira</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PL" type="String">
+						<Value>środa</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-NL-NL" type="String">
+						<Value>woensdag</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-NB-NO" type="String">
+						<Value>onsdag</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-KO" type="String">
+						<Value>수요일</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-JA" type="String">
+						<Value>水曜日</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-IT-IT" type="String">
+						<Value>mercoledì</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-HU" type="String">
+						<Value>szerda</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-FR-FR" type="String">
+						<Value>mercredi</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-FI" type="String">
+						<Value>keskiviikko</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-ES-ES" type="String">
+						<Value>miércoles</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN-ZA" isDefault="true" type="String">
+						<Value>Wednesday</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN-US" isDefault="true" type="String">
+						<Value>Wednesday</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN-GB" isDefault="true" type="String">
+						<Value>Wednesday</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN" isDefault="true" type="String">
+						<Value>Wednesday</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EL" type="String">
+						<Value>Τετάρτη</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-DE-DE" type="String">
+						<Value>Mittwoch</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-DA" type="String">
+						<Value>onsdag</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-CS" type="String">
+						<Value>středa</Value>
+					</Candidate>
+				</NamedResource>
+				<NamedResource name="XHoursAgo_2To4" uri="ms-resource://Callisto/Callisto/Resources/XHoursAgo_2To4">
+					<Candidate qualifiers="Language-ZH-TW" type="String">
+						<Value>{0} 小時前</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-ZH-CN" type="String">
+						<Value>{0} 小时前</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-SV-SE" type="String">
+						<Value>för {0} timmar sedan</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-RU" type="String">
+						<Value>{0} часа назад</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PT-PT" type="String">
+						<Value>há {0} horas</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PT-BR" type="String">
+						<Value>há {0} horas</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PL" type="String">
+						<Value>{0} godziny temu</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-NL-NL" type="String">
+						<Value>{0} uur geleden</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-NB-NO" type="String">
+						<Value>for {0} timer siden</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-KO" type="String">
+						<Value>{0}시간 전</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-JA" type="String">
+						<Value>{0}時間前</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-IT-IT" type="String">
+						<Value>{0} ore fa</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-HU" type="String">
+						<Value>{0} órája</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-FR-FR" type="String">
+						<Value>il y a {0} heures</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-FI" type="String">
+						<Value>{0} tuntia sitten</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-ES-ES" type="String">
+						<Value>hace {0} horas</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN-ZA" isDefault="true" type="String">
+						<Value>{0} hours ago </Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN-US" isDefault="true" type="String">
+						<Value>{0} hours ago </Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN-GB" isDefault="true" type="String">
+						<Value>{0} hours ago</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN" isDefault="true" type="String">
+						<Value>{0} hours ago </Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EL" type="String">
+						<Value>πριν από {0} ώρες</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-DE-DE" type="String">
+						<Value>vor {0} Stunden</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-DA" type="String">
+						<Value>for {0} timer siden</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-CS" type="String">
+						<Value>před {0} hodinami</Value>
+					</Candidate>
+				</NamedResource>
+				<NamedResource name="XHoursAgo_EndsIn1Not11" uri="ms-resource://Callisto/Callisto/Resources/XHoursAgo_EndsIn1Not11">
+					<Candidate qualifiers="Language-ZH-TW" type="String">
+						<Value>{0} 小時前</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-ZH-CN" type="String">
+						<Value>{0} 小时前</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-SV-SE" type="String">
+						<Value>för {0} timmar sedan</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-RU" type="String">
+						<Value>{0} час назад</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PT-PT" type="String">
+						<Value>há {0} horas</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PT-BR" type="String">
+						<Value>há {0} horas</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PL" type="String">
+						<Value>{0} godzin temu</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-NL-NL" type="String">
+						<Value>{0} uur geleden</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-NB-NO" type="String">
+						<Value>for {0} timer siden</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-KO" type="String">
+						<Value>{0}시간 전</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-JA" type="String">
+						<Value>{0}時間前</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-IT-IT" type="String">
+						<Value>{0} ore fa</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-HU" type="String">
+						<Value>{0} órája</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-FR-FR" type="String">
+						<Value>il y a {0} heures</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-FI" type="String">
+						<Value>{0} tuntia sitten</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-ES-ES" type="String">
+						<Value>hace {0} horas</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN-ZA" isDefault="true" type="String">
+						<Value>{0} hours ago </Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN-US" isDefault="true" type="String">
+						<Value>{0} hours ago </Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN-GB" isDefault="true" type="String">
+						<Value>{0} hours ago</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN" isDefault="true" type="String">
+						<Value>{0} hours ago </Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EL" type="String">
+						<Value>πριν από {0} ώρες</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-DE-DE" type="String">
+						<Value>vor {0} Stunden</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-DA" type="String">
+						<Value>for {0} timer siden</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-CS" type="String">
+						<Value>před {0} hodinami</Value>
+					</Candidate>
+				</NamedResource>
+				<NamedResource name="XHoursAgo_EndsIn2To4Not12To14" uri="ms-resource://Callisto/Callisto/Resources/XHoursAgo_EndsIn2To4Not12To14">
+					<Candidate qualifiers="Language-ZH-TW" type="String">
+						<Value>{0} 小時前</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-ZH-CN" type="String">
+						<Value>{0} 小时前</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-SV-SE" type="String">
+						<Value>för {0} timmar sedan</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-RU" type="String">
+						<Value>{0} часа назад</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PT-PT" type="String">
+						<Value>há {0} horas</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PT-BR" type="String">
+						<Value>há {0} horas</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PL" type="String">
+						<Value>{0} godziny temu</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-NL-NL" type="String">
+						<Value>{0} uur geleden</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-NB-NO" type="String">
+						<Value>for {0} timer siden</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-KO" type="String">
+						<Value>{0}시간 전</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-JA" type="String">
+						<Value>{0}時間前</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-IT-IT" type="String">
+						<Value>{0} ore fa</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-HU" type="String">
+						<Value>{0} órája</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-FR-FR" type="String">
+						<Value>il y a {0} heures</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-FI" type="String">
+						<Value>{0} tuntia sitten</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-ES-ES" type="String">
+						<Value>hace {0} horas</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN-ZA" isDefault="true" type="String">
+						<Value>{0} hours ago </Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN-US" isDefault="true" type="String">
+						<Value>{0} hours ago </Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN-GB" isDefault="true" type="String">
+						<Value>{0} hours ago</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN" isDefault="true" type="String">
+						<Value>{0} hours ago </Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EL" type="String">
+						<Value>πριν από {0} ώρες</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-DE-DE" type="String">
+						<Value>vor {0} Stunden</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-DA" type="String">
+						<Value>for {0} timer siden</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-CS" type="String">
+						<Value>před {0} hodinami</Value>
+					</Candidate>
+				</NamedResource>
+				<NamedResource name="XHoursAgo_Other" uri="ms-resource://Callisto/Callisto/Resources/XHoursAgo_Other">
+					<Candidate qualifiers="Language-ZH-TW" type="String">
+						<Value>{0} 小時前</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-ZH-CN" type="String">
+						<Value>{0} 小时前</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-SV-SE" type="String">
+						<Value>för {0} timmar sedan</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-RU" type="String">
+						<Value>{0} часов назад</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PT-PT" type="String">
+						<Value>há {0} horas</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PT-BR" type="String">
+						<Value>há {0} horas</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PL" type="String">
+						<Value>{0} godzin temu</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-NL-NL" type="String">
+						<Value>{0} uur geleden</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-NB-NO" type="String">
+						<Value>for {0} timer siden</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-KO" type="String">
+						<Value>{0}시간 전</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-JA" type="String">
+						<Value>{0}時間前</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-IT-IT" type="String">
+						<Value>{0} ore fa</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-HU" type="String">
+						<Value>{0} órája</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-FR-FR" type="String">
+						<Value>il y a {0} heures</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-FI" type="String">
+						<Value>{0} tuntia sitten</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-ES-ES" type="String">
+						<Value>hace {0} horas</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN-ZA" isDefault="true" type="String">
+						<Value>{0} hours ago </Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN-US" isDefault="true" type="String">
+						<Value>{0} hours ago </Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN-GB" isDefault="true" type="String">
+						<Value>{0} hours ago</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN" isDefault="true" type="String">
+						<Value>{0} hours ago </Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EL" type="String">
+						<Value>πριν από {0} ώρες</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-DE-DE" type="String">
+						<Value>vor {0} Stunden</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-DA" type="String">
+						<Value>for {0} timer siden</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-CS" type="String">
+						<Value>před {0} hodinami</Value>
+					</Candidate>
+				</NamedResource>
+				<NamedResource name="XMinutesAgo_2To4" uri="ms-resource://Callisto/Callisto/Resources/XMinutesAgo_2To4">
+					<Candidate qualifiers="Language-ZH-TW" type="String">
+						<Value>{0} 分鐘前</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-ZH-CN" type="String">
+						<Value>{0} 分钟前</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-SV-SE" type="String">
+						<Value>för {0} minuter sedan</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-RU" type="String">
+						<Value>{0} минуты назад</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PT-PT" type="String">
+						<Value>há {0} minutos</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PT-BR" type="String">
+						<Value>há {0} minutos</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PL" type="String">
+						<Value>{0} minuty temu</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-NL-NL" type="String">
+						<Value>{0} minuten geleden</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-NB-NO" type="String">
+						<Value>for {0} minutter siden</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-KO" type="String">
+						<Value>{0}분 전</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-JA" type="String">
+						<Value>{0}分前</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-IT-IT" type="String">
+						<Value>{0} minuti fa</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-HU" type="String">
+						<Value>{0} perce</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-FR-FR" type="String">
+						<Value>il y a {0} minutes</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-FI" type="String">
+						<Value>{0} minuuttia sitten</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-ES-ES" type="String">
+						<Value>hace {0} minutos</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN-ZA" isDefault="true" type="String">
+						<Value>{0} minutes ago</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN-US" isDefault="true" type="String">
+						<Value>{0} minutes ago</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN-GB" isDefault="true" type="String">
+						<Value>{0} minutes ago</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN" isDefault="true" type="String">
+						<Value>{0} minutes ago</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EL" type="String">
+						<Value>πριν από {0} λεπτά</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-DE-DE" type="String">
+						<Value>vor {0} Minuten</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-DA" type="String">
+						<Value>for {0} minutter siden</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-CS" type="String">
+						<Value>před {0} minutami</Value>
+					</Candidate>
+				</NamedResource>
+				<NamedResource name="XMinutesAgo_EndsIn1Not11" uri="ms-resource://Callisto/Callisto/Resources/XMinutesAgo_EndsIn1Not11">
+					<Candidate qualifiers="Language-ZH-TW" type="String">
+						<Value>{0} 分鐘前</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-ZH-CN" type="String">
+						<Value>{0} 分钟前</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-SV-SE" type="String">
+						<Value>för {0} minuter sedan</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-RU" type="String">
+						<Value>{0} минуту назад</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PT-PT" type="String">
+						<Value>há {0} minutos</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PT-BR" type="String">
+						<Value>há {0} minutos</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PL" type="String">
+						<Value>{0} minut temu</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-NL-NL" type="String">
+						<Value>{0} minuten geleden</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-NB-NO" type="String">
+						<Value>for {0} minutter siden</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-KO" type="String">
+						<Value>{0}분 전</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-JA" type="String">
+						<Value>{0}分前</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-IT-IT" type="String">
+						<Value>{0} minuti fa</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-HU" type="String">
+						<Value>{0} perce</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-FR-FR" type="String">
+						<Value>il y a {0} minutes</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-FI" type="String">
+						<Value>{0} minuuttia sitten</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-ES-ES" type="String">
+						<Value>hace {0} minutos</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN-ZA" isDefault="true" type="String">
+						<Value>{0} minutes ago</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN-US" isDefault="true" type="String">
+						<Value>{0} minutes ago</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN-GB" isDefault="true" type="String">
+						<Value>{0} minutes ago</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN" isDefault="true" type="String">
+						<Value>{0} minutes ago</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EL" type="String">
+						<Value>πριν από {0} λεπτά</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-DE-DE" type="String">
+						<Value>vor {0} Minuten</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-DA" type="String">
+						<Value>for {0} minutter siden</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-CS" type="String">
+						<Value>před {0} minutami</Value>
+					</Candidate>
+				</NamedResource>
+				<NamedResource name="XMinutesAgo_EndsIn2To4Not12To14" uri="ms-resource://Callisto/Callisto/Resources/XMinutesAgo_EndsIn2To4Not12To14">
+					<Candidate qualifiers="Language-ZH-TW" type="String">
+						<Value>{0} 分鐘前</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-ZH-CN" type="String">
+						<Value>{0} 分钟前</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-SV-SE" type="String">
+						<Value>för {0} minuter sedan</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-RU" type="String">
+						<Value>{0} минуты назад</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PT-PT" type="String">
+						<Value>há {0} minutos</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PT-BR" type="String">
+						<Value>há {0} minutos</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PL" type="String">
+						<Value>{0} minuty temu</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-NL-NL" type="String">
+						<Value>{0} minuten geleden</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-NB-NO" type="String">
+						<Value>for {0} minutter siden</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-KO" type="String">
+						<Value>{0}분 전</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-JA" type="String">
+						<Value>{0}分前</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-IT-IT" type="String">
+						<Value>{0} minuti fa</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-HU" type="String">
+						<Value>{0} perce</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-FR-FR" type="String">
+						<Value>il y a {0} minutes</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-FI" type="String">
+						<Value>{0} minuuttia sitten</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-ES-ES" type="String">
+						<Value>hace {0} minutos</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN-ZA" isDefault="true" type="String">
+						<Value>{0} minutes ago</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN-US" isDefault="true" type="String">
+						<Value>{0} minutes ago</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN-GB" isDefault="true" type="String">
+						<Value>{0} minutes ago</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN" isDefault="true" type="String">
+						<Value>{0} minutes ago</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EL" type="String">
+						<Value>πριν από {0} λεπτά</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-DE-DE" type="String">
+						<Value>vor {0} Minuten</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-DA" type="String">
+						<Value>for {0} minutter siden</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-CS" type="String">
+						<Value>před {0} minutami</Value>
+					</Candidate>
+				</NamedResource>
+				<NamedResource name="XMinutesAgo_Other" uri="ms-resource://Callisto/Callisto/Resources/XMinutesAgo_Other">
+					<Candidate qualifiers="Language-ZH-TW" type="String">
+						<Value>{0} 分鐘前</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-ZH-CN" type="String">
+						<Value>{0} 分钟前</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-SV-SE" type="String">
+						<Value>för {0} minuter sedan</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-RU" type="String">
+						<Value>{0} минут назад</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PT-PT" type="String">
+						<Value>há {0} minutos</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PT-BR" type="String">
+						<Value>há {0} minutos</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PL" type="String">
+						<Value>{0} minut temu</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-NL-NL" type="String">
+						<Value>{0} minuten geleden</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-NB-NO" type="String">
+						<Value>for {0} minutter siden</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-KO" type="String">
+						<Value>{0}분 전</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-JA" type="String">
+						<Value>{0}分前</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-IT-IT" type="String">
+						<Value>{0} minuti fa</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-HU" type="String">
+						<Value>{0} perce</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-FR-FR" type="String">
+						<Value>il y a {0} minutes</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-FI" type="String">
+						<Value>{0} minuuttia sitten</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-ES-ES" type="String">
+						<Value>hace {0} minutos</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN-ZA" isDefault="true" type="String">
+						<Value>{0} minutes ago </Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN-US" isDefault="true" type="String">
+						<Value>{0} minutes ago </Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN-GB" isDefault="true" type="String">
+						<Value>{0} minutes ago</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN" isDefault="true" type="String">
+						<Value>{0} minutes ago </Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EL" type="String">
+						<Value>πριν από {0} λεπτά</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-DE-DE" type="String">
+						<Value>vor {0} Minuten</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-DA" type="String">
+						<Value>for {0} minutter siden</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-CS" type="String">
+						<Value>před {0} minutami</Value>
+					</Candidate>
+				</NamedResource>
+				<NamedResource name="XMonthsAgo_2To4" uri="ms-resource://Callisto/Callisto/Resources/XMonthsAgo_2To4">
+					<Candidate qualifiers="Language-ZH-TW" type="String">
+						<Value>{0} 個月前</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-ZH-CN" type="String">
+						<Value>{0} 个月前</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-SV-SE" type="String">
+						<Value>för {0} månader sedan</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-RU" type="String">
+						<Value>{0} месяца назад</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PT-PT" type="String">
+						<Value>há {0} meses</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PT-BR" type="String">
+						<Value>há {0} meses</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PL" type="String">
+						<Value>{0} miesiące temu</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-NL-NL" type="String">
+						<Value>{0} maanden geleden</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-NB-NO" type="String">
+						<Value>for {0} måneder siden</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-KO" type="String">
+						<Value>{0}개월 전</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-JA" type="String">
+						<Value>{0}か月前</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-IT-IT" type="String">
+						<Value>{0} mesi fa</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-HU" type="String">
+						<Value>{0} hónapja</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-FR-FR" type="String">
+						<Value>il y a {0} mois</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-FI" type="String">
+						<Value>{0} kuukautta sitten</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-ES-ES" type="String">
+						<Value>hace {0} meses</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN-ZA" isDefault="true" type="String">
+						<Value>{0} months ago</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN-US" isDefault="true" type="String">
+						<Value>{0} months ago</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN-GB" isDefault="true" type="String">
+						<Value>{0} months ago</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN" isDefault="true" type="String">
+						<Value>{0} months ago</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EL" type="String">
+						<Value>{0} μήνες πριν</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-DE-DE" type="String">
+						<Value>Vor {0} Monaten</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-DA" type="String">
+						<Value>for {0} måneder siden</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-CS" type="String">
+						<Value>před {0} měsíci</Value>
+					</Candidate>
+				</NamedResource>
+				<NamedResource name="XMonthsAgo_5To12" uri="ms-resource://Callisto/Callisto/Resources/XMonthsAgo_5To12">
+					<Candidate qualifiers="Language-ZH-TW" type="String">
+						<Value>{0} 個月前</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-ZH-CN" type="String">
+						<Value>{0} 个月前</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-SV-SE" type="String">
+						<Value>för {0} månader sedan</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-RU" type="String">
+						<Value>{0} месяцев назад</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PT-PT" type="String">
+						<Value>há {0} meses</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PT-BR" type="String">
+						<Value>há {0} meses</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PL" type="String">
+						<Value>{0} miesięcy temu</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-NL-NL" type="String">
+						<Value>{0} maanden geleden</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-NB-NO" type="String">
+						<Value>for {0} måneder siden</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-KO" type="String">
+						<Value>{0}개월 전</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-JA" type="String">
+						<Value>{0}か月前</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-IT-IT" type="String">
+						<Value>{0} mesi fa</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-HU" type="String">
+						<Value>{0} hónapja</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-FR-FR" type="String">
+						<Value>il y a {0} mois</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-FI" type="String">
+						<Value>{0} kuukautta sitten</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-ES-ES" type="String">
+						<Value>hace {0} meses</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN-ZA" isDefault="true" type="String">
+						<Value>{0} months ago </Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN-US" isDefault="true" type="String">
+						<Value>{0} months ago </Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN-GB" isDefault="true" type="String">
+						<Value>{0} months ago</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN" isDefault="true" type="String">
+						<Value>{0} months ago </Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EL" type="String">
+						<Value>{0} μήνες πριν</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-DE-DE" type="String">
+						<Value>Vor {0} Monaten</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-DA" type="String">
+						<Value>for {0} måneder siden</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-CS" type="String">
+						<Value>před {0} měsíci</Value>
+					</Candidate>
+				</NamedResource>
+				<NamedResource name="XSecondsAgo_2To4" uri="ms-resource://Callisto/Callisto/Resources/XSecondsAgo_2To4">
+					<Candidate qualifiers="Language-ZH-TW" type="String">
+						<Value>{0} 秒鐘前</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-ZH-CN" type="String">
+						<Value>{0} 秒前</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-SV-SE" type="String">
+						<Value>för {0} sekunder sedan</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-RU" type="String">
+						<Value>{0} секунды назад</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PT-PT" type="String">
+						<Value>há {0} segundos</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PT-BR" type="String">
+						<Value>há {0} segundos</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PL" type="String">
+						<Value>{0} sekundy temu</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-NL-NL" type="String">
+						<Value>{0} seconden geleden</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-NB-NO" type="String">
+						<Value>for {0} sekunder siden</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-KO" type="String">
+						<Value>{0}초 전</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-JA" type="String">
+						<Value>{0}秒前</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-IT-IT" type="String">
+						<Value>{0} secondi fa</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-HU" type="String">
+						<Value>{0} másodperce</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-FR-FR" type="String">
+						<Value>il y a {0} secondes</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-FI" type="String">
+						<Value>{0} sekuntia sitten</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-ES-ES" type="String">
+						<Value>hace {0} segundos</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN-ZA" isDefault="true" type="String">
+						<Value>{0} seconds ago</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN-US" isDefault="true" type="String">
+						<Value>{0} seconds ago</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN-GB" isDefault="true" type="String">
+						<Value>{0} seconds ago</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN" isDefault="true" type="String">
+						<Value>{0} seconds ago</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EL" type="String">
+						<Value>πριν από {0} δευτερόλεπτα</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-DE-DE" type="String">
+						<Value>vor {0} Sekunden</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-DA" type="String">
+						<Value>for {0} sekunder siden</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-CS" type="String">
+						<Value>před {0} sekundami</Value>
+					</Candidate>
+				</NamedResource>
+				<NamedResource name="XSecondsAgo_EndsIn1Not11" uri="ms-resource://Callisto/Callisto/Resources/XSecondsAgo_EndsIn1Not11">
+					<Candidate qualifiers="Language-ZH-TW" type="String">
+						<Value>{0} 秒鐘前</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-ZH-CN" type="String">
+						<Value>{0} 秒前</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-SV-SE" type="String">
+						<Value>för {0} sekunder sedan</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-RU" type="String">
+						<Value>{0} секунду назад</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PT-PT" type="String">
+						<Value>há {0} segundos</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PT-BR" type="String">
+						<Value>há {0} segundos</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PL" type="String">
+						<Value>{0} sekund temu</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-NL-NL" type="String">
+						<Value>{0} seconden geleden</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-NB-NO" type="String">
+						<Value>for {0} sekunder siden</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-KO" type="String">
+						<Value>{0}초 전</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-JA" type="String">
+						<Value>{0}秒前</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-IT-IT" type="String">
+						<Value>{0} secondi fa</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-HU" type="String">
+						<Value>{0} másodperce</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-FR-FR" type="String">
+						<Value>il y a {0} secondes</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-FI" type="String">
+						<Value>{0} sekuntia sitten</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-ES-ES" type="String">
+						<Value>hace {0} segundos</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN-ZA" isDefault="true" type="String">
+						<Value>{0} seconds ago</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN-US" isDefault="true" type="String">
+						<Value>{0} seconds ago</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN-GB" isDefault="true" type="String">
+						<Value>{0} seconds ago</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN" isDefault="true" type="String">
+						<Value>{0} seconds ago</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EL" type="String">
+						<Value>πριν από {0} δευτερόλεπτα</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-DE-DE" type="String">
+						<Value>vor {0} Sekunden</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-DA" type="String">
+						<Value>for {0} sekunder siden</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-CS" type="String">
+						<Value>před {0} sekundami</Value>
+					</Candidate>
+				</NamedResource>
+				<NamedResource name="XSecondsAgo_EndsIn2To4Not12To14" uri="ms-resource://Callisto/Callisto/Resources/XSecondsAgo_EndsIn2To4Not12To14">
+					<Candidate qualifiers="Language-ZH-TW" type="String">
+						<Value>{0} 秒鐘前</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-ZH-CN" type="String">
+						<Value>{0} 秒前</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-SV-SE" type="String">
+						<Value>för {0} sekunder sedan</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-RU" type="String">
+						<Value>{0} секунды назад</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PT-PT" type="String">
+						<Value>há {0} segundos</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PT-BR" type="String">
+						<Value>há {0} segundos</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PL" type="String">
+						<Value>{0} sekundy temu</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-NL-NL" type="String">
+						<Value>{0} seconden geleden</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-NB-NO" type="String">
+						<Value>for {0} sekunder siden</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-KO" type="String">
+						<Value>{0}초 전</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-JA" type="String">
+						<Value>{0}秒前</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-IT-IT" type="String">
+						<Value>{0} secondi fa</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-HU" type="String">
+						<Value>{0} másodperce</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-FR-FR" type="String">
+						<Value>il y a {0} secondes</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-FI" type="String">
+						<Value>{0} sekuntia sitten</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-ES-ES" type="String">
+						<Value>hace {0} segundos</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN-ZA" isDefault="true" type="String">
+						<Value>{0} seconds ago</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN-US" isDefault="true" type="String">
+						<Value>{0} seconds ago</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN-GB" isDefault="true" type="String">
+						<Value>{0} seconds ago</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN" isDefault="true" type="String">
+						<Value>{0} seconds ago</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EL" type="String">
+						<Value>πριν από {0} δευτερόλεπτα</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-DE-DE" type="String">
+						<Value>vor {0} Sekunden</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-DA" type="String">
+						<Value>for {0} sekunder siden</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-CS" type="String">
+						<Value>před {0} sekundami</Value>
+					</Candidate>
+				</NamedResource>
+				<NamedResource name="XSecondsAgo_Other" uri="ms-resource://Callisto/Callisto/Resources/XSecondsAgo_Other">
+					<Candidate qualifiers="Language-ZH-TW" type="String">
+						<Value>{0} 秒鐘前</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-ZH-CN" type="String">
+						<Value>{0} 秒前</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-SV-SE" type="String">
+						<Value>för {0} sekunder sedan</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-RU" type="String">
+						<Value>{0} секунд назад</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PT-PT" type="String">
+						<Value>há {0} segundos</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PT-BR" type="String">
+						<Value>há {0} segundos</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PL" type="String">
+						<Value>{0} sekund temu</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-NL-NL" type="String">
+						<Value>{0} seconden geleden</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-NB-NO" type="String">
+						<Value>for {0} sekunder siden</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-KO" type="String">
+						<Value>{0}초 전</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-JA" type="String">
+						<Value>{0}秒前</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-IT-IT" type="String">
+						<Value>{0} secondi fa</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-HU" type="String">
+						<Value>{0} másodperce</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-FR-FR" type="String">
+						<Value>il y a {0} secondes</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-FI" type="String">
+						<Value>{0} sekuntia sitten</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-ES-ES" type="String">
+						<Value>hace {0} segundos</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN-ZA" isDefault="true" type="String">
+						<Value>{0} seconds ago</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN-US" isDefault="true" type="String">
+						<Value>{0} seconds ago</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN-GB" isDefault="true" type="String">
+						<Value>{0} seconds ago</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN" isDefault="true" type="String">
+						<Value>{0} seconds ago</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EL" type="String">
+						<Value>πριν από {0} δευτερόλεπτα</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-DE-DE" type="String">
+						<Value>vor {0} Sekunden</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-DA" type="String">
+						<Value>for {0} sekunder siden</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-CS" type="String">
+						<Value>před {0} sekundami</Value>
+					</Candidate>
+				</NamedResource>
+				<NamedResource name="XWeeksAgo_2To4" uri="ms-resource://Callisto/Callisto/Resources/XWeeksAgo_2To4">
+					<Candidate qualifiers="Language-ZH-TW" type="String">
+						<Value>{0} 週前</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-ZH-CN" type="String">
+						<Value>{0} 周前</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-SV-SE" type="String">
+						<Value>för {0} veckor sedan</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-RU" type="String">
+						<Value>{0} недели назад</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PT-PT" type="String">
+						<Value>há {0} semanas</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PT-BR" type="String">
+						<Value>há {0} semanas</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-PL" type="String">
+						<Value>{0} tygodnie temu</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-NL-NL" type="String">
+						<Value>{0} weken geleden</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-NB-NO" type="String">
+						<Value>{0} uker siden</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-KO" type="String">
+						<Value>{0}주 전</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-JA" type="String">
+						<Value>{0}週間前</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-IT-IT" type="String">
+						<Value>{0} settimane fa</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-HU" type="String">
+						<Value>{0} hete</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-FR-FR" type="String">
+						<Value>il y a {0} semaines</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-FI" type="String">
+						<Value>{0} viikkoa sitten</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-ES-ES" type="String">
+						<Value>hace {0} semanas</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN-ZA" isDefault="true" type="String">
+						<Value>{0} weeks ago</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN-US" isDefault="true" type="String">
+						<Value>{0} weeks ago</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN-GB" isDefault="true" type="String">
+						<Value>{0} weeks ago</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EN" isDefault="true" type="String">
+						<Value>{0} weeks ago</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-EL" type="String">
+						<Value>{0} εβδομάδες πριν</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-DE-DE" type="String">
+						<Value>Vor {0} Wochen</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-DA" type="String">
+						<Value>for {0} uger siden</Value>
+					</Candidate>
+					<Candidate qualifiers="Language-CS" type="String">
+						<Value>před {0} týdny</Value>
+					</Candidate>
+				</NamedResource>
+			</ResourceMapSubtree>
+		</ResourceMapSubtree>
+		<ResourceMapSubtree name="Files">
+			<ResourceMapSubtree name="Callisto">
+				<ResourceMapSubtree name="themes">
+					<NamedResource name="Generic.xaml" uri="ms-resource://Callisto/Files/Callisto/themes/Generic.xaml">
+						<Candidate type="Path">
+							<Value>Callisto\themes\Generic.xaml</Value>
+						</Candidate>
+					</NamedResource>
+				</ResourceMapSubtree>
+			</ResourceMapSubtree>
+		</ResourceMapSubtree>
+	</ResourceMap>
+</PriInfo>

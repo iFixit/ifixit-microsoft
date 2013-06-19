@@ -1,0 +1,42 @@
+﻿<UserControl x:Class="iFixit.WP8.UI.Views.UC.CategoryHomeButton"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+    xmlns:cmd="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WP8"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit" 
+    xmlns:cimbalinoBehaviors="clr-namespace:Cimbalino.Phone.Toolkit.Behaviors;assembly=Cimbalino.Phone.Toolkit"
+    xmlns:telerikPrimitives="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Primitives"
+    xmlns:telerikCore="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Core"
+    xmlns:telerikSlideView="clr-namespace:Telerik.Windows.Controls.SlideView;assembly=Telerik.Windows.Controls.Primitives"
+    telerikCore:InteractionEffectManager.IsInteractionEnabled="True"
+    toolkit:TiltEffect.IsTiltEnabled="True"
+    mc:Ignorable="d"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    d:DesignHeight="480" d:DesignWidth="480">
+
+    <Button Style="{StaticResource BorderLessGridButton}" Margin="6">
+        <i:Interaction.Triggers>
+            <i:EventTrigger EventName="Tap">
+                <cmd:EventToCommand Command="{Binding DataContext.GoToCategory, Mode=OneWay, ElementName=LayoutRoot}"
+                                 CommandParameter="{Binding}"/>
+
+            </i:EventTrigger>
+        </i:Interaction.Triggers>
+        <Grid x:Name="PC" >
+
+            <Image Source="{Binding ImageUrl}" Stretch="UniformToFill"/>
+            <Grid VerticalAlignment="Bottom" Margin="0,0,0,12">
+
+                <Grid.Background>
+                    <SolidColorBrush Color="{StaticResource Background}" Opacity="0.5"/>
+                </Grid.Background>
+                <TextBlock Margin="12,6,6,12" TextWrapping="Wrap" Text="{Binding Name}" VerticalAlignment="Bottom" HorizontalAlignment="Right"/>
+
+            </Grid>
+        </Grid>
+    </Button>
+</UserControl>

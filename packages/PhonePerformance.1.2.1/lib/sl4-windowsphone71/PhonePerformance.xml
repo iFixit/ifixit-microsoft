@@ -1,0 +1,76 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>PhonePerformance</name>
+    </assembly>
+    <members>
+        <member name="T:Delay.DeferredLoadListBox">
+            <summary>
+            Implements a subclass of ListBox based on a StackPanel that defers the
+            loading of off-screen items until necessary in order to minimize impact
+            to the UI thread.
+            </summary>
+        </member>
+        <member name="M:Delay.DeferredLoadListBox.OnApplyTemplate">
+            <summary>
+            Handles the application of the Control's Template.
+            </summary>
+        </member>
+        <member name="M:Delay.DeferredLoadListBox.IsItemItsOwnContainerOverride(System.Object)">
+            <summary>
+            Determines if the specified item is (or is eligible to be) its own item container.
+            </summary>
+            <param name="item">The specified item.</param>
+            <returns>true if the item is its own item container; otherwise, false.</returns>
+        </member>
+        <member name="M:Delay.DeferredLoadListBox.GetContainerForItemOverride">
+            <summary>
+            Creates or identifies the element used to display a specified item.
+            </summary>
+            <returns>A DeferredLoadListBoxItem corresponding to a specified item.</returns>
+        </member>
+        <member name="M:Delay.DeferredLoadListBox.PrepareContainerForItemOverride(System.Windows.DependencyObject,System.Object)">
+            <summary>
+            Prepares the specified element to display the specified item.
+            </summary>
+            <param name="element">The element used to display the specified item.</param>
+            <param name="item">The item to display.</param>
+        </member>
+        <member name="T:Delay.DeferredLoadListBoxItem">
+            <summary>
+            Implements a subclass of ListBoxItem that is used in conjunction with
+            the DeferredLoadListBox to defer the loading of off-screen items.
+            </summary>
+        </member>
+        <member name="T:Delay.LowProfileImageLoader">
+            <summary>
+            Provides access to the Image.UriSource attached property which allows
+            Images to be loaded by Windows Phone with less impact to the UI thread.
+            </summary>
+        </member>
+        <member name="M:Delay.LowProfileImageLoader.GetUriSource(System.Windows.Controls.Image)">
+            <summary>
+            Gets the value of the Uri to use for providing the contents of the Image's Source property.
+            </summary>
+            <param name="obj">Image needing its Source property set.</param>
+            <returns>Uri to use for providing the contents of the Source property.</returns>
+        </member>
+        <member name="M:Delay.LowProfileImageLoader.SetUriSource(System.Windows.Controls.Image,System.Uri)">
+            <summary>
+            Sets the value of the Uri to use for providing the contents of the Image's Source property.
+            </summary>
+            <param name="obj">Image needing its Source property set.</param>
+            <param name="value">Uri to use for providing the contents of the Source property.</param>
+        </member>
+        <member name="F:Delay.LowProfileImageLoader.UriSourceProperty">
+            <summary>
+            Identifies the UriSource attached DependencyProperty.
+            </summary>
+        </member>
+        <member name="P:Delay.LowProfileImageLoader.IsEnabled">
+            <summary>
+            Gets or sets a value indicating whether low-profile image loading is enabled.
+            </summary>
+        </member>
+    </members>
+</doc>

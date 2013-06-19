@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>PhonePerformance</id>
+    <version>1.2.1</version>
+    <title>PhonePerformance</title>
+    <authors>David Anson (Delay)</authors>
+    <owners>David Anson (Delay)</owners>
+    <licenseUrl>http://opensource.org/licenses/ms-pl.html</licenseUrl>
+    <projectUrl>http://blogs.msdn.com/b/delay/</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>PhonePerformance is a Windows Phone 7 assembly with classes to enable better performance for ListBox scrolling and Image display by delay-loading content and pushing as much work off the UI thread as possible.</description>
+    <releaseNotes />
+    <copyright />
+    <language />
+    <tags>Delay DeferredLoadListBox LowProfileImageLoader phone WP7</tags>
+  </metadata>
+</package>

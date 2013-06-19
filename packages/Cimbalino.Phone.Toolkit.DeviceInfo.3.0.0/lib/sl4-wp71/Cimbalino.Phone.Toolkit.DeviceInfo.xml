@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Cimbalino.Phone.Toolkit.DeviceInfo</name>
+    </assembly>
+    <members>
+        <member name="T:Cimbalino.Phone.Toolkit.Services.DeviceExtendedPropertiesService">
+            <summary>
+            Represents an implementation of the <see cref="T:Cimbalino.Phone.Toolkit.Services.IDeviceExtendedPropertiesService"/>.
+            </summary>
+        </member>
+        <member name="T:Cimbalino.Phone.Toolkit.Services.IDeviceExtendedPropertiesService">
+            <summary>
+            Represents a service capable of obtaining extended information about the device on which it is running.
+            </summary>
+        </member>
+        <member name="M:Cimbalino.Phone.Toolkit.Services.IDeviceExtendedPropertiesService.GetDeviceProperty``1(System.String)">
+            <summary>
+            Gets the value associated with the specified property name.
+            </summary>
+            <param name="propertyName">The property name.</param>
+            <returns>The value for the specified property name.</returns>
+            <typeparam name="T">The return type.</typeparam>
+        </member>
+        <member name="P:Cimbalino.Phone.Toolkit.Services.IDeviceExtendedPropertiesService.DeviceUniqueId">
+            <summary>
+            Gets the unique hash for the device.
+            </summary>
+            <value>The unique hash for the device.</value>
+            <remarks>This value will be constant across all applications and will not change if the phone is updated with a new version of the operating system. Applications should not use this to identify users because the device ID will remain unchanged even if ownership of the device is transferred.</remarks>
+        </member>
+        <member name="M:Cimbalino.Phone.Toolkit.Services.DeviceExtendedPropertiesService.GetDeviceProperty``1(System.String)">
+            <summary>
+            Gets the value associated with the specified property name.
+            </summary>
+            <param name="propertyName">The property name.</param>
+            <returns>The value for the specified property name.</returns>
+            <typeparam name="T">The return type.</typeparam>
+        </member>
+        <member name="P:Cimbalino.Phone.Toolkit.Services.DeviceExtendedPropertiesService.DeviceUniqueId">
+            <summary>
+            Gets the unique hash for the device.
+            </summary>
+            <remarks>This value will be constant across all applications and will not change if the phone is updated with a new version of the operating system. Applications should not use this to identify users because the device ID will remain unchanged even if ownership of the device is transferred.</remarks>
+            <value>The unique hash for the device.</value>
+        </member>
+    </members>
+</doc>

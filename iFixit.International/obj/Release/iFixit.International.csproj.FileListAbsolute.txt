@@ -1,0 +1,7 @@
+D:\Projects\iFixit\iFixit.NET\iFixit.NET\iFixit.International\bin\Release\iFixit.International.dll
+D:\Projects\iFixit\iFixit.NET\iFixit.NET\iFixit.International\bin\Release\iFixit.International.pdb
+D:\Projects\iFixit\iFixit.NET\iFixit.NET\iFixit.International\obj\Release\iFixit.International.csprojResolveAssemblyReference.cache
+D:\Projects\iFixit\iFixit.NET\iFixit.NET\iFixit.International\obj\Release\iFixit.International.Translation.resources
+D:\Projects\iFixit\iFixit.NET\iFixit.NET\iFixit.International\obj\Release\iFixit.International.csproj.GenerateResource.Cache
+D:\Projects\iFixit\iFixit.NET\iFixit.NET\iFixit.International\obj\Release\iFixit.International.dll
+D:\Projects\iFixit\iFixit.NET\iFixit.NET\iFixit.International\obj\Release\iFixit.International.pdb

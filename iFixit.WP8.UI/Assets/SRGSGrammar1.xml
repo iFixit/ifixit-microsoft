@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<grammar version="1.0" xml:lang="en-US" root="mediaMenu" tag-format="semantics/1.0" 
+         xmlns="http://www.w3.org/2001/06/grammar" 
+         xmlns:sapi="http://schemas.microsoft.com/Speech/2002/06/SRGSExtensions">
+
+  <!--Sample SRGS Grammar to show syntax.
+      The rule element defines a grammar rule. A rule element 
+      contains text or XML elements that define what speakers can 
+      say, and the order in which they can say it.-->
+
+
+
+  <rule id="mediaMenu" scope="public">
+    Find
+
+    <!--Use the item element to contain a rule expansion when it is necessary to make the rule expansion
+        either optional or repeatable (in other words, in cases where the repeat attribute must be used).
+        The repeat attribute on the item element indicates that the words in the one-of element can be
+        spoken zero or one time, making them optional-->
+    <one-of>
+      <item> guide </item>
+      <item> guides </item>
+      <item> device </item>
+    </one-of>
+
+   
+    <!-- <item repeat="0-1"> in the </item> The ruleref element specifies a reference by the containing rule to another rule, either in the 
+        same grammar or in an external 	grammar. The referenced rule defines user input that must be 
+        matched for successful recognition of the containing rule. This element is especially useful for
+        reusing rules and grammars that contain content which does not change frequently, such as a list 
+        of cities or a rule for recognizing phone numbers.-->
+   
+
+  </rule>
+
+
+
+</grammar>

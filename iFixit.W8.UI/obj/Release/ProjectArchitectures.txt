@@ -1,0 +1,1 @@
+D:\Projects\iFixit\iFixit.NET\iFixit.NET\iFixit.W8.UI\iFixit.W8.UI.csproj;neutral

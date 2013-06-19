@@ -1,0 +1,234 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Machine>DEV-PC</Machine>
+    <WindowsUser>cmorgado</WindowsUser>
+    <SolutionConfiguration>Debug|AnyCPU</SolutionConfiguration>
+    <PackageArchitecture>neutral</PackageArchitecture>
+    <RegisteredManifestChecksum>9D7D657D2FB7D19CBBB3DAF1AC66BBCE56B0FD5F645BA26FAFE75392146BB15F</RegisteredManifestChecksum>
+    <RegisteredPackageMoniker>da2519f1-2007-4120-abde-c3d112eb5953_1.0.0.0_neutral__3ct1fcv0gyfzp</RegisteredPackageMoniker>
+    <RegisteredUserModeAppID>da2519f1-2007-4120-abde-c3d112eb5953_3ct1fcv0gyfzp!App</RegisteredUserModeAppID>
+    <RegisteredPackageID>da2519f1-2007-4120-abde-c3d112eb5953</RegisteredPackageID>
+    <RegisteredPackagePublisher>CN=cmorgado</RegisteredPackagePublisher>
+    <RegisteredVersion>1.0.0.0</RegisteredVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <AppXManifest Include="D:\Projects\iFixit\iFixit.NET\iFixit.NET\iFixit.W8.UI\bin\Debug\AppxManifest.xml">
+      <PackagePath>AppxManifest.xml</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2013-05-29T20:17:59.219</Modified>
+    </AppXManifest>
+  </ItemGroup>
+  <ItemGroup>
+    <AppxPackagedFile Include="D:\Projects\iFixit\iFixit.NET\iFixit.NET\iFixit.W8.UI\bin\Debug\iFixit.W8.UI.exe">
+      <PackagePath>iFixit.W8.UI.exe</PackagePath>
+      <Modified>2013-05-29T20:17:57.536</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Projects\iFixit\iFixit.NET\iFixit.NET\iFixit.W8.UI\bin\Debug\iFixit.W8.UI.pdb">
+      <PackagePath>iFixit.W8.UI.pdb</PackagePath>
+      <Modified>2013-05-29T20:17:57.500</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Projects\iFixit\iFixit.NET\iFixit.NET\packages\Callisto.1.3.0\lib\winrt45\Callisto.dll">
+      <PackagePath>Callisto.dll</PackagePath>
+      <Modified>2013-05-23T22:53:33.314</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Projects\iFixit\iFixit.NET\iFixit.NET\packages\MvvmLightLibs.4.1.27.0\lib\netcore45\GalaSoft.MvvmLight.Extras.Win8.dll">
+      <PackagePath>GalaSoft.MvvmLight.Extras.Win8.dll</PackagePath>
+      <Modified>2013-05-01T09:49:54.544</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Projects\iFixit\iFixit.NET\iFixit.NET\packages\MvvmLightLibs.4.1.27.0\lib\netcore45\GalaSoft.MvvmLight.Win8.dll">
+      <PackagePath>GalaSoft.MvvmLight.Win8.dll</PackagePath>
+      <Modified>2013-05-01T09:49:54.565</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Projects\iFixit\iFixit.NET\iFixit.NET\packages\MvvmLightLibs.4.1.27.0\lib\netcore45\Microsoft.Practices.ServiceLocation.dll">
+      <PackagePath>Microsoft.Practices.ServiceLocation.dll</PackagePath>
+      <Modified>2013-05-01T09:49:54.583</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Projects\iFixit\iFixit.NET\iFixit.NET\packages\WinRTXamlToolkit.1.4.2.0\lib\netcore45\WinRTXamlToolkit.dll">
+      <PackagePath>WinRTXamlToolkit.dll</PackagePath>
+      <Modified>2013-05-29T20:17:55.535</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Projects\iFixit\iFixit.NET\iFixit.NET\packages\MvvmLightLibs.4.1.27.0\lib\netcore45\GalaSoft.MvvmLight.Extras.Win8.pdb">
+      <PackagePath>GalaSoft.MvvmLight.Extras.Win8.pdb</PackagePath>
+      <Modified>2013-05-01T09:49:54.545</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Projects\iFixit\iFixit.NET\iFixit.NET\packages\MvvmLightLibs.4.1.27.0\lib\netcore45\GalaSoft.MvvmLight.Win8.pdb">
+      <PackagePath>GalaSoft.MvvmLight.Win8.pdb</PackagePath>
+      <Modified>2013-05-01T09:49:54.567</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Projects\iFixit\iFixit.NET\iFixit.NET\packages\MvvmLightLibs.4.1.27.0\lib\netcore45\Microsoft.Practices.ServiceLocation.pdb">
+      <PackagePath>Microsoft.Practices.ServiceLocation.pdb</PackagePath>
+      <Modified>2013-05-01T09:49:54.585</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Projects\iFixit\iFixit.NET\iFixit.NET\packages\MvvmLightLibs.4.1.27.0\lib\netcore45\GalaSoft.MvvmLight.Extras.Win8.xml">
+      <PackagePath>GalaSoft.MvvmLight.Extras.Win8.xml</PackagePath>
+      <Modified>2013-05-01T09:49:54.550</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Projects\iFixit\iFixit.NET\iFixit.NET\packages\MvvmLightLibs.4.1.27.0\lib\netcore45\GalaSoft.MvvmLight.Win8.xml">
+      <PackagePath>GalaSoft.MvvmLight.Win8.xml</PackagePath>
+      <Modified>2013-05-01T09:49:54.571</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Projects\iFixit\iFixit.NET\iFixit.NET\packages\MvvmLightLibs.4.1.27.0\lib\netcore45\Microsoft.Practices.ServiceLocation.xml">
+      <PackagePath>Microsoft.Practices.ServiceLocation.xml</PackagePath>
+      <Modified>2013-05-01T09:49:54.589</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Projects\iFixit\iFixit.NET\iFixit.NET\iFixit.W8.UI\Assets\Logo.png">
+      <PackagePath>Assets\Logo.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2012-03-15T19:42:52.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Projects\iFixit\iFixit.NET\iFixit.NET\iFixit.W8.UI\Assets\SmallLogo.png">
+      <PackagePath>Assets\SmallLogo.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2012-03-15T19:42:52.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Projects\iFixit\iFixit.NET\iFixit.NET\iFixit.W8.UI\Assets\SplashScreen.png">
+      <PackagePath>Assets\SplashScreen.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2012-03-15T19:42:52.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Projects\iFixit\iFixit.NET\iFixit.NET\iFixit.W8.UI\Assets\StoreLogo.png">
+      <PackagePath>Assets\StoreLogo.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2012-03-15T19:42:52.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Projects\iFixit\iFixit.NET\iFixit.NET\iFixit.W8.UI\Assets\LightGray.png">
+      <PackagePath>Assets\LightGray.png</PackagePath>
+      <Modified>2011-12-12T21:08:56.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Projects\iFixit\iFixit.NET\iFixit.NET\iFixit.W8.UI\Assets\MediumGray.png">
+      <PackagePath>Assets\MediumGray.png</PackagePath>
+      <Modified>2011-12-12T21:08:56.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Projects\iFixit\iFixit.NET\iFixit.NET\iFixit.W8.UI\Assets\DarkGray.png">
+      <PackagePath>Assets\DarkGray.png</PackagePath>
+      <Modified>2011-12-12T21:08:56.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Projects\iFixit\iFixit.NET\iFixit.NET\iFixit.W8.UI\MVVMLight.Nuget.Readme.txt">
+      <PackagePath>MVVMLight.Nuget.Readme.txt</PackagePath>
+      <Modified>2013-05-23T22:54:49.178</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Projects\iFixit\iFixit.NET\iFixit.NET\iFixit.W8.UI\bin\Debug\App.xaml">
+      <PackagePath>App.xaml</PackagePath>
+      <Modified>2013-05-29T18:43:05.348</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Projects\iFixit\iFixit.NET\iFixit.NET\iFixit.W8.UI\bin\Debug\Common\StandardStyles.xaml">
+      <PackagePath>Common\StandardStyles.xaml</PackagePath>
+      <Modified>2012-06-26T15:19:20.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Projects\iFixit\iFixit.NET\iFixit.NET\iFixit.W8.UI\bin\Debug\GroupedItemsPage.xaml">
+      <PackagePath>GroupedItemsPage.xaml</PackagePath>
+      <Modified>2013-05-23T22:51:25.875</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Projects\iFixit\iFixit.NET\iFixit.NET\iFixit.W8.UI\bin\Debug\GroupDetailPage.xaml">
+      <PackagePath>GroupDetailPage.xaml</PackagePath>
+      <Modified>2013-05-23T22:51:25.941</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Projects\iFixit\iFixit.NET\iFixit.NET\iFixit.W8.UI\bin\Debug\ItemDetailPage.xaml">
+      <PackagePath>ItemDetailPage.xaml</PackagePath>
+      <Modified>2013-05-23T22:51:25.994</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Projects\iFixit\iFixit.NET\iFixit.NET\packages\Callisto.1.3.0\lib\winrt45\Callisto\themes\Generic.xaml">
+      <PackagePath>Callisto\themes\Generic.xaml</PackagePath>
+      <Modified>2013-05-23T22:53:33.327</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Projects\iFixit\iFixit.NET\iFixit.NET\packages\WinRTXamlToolkit.1.4.2.0\lib\netcore45\WinRTXamlToolkit\Controls\AnimatingContainer.xaml">
+      <PackagePath>WinRTXamlToolkit\Controls\AnimatingContainer.xaml</PackagePath>
+      <Modified>2013-05-29T20:17:55.542</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Projects\iFixit\iFixit.NET\iFixit.NET\packages\WinRTXamlToolkit.1.4.2.0\lib\netcore45\WinRTXamlToolkit\Controls\CascadingTextBlock.xaml">
+      <PackagePath>WinRTXamlToolkit\Controls\CascadingTextBlock.xaml</PackagePath>
+      <Modified>2013-05-29T20:17:55.548</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Projects\iFixit\iFixit.NET\iFixit.NET\packages\WinRTXamlToolkit.1.4.2.0\lib\netcore45\WinRTXamlToolkit\Controls\CountdownControl.xaml">
+      <PackagePath>WinRTXamlToolkit\Controls\CountdownControl.xaml</PackagePath>
+      <Modified>2013-05-29T20:17:55.553</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Projects\iFixit\iFixit.NET\iFixit.NET\packages\WinRTXamlToolkit.1.4.2.0\lib\netcore45\WinRTXamlToolkit\Controls\AlternativeFrame\AlternativeFrame.xaml">
+      <PackagePath>WinRTXamlToolkit\Controls\AlternativeFrame\AlternativeFrame.xaml</PackagePath>
+      <Modified>2013-05-29T20:17:55.541</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Projects\iFixit\iFixit.NET\iFixit.NET\packages\WinRTXamlToolkit.1.4.2.0\lib\netcore45\WinRTXamlToolkit\Controls\CameraCaptureControl\CameraCaptureControl.xaml">
+      <PackagePath>WinRTXamlToolkit\Controls\CameraCaptureControl\CameraCaptureControl.xaml</PackagePath>
+      <Modified>2013-05-29T20:17:55.546</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Projects\iFixit\iFixit.NET\iFixit.NET\packages\WinRTXamlToolkit.1.4.2.0\lib\netcore45\WinRTXamlToolkit\Controls\CascadingImageControl\CascadingImageControl.xaml">
+      <PackagePath>WinRTXamlToolkit\Controls\CascadingImageControl\CascadingImageControl.xaml</PackagePath>
+      <Modified>2013-05-29T20:17:55.547</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Projects\iFixit\iFixit.NET\iFixit.NET\packages\WinRTXamlToolkit.1.4.2.0\lib\netcore45\WinRTXamlToolkit\Controls\ColorPicker\ColorPicker.xaml">
+      <PackagePath>WinRTXamlToolkit\Controls\ColorPicker\ColorPicker.xaml</PackagePath>
+      <Modified>2013-05-29T20:17:55.552</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Projects\iFixit\iFixit.NET\iFixit.NET\packages\WinRTXamlToolkit.1.4.2.0\lib\netcore45\WinRTXamlToolkit\Controls\CustomAppBar\CustomAppBar.xaml">
+      <PackagePath>WinRTXamlToolkit\Controls\CustomAppBar\CustomAppBar.xaml</PackagePath>
+      <Modified>2013-05-29T20:17:55.557</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Projects\iFixit\iFixit.NET\iFixit.NET\packages\WinRTXamlToolkit.1.4.2.0\lib\netcore45\WinRTXamlToolkit\Controls\CustomGridSplitter\CustomGridSplitter.xaml">
+      <PackagePath>WinRTXamlToolkit\Controls\CustomGridSplitter\CustomGridSplitter.xaml</PackagePath>
+      <Modified>2013-05-29T20:17:55.560</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Projects\iFixit\iFixit.NET\iFixit.NET\packages\WinRTXamlToolkit.1.4.2.0\lib\netcore45\WinRTXamlToolkit\Controls\DelayedLoadControl\DelayedLoadControl.xaml">
+      <PackagePath>WinRTXamlToolkit\Controls\DelayedLoadControl\DelayedLoadControl.xaml</PackagePath>
+      <Modified>2013-05-29T20:17:55.560</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Projects\iFixit\iFixit.NET\iFixit.NET\packages\WinRTXamlToolkit.1.4.2.0\lib\netcore45\WinRTXamlToolkit\Controls\ImageButton\ImageButton.xaml">
+      <PackagePath>WinRTXamlToolkit\Controls\ImageButton\ImageButton.xaml</PackagePath>
+      <Modified>2013-05-29T20:17:55.565</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Projects\iFixit\iFixit.NET\iFixit.NET\packages\WinRTXamlToolkit.1.4.2.0\lib\netcore45\WinRTXamlToolkit\Controls\ImageToggleButton\ImageToggleButton.xaml">
+      <PackagePath>WinRTXamlToolkit\Controls\ImageToggleButton\ImageToggleButton.xaml</PackagePath>
+      <Modified>2013-05-29T20:17:55.568</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Projects\iFixit\iFixit.NET\iFixit.NET\packages\WinRTXamlToolkit.1.4.2.0\lib\netcore45\WinRTXamlToolkit\Controls\InputDialog\InputDialog.xaml">
+      <PackagePath>WinRTXamlToolkit\Controls\InputDialog\InputDialog.xaml</PackagePath>
+      <Modified>2013-05-29T20:17:55.572</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Projects\iFixit\iFixit.NET\iFixit.NET\packages\WinRTXamlToolkit.1.4.2.0\lib\netcore45\WinRTXamlToolkit\Controls\ListItemButton\ListItemButton.xaml">
+      <PackagePath>WinRTXamlToolkit\Controls\ListItemButton\ListItemButton.xaml</PackagePath>
+      <Modified>2013-05-29T20:17:55.574</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Projects\iFixit\iFixit.NET\iFixit.NET\packages\WinRTXamlToolkit.1.4.2.0\lib\netcore45\WinRTXamlToolkit\Controls\NumericUpDown\NumericUpDown.xaml">
+      <PackagePath>WinRTXamlToolkit\Controls\NumericUpDown\NumericUpDown.xaml</PackagePath>
+      <Modified>2013-05-29T20:17:55.579</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Projects\iFixit\iFixit.NET\iFixit.NET\packages\WinRTXamlToolkit.1.4.2.0\lib\netcore45\WinRTXamlToolkit\Controls\TreeView\TreeView.xaml">
+      <PackagePath>WinRTXamlToolkit\Controls\TreeView\TreeView.xaml</PackagePath>
+      <Modified>2013-05-29T20:17:55.592</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Projects\iFixit\iFixit.NET\iFixit.NET\packages\WinRTXamlToolkit.1.4.2.0\lib\netcore45\WinRTXamlToolkit\Controls\TreeView\TreeViewItem.xaml">
+      <PackagePath>WinRTXamlToolkit\Controls\TreeView\TreeViewItem.xaml</PackagePath>
+      <Modified>2013-05-29T20:17:55.599</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Projects\iFixit\iFixit.NET\iFixit.NET\packages\WinRTXamlToolkit.1.4.2.0\lib\netcore45\WinRTXamlToolkit\Controls\TreeView\TreeViewMouse.xaml">
+      <PackagePath>WinRTXamlToolkit\Controls\TreeView\TreeViewMouse.xaml</PackagePath>
+      <Modified>2013-05-29T20:17:55.607</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Projects\iFixit\iFixit.NET\iFixit.NET\packages\WinRTXamlToolkit.1.4.2.0\lib\netcore45\WinRTXamlToolkit\Controls\TreeView\TreeViewTouch.xaml">
+      <PackagePath>WinRTXamlToolkit\Controls\TreeView\TreeViewTouch.xaml</PackagePath>
+      <Modified>2013-05-29T20:17:55.612</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Projects\iFixit\iFixit.NET\iFixit.NET\packages\WinRTXamlToolkit.1.4.2.0\lib\netcore45\WinRTXamlToolkit\Controls\WatermarkPasswordBox\WatermarkPasswordBox.xaml">
+      <PackagePath>WinRTXamlToolkit\Controls\WatermarkPasswordBox\WatermarkPasswordBox.xaml</PackagePath>
+      <Modified>2013-05-29T20:17:55.617</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Projects\iFixit\iFixit.NET\iFixit.NET\packages\WinRTXamlToolkit.1.4.2.0\lib\netcore45\WinRTXamlToolkit\Controls\WatermarkTextBox\WatermarkTextBox.xaml">
+      <PackagePath>WinRTXamlToolkit\Controls\WatermarkTextBox\WatermarkTextBox.xaml</PackagePath>
+      <Modified>2013-05-29T20:17:55.623</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Projects\iFixit\iFixit.NET\iFixit.NET\packages\WinRTXamlToolkit.1.4.2.0\lib\netcore45\WinRTXamlToolkit\Controls\WebBrowser\WebBrowser.xaml">
+      <PackagePath>WinRTXamlToolkit\Controls\WebBrowser\WebBrowser.xaml</PackagePath>
+      <Modified>2013-05-29T20:17:55.628</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Projects\iFixit\iFixit.NET\iFixit.NET\packages\WinRTXamlToolkit.1.4.2.0\lib\netcore45\WinRTXamlToolkit\Themes\Generic.xaml">
+      <PackagePath>WinRTXamlToolkit\Themes\Generic.xaml</PackagePath>
+      <Modified>2013-05-29T20:17:55.629</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Projects\iFixit\iFixit.NET\iFixit.NET\iFixit.W8.UI\bin\Debug\resources.pri">
+      <PackagePath>resources.pri</PackagePath>
+      <Modified>2013-05-29T20:17:58.151</Modified>
+    </AppxPackagedFile>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+</Project>
