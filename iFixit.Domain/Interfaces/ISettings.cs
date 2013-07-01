@@ -8,6 +8,7 @@ namespace iFixit.Domain.Interfaces
     public interface ISettings
     {
         string AppName();
+        string AppKey();
         string PublisherEmail();
         string SupportEmail();
         string ServiceUrl();

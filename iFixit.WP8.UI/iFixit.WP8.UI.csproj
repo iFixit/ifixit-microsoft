@@ -225,6 +225,7 @@
     <Content Include="Assets\gmail.png" />
     <Content Include="Assets\iFixit-logo.png" />
     <Content Include="Assets\iFixit_logo_black.png" />
+    <Content Include="Assets\Key.txt" />
     <Content Include="Assets\linkedin.png" />
     <Content Include="Assets\MB_0001_pin.png" />
     <Content Include="Assets\MB_0023_home2_48.png" />

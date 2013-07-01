@@ -23,6 +23,7 @@
 	Foreground="{StaticResource PhoneForegroundBrush}"
 	SupportedOrientations="PortraitOrLandscape"  Orientation="Portrait"
 	shell:SystemTray.IsVisible="False" shell:SystemTray.Opacity="0">
+  
     <code:PageBase.Resources>
         <code:RandomTimeSpanGenerator x:Key="TimeSpanGenerator"/>
         <code:CachingImageConverter x:Key="CachingImageConverter"/>
@@ -88,12 +89,12 @@
                 <phone:PivotItem Header="{Binding Labels.Translation.Categories, Source={StaticResource LabelsManager}}">
                     <ScrollViewer >
                         <Grid Margin="0,0,0,0"  Height="640" VerticalAlignment="Top">
-                            <i:Interaction.Behaviors>
+                            <!--<i:Interaction.Behaviors>
                                 <cimbalinoBehaviors:MultiBindingBehavior Converter="{StaticResource ArrayBoolVisibility}" ConverterParameter="Any" PropertyName="Visibility">
                                     <cimbalinoBehaviors:MultiBindingItem Value="{Binding IsLoading}" />
                                     <cimbalinoBehaviors:MultiBindingItem Value="{Binding IsOffline}" />
                                 </cimbalinoBehaviors:MultiBindingBehavior>
-                            </i:Interaction.Behaviors>
+                            </i:Interaction.Behaviors>-->
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="1*"/>
                                 <ColumnDefinition Width="1*"/>
@@ -482,7 +483,7 @@
                         </HyperlinkButton>
 
                         <HyperlinkButton Content="{Binding Labels.Translation.News, Mode=OneWay, Source={StaticResource LabelsManager}}" 
-										 HorizontalAlignment="Left"  Style="{StaticResource DefaultHyperlinks}" Foreground="{StaticResource FourthBackgroundBrush}" Margin="0,0,0,12" Visibility="Collapsed" >
+										 HorizontalAlignment="Left"  Style="{StaticResource DefaultHyperlinks}" Foreground="{StaticResource FourthBackgroundBrush}" Margin="0,0,0,12"  >
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="Tap">
                                     <cmd:EventToCommand Command="{Binding DataContext.GoToAbout, ElementName=LayoutRoot, Mode=OneWay}"

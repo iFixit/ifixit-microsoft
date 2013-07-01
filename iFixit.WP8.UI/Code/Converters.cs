@@ -337,4 +337,31 @@ namespace iFixit.WP8.UI.Code
             return value;
         }
     }
+
+    public class SubStringConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType,
+           object parameter, CultureInfo culture)
+        {
+            string Result = string.Empty;
+            Result = (string)value;
+            int Len = int.Parse(parameter.ToString());
+
+            if (Result.Length > Len)
+            {
+                int lastSpace = Result.IndexOf(' ', Len);
+                Result =
+                Result.Substring(0, lastSpace) + "...";
+            }
+            
+
+            return Result;
+        }
+
+        public object ConvertBack(object value, Type targetType,
+            object parameter, CultureInfo culture)
+        {
+            return value;
+        }
+    }
 }

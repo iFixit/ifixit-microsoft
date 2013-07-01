@@ -121,31 +121,36 @@ namespace iFixit.Domain.ViewModels
             get
             {
                 return _GoToCategory ?? (_GoToCategory = new RelayCommand<Models.UI.Category>(
-                 (selectedCategory) =>
-                 {
+               async (selectedCategory) =>
+               {
 
-                     try
-                     {
-                         LoadingCounter++;
+                   try
+                   {
+                       LoadingCounter++;
 
-                         AppBase.Current.CurrentPage = 0;
-                         if (selectedCategory.Items.Count > 0)
-                             _navigationService.Navigate<SubCategories>(true, selectedCategory);
-                         else
-                         {
-                             _navigationService.Navigate<Device>(true, selectedCategory);
+                       AppBase.Current.CurrentPage = 0;
+                       var x = await Utils.GetCategoryContent(selectedCategory.Name, _storageService, Broker);
+                       if (x.children == null || x.children.Count == 0)
+                       {
+                           _navigationService.Navigate<Device>(true, selectedCategory);
+                       }
+                       else
 
-                         }
+                           _navigationService.Navigate<SubCategories>(true, selectedCategory);
 
-                         LoadingCounter--;
-                     }
-                     catch (Exception ex)
-                     {
-                         LoadingCounter--;
-                         throw ex;
-                     }
 
-                 }));
+
+
+
+                       LoadingCounter--;
+                   }
+                   catch (Exception ex)
+                   {
+                       LoadingCounter--;
+                       throw ex;
+                   }
+
+               }));
             }
 
         }
@@ -168,30 +173,25 @@ namespace iFixit.Domain.ViewModels
                          LoadingCounter++;
                          var xy = this.NavigationParameter<Models.UI.Category>();
                          CategoryName = xy.Name;
-                         var x = await Utils.GetGuidesContent(xy.Name, _storageService, Broker);
+                         var x = await Utils.GetCategoryContent(xy.Name, _storageService, Broker);
                          Description = x.description;
                          ImageUrl = x.image.medium;
                          BackgroundImageUrl = x.image.large;
 
 
-
-
-                         foreach (var item in xy.Items)
+                         foreach (var item in x.children)
                          {
-                             item.Name = item.Name.ToLower();
 
-                             Items.Add(item);
 
+                             Items.Add(new Models.UI.Category
+                             {
+                                 Name = item.ToLower(),
+                                 UniqueId = item.ToLower()
+
+                             });
                          }
 
 
-                         Items.Add(new Models.UI.Category
-                         {
-
-                             Name = xy.Name.ToLower()
-                             ,
-                             UniqueId = xy.Name
-                         });
 
                          LoadingCounter--;
 
@@ -208,7 +208,7 @@ namespace iFixit.Domain.ViewModels
             }
         }
 
-     
+
 
 
         public SubCategories(INavigation<Domain.Interfaces.NavigationModes> navigationService, IStorage storageService, ISettings settingsService, IUxService uxService, IPeerConnector peerConnector)

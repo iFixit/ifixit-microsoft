@@ -8,6 +8,8 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ServicesEngine = iFixit.Domain.Services.V2_0;
+using RESTModels = iFixit.Domain.Models.REST.V2_0;
 
 namespace iFixit.Domain.ViewModels
 {
@@ -127,11 +129,11 @@ namespace iFixit.Domain.ViewModels
 
                             var selectedCategory = this.NavigationParameter<Models.UI.Category>();
 
-                            var selectedDevice = await Utils.GetGuidesContent(selectedCategory.Name, _storageService, Broker);
+                            var selectedDevice = await Utils.GetCategoryContent(selectedCategory.Name, _storageService, Broker);
 
                             DevicePages.Add(new Models.UI.DeviceIntroPage
                             {
-                                PageTitle = selectedDevice.title.ToLower(),
+                                PageTitle = selectedDevice.display_title.ToLower(),
                                 Image = selectedDevice.image != null ? selectedDevice.image.medium : "",
                                 PageType = Models.UI.DevicePageType.Intro
 

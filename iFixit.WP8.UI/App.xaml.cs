@@ -92,6 +92,7 @@ namespace iFixit.WP8.UI
             //Sets how often the rate reminder is displayed.
             rateReminder.RecurrencePerUsageCount = 20;
             ThemeManager.ToLightTheme();
+            ThemeManager.SetAccentColor(new Color { A = 255, B = 219, G = 110, R = 0 });
         }
 
         // Code to execute when the application is launching (eg, from Start)

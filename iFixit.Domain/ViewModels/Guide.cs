@@ -8,6 +8,8 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ServicesEngine = iFixit.Domain.Services.V2_0;
+using RESTModels = iFixit.Domain.Models.REST.V2_0;
 
 namespace iFixit.Domain.ViewModels
 {
@@ -15,7 +17,7 @@ namespace iFixit.Domain.ViewModels
     {
 
         #region "properties"
- 
+
         private string currentGuideId = string.Empty;
 
         private bool _BeingRead = false;
@@ -277,10 +279,10 @@ namespace iFixit.Domain.ViewModels
                      //TODO: Check if Guide is in Favorites List no need to Download
                      var fileName = string.Format(Constants.GUIDE, AppBase.Current.GuideId);
                      var isCached = await _storageService.Exists(fileName);
-                     Domain.Models.REST.V1_1.Guide.RootObject rp = null;
+                     RESTModels.Guide.RootObject rp = null;
                      if (isCached)
                      {
-                         rp = JsonConvert.DeserializeObject<Domain.Models.REST.V1_1.Guide.RootObject>(await _storageService.ReadData(fileName));
+                         rp = JsonConvert.DeserializeObject<RESTModels.Guide.RootObject>(await _storageService.ReadData(fileName));
                          await BindGuide(rp);
                      }
                      else
@@ -347,25 +349,25 @@ namespace iFixit.Domain.ViewModels
                 return Url;
         }
 
-        private async Task BindGuide(Domain.Models.REST.V1_1.Guide.RootObject rp)
+        private async Task BindGuide(RESTModels.Guide.RootObject rp)
         {
             currentGuideId = AppBase.Current.GuideId;
 
-            this.GuideTitle = rp.guide.title;
+            this.GuideTitle = rp.title;
             this.GuideUrl = rp.url;
 
-            if (!string.IsNullOrEmpty(rp.guide.author.text))
-                this.Author = string.Format(International.Translation.GuideBy, rp.guide.author.text);
+            if (!string.IsNullOrEmpty(rp.author.username))
+                this.Author = string.Format(International.Translation.GuideBy, rp.author.username);
 
-            this.GuideMainImage = rp.guide.image.large;
+            this.GuideMainImage = rp.image.large;
 
             Models.UI.GuideIntro firstPage = new Models.UI.GuideIntro()
             {
-                TypeOfGuide = rp.guide.type
+                TypeOfGuide = rp.type
                 ,
-                Subject = rp.guide.subject
+                Subject = rp.subject
                 ,
-                Summary = rp.guide.summary
+                Summary = rp.summary
                 ,
                 PageTitle = International.Translation.Intro
                 ,
@@ -376,9 +378,9 @@ namespace iFixit.Domain.ViewModels
 
 
 
-            for (int i = 0; i < rp.guide.prerequisites.Count(); i++)
+            for (int i = 0; i < rp.prerequisites.Count(); i++)
             {
-                var item = rp.guide.prerequisites[i];
+                var item = rp.prerequisites[i];
                 firstPage.PreRequisites.Add(new Models.UI.SearchResultItem
                 {
                     UniqueId = item.guideid.ToString(),
@@ -390,9 +392,9 @@ namespace iFixit.Domain.ViewModels
 
 
 
-            for (int i = 0; i < rp.guide.tools.Count(); i++)
+            for (int i = 0; i < rp.tools.Count(); i++)
             {
-                var item = rp.guide.tools[i];
+                var item = rp.tools[i];
                 firstPage.Tools.Add(new Models.UI.Tool
                 {
                     Image = await ImagePathTranslated(item.thumbnail),
@@ -411,7 +413,7 @@ namespace iFixit.Domain.ViewModels
 
 
             int stepNum = 1;
-            foreach (var item in rp.guide.steps)
+            foreach (var item in rp.steps)
             {
                 Models.UI.GuideStepItem newStep = new Models.UI.GuideStepItem
                 {
@@ -446,8 +448,8 @@ namespace iFixit.Domain.ViewModels
                     {
                         newStep.Video = new Models.UI.GuideStepVideo
                         {
-                            VideoUrl = item.media.videodata.encoding.Where(o => o.mime == "video/mp4").First().url,
-                            ImageUrl = item.media.videodata.thumbnail.medium
+                            VideoUrl = item.media.videodata.encodings.Where(o => o.mime == "video/mp4").First().url,
+                            ImageUrl = item.media.videodata.image.image.medium
                         };
                     }
                     else

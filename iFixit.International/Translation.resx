@@ -252,6 +252,9 @@
   <data name="RegisterNewAccount" xml:space="preserve">
     <value>register new account</value>
   </data>
+  <data name="RssDateAndAuthor" xml:space="preserve">
+    <value>by {0},</value>
+  </data>
   <data name="SamePassword" xml:space="preserve">
     <value>the password must be equal to the confirmation password</value>
   </data>

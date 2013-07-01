@@ -198,7 +198,7 @@ namespace iFixit.Domain.ViewModels
                                   {
                                       LoadingCounter++;
                                       var result = await Broker.RegistrationLogin(this.Email, this.UserName, this.Password);
-                                      //   await _uxService.ShowAlert(International.Translation.ErrorRegistration);
+                                   
                                       this.RegistrationProcess = false;
                                       this.DoLoginProcess = true;
                                       BindAuthentication(result);

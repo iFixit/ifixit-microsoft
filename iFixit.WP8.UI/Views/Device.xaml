@@ -25,15 +25,16 @@
     SupportedOrientations="Portrait"  Orientation="Portrait"
     DataContext="{Binding Device, Mode=OneWay, Source={StaticResource Locator}}" 
     shell:SystemTray.IsVisible="False" shell:SystemTray.Opacity="0">
-    <i:Interaction.Triggers>
-        <i:EventTrigger EventName="Loaded">
-            <cmd:EventToCommand Command="{Binding Load, Mode=OneWay}" />
 
-        </i:EventTrigger>
-    </i:Interaction.Triggers>
+
 
     <Grid x:Name="LayoutRoot" Background="{StaticResource BackgroundBrush}">
+        <i:Interaction.Triggers>
+            <i:EventTrigger EventName="Loaded">
+                <cmd:EventToCommand Command="{Binding Load, Mode=OneWay}" />
 
+            </i:EventTrigger>
+        </i:Interaction.Triggers>
 
         <i:Interaction.Behaviors>
             <cimbalinoBehaviors:MultiApplicationBarBehavior 
@@ -124,11 +125,12 @@
                     </DataTemplate>
                 </phone:Pivot.ItemTemplate>
             </phone:Pivot>
-            <ProgressBar VerticalAlignment="Top"
+        </Grid>
+        <ProgressBar VerticalAlignment="Top"
         		IsIndeterminate="True" 
         		Visibility="{Binding IsLoading, Converter={StaticResource BooleanToVisibilityConverter}}" 
 				x:Name="_performanceProgressBar" Height="10" Foreground="{StaticResource FourthBackgroundBrush}"/>
-        </Grid>
+
     </Grid>
 
 </code:PageBase>

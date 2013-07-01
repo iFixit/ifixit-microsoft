@@ -6,11 +6,17 @@ using System.Text;
 
 namespace iFixit.UI.Services
 {
-  public  class UiSettings: Domain.Interfaces.ISettings
+    public class UiSettings : Domain.Interfaces.ISettings
     {
         public string AppName()
         {
             throw new NotImplementedException();
+        }
+
+        public string AppKey()
+        {
+            // ReadFromFile
+            return "6f8cb5333f1147170595c875d8bac50a";
         }
 
         public string PublisherEmail()

@@ -74,9 +74,10 @@
     <c4fControlsConverters:VisibilityToBooleanConverter x:Key="VisibilityToBooleanConverter" />
     <c4fControlsConverters:ThemedImageConverter x:Key="ThemedImageConverter" />
     <CimbalinoConverters:NegativeBooleanConverter x:Key="NegativeBooleanConverter"/>
+   
     <c4fControlsConverters:StringToVisibilityConverter x:Key="StringToVisibilityConverter"/>
     <LabelsInternational:LabelsManager x:Key="LabelsManager"/>
-
+   
 
     <!--<Style TargetType="code4FunControls:SuperImage">
         <Setter Property="PlaceholderImageSource" Value="/Assets/NoImage_300x225.jpg"/>
@@ -481,6 +482,7 @@
             </Setter.Value>
         </Setter>
     </Style>
+  
     <Style x:Key="iFixitLinkButton" TargetType="HyperlinkButton">
 
         <Setter Property="Background" Value="Transparent"/>
@@ -700,13 +702,13 @@
 
     <DataTemplate x:Name="CategoryItemInGrid">
 
-       
 
-            <TextBlock TextWrapping="Wrap" Name="Link" Text="{Binding Name}" Margin="12" 
+
+        <TextBlock TextWrapping="Wrap" Name="Link" Text="{Binding Name}" Margin="12" 
                            Foreground="{StaticResource SecondaryBackgroundBrush}"
                            FontSize="36"
                    />
-      
+
 
 
 
@@ -772,6 +774,9 @@
             </Grid>
         </Border>
     </DataTemplate>
+
+
+ 
 
     <DataTemplate x:Key="CollectionsHeader">
         <Border Height="140" Margin="0,0,6,6" BorderBrush="{StaticResource SecondaryBackgroundBrush}" BorderThickness="2" >

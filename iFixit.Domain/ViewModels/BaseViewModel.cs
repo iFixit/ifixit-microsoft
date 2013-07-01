@@ -6,6 +6,8 @@ using System.Linq;
 using System.Text;
 using iFixit.Domain.Code;
 using Logger = iFixit.UI.Services.Logger;
+using ServicesEngine = iFixit.Domain.Services.V2_0;
+using RESTModels = iFixit.Domain.Models.REST.V2_0;
 
 namespace iFixit.Domain.ViewModels
 {
@@ -18,7 +20,7 @@ namespace iFixit.Domain.ViewModels
         public readonly IUxService _uxService;
         public readonly IPeerConnector _peerConnector;
 
-        public Services.V1_1.ServiceBroker Broker = new Services.V1_1.ServiceBroker();
+        public ServicesEngine.ServiceBroker Broker;
 
         #region Properties
 
@@ -36,7 +38,7 @@ namespace iFixit.Domain.ViewModels
         public bool IsOffline
         {
             get { return !_settingsService.IsConnectedToInternet(); }
-          
+
         }
 
 
@@ -218,7 +220,7 @@ namespace iFixit.Domain.ViewModels
                      try
                      {
 
-                         // _navigationService.Navigate<Search>(false);
+                      
                          _uxService.OpenSearch();
                          LoadingCounter--;
                      }
@@ -268,7 +270,7 @@ namespace iFixit.Domain.ViewModels
 
 
 
-        public void BindAuthentication(Models.REST.V1_1.Login.Output.RootObject x)
+        public void BindAuthentication(Models.REST.V2_0.Login.Output.RootObject x)
         {
             AppBase.Current.User = new iFixit.Domain.Models.UI.User
             {
@@ -302,7 +304,7 @@ namespace iFixit.Domain.ViewModels
             _settingsService = settingsService;
             _uxService = uxService;
             _peerConnector = peerConnector;
-
+            Broker = new ServicesEngine.ServiceBroker(_settingsService.AppKey());
             _peerConnector.ConnectionStatusChanged += _peerConnector_ConnectionStatusChanged;
             _peerConnector.GuideReceived += _peerConnector_GuideReceived;
         }
@@ -339,22 +341,6 @@ namespace iFixit.Domain.ViewModels
         }
 
 
-        //public BaseViewModel(
-        //    INavigation<Domain.Interfaces.NavigationModes> navigationService
-        //    , IStorage storageService
-        //    , ISettings settingsService
-        //    , IUxService uxService
-        //    )
-        //{
-
-        //    _navigationService = navigationService;
-        //    _storageService = storageService;
-        //    _settingsService = settingsService;
-        //    _uxService = uxService;
-
-
-
-        //}
 
     }
 }

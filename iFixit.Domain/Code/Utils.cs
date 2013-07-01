@@ -6,7 +6,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using iFixit.Domain.Models;
-using iFixit.Domain.Services.V1_1;
+using ServicesEngine = iFixit.Domain.Services.V2_0;
+using RESTModels = iFixit.Domain.Models.REST.V2_0;
 using System.Text.RegularExpressions;
 
 namespace iFixit.Domain.Code
@@ -43,21 +44,21 @@ namespace iFixit.Domain.Code
         }
 
 
-        public static async Task<iFixit.Domain.Models.REST.V1_1.Category.RootObject> GetGuidesContent(string idCategory, iFixit.Domain.Interfaces.IStorage _storageService, ServiceBroker Broker)
+        public static async Task<RESTModels.Category.RootObject> GetCategoryContent(string idCategory, iFixit.Domain.Interfaces.IStorage _storageService, ServicesEngine.ServiceBroker Broker)
         {
 
             Debug.WriteLine(string.Format("going for :{0}", idCategory));
-            var isCategoryCached = await _storageService.Exists(Constants.CATEGORIES + idCategory);
-            iFixit.Domain.Models.REST.V1_1.Category.RootObject category = null;
+            var isCategoryCached =  await _storageService.Exists(Constants.CATEGORIES + idCategory);
+            RESTModels.Category.RootObject category = null;
             if (isCategoryCached)
             {
                 var rd = await _storageService.ReadData(Constants.CATEGORIES + idCategory);
-                category = rd.LoadFromJson<iFixit.Domain.Models.REST.V1_1.Category.RootObject>();
+                category = rd.LoadFromJson<RESTModels.Category.RootObject>();
             }
             else
             {
                 category = await Broker.GetCategory(idCategory);
-                await _storageService.WriteData(Constants.CATEGORIES + idCategory, category.ToString());
+                await _storageService.WriteData(Constants.CATEGORIES + idCategory, await category.SaveAsJson());
             }
 
             // Process(category.contents_raw);
@@ -69,8 +70,9 @@ namespace iFixit.Domain.Code
             try
             {
                 if (objectToSave == null) return null;
-
-                return JsonConvert.SerializeObjectAsync(objectToSave);
+                var st = new JsonSerializerSettings();
+                st.StringEscapeHandling = StringEscapeHandling.EscapeHtml;
+                return JsonConvert.SerializeObjectAsync(objectToSave, Formatting.None, st);
             }
             catch (Exception ex)
             {
@@ -96,7 +98,10 @@ namespace iFixit.Domain.Code
         {
             try
             {
-                return JsonConvert.DeserializeObject<TJson>(jsonString);
+                var st = new JsonSerializerSettings();
+                st.StringEscapeHandling = StringEscapeHandling.EscapeHtml;
+
+                return JsonConvert.DeserializeObject<TJson>(jsonString, st);
             }
             catch (Exception ex)
             {

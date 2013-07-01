@@ -57,9 +57,18 @@
     <Compile Include="Interfaces\IUiService.cs" />
     <Compile Include="Models\ModelBase.cs" />
     <Compile Include="Models\REST\Categories.cs" />
+    <Compile Include="Models\REST\Feed.cs" />
     <Compile Include="Models\REST\V0_1\Collections.cs" />
     <Compile Include="Models\REST\V1_1\Favorites.cs" />
     <Compile Include="Models\REST\V1_1\Login.cs" />
+    <Compile Include="Models\REST\V2_0\Category.cs" />
+    <Compile Include="Models\REST\V2_0\Favorites.cs" />
+    <Compile Include="Models\REST\V2_0\Guide.cs" />
+    <Compile Include="Models\REST\V2_0\Guides.cs" />
+    <Compile Include="Models\REST\V2_0\Login.cs" />
+    <Compile Include="Models\REST\V2_0\Search_Device.cs" />
+    <Compile Include="Models\REST\V2_0\Search_Guide.cs" />
+    <Compile Include="Models\REST\V2_0\Search_Product.cs" />
     <Compile Include="Models\Ui\Categories.cs" />
     <Compile Include="Models\REST\V1_0\Guide.cs" />
     <Compile Include="Models\REST\V1_0\Search_Device.cs" />
@@ -77,12 +86,15 @@
     <Compile Include="Models\Ui\HomeItem.cs" />
     <Compile Include="Models\Ui\Labels.cs" />
     <Compile Include="Models\Ui\PreRequisite.cs" />
+    <Compile Include="Models\Ui\RssItem.cs" />
     <Compile Include="Models\Ui\SearchResultItem.cs" />
     <Compile Include="Models\Ui\Tool.cs" />
     <Compile Include="Models\Ui\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\V2_0\ServiceBroker.cs" />
     <Compile Include="Services\Helper.cs" />
     <Compile Include="Services\Logger.cs" />
+    <Compile Include="Services\NewsBroker.cs" />
     <Compile Include="Services\V1_1\ServiceBroker.cs" />
     <Compile Include="ViewModels\About.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
@@ -138,6 +150,7 @@
       <Name>iFixit.International</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.7\tools\Microsoft.Bcl.Build.targets" />
