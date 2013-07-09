@@ -145,7 +145,7 @@
     <value>email</value>
   </data>
   <data name="ErrorGetting" xml:space="preserve">
-    <value>ErrorGetting {0}, reason {1}</value>
+     <value>not able to resolve this endpoint:{0} – the reason given was: {1}</value>
   </data>
   <data name="ErrorHTTP" xml:space="preserve">
     <value>an error as occured acessing the server {0}</value>
@@ -157,19 +157,19 @@
     <value>an error as occured during registration</value>
   </data>
   <data name="ErrorResponse" xml:space="preserve">
-    <value>an error as occured processing the server response  {0}</value>
+    <value>an error as occured processing the server response {0}</value>
   </data>
   <data name="ErrorSearchDevices" xml:space="preserve">
-    <value>an error as occured</value>
+    <value>an error as occurred while searching for this device</value>
   </data>
   <data name="ErrorSearchGuides" xml:space="preserve">
-    <value>an error as occured</value>
+    <value>an error as occured while searching for this guide</value>
   </data>
   <data name="Favorites" xml:space="preserve">
     <value>favorites</value>
   </data>
   <data name="FillForm" xml:space="preserve">
-    <value>please fill the form completly</value>
+    <value>please fill the form completely</value>
   </data>
   <data name="ForgotPassword" xml:space="preserve">
     <value>forgot password</value>
@@ -208,7 +208,7 @@
     <value>more</value>
   </data>
   <data name="MoreInfo" xml:space="preserve">
-    <value>more info</value>
+    <value>info</value>
   </data>
   <data name="News" xml:space="preserve">
     <value>news</value>
@@ -286,7 +286,7 @@
     <value>stop</value>
   </data>
   <data name="SuccessRegistration" xml:space="preserve">
-    <value>registration successfull you can login now</value>
+    <value>registration successful, you can login now</value>
   </data>
   <data name="Support" xml:space="preserve">
     <value>support</value>
