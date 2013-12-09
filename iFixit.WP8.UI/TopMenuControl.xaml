@@ -1,0 +1,73 @@
+﻿<UserControl
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit" 
+	xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity" 
+	xmlns:Command="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WP8" x:Class="iFixit.WP8.UI.TopMenuControl"
+    mc:Ignorable="d"
+	
+    d:DesignHeight="80" d:DesignWidth="480">
+    
+	<UserControl.FontFamily>
+		<StaticResource ResourceKey="PhoneFontFamilyNormal"/>
+	</UserControl.FontFamily>
+	<UserControl.FontSize>
+		<StaticResource ResourceKey="PhoneFontSizeNormal"/>
+	</UserControl.FontSize>
+	<UserControl.Foreground>
+		<StaticResource ResourceKey="PhoneForegroundBrush"/>
+	</UserControl.Foreground>
+    
+	<Grid x:Name="LayoutRoot" Height="80"  
+	Margin="0,0,0,0" 
+	Background="{StaticResource BackgroundBrush}">
+
+		
+			
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition/>
+					<ColumnDefinition Width="2*"/>
+					<ColumnDefinition/>
+				</Grid.ColumnDefinitions>
+
+				<Button x:Name="button" 
+					toolkit:TiltEffect.IsTiltEnabled="True"  IsEnabled="{Binding IsOffline, Converter={StaticResource NegativeBooleanConverter}}"
+					BorderThickness="0" Style="{StaticResource BorderLessGridButton02}">
+					<i:Interaction.Triggers>
+						<i:EventTrigger EventName="Tap">
+							<Command:EventToCommand Command="{Binding DoLogin}" />
+						</i:EventTrigger>
+					</i:Interaction.Triggers>
+					<Image HorizontalAlignment="Center" Height="35" VerticalAlignment="Center" Source="/Assets/topbar/User-Profile.png"/>
+				</Button>
+
+				<Button 
+					toolkit:TiltEffect.IsTiltEnabled="True" BorderThickness="0" Style="{StaticResource BorderLessGridButton02}" Grid.Column="1" Margin="0" Padding="0">
+					<i:Interaction.Triggers>
+						<i:EventTrigger EventName="Tap">
+							<Command:EventToCommand  Command="{Binding GoHome}"/>
+						</i:EventTrigger>
+					</i:Interaction.Triggers>
+					<Image HorizontalAlignment="Center" VerticalAlignment="Center" Source="/Assets/iFixit_logo_black.png" Height="60"/>
+				</Button>
+
+				<Button  IsEnabled="{Binding IsOffline, Converter={StaticResource NegativeBooleanConverter}}"
+					toolkit:TiltEffect.IsTiltEnabled="True" BorderThickness="0" Grid.Column="2" Style="{StaticResource BorderLessGridButton02}">
+					<i:Interaction.Triggers>
+						<i:EventTrigger EventName="Tap">
+							<Command:EventToCommand Command="{Binding GoToSearch}"/>
+						</i:EventTrigger>
+					</i:Interaction.Triggers>
+					<Image HorizontalAlignment="Center" VerticalAlignment="Center" Source="/Assets/topbar/Search-Find.png" Height="35"/>
+				</Button>
+
+
+
+
+			
+		
+
+	</Grid>
+</UserControl>

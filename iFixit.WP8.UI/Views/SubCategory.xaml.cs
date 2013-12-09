@@ -26,13 +26,18 @@ namespace iFixit.WP8.UI.Views
         /// <param name="e"></param>
         void SubCategory_Loaded(object sender, RoutedEventArgs e)
         {
-            Domain.ViewModels.SubCategories cat = this.DataContext as Domain.ViewModels.SubCategories;
-            PivotItem p = MainPivot.Items[0] as PivotItem;
-            if (cat.CategoryName.Length>8)
-            p.Header = cat.CategoryName.ToLower().Substring(0,8)+"..";
-            else
-                p.Header = cat.CategoryName.ToLower();
-         
+
+            //Domain.ViewModels.SubCategories cat = this.DataContext as Domain.ViewModels.SubCategories;
+            //if (cat != null)
+            //{
+            //    PivotItem p = MainPivot.Items[0] as PivotItem;
+            //    if (cat.CategoryName.Length > 8)
+            //        p.Header = cat.CategoryName.ToLower().Substring(0, 8) + "..";
+            //    else
+            //        p.Header = cat.CategoryName.ToLower();
+            //}
+
+
         }
 
 

@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ServicesEngine = iFixit.Domain.Services.V2_0;
 using RESTModels = iFixit.Domain.Models.REST.V2_0;
+using System.Diagnostics;
 
 namespace iFixit.Domain.ViewModels
 {
@@ -56,11 +57,10 @@ namespace iFixit.Domain.ViewModels
             get { return this._ShowingFullImage; }
             set
             {
-                if (_ShowingFullImage != value)
-                {
-                    _ShowingFullImage = value;
-                    NotifyPropertyChanged();
-                }
+
+                _ShowingFullImage = value;
+                NotifyPropertyChanged();
+
             }
         }
 
@@ -235,6 +235,7 @@ namespace iFixit.Domain.ViewModels
                      {
                          LoadingCounter++;
                          AppBase.Current.GuideId = SelectedGuide.UniqueId;
+                         _uxService.CancelSpeech();
                          _navigationService.Navigate<Guide>(true, SelectedGuide.UniqueId);
                          SelectedGuide = null;
                          LoadingCounter--;
@@ -257,6 +258,7 @@ namespace iFixit.Domain.ViewModels
                 return _ShowVideo ?? (_ShowVideo = new RelayCommand<string>(
                     (url) =>
                     {
+                        _uxService.CancelSpeech();
                         _uxService.ShowVideo(url);
                     }));
             }
@@ -272,17 +274,19 @@ namespace iFixit.Domain.ViewModels
                 return _GetGuide ?? (_GetGuide = new RelayCommand(
                  async () =>
                  {
-
+                     LoadingCounter++;
                      AppBase.Current.GuideId = this.NavigationParameter<string>();
 
 
                      //TODO: Check if Guide is in Favorites List no need to Download
                      var fileName = string.Format(Constants.GUIDE, AppBase.Current.GuideId);
-                     var isCached = await _storageService.Exists(fileName);
+                     var isCached = await _storageService.Exists(fileName, new TimeSpan(5, 0, 0, 0));
                      RESTModels.Guide.RootObject rp = null;
                      if (isCached)
                      {
-                         rp = JsonConvert.DeserializeObject<RESTModels.Guide.RootObject>(await _storageService.ReadData(fileName));
+                         Debug.WriteLine("Cached Guide :" + AppBase.Current.GuideId);
+                         var jobj = await _storageService.ReadData(fileName);
+                         rp = jobj.LoadFromJson<RESTModels.Guide.RootObject>();
                          await BindGuide(rp);
                      }
                      else
@@ -295,10 +299,10 @@ namespace iFixit.Domain.ViewModels
 
                                  Reset();
                                  LoadingCounter++;
-
+                                 Debug.WriteLine("Going for Guide :" + AppBase.Current.GuideId);
                                  rp = await Broker.GetGuide(AppBase.Current.GuideId);
-                                 _storageService.Save(fileName, rp.ToString());
-
+                                 _storageService.Save(fileName, await rp.SaveAsJson());
+                                 Debug.WriteLine("Caching Guide :" + AppBase.Current.GuideId);
 
                                  await BindGuide(rp);
 
@@ -322,7 +326,7 @@ namespace iFixit.Domain.ViewModels
                          }
 
 
-
+                     LoadingCounter--;
 
 
 
@@ -335,22 +339,27 @@ namespace iFixit.Domain.ViewModels
         private async Task<string> ImagePathTranslated(string Url)
         {
             var isFavorite = await _storageService.FolderExists(string.Format(Constants.GUIDE_CACHE_FOLDER, this.currentGuideId));
-
-
+            //TODO: 
+            string imagePath = Url;
             this.NotFavorite = !isFavorite;
 
-            if (this.IsOffline || isFavorite)
-            {
-                string imageName = Url.Substring(Url.LastIndexOf('/') + 1);
-                string imagePath = "isostore:/" + string.Format(Constants.GUIDE_CACHE_FOLDER, this.currentGuideId) + "/" + imageName;
-                return imagePath;
-            }
-            else
-                return Url;
+            //if (this.IsOffline || isFavorite)
+            //{
+            //    string imageName = Url.Substring(Url.LastIndexOf('/') + 1);
+            //    if (await _storageService.Exists(imageName, string.Format(Constants.GUIDE_CACHE_FOLDER, this.currentGuideId)))
+            //    {
+            //        imagePath = _storageService.BasePath() + string.Format(Constants.GUIDE_CACHE_FOLDER, this.currentGuideId) + "/" + imageName;
+            //    }
+            //}
+
+            return imagePath;
         }
 
         private async Task BindGuide(RESTModels.Guide.RootObject rp)
         {
+            //TODO: TESTE
+            Items.Clear();
+            // DANGEROUS
             currentGuideId = AppBase.Current.GuideId;
 
             this.GuideTitle = rp.title;
@@ -359,7 +368,8 @@ namespace iFixit.Domain.ViewModels
             if (!string.IsNullOrEmpty(rp.author.username))
                 this.Author = string.Format(International.Translation.GuideBy, rp.author.username);
 
-            this.GuideMainImage = rp.image.large;
+            if (rp.image != null)
+                this.GuideMainImage = rp.image.large;
 
             Models.UI.GuideIntro firstPage = new Models.UI.GuideIntro()
             {
@@ -374,22 +384,57 @@ namespace iFixit.Domain.ViewModels
                 Type = Models.UI.GuidesPageTypes.Intro
                 ,
                 StepTitle = International.Translation.Intro
+                ,
+                Difficulty = rp.difficulty
+                ,
+                TimeRequired = rp.time_required
+                ,
+                Author = rp.author.username
+                ,
+                Introduction = rp.introduction_rendered
+
             };
 
+            //if (rp.flags != null)
+            //{
+            //    foreach (var item in rp.flags)
+            //    {
+            //        firstPage.Flags.Add(new Models.UI.Flag
+            //        {
+            //             Text = item.text, Title = item.title, Type = item.flagid
+            //        });
+            //    }
+            //}
 
 
-            for (int i = 0; i < rp.prerequisites.Count(); i++)
+            //for (int i = 0; i < rp.prerequisites.Count(); i++)
+            //{
+            //    var item = rp.prerequisites[i];
+            //    firstPage.PreRequisites.Add(new Models.UI.SearchResultItem
+            //    {
+            //        UniqueId = item.guideid.ToString(),
+            //        Name = string.Format("{0}) {1}", i + 1, item.title),
+            //        ImageUrl = item.image != null ? await ImagePathTranslated(item.image.medium) : "",
+            //        Summary = item.subject
+            //    });
+            //}
+            if (firstPage.PreRequisites.Count > 0)
+                firstPage.HasPreRequisites = true;
+
+
+
+            for (int i = 0; i < rp.parts.Count(); i++)
             {
-                var item = rp.prerequisites[i];
-                firstPage.PreRequisites.Add(new Models.UI.SearchResultItem
+                var item = rp.parts[i];
+                firstPage.Parts.Add(new Models.UI.Tool
                 {
-                    UniqueId = item.guideid.ToString(),
-                    Name = string.Format("{0}) {1}", i + 1, item.title),
-                    ImageUrl = item.image != null ? await ImagePathTranslated(item.image.medium) : "",
-                    Summary = item.subject
+                    Image = await ImagePathTranslated(item.thumbnail),
+                    Title = GeneratePartName(item),
+                    Url = item.url
                 });
             }
-
+            if (firstPage.Parts.Count > 0)
+                firstPage.HasParts = true;
 
 
             for (int i = 0; i < rp.tools.Count(); i++)
@@ -398,12 +443,37 @@ namespace iFixit.Domain.ViewModels
                 firstPage.Tools.Add(new Models.UI.Tool
                 {
                     Image = await ImagePathTranslated(item.thumbnail),
-                    Title = string.Format("{0}) {1}", i + 1, item.text),
+                    Title = item.text,
                     Url = item.url
                 });
             }
 
 
+
+
+
+            for (int i = 0; i < rp.documents.Count(); i++)
+            {
+                var item = rp.documents[i];
+                firstPage.Documents.Add(new Models.UI.Document
+                {
+                    DocumentId = item.documentid
+
+                    ,
+                    Title = item.text
+                    ,
+                    Url = item.url
+                });
+            }
+
+            if (firstPage.Tools.Count > 0)
+                firstPage.HasTools = true;
+
+
+            if (firstPage.HasTools && firstPage.HasParts)
+                firstPage.HasPartsAndTools = true;
+            else
+                firstPage.HasPartsAndTools = false;
             Items.Add(firstPage);
 
 
@@ -423,6 +493,8 @@ namespace iFixit.Domain.ViewModels
                     Type = Models.UI.GuidesPageTypes.Step
                     ,
                     StepTitle = string.Format(International.Translation.StepNum, stepNum)
+                    ,
+                    StepIndex = stepNum
                 };
                 int m = 0;
                 foreach (var lineitem in item.lines)
@@ -451,6 +523,10 @@ namespace iFixit.Domain.ViewModels
                             VideoUrl = item.media.videodata.encodings.Where(o => o.mime == "video/mp4").First().url,
                             ImageUrl = item.media.videodata.image.image.medium
                         };
+                        newStep.MainImage = new Models.UI.GuideStepImage
+                        {
+                            MediumImageUrl = item.media.videodata.image.image.medium
+                        };
                     }
                     else
                     {
@@ -471,20 +547,28 @@ namespace iFixit.Domain.ViewModels
                                         MediumImageUrl = media != null ? await ImagePathTranslated(media.medium) : ""
                                         ,
                                         SmallImageUrl = media != null ? await ImagePathTranslated(media.standard) : ""
+                                        ,
+                                        LargeImageUrl = media != null ? await ImagePathTranslated(media.original) : ""
                                     };
-                                else
+
+
+
+                                newStep.Images.Add(new Models.UI.GuideStepImage
                                 {
-                                    newStep.Images.Add(new Models.UI.GuideStepImage
-                                    {
-                                        StepIndex = stepNum,
-                                        ImageIndex = m,
-                                        ImageId = media.id.ToString(),
-                                        MediumImageUrl = media != null ? await ImagePathTranslated(media.medium) : "",
-                                        SmallImageUrl = media != null ? await ImagePathTranslated(media.standard) : ""
-                                    });
-                                }
+                                    StepIndex = stepNum,
+                                    ImageIndex = m,
+                                    ImageId = media.id.ToString(),
+                                    MediumImageUrl = media != null ? await ImagePathTranslated(media.medium) : ""
+                                    ,
+                                    SmallImageUrl = media != null ? await ImagePathTranslated(media.standard) : ""
+                                    ,
+                                    LargeImageUrl = media != null ? await ImagePathTranslated(media.original) : ""
+                                });
+
                                 n++;
                             }
+
+
 
                         }
                     }
@@ -494,10 +578,27 @@ namespace iFixit.Domain.ViewModels
 
                 }
 
+                if (AppBase.Current.ExtendeInfoApp)
+                {
+                    newStep.ShowListImages = newStep.Images.Count > 1;
+                }
+
                 this.Items.Add(newStep);
 
                 stepNum++;
             }
+        }
+
+        private static string GeneratePartName(RESTModels.Guide.Part item)
+        {
+            string title = item.text;
+            // return string.Format("{0}, {1}, {2}", item.text, item.notes, item.type).TrimEnd(',');
+            if (!string.IsNullOrEmpty(item.notes))
+                title += ", " + item.notes;
+            if (!string.IsNullOrEmpty(item.type))
+                title += ", " + item.type;
+
+            return title;
         }
 
         private RelayCommand _PauseTextSpeech;
@@ -633,7 +734,7 @@ namespace iFixit.Domain.ViewModels
                       try
                       {
 
-
+                          _uxService.CancelSpeech();
                           _uxService.Share(this.GuideUrl, this.GuideTitle);
 
                       }
@@ -659,10 +760,13 @@ namespace iFixit.Domain.ViewModels
 
                       try
                       {
-
+                          _uxService.CancelSpeech();
                           if (AppBase.Current.User == null)
                           {
-                              _navigationService.Navigate<Login>(false);
+                              //_navigationService.Navigate<Login>(false);
+
+                              _uxService.GoToLogin();
+
                           }
                           else
                           {
@@ -676,32 +780,39 @@ namespace iFixit.Domain.ViewModels
                                       var step = (Models.UI.GuideStepItem)item;
 
                                       ImagesToDownload.Add(step.MainImage.MediumImageUrl);
-                                      ImagesToDownload.Add(step.MainImage.SmallImageUrl);
+
                                       foreach (var image in step.Images)
                                       {
                                           if (image != null)
                                           {
                                               ImagesToDownload.Add(image.MediumImageUrl);
-                                              ImagesToDownload.Add(image.SmallImageUrl);
+
                                           }
 
                                       }
                                   }
                               }
 
+                              await Broker.AddFavorites(AppBase.Current.User, this.currentGuideId);
+
+                              int HowMany = ImagesToDownload.Count();
+                              Debug.WriteLine("downloading: " + HowMany.ToString());
+                              int Index = 1;
                               foreach (var item in ImagesToDownload)
                               {
-
+                                  Debug.WriteLine("downloading: " + Index.ToString());
                                   var a = await Broker.GetImage(item);
 
                                   string imageName = item.Substring(item.LastIndexOf('/') + 1);
                                   await _storageService.WriteBinary(string.Format(Constants.GUIDE_CACHE_FOLDER, this.currentGuideId), imageName, a);
+                                  Debug.WriteLine("downloaded: " + Index.ToString());
+                                  Index++;
                               }
 
-                              await Broker.AddFavorites(AppBase.Current.User, this.currentGuideId);
+
                               //TODO: save the images and the guide as a JSON
                               //then invoke the service
-
+                              await _uxService.ShowToast(International.Translation.GuideSuccessfullySaved);
                               NotFavorite = false;
                               LoadingCounter--;
 
@@ -721,6 +832,25 @@ namespace iFixit.Domain.ViewModels
 
         }
 
+
+        private RelayCommand _DeleteFavorite;
+        public RelayCommand DeleteFavorite
+        {
+            get
+            {
+                return _DeleteFavorite ?? (_DeleteFavorite = new RelayCommand(
+                 async () =>
+                 {
+                     LoadingCounter++;
+
+                     await Broker.RemoveFavorites(AppBase.Current.User, currentGuideId);
+                     await _storageService.RemoveFolder(string.Format(Constants.GUIDE_CACHE_FOLDER, currentGuideId));
+                     await _uxService.ShowToast(International.Translation.GuideRemovedFavorites);
+                     NotFavorite = true;
+                     LoadingCounter--;
+                 }));
+            }
+        }
 
         private RelayCommand _OpenTextSpeech;
         public RelayCommand OpenTextSpeech
@@ -761,7 +891,7 @@ namespace iFixit.Domain.ViewModels
                      try
                      {
 
-                         this.ShowingFullImage = true;
+
                          FullImagePath = await ImagePathTranslated(image);
 
                      }
@@ -787,9 +917,14 @@ namespace iFixit.Domain.ViewModels
 
                       try
                       {
-                          int x = 0;
-                          //this.ShowingFullImage = true;
-                          //FullImagePath = image;
+                          var filt = this.Items.Where(o => o.Type == Models.UI.GuidesPageTypes.Step).ToList();
+                          foreach (Models.UI.GuideStepItem item in filt)
+                          {
+                              if (item.Images.Any(o => o == image))
+                                  item.MainImage = image;
+
+                          }
+
 
                       }
                       catch (Exception ex)
@@ -837,6 +972,7 @@ namespace iFixit.Domain.ViewModels
         public void Reset()
         {
             Items.Clear();
+            Items = new ObservableCollection<Models.UI.GuideBasePage>();
             this.SelectedPage = null;
             // = new ObservableCollection<Models.UI.GuideBasePage>();
             this.ShowingFullImage = false;

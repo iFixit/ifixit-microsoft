@@ -16,8 +16,8 @@ namespace iFixit.Domain.ViewModels
     public class Device : BaseViewModel
     {
 
-        #region "proprieties"
-    
+        #region "properties"
+
         public string DeviceId { get; set; }
         public string MainImage { get; set; }
 
@@ -30,6 +30,20 @@ namespace iFixit.Domain.ViewModels
                 if (value != _DeviceTitle)
                 {
                     _DeviceTitle = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
+
+        private string _CategoryBreadcrumb;
+        public string CategoryBreadcrumb
+        {
+            get { return this._CategoryBreadcrumb; }
+            set
+            {
+                if (_CategoryBreadcrumb != value)
+                {
+                    _CategoryBreadcrumb = value;
                     NotifyPropertyChanged();
                 }
             }
@@ -65,6 +79,20 @@ namespace iFixit.Domain.ViewModels
             }
         }
 
+        private ObservableCollection<Models.UI.Category> _BreadCrumb = new ObservableCollection<Models.UI.Category>();
+        public ObservableCollection<Models.UI.Category> BreadCrumb
+        {
+            get { return this._BreadCrumb; }
+            set
+            {
+                if (_BreadCrumb != value)
+                {
+                    _BreadCrumb = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
+
 
         private ObservableCollection<Models.UI.IDevicePage> _DevicePages = new ObservableCollection<Models.UI.IDevicePage>();
         public ObservableCollection<Models.UI.IDevicePage> DevicePages
@@ -83,19 +111,19 @@ namespace iFixit.Domain.ViewModels
 
         #region "commands"
 
-        private RelayCommand _GoToGuide;
-        public RelayCommand GoToGuide
+        private RelayCommand<Models.UI.SearchResultItem> _GoToGuide;
+        public RelayCommand<Models.UI.SearchResultItem> GoToGuide
         {
             get
             {
-                return _GoToGuide ?? (_GoToGuide = new RelayCommand(
-                 () =>
+                return _GoToGuide ?? (_GoToGuide = new RelayCommand<Models.UI.SearchResultItem>(
+                 (item) =>
                  {
                      LoadingCounter++;
                      try
                      {
-                         // AppBase.Current.GuideId = SelectedItem.UniqueId;
-                         _navigationService.Navigate<Guide>(true, SelectedItem.UniqueId);
+
+                         _navigationService.Navigate<Guide>(true, item.UniqueId);
                          SelectedItem = null;
                          LoadingCounter--;
                      }
@@ -109,6 +137,45 @@ namespace iFixit.Domain.ViewModels
             }
         }
 
+        private RelayCommand<Models.UI.Category> _GoToCategory;
+        public RelayCommand<Models.UI.Category> GoToCategory
+        {
+            get
+            {
+                return _GoToCategory ?? (_GoToCategory = new RelayCommand<Models.UI.Category>(
+               async (selectedCategory) =>
+               {
+
+                   try
+                   {
+                       LoadingCounter++;
+
+                       AppBase.Current.CurrentPage = 0;
+                       var x = await Utils.GetCategoryContent(selectedCategory.UniqueId, _storageService, Broker);
+                       if (x.children == null || x.children.Count == 0)
+                       {
+                           _navigationService.Navigate<Device>(true, selectedCategory);
+                       }
+                       else
+
+                           _navigationService.Navigate<SubCategories>(true, selectedCategory);
+
+
+
+
+
+                       LoadingCounter--;
+                   }
+                   catch (Exception ex)
+                   {
+                       LoadingCounter--;
+                       throw ex;
+                   }
+
+               }));
+            }
+
+        }
 
         private RelayCommand _Load;
         public RelayCommand Load
@@ -118,72 +185,88 @@ namespace iFixit.Domain.ViewModels
                 return _Load ?? (_Load = new RelayCommand(async
                  () =>
                 {
-
-                    if (NavigationType != NavigationModes.Back)
+                    if (_settingsService.IsConnectedToInternet())
                     {
-                        LoadingCounter++;
-                        try
+
+                        if (NavigationType != NavigationModes.Back)
                         {
-                            DevicePages.Clear();
-
-
-                            var selectedCategory = this.NavigationParameter<Models.UI.Category>();
-
-                            var selectedDevice = await Utils.GetCategoryContent(selectedCategory.Name, _storageService, Broker);
-
-                            DevicePages.Add(new Models.UI.DeviceIntroPage
+                            LoadingCounter++;
+                            try
                             {
-                                PageTitle = selectedDevice.display_title.ToLower(),
-                                Image = selectedDevice.image != null ? selectedDevice.image.medium : "",
-                                PageType = Models.UI.DevicePageType.Intro
-
-                            });
+                                DevicePages.Clear();
 
 
+                                var selectedCategory = this.NavigationParameter<Models.UI.Category>();
 
-                            var GuideTypes = (from g in selectedDevice.guides
-                                              select g.type
-                                                  ).Distinct().ToList();
+                                var selectedItem = await Utils.GetCategoryContent(selectedCategory.UniqueId, _storageService, Broker);
 
-                            foreach (var item in GuideTypes)
-                            {
-                                var GuidesPage = new Models.UI.DeviceListingPage { PageType = Models.UI.DevicePageType.GuideListing, PageTitle = item };
+                                var GuidesPage = new Models.UI.DeviceListingPage { PageType = Models.UI.DevicePageType.GuideListing, PageTitle = iFixit.International.Translation.Guides };
 
-                                var filtered = selectedDevice.guides.Where(o => o.type == item).ToList();
 
-                                foreach (var guid in filtered)
+                                string CategoryName = selectedItem.wiki_title;
+
+                                /**/
+                                BreadCrumb.Clear();
+
+                                this.BreadCrumb = Utils.CreateBreadCrumb(selectedCategory, selectedItem, CategoryName);
+                                CategoryBreadcrumb = BreadCrumb.Last().Name;
+                                BreadCrumb.Remove(BreadCrumb.Last());
+
+                                /**/
+
+                                foreach (var guide in selectedItem.guides)
                                 {
-                                    var result = new Models.UI.SearchResultItem();
-
-                                    result.Name = guid.title.Trim();
-                                    result.Summary = guid.username.Trim();
-                                    if (guid.image != null)
-                                        result.ImageUrl = guid.image.thumbnail;
-                                    result.UniqueId = guid.guideid.ToString();
+                                    var result = new Models.UI.SearchResultItem { IndexOf = 1, Name = guide.title.Trim().Replace("&quot;", "''"), Summary = guide.type.ToUpper() };
 
 
-
+                                    if (guide.image != null)
+                                    {
+                                        result.ImageUrl = guide.image.thumbnail;
+                                        result.BigImageUrl = guide.image.large;
+                                    }
+                                    result.UniqueId = guide.guideid.ToString();
+                                    
                                     GuidesPage.Items.Add(result);
 
                                 }
+
+                                if (GuidesPage.Items.Count > 0)
+                                    GuidesPage.HasItems = string.Empty;
+                                else
+                                    GuidesPage.HasItems = string.Format(International.Translation.NoGuidesOnCategoryX, CategoryName);
+
                                 DevicePages.Add(GuidesPage);
 
+
+                                DevicePages.Add(new Models.UI.DeviceIntroPage
+                                {
+                                    PageTitle = selectedItem.wiki_title.ToLower(),
+                                    Image = selectedItem.image != null ? selectedItem.image.medium : "",
+                                    PageType = Models.UI.DevicePageType.Intro,
+                                    Summary = selectedItem.contents_rendered.Replace("&nbsp;&para;&nbsp;", ""),
+                                    DisplayTitle = _uxService.SanetizeHTML( selectedItem.display_title)
+                                });
+
+
+
+
+
+                                LoadingCounter--;
+
                             }
-
-
-
-
-
-
-                            LoadingCounter--;
-
-                        }
-                        catch (Exception ex)
-                        {
-                            LoadingCounter--;
-                            throw ex;
+                            catch (Exception ex)
+                            {
+                                LoadingCounter--;
+                                throw ex;
+                            }
                         }
                     }
+                    else
+                    {
+                        await _uxService.ShowAlert(International.Translation.NoConnection);
+
+                    }
+
 
 
                 }));

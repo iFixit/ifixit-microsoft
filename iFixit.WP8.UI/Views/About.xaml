@@ -81,12 +81,13 @@
                     <ColumnDefinition Width="155"/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <TextBlock Grid.ColumnSpan="2"  FontWeight="Bold" FontSize="24" Text="{Binding Title}"   Foreground="{StaticResource BlackBrush}" ></TextBlock>
+                <TextBlock Grid.ColumnSpan="2"  FontWeight="Bold" FontSize="24" 
+                           Text="{Binding Title}"   Foreground="{StaticResource BlackBrush}" TextWrapping="Wrap" ></TextBlock>
                 <Border  BorderBrush="{StaticResource SecondaryBackgroundBrush}" BorderThickness="1"
-					 Grid.Row="1"  
-                                               >
+					 Grid.Row="1" Width="155" Height="155" Background="{StaticResource PlaceHolderBackgroundBrush}" >
+
                     <code4FunControls:SuperImage PlaceholderImageSource="/Assets/NoImage_300x225.jpg" 
-						Stretch="UniformToFill"  PlaceholderImageStretch="UniformToFill" 
+						Stretch="UniformToFill"  PlaceholderImageStretch="Uniform" 
 						Source="{Binding ImageUrl}" />
 
                 </Border>
@@ -99,7 +100,8 @@
                         <TextBlock TextWrapping="Wrap" Text="{Binding PubDate}" 
                 		HorizontalAlignment="Left"	VerticalAlignment="Center"	
                 		Foreground="{StaticResource FourthBackgroundBrush}" Margin="12,0,0,0" Style="{StaticResource PhoneTextSmallStyle}" />
-                    </StackPanel> <TextBlock TextWrapping="Wrap" Text="{Binding Summary, Converter={StaticResource SubStringConverter}, ConverterParameter=100}" 
+                    </StackPanel>
+                    <TextBlock TextWrapping="Wrap" Text="{Binding Summary, Converter={StaticResource SubStringConverter}, ConverterParameter=100}" 
                 		HorizontalAlignment="Left"	VerticalAlignment="Center"	
                 		Foreground="{StaticResource FourthBackgroundBrush}" Margin="12,0,0,0" Style="{StaticResource PhoneTextNormalStyle}" />
                 </StackPanel>
@@ -133,9 +135,7 @@
                             <Paragraph>
                                 <Run Text="We're building the free repair manual for everything, and we need your help. It's easy to get started—just click the edit button on any page and make an improvement!"/>
                             </Paragraph>
-                            <Paragraph>
-                                <Run/>
-                            </Paragraph>
+
                             <Paragraph>
                                 <Hyperlink NavigateUri="http://www.ifixit.com/Contribute" TargetName="_blank">
 
@@ -154,12 +154,8 @@
                                 </Hyperlink>
 
                             </Paragraph>
-                            <Paragraph>
-                                <Run/>
-                            </Paragraph>
-                            <Paragraph>
-                                <Run/>
-                            </Paragraph>
+
+
                             <Paragraph>
                                 <Run/>
                             </Paragraph>
@@ -356,11 +352,12 @@
                         <RichTextBox Foreground="{StaticResource FourthBackgroundBrush}" 
                                      >
                             <Paragraph>
-                                <Run Text="Writing"/>
-                            </Paragraph>
-                            <Paragraph>
                                 <Run/>
                             </Paragraph>
+                            <Paragraph>
+                                <Run FontWeight="Bold" FontStyle="Italic" FontSize="21.333" Text="Guide Creation"/>
+                            </Paragraph>
+
                             <Paragraph>
                                 <Run Text="-"/>
                                 <Hyperlink TargetName="_blank" NavigateUri="http://www.ifixit.com/Info/Writing_Guides">
@@ -452,10 +449,10 @@
                                 <Run Text="— How to properly name device pages."/>
                             </Paragraph>
                             <Paragraph>
-                                <Run Text="Administration"/>
+                                <Run/>
                             </Paragraph>
                             <Paragraph>
-                                <Run/>
+                                <Run FontWeight="Bold" FontStyle="Italic" FontSize="21.333" Text="Administration and Moderation Help"/>
                             </Paragraph>
                             <Paragraph>
                                 <Run Text="-"/>
@@ -503,14 +500,15 @@
             </phone:PivotItem>
 
             <phone:PivotItem Header="{Binding Labels.Translation.News, Source={StaticResource LabelsManager}}">
-                <telerikPrimitives:RadDataBoundListBox x:Name="NewsList" 
+                <telerikPrimitives:RadDataBoundListBox 
+                    x:Name="NewsList" 
 							Margin="12,0,0,0"
 							ItemsSource="{Binding News}" 
                             SelectedItem="{Binding SelectedItem}"
 							ItemTemplate="{StaticResource NewsItems}" 
-							EmptyContentDisplayMode ="DataSourceEmpty"						   
+							EmptyContentDisplayMode ="Always"						   
 							  >
-                 
+
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="ItemTap">
                             <cmd:EventToCommand Command="{Binding GoToNewsItem, Mode=OneWay}"
@@ -518,56 +516,133 @@
 
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
-                  
-
+                    <telerikPrimitives:RadDataBoundListBox.EmptyContentTemplate>
+                        <DataTemplate>
+                            <StackPanel></StackPanel>
+                        </DataTemplate>
+                    </telerikPrimitives:RadDataBoundListBox.EmptyContentTemplate>
+                    <telerikPrimitives:RadDataBoundListBox.EmptyContent>
+                        <DataTemplate>
+                            <TextBlock></TextBlock>
+                        </DataTemplate>
+                    </telerikPrimitives:RadDataBoundListBox.EmptyContent>
                 </telerikPrimitives:RadDataBoundListBox>
 
             </phone:PivotItem>
 
             <phone:PivotItem Header="{Binding Labels.Translation.Support, Source={StaticResource LabelsManager}}" BorderBrush="{StaticResource SecondaryBackgroundBrush}">
-                <Grid Margin="12,0,0,0">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="125"/>
-                        <ColumnDefinition/>
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="125"/>
-                        <RowDefinition Height="125"/>
-                        <RowDefinition Height="125"/>
-                        <RowDefinition Height="125"/>
-                        <RowDefinition/>
-                    </Grid.RowDefinitions>
-                    <Border VerticalAlignment="Top" Width="125" Height="105" BorderThickness="2" BorderBrush="{StaticResource SecondaryBackgroundBrush}">
-                        <Image Source="/iFixit.WP8.UI;component/Assets/Pages/About/github-icon.png" Stretch="Fill"/>
-                    </Border>
-                    <Border VerticalAlignment="Top" Width="125" Height="105" BorderThickness="2" BorderBrush="{StaticResource SecondaryBackgroundBrush}" Grid.Row="1">
-                        <Image Source="/iFixit.WP8.UI;component/Assets/Pages/About/iFixit-icon.png" Stretch="Fill"/>
-                    </Border>
-                    <Border VerticalAlignment="Top" Width="125" Height="105" BorderThickness="2" BorderBrush="{StaticResource SecondaryBackgroundBrush}" Grid.Row="2">
-                        <Image Source="/iFixit.WP8.UI;component/Assets/Pages/About/iFixit-meta.png" Stretch="Fill"/>
-                    </Border>
-                    <Border VerticalAlignment="Top" Width="125" Height="105" BorderThickness="2" BorderBrush="{StaticResource SecondaryBackgroundBrush}" Grid.Row="3">
-                        <Image Source="/iFixit.WP8.UI;component/Assets/Pages/About/Dozuki-icon.png" Stretch="Fill"/>
-                    </Border>
-                    <StackPanel VerticalAlignment="Center" Grid.Column="1" Margin="0,0,0,20">
-                        <HyperlinkButton Content="Find A Bug?" TargetName="_blank" NavigateUri="https://github.com/ifixit/ifixit-microsoft" HorizontalAlignment="Left" Foreground="{StaticResource HighlightBrush}" Style="{StaticResource HyperlinkButtonStyle1}"/>
-                        <TextBlock TextWrapping="Wrap" Text="Submit a bug on our Github reposity" Foreground="{StaticResource FourthBackgroundBrush}" Margin="12,0,0,0"/>
+                <ScrollViewer Margin="6,0,0,0">
+                    <StackPanel>
+
+
+
+                        <Button Style="{StaticResource BorderLessGridButton02}" HorizontalAlignment="Left" HorizontalContentAlignment="Stretch">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="Tap">
+                                    <cmd:EventToCommand Command="{Binding DataContext.GoToItem, ElementName=LayoutRoot, Mode=OneWay}"
+                            			CommandParameter="http://ifixit.com/answers"/>
+
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                            <Grid Margin="0,0,0,12">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="125"/>
+                                    <ColumnDefinition  Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Border VerticalAlignment="Top" Width="125" Height="105" BorderThickness="2" BorderBrush="{StaticResource SecondaryBackgroundBrush}" >
+                                    <Image Source="/iFixit.WP8.UI;component/Assets/Pages/About/iFixit-icon.png" Stretch="Fill"/>
+                                </Border>
+                                <StackPanel VerticalAlignment="top"  Grid.Column="1" >
+                                    <HyperlinkButton TargetName="_blank" Content="Need help with a specific repair?" HorizontalAlignment="Left" Foreground="{StaticResource HighlightBrush}" Style="{StaticResource HyperlinkButtonStyle1}" NavigateUri="http://ifixit.com/answers"/>
+                                    <TextBlock TextWrapping="Wrap" Text="Ask our knowledgeable community" Foreground="{StaticResource FourthBackgroundBrush}" Margin="12,0,0,0"/>
+                                </StackPanel>
+                            </Grid>
+                        </Button>
+                        <Button Style="{StaticResource BorderLessGridButton02}" HorizontalContentAlignment="Stretch">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="Tap">
+                                    <cmd:EventToCommand Command="{Binding DataContext.GoToItem, ElementName=LayoutRoot, Mode=OneWay}"
+                            			CommandParameter="http://www.dozuki.com/"/>
+
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                            <Grid Margin="0,0,0,12">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="125"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Border VerticalAlignment="Top" Width="125" Height="105" BorderThickness="2" BorderBrush="{StaticResource SecondaryBackgroundBrush}" Grid.Row="3">
+                                    <Image Source="/iFixit.WP8.UI;component/Assets/Pages/About/Dozuki-icon.png" Stretch="Fill"/>
+                                </Border>
+
+
+
+                                <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="1" >
+                                    <HyperlinkButton TargetName="_blank" Content="Interested in iFixit's software?" HorizontalAlignment="Left" Foreground="{StaticResource HighlightBrush}" Style="{StaticResource HyperlinkButtonStyle1}" NavigateUri="http://www.dozuki.com/"/>
+                                    <TextBlock TextWrapping="Wrap" Text="Discover Dokuzi, the platform behind it" Foreground="{StaticResource FourthBackgroundBrush}" Margin="12,0,0,0"/>
+                                </StackPanel>
+                            </Grid>
+                        </Button>
+                        <Button Style="{StaticResource BorderLessGridButton02}" HorizontalContentAlignment="Stretch">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="Tap">
+                                    <cmd:EventToCommand Command="{Binding DataContext.GoToItem, ElementName=LayoutRoot, Mode=OneWay}"
+                            			CommandParameter="http://meta.ifixit.com"/>
+
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                            <Grid Margin="0,0,0,12">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="125"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Border VerticalAlignment="Top" Width="125" Height="105" BorderThickness="2" BorderBrush="{StaticResource SecondaryBackgroundBrush}" >
+                                    <Image Source="/iFixit.WP8.UI;component/Assets/Pages/About/iFixit-meta.png" Stretch="Fill"/>
+                                </Border>
+                                <Grid Grid.Column="1" >
+                                    <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center">
+                                        <HyperlinkButton TargetName="_blank" Content="Want to discuss iFixit things?" HorizontalAlignment="Left" Foreground="{StaticResource HighlightBrush}" Style="{StaticResource HyperlinkButtonStyle1}" NavigateUri="http://meta.ifixit.com"/>
+                                        <TextBlock TextWrapping="Wrap" Text="Join the discussion on meta.ifixit.com" Foreground="{StaticResource FourthBackgroundBrush}" Margin="12,0,0,0"/>
+                                    </StackPanel>
+                                </Grid>
+                            </Grid>
+                        </Button>
+                        <Button Style="{StaticResource BorderLessGridButton02}" HorizontalContentAlignment="Stretch" Height="118" Width="450">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="Tap">
+                                    <cmd:EventToCommand Command="{Binding DataContext.GoToItem, ElementName=LayoutRoot, Mode=OneWay}"
+                            			CommandParameter="https://github.com/ifixit/ifixit-microsoft"/>
+
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                            <Grid Margin="0,0,0,12">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="125"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Border VerticalAlignment="Top" Width="125" Height="105" BorderThickness="2" BorderBrush="{StaticResource SecondaryBackgroundBrush}">
+                                    <Image Source="/iFixit.WP8.UI;component/Assets/Pages/About/github-icon.png" Stretch="Fill"/>
+                                </Border>
+                                <StackPanel VerticalAlignment="Center" Grid.Column="1" Margin="0,0,0,20">
+                                    <HyperlinkButton Content="Find a bug?" TargetName="_blank" NavigateUri="https://github.com/ifixit/ifixit-microsoft" HorizontalAlignment="Left" Foreground="{StaticResource HighlightBrush}" Style="{StaticResource HyperlinkButtonStyle1}"/>
+                                    <TextBlock TextWrapping="Wrap" Text="Submit a bug on our Github repository" Foreground="{StaticResource FourthBackgroundBrush}" Margin="12,0,0,0"/>
+                                </StackPanel>
+                            </Grid>
+                        </Button>
+
+
                     </StackPanel>
-                    <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center"  Grid.Column="1" Grid.Row="1" Margin="0,0,0,20">
-                        <HyperlinkButton TargetName="_blank" Content="Need Help With A Specific Repair?" HorizontalAlignment="Left" Foreground="{StaticResource HighlightBrush}" Style="{StaticResource HyperlinkButtonStyle1}" NavigateUri="http://ifixit.com/answers"/>
-                        <TextBlock TextWrapping="Wrap" Text="Ask our knowledgeable community" Foreground="{StaticResource FourthBackgroundBrush}" Margin="12,0,0,0"/>
-                    </StackPanel>
-                    <Grid Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,0,0,20">
-                        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center">
-                            <HyperlinkButton TargetName="_blank" Content="Want To Discuss iFixit things" HorizontalAlignment="Left" Foreground="{StaticResource HighlightBrush}" Style="{StaticResource HyperlinkButtonStyle1}" NavigateUri="http://meta.ifixit.com"/>
-                            <TextBlock TextWrapping="Wrap" Text="Join the discussion on meta.ifixit.com" Foreground="{StaticResource FourthBackgroundBrush}" Margin="12,0,0,0"/>
-                        </StackPanel>
-                    </Grid>
-                    <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="1" Grid.Row="3" Margin="0,0,0,20">
-                        <HyperlinkButton TargetName="_blank" Content="Interested in iFixit's Software" HorizontalAlignment="Left" Foreground="{StaticResource HighlightBrush}" Style="{StaticResource HyperlinkButtonStyle1}" NavigateUri="http://www.dozuki.com/"/>
-                        <TextBlock TextWrapping="Wrap" Text="Discover Dokuzi, the platform behind it" Foreground="{StaticResource FourthBackgroundBrush}" Margin="12,0,0,0"/>
-                    </StackPanel>
-                </Grid>
+
+
+
+
+                </ScrollViewer>
+
+
+
+
             </phone:PivotItem>
 
         </phone:Pivot>

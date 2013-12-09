@@ -115,11 +115,11 @@ namespace iFixit.WP8.UI.Code
         public object Convert(object value, Type targetType,
            object parameter, CultureInfo culture)
         {
-           
+
             if (value != null)
             {
                 int idx = (int)value;
-                if (idx != 2 || !Microsoft.Phone.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable() )
+                if (idx != 2 || !Microsoft.Phone.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable())
                     return
                         -1;
                 else
@@ -182,6 +182,104 @@ namespace iFixit.WP8.UI.Code
             // return new Thickness((int.Parse(value.ToString())) * 12, 0, 0, 6);
 
             return value;
+        }
+
+        public object ConvertBack(object value, Type targetType,
+            object parameter, CultureInfo culture)
+        {
+            return value;
+        }
+    }
+
+    public class IconConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType,
+           object parameter, CultureInfo culture)
+        {
+            if (value != null)
+            {
+                var icon = (iFixit.Domain.Models.UI.GuideStepLineIcon)value;
+
+                switch (icon)
+                {
+                    case iFixit.Domain.Models.UI.GuideStepLineIcon.Black:
+
+                    case iFixit.Domain.Models.UI.GuideStepLineIcon.Red:
+
+                    case iFixit.Domain.Models.UI.GuideStepLineIcon.Orange:
+
+                    case iFixit.Domain.Models.UI.GuideStepLineIcon.Yellow:
+
+                    case iFixit.Domain.Models.UI.GuideStepLineIcon.Green:
+
+                    case iFixit.Domain.Models.UI.GuideStepLineIcon.Blue:
+
+                    case iFixit.Domain.Models.UI.GuideStepLineIcon.Violet:
+                        return "/Assets/icon_no.png";
+
+                    case iFixit.Domain.Models.UI.GuideStepLineIcon.Icon_Note:
+                        return "/Assets/icon_note.png";
+
+                    case iFixit.Domain.Models.UI.GuideStepLineIcon.Icon_reminder:
+                        return "/Assets/icon_reminder.png";
+                    case iFixit.Domain.Models.UI.GuideStepLineIcon.Icon_Caution:
+                        return "/Assets/icon_caution.png";
+                    default:
+                        return "";
+                }
+            }
+            else
+                return "";
+
+        }
+
+        public object ConvertBack(object value, Type targetType,
+            object parameter, CultureInfo culture)
+        {
+            return value;
+        }
+    }
+
+    public class IconVisibilityConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType,
+           object parameter, CultureInfo culture)
+        {
+            if (value != null)
+            {
+                var icon = (iFixit.Domain.Models.UI.GuideStepLineIcon)value;
+
+                switch (icon)
+                {
+                    case iFixit.Domain.Models.UI.GuideStepLineIcon.Black:
+
+                    case iFixit.Domain.Models.UI.GuideStepLineIcon.Red:
+
+                    case iFixit.Domain.Models.UI.GuideStepLineIcon.Orange:
+
+                    case iFixit.Domain.Models.UI.GuideStepLineIcon.Yellow:
+
+                    case iFixit.Domain.Models.UI.GuideStepLineIcon.Green:
+
+                    case iFixit.Domain.Models.UI.GuideStepLineIcon.Blue:
+
+                    case iFixit.Domain.Models.UI.GuideStepLineIcon.Violet:
+                        return Visibility.Collapsed;
+
+                    case iFixit.Domain.Models.UI.GuideStepLineIcon.Icon_Note:
+
+
+                    case iFixit.Domain.Models.UI.GuideStepLineIcon.Icon_reminder:
+
+                    case iFixit.Domain.Models.UI.GuideStepLineIcon.Icon_Caution:
+                        return Visibility.Visible;
+                    default:
+                        return Visibility.Collapsed;
+                }
+            }
+            else
+                return Visibility.Collapsed;
+
         }
 
         public object ConvertBack(object value, Type targetType,
@@ -343,17 +441,22 @@ namespace iFixit.WP8.UI.Code
         public object Convert(object value, Type targetType,
            object parameter, CultureInfo culture)
         {
-            string Result = string.Empty;
-            Result = (string)value;
-            int Len = int.Parse(parameter.ToString());
 
-            if (Result.Length > Len)
+            string Result = string.Empty;
+            if (value != null)
             {
-                int lastSpace = Result.IndexOf(' ', Len);
-                Result =
-                Result.Substring(0, lastSpace) + "...";
+                Result = (string)value;
+                int Len = int.Parse(parameter.ToString());
+
+                if (Result.Length > Len)
+                {
+                    int lastSpace = Result.IndexOf(' ', Len);
+                    Result =
+                    Result.Substring(0, lastSpace) + "...";
+                }
             }
-            
+
+
 
             return Result;
         }

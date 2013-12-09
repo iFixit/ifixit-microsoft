@@ -6,6 +6,24 @@ using System.Threading.Tasks;
 
 namespace iFixit.Domain.Models.UI
 {
+
+    public class Document : Tool
+    {
+        private int  _DocumentId;
+        public int DocumentId
+        {
+            get { return _DocumentId; }
+            set
+            {
+                if (value != _DocumentId)
+                {
+                    _DocumentId = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
+    }
+
     public class Tool : ModelBase
     {
 

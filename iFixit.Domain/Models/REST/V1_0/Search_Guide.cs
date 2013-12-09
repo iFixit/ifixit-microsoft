@@ -28,8 +28,8 @@ namespace iFixit.Domain.Models.REST.V1_0.Search.Guide
         public string simpleTitle { get; set; }
         public string name { get; set; }
         public string url { get; set; }
-        public int modified_date { get; set; }
-        public int? prereq_modified_date { get; set; }
+        public double modified_date { get; set; }
+        public double? prereq_modified_date { get; set; }
         public string mini { get; set; }
         public string thumbnail { get; set; }
         public string standard { get; set; }

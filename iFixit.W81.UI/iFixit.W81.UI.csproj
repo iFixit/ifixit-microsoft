@@ -1,0 +1,506 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{E1260BEA-AC64-4478-B267-C2BDF23785FA}</ProjectGuid>
+    <OutputType>AppContainerExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>iFixit.W81.UI</RootNamespace>
+    <AssemblyName>iFixit.W81.UI</AssemblyName>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <TargetPlatformVersion>8.1</TargetPlatformVersion>
+    <MinimumVisualStudioVersion>12</MinimumVisualStudioVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{BC8A1FFA-BEE3-4634-8014-F334798102B3};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <PackageCertificateKeyFile>iFixit.W81.UI_StoreKey.pfx</PackageCertificateKeyFile>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+    <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
+    <AppxBundlePlatforms>neutral</AppxBundlePlatforms>
+    <PackageCertificateThumbprint>24167D5F800CD2C9828EC843B193C2EF9AB1943D</PackageCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\ARM\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>ARM</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|ARM'">
+    <OutputPath>bin\ARM\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>ARM</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="..\iFixit.W8.UI\Services\UiSettings.cs">
+      <Link>Services\UiSettings.cs</Link>
+    </Compile>
+    <Compile Include="..\iFixit.W8.UI\Services\UiStorage.cs">
+      <Link>Services\UiStorage.cs</Link>
+    </Compile>
+    <Compile Include="..\iFixit.W8.UI\Shared\Converters.cs">
+      <Link>Shared\Converters.cs</Link>
+    </Compile>
+    <Compile Include="..\iFixit.W8.UI\Shared\RichTextBlockProperties.cs">
+      <Link>Shared\RichTextBlockProperties.cs</Link>
+    </Compile>
+    <Compile Include="..\iFixit.W8.UI\Shared\TemplateSelector.cs">
+      <Link>Shared\TemplateSelector.cs</Link>
+    </Compile>
+    <Compile Include="..\iFixit.W8.UI\Shared\TileCanvas.cs">
+      <Link>Shared\TileCanvas.cs</Link>
+    </Compile>
+    <Compile Include="..\iFixit.W8.UI\Shared\VariableGridView.cs">
+      <Link>Shared\VariableGridView.cs</Link>
+    </Compile>
+    <Compile Include="..\iFixit.W8.UI\ViewModels\ViewModelLocator.cs">
+      <Link>ViewModels\ViewModelLocator.cs</Link>
+    </Compile>
+    <Compile Include="..\iFixit.WP8.UI\Services\SimplePeerConnector.cs">
+      <Link>Services\SimplePeerConnector.cs</Link>
+    </Compile>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Common\BasePage.cs" />
+    <Compile Include="Common\NavigationHelper.cs" />
+    <Compile Include="Common\ObservableDictionary.cs" />
+    <Compile Include="Common\RelayCommand.cs" />
+    <Compile Include="Common\SuspensionManager.cs" />
+    <Compile Include="MetroGridHelper.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\UiNavigation.cs" />
+    <Compile Include="Services\UiUx.cs" />
+    <Compile Include="Views\BlankPage1.xaml.cs">
+      <DependentUpon>BlankPage1.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Device.xaml.cs">
+      <DependentUpon>Device.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Guide.xaml.cs">
+      <DependentUpon>Guide.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Home.xaml.cs">
+      <DependentUpon>Home.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SearchResult.xaml.cs">
+      <DependentUpon>SearchResult.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SubCategory.xaml.cs">
+      <DependentUpon>SubCategory.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UC\BreadCrumbCategories.xaml.cs">
+      <DependentUpon>BreadCrumbCategories.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UC\LoadingRing.xaml.cs">
+      <DependentUpon>LoadingRing.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UC\Login.xaml.cs">
+      <DependentUpon>Login.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UC\Profile.xaml.cs">
+      <DependentUpon>Profile.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UC\ProgressBar.xaml.cs">
+      <DependentUpon>ProgressBar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UC\TopMenu.xaml.cs">
+      <DependentUpon>TopMenu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UC\TopMenuWithSubTitle.xaml.cs">
+      <DependentUpon>TopMenuWithSubTitle.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <AppxManifest Include="Package.appxmanifest">
+      <SubType>Designer</SubType>
+    </AppxManifest>
+    <None Include="iFixit.W81.UI_StoreKey.pfx" />
+    <None Include="iFixit.W81.UI_TemporaryKey.pfx" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="..\iFixit.W8.UI\Assets\App\BadgeLogo.scale-100.png">
+      <Link>Assets\App\BadgeLogo.scale-100.png</Link>
+    </Content>
+    <Content Include="..\iFixit.W8.UI\Assets\App\BadgeLogo.scale-140.png">
+      <Link>Assets\App\BadgeLogo.scale-140.png</Link>
+    </Content>
+    <Content Include="..\iFixit.W8.UI\Assets\App\BadgeLogo.scale-180.png">
+      <Link>Assets\App\BadgeLogo.scale-180.png</Link>
+    </Content>
+    <Content Include="..\iFixit.W8.UI\Assets\App\BadgeLogo24x24.png">
+      <Link>Assets\App\BadgeLogo24x24.png</Link>
+    </Content>
+    <Content Include="..\iFixit.W8.UI\Assets\App\BadgeLogo33x33.png">
+      <Link>Assets\App\BadgeLogo33x33.png</Link>
+    </Content>
+    <Content Include="..\iFixit.W8.UI\Assets\App\BadgeLogo43x43.png">
+      <Link>Assets\App\BadgeLogo43x43.png</Link>
+    </Content>
+    <Content Include="..\iFixit.W8.UI\Assets\App\SplashScreen.scale-100.png">
+      <Link>Assets\App\SplashScreen.scale-100.png</Link>
+    </Content>
+    <Content Include="..\iFixit.W8.UI\Assets\App\SplashScreen.scale-140.png">
+      <Link>Assets\App\SplashScreen.scale-140.png</Link>
+    </Content>
+    <Content Include="..\iFixit.W8.UI\Assets\App\SplashScreen.scale-180.png">
+      <Link>Assets\App\SplashScreen.scale-180.png</Link>
+    </Content>
+    <Content Include="..\iFixit.W8.UI\Assets\App\Square150x150Logo.scale-100.png">
+      <Link>Assets\App\Square150x150Logo.scale-100.png</Link>
+    </Content>
+    <Content Include="..\iFixit.W8.UI\Assets\App\Square150x150Logo.scale-140.png">
+      <Link>Assets\App\Square150x150Logo.scale-140.png</Link>
+    </Content>
+    <Content Include="..\iFixit.W8.UI\Assets\App\Square150x150Logo.scale-180.png">
+      <Link>Assets\App\Square150x150Logo.scale-180.png</Link>
+    </Content>
+    <Content Include="..\iFixit.W8.UI\Assets\App\Square150x150Logo.scale-80.png">
+      <Link>Assets\App\Square150x150Logo.scale-80.png</Link>
+    </Content>
+    <Content Include="..\iFixit.W8.UI\Assets\App\Square30x30Logo.scale-100.png">
+      <Link>Assets\App\Square30x30Logo.scale-100.png</Link>
+    </Content>
+    <Content Include="..\iFixit.W8.UI\Assets\App\Square30x30Logo.scale-140.png">
+      <Link>Assets\App\Square30x30Logo.scale-140.png</Link>
+    </Content>
+    <Content Include="..\iFixit.W8.UI\Assets\App\Square30x30Logo.scale-180.png">
+      <Link>Assets\App\Square30x30Logo.scale-180.png</Link>
+    </Content>
+    <Content Include="..\iFixit.W8.UI\Assets\App\Square30x30Logo.scale-80.png">
+      <Link>Assets\App\Square30x30Logo.scale-80.png</Link>
+    </Content>
+    <Content Include="..\iFixit.W8.UI\Assets\App\Square310x310Logo.scale-100.png">
+      <Link>Assets\App\Square310x310Logo.scale-100.png</Link>
+    </Content>
+    <Content Include="..\iFixit.W8.UI\Assets\App\Square310x310Logo.scale-140.png">
+      <Link>Assets\App\Square310x310Logo.scale-140.png</Link>
+    </Content>
+    <Content Include="..\iFixit.W8.UI\Assets\App\Square310x310Logo.scale-180.png">
+      <Link>Assets\App\Square310x310Logo.scale-180.png</Link>
+    </Content>
+    <Content Include="..\iFixit.W8.UI\Assets\App\Square310x310Logo.scale-80.png">
+      <Link>Assets\App\Square310x310Logo.scale-80.png</Link>
+    </Content>
+    <Content Include="..\iFixit.W8.UI\Assets\App\Square70x70Logo..scale-180.png">
+      <Link>Assets\App\Square70x70Logo..scale-180.png</Link>
+    </Content>
+    <Content Include="..\iFixit.W8.UI\Assets\App\Square70x70Logo.scale-100.png">
+      <Link>Assets\App\Square70x70Logo.scale-100.png</Link>
+    </Content>
+    <Content Include="..\iFixit.W8.UI\Assets\App\Square70x70Logo.scale-140.png">
+      <Link>Assets\App\Square70x70Logo.scale-140.png</Link>
+    </Content>
+    <Content Include="..\iFixit.W8.UI\Assets\App\Square70x70Logo.scale-80.png">
+      <Link>Assets\App\Square70x70Logo.scale-80.png</Link>
+    </Content>
+    <Content Include="..\iFixit.W8.UI\Assets\App\StoreLogo.scale-100.jpg">
+      <Link>Assets\App\StoreLogo.scale-100.jpg</Link>
+    </Content>
+    <Content Include="..\iFixit.W8.UI\Assets\App\StoreLogo.scale-140.jpg">
+      <Link>Assets\App\StoreLogo.scale-140.jpg</Link>
+    </Content>
+    <Content Include="..\iFixit.W8.UI\Assets\App\StoreLogo.scale-180.jpg">
+      <Link>Assets\App\StoreLogo.scale-180.jpg</Link>
+    </Content>
+    <Content Include="..\iFixit.W8.UI\Assets\App\Wide310x150Logo.scale-100.png">
+      <Link>Assets\App\Wide310x150Logo.scale-100.png</Link>
+    </Content>
+    <Content Include="..\iFixit.W8.UI\Assets\App\Wide310x150Logo.scale-140.png">
+      <Link>Assets\App\Wide310x150Logo.scale-140.png</Link>
+    </Content>
+    <Content Include="..\iFixit.W8.UI\Assets\App\Wide310x150Logo.scale-180.png">
+      <Link>Assets\App\Wide310x150Logo.scale-180.png</Link>
+    </Content>
+    <Content Include="..\iFixit.W8.UI\Assets\App\Wide310x150Logo.scale-80.png">
+      <Link>Assets\App\Wide310x150Logo.scale-80.png</Link>
+    </Content>
+    <Content Include="..\iFixit.W8.UI\Assets\no_image.png">
+      <Link>Assets\no_image.png</Link>
+    </Content>
+    <None Include="Package.StoreAssociation.xml" />
+    <Content Include="Views\CTntWJTcOFYqYJye.jpg" />
+    <EmbeddedResource Include="..\iFixit.W8.UI\Shared\RichTextBlockHtml2Xaml.xslt">
+      <Link>Shared\RichTextBlockHtml2Xaml.xslt</Link>
+    </EmbeddedResource>
+    <Content Include="..\iFixit.W8.UI\Assets\play_icon.png">
+      <Link>Assets\play_icon.png</Link>
+    </Content>
+    <Content Include="..\iFixit.W8.UI\Assets\play_icon_small.png">
+      <Link>Assets\play_icon_small.png</Link>
+    </Content>
+    <Content Include="..\iFixit.WP8.UI\Assets\icon_caution.png">
+      <Link>Assets\icon_caution.png</Link>
+    </Content>
+    <Content Include="..\iFixit.WP8.UI\Assets\icon_no.png">
+      <Link>Assets\icon_no.png</Link>
+    </Content>
+    <Content Include="..\iFixit.WP8.UI\Assets\icon_note.png">
+      <Link>Assets\icon_note.png</Link>
+    </Content>
+    <Content Include="..\iFixit.WP8.UI\Assets\icon_remander.png">
+      <Link>Assets\icon_remander.png</Link>
+    </Content>
+    <Content Include="..\iFixit.WP8.UI\Assets\NoImage_300x225.jpg">
+      <Link>Assets\NoImage_300x225.jpg</Link>
+    </Content>
+    <Content Include="Assets\100p\TopMenuLogo.png" />
+    <Content Include="Common\ReadMe.txt" />
+    <Content Include="ReadMe.Coding4Fun.Toolkit.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Page Include="..\iFixit.W8.UI\Assets\Color.xaml">
+      <Link>Assets\Color.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="..\iFixit.W8.UI\Assets\Global.xaml">
+      <Link>Assets\Global.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Assets\Local.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Page>
+    <Page Include="Views\BlankPage1.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Device.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Guide.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Home.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SearchResult.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SubCategory.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UC\BreadCrumbCategories.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UC\LoadingRing.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UC\Login.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UC\Profile.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UC\ProgressBar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UC\TopMenu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UC\TopMenuWithSubTitle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="AdvancedREI.Net.Http.Compression, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\HttpClient.Compression.1.1.0\lib\portable-net4+sl4+wp7+win8\AdvancedREI.Net.Http.Compression.dll</HintPath>
+    </Reference>
+    <Reference Include="Coding4Fun.Toolkit.Audio">
+      <HintPath>..\packages\Coding4Fun.Toolkit.Audio.2.0.7\lib\windows8\Coding4Fun.Toolkit.Audio.dll</HintPath>
+    </Reference>
+    <Reference Include="Coding4Fun.Toolkit.Controls">
+      <HintPath>..\packages\Coding4Fun.Toolkit.Controls.2.0.7\lib\windows8\Coding4Fun.Toolkit.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="Coding4Fun.Toolkit.Net">
+      <HintPath>..\packages\Coding4Fun.Toolkit.Net.2.0.7\lib\windows8\Coding4Fun.Toolkit.Net.dll</HintPath>
+    </Reference>
+    <Reference Include="Coding4Fun.Toolkit.Storage">
+      <HintPath>..\packages\Coding4Fun.Toolkit.Storage.2.0.7\lib\windows8\Coding4Fun.Toolkit.Storage.dll</HintPath>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight.Extras.Win8, Version=4.2.30.23406, Culture=neutral, PublicKeyToken=33a77f5c33c10a68, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\MvvmLightLibs.4.2.30.0\lib\netcore45\GalaSoft.MvvmLight.Extras.Win8.dll</HintPath>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight.Win8, Version=4.2.30.23406, Culture=neutral, PublicKeyToken=7f0ea4153a3589fc, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\MvvmLightLibs.4.2.30.0\lib\netcore45\GalaSoft.MvvmLight.Win8.dll</HintPath>
+    </Reference>
+    <Reference Include="HtmlAgilityPack">
+      <HintPath>..\packages\HtmlAgilityPack.1.4.6\lib\winrt45\HtmlAgilityPack.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=619affe60327fc48, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\MvvmLightLibs.4.2.30.0\lib\netcore45\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Threading.Tasks, Version=1.0.12.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Bcl.Async.1.0.165\lib\win8\Microsoft.Threading.Tasks.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Threading.Tasks.Extensions, Version=1.0.12.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Bcl.Async.1.0.165\lib\win8\Microsoft.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.5.0.8\lib\netcore45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Q42.WinRT">
+      <HintPath>..\packages\Q42.WinRT.1.2.2.42\lib\win81\Q42.WinRT.dll</HintPath>
+    </Reference>
+    <Reference Include="Q42.WinRT.Portable, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Q42.WinRT.Portable.1.2.2.42\lib\portable-net45+wp80+win\Q42.WinRT.Portable.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Extensions, Version=2.2.18.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.18\lib\win8\System.Net.Http.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Primitives, Version=4.2.18.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.18\lib\win8\System.Net.Http.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="WinRTXamlToolkit">
+      <HintPath>..\packages\WinRTXamlToolkit.1.5.4.2\lib\netcore451\WinRTXamlToolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="Zlib.Portable, Version=1.9.1.9000, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Zlib.Portable.1.9.2\lib\portable-net4+sl4+wp71+win8\Zlib.Portable.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\iFixit.Domain\iFixit.Domain.csproj">
+      <Project>{d64c3434-5472-4d59-9e29-578a057be77e}</Project>
+      <Name>iFixit.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\iFixit.International\iFixit.International.csproj">
+      <Project>{10de514d-28e8-4709-8f7f-8c7846bbe235}</Project>
+      <Name>iFixit.International</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <SDKReference Include="BehaviorsXamlSDKManaged, Version=12.0">
+      <Name>Behaviors SDK %28XAML%29</Name>
+    </SDKReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Code\" />
+  </ItemGroup>
+  <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '12.0' ">
+    <VisualStudioVersion>12.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Import Project="..\packages\Microsoft.Bcl.Build.1.0.13\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.13\tools\Microsoft.Bcl.Build.targets')" />
+  <Target Name="EnsureBclBuildImported" BeforeTargets="BeforeBuild" Condition="'$(BclBuildImported)' == ''">
+    <Error Condition="!Exists('..\packages\Microsoft.Bcl.Build.1.0.13\tools\Microsoft.Bcl.Build.targets')" Text="This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=317567." HelpKeyword="BCLBUILD2001" />
+    <Error Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.13\tools\Microsoft.Bcl.Build.targets')" Text="The build restored NuGet packages. Build the project again to include these packages in the build. For more information, see http://go.microsoft.com/fwlink/?LinkID=317568." HelpKeyword="BCLBUILD2002" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -8,18 +8,7 @@ using System.Threading.Tasks;
 namespace iFixit.Domain.Models.REST.V2_0.Guide
 {
    
-  
-
-
- 
- 
-
-
-
-  
-
-
-    public class Part
+      public class Part
     {
         public string text { get; set; }
         public string notes { get; set; }
@@ -36,8 +25,8 @@ namespace iFixit.Domain.Models.REST.V2_0.Guide
         public int guideid { get; set; }
         public string locale { get; set; }
         public int revisionid { get; set; }
-        public int modified_date { get; set; }
-        public int prereq_modified_date { get; set; }
+        public double modified_date { get; set; }
+        public double prereq_modified_date { get; set; }
         public string url { get; set; }
         public string type { get; set; }
         public string category { get; set; }
@@ -68,6 +57,7 @@ namespace iFixit.Domain.Models.REST.V2_0.Guide
         public string standard { get; set; }
         public string medium { get; set; }
         public string large { get; set; }
+        public string huge { get; set; }
         public string original { get; set; }
     }
 
@@ -161,13 +151,27 @@ namespace iFixit.Domain.Models.REST.V2_0.Guide
         public int reputation { get; set; }
     }
 
+    public class flag
+    {
+        public string title { get; set; }
+        public string flagid { get; set; }
+        public string text { get; set; }
+    }
+
+    public class document
+    {
+        public string text { get; set; }
+        public string url { get; set; }
+        public int documentid { get; set; }
+    }
+
     public class RootObject
     {
         public string conclusion_raw { get; set; }
         public string conclusion_rendered { get; set; }
         public string difficulty { get; set; }
-        //public List<object> documents { get; set; }
-        //public List<object> flags { get; set; }
+        public List<document> documents { get; set; }
+        public List<flag> flags { get; set; }
         public int guideid { get; set; }
         public Image image { get; set; }
         public string introduction_raw { get; set; }
@@ -183,10 +187,10 @@ namespace iFixit.Domain.Models.REST.V2_0.Guide
         public List<Tool> tools { get; set; }
         public string type { get; set; }
         public int revisionid { get; set; }
-        public int created_date { get; set; }
-        public int published_date { get; set; }
-        public int modified_date { get; set; }
-        public int prereq_modified_date { get; set; }
+        public double created_date { get; set; }
+        public double published_date { get; set; }
+        public double modified_date { get; set; }
+        public double prereq_modified_date { get; set; }
         public bool @public { get; set; }
         public string category { get; set; }
         public string url { get; set; }

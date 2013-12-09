@@ -98,6 +98,21 @@ namespace iFixit.Domain.Models.UI
                 }
             }
         }
+
+
+        private string _DateString;
+        public string DateString
+        {
+            get { return this._DateString; }
+            set
+            {
+                if (_DateString != value)
+                {
+                    _DateString = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
         
         
     }

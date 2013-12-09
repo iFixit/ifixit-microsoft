@@ -1,13 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.IO.IsolatedStorage;
 using System.Linq;
 using System.Text;
-using iFixit.Domain.Code;
-using Windows.Storage;
 using System.Threading.Tasks;
+using Windows.Storage;
+using iFixit.Domain.Code;
 using Windows.Storage.Search;
 
 namespace iFixit.UI.Services
@@ -15,6 +14,11 @@ namespace iFixit.UI.Services
     public class UiStorage : Domain.Interfaces.IStorage
     {
 
+        public string BasePath()
+        {
+            return "isostore:/";
+        }
+       
         private StorageFolder baseFolder = ApplicationData.Current.LocalFolder;
 
         private IsolatedStorageFile myIsolatedStorage = IsolatedStorageFile.GetUserStoreForApplication();
@@ -22,9 +26,10 @@ namespace iFixit.UI.Services
         public async Task WriteData(string fileName, string content)
         {
             byte[] data = Encoding.UTF8.GetBytes(content);
-            fileName = fileName.Replace(@"'", "").Replace("\"", "");
-            StorageFolder folder = ApplicationData.Current.LocalFolder;
-            StorageFile file = await folder.CreateFileAsync(fileName, CreationCollisionOption.ReplaceExisting);
+          
+            fileName = fileName.CleanCharacters();
+            
+            StorageFile file = await baseFolder.CreateFileAsync(fileName, CreationCollisionOption.ReplaceExisting);
 
             using (Stream s = await file.OpenStreamForWriteAsync())
             {
@@ -34,15 +39,15 @@ namespace iFixit.UI.Services
 
         public async Task WriteBinary(string folderName, string fileName, byte[] content)
         {
-            StorageFolder folder = ApplicationData.Current.LocalFolder;
+            
 
             fileName = fileName.Replace(@"'", "");
 
-            var folders = await folder.GetFoldersAsync();
+            var folders = await baseFolder.GetFoldersAsync();
             if (!folders.Any(f => f.Name == folderName))
-                await folder.CreateFolderAsync(folderName);
+                await baseFolder.CreateFolderAsync(folderName);
 
-            var targetFolder = await folder.GetFolderAsync(folderName);
+            var targetFolder = await baseFolder.GetFolderAsync(folderName);
 
             StorageFile file = await targetFolder.CreateFileAsync(fileName, CreationCollisionOption.ReplaceExisting);
 
@@ -54,6 +59,7 @@ namespace iFixit.UI.Services
 
         public async Task RemoveFolder(string folderName)
         {
+            folderName = folderName.CleanCharacters();
             StorageFolder storage = ApplicationData.Current.LocalFolder;
             var folders = await storage.GetFoldersAsync();
             if (folders.Any(o => o.Name == folderName))
@@ -65,16 +71,16 @@ namespace iFixit.UI.Services
 
         public async Task<bool> FolderExists(string folderName)
         {
-            StorageFolder storage = ApplicationData.Current.LocalFolder;
-            var folders = await storage.GetFoldersAsync();
-            return folders.Any(o => o.Name == folderName);
+         
+            var folders = await baseFolder.GetFoldersAsync();
+            return folders.Any(o => o.Name == folderName.CleanCharacters());
         }
 
         public async Task<bool> Exists(string fileName)
         {
             try
             {
-                fileName = fileName.Replace(@"'", "").Replace("\"", "");
+                fileName = fileName.CleanCharacters();
                 var taskCompletionSource = new TaskCompletionSource<bool>();
                 IsolatedStorageFile fileStorage = IsolatedStorageFile.GetUserStoreForApplication();
                 taskCompletionSource.SetResult(fileStorage.FileExists(fileName));
@@ -89,29 +95,39 @@ namespace iFixit.UI.Services
             }
         }
 
+        public async Task<bool> Exists(string fileName, string folder)
+        {
+            try
+            {
+                var roorfolder = await baseFolder.GetFolderAsync(folder);
+                var files = await roorfolder.GetFilesAsync(CommonFileQuery.OrderByName);
+                var file = files.FirstOrDefault(x => x.Name == fileName);
+
+                return file != null;
+            }
+            catch (FileNotFoundException)
+            {
+                return false;
+            }
+        }
+
+
         public async Task<bool> Exists(string fileName, TimeSpan expiration)
         {
             try
             {
-                fileName = fileName.Replace(@"'", "").Replace("\"", "");
-                var taskCompletionSource = new TaskCompletionSource<bool>();
-                IsolatedStorageFile fileStorage = IsolatedStorageFile.GetUserStoreForApplication();
-                var Exists = fileStorage.FileExists(fileName);
-                if (Exists)
-                {
-                    var createdAt = fileStorage.GetLastWriteTime(fileName);
-                    var TimeDiff = (DateTimeOffset.Now - createdAt);
-                    if (TimeDiff > expiration)
-                        Exists = false;
-                }
-                taskCompletionSource.SetResult(Exists);
-                //StorageFile file = await baseFolder.GetFileAsync(fileName);
-                //return true;
-                return await taskCompletionSource.Task;
-            }
-            catch (Exception)
-            {
+                bool Exists = true;
 
+                var file = await baseFolder.GetFileAsync(fileName.CleanCharacters());
+                var createdAt = file.DateCreated;
+                var TimeDiff = (DateTimeOffset.Now - createdAt);
+                if (TimeDiff > expiration)
+                    Exists = false;
+
+                return Exists;
+            }
+            catch (FileNotFoundException)
+            {
                 return false;
             }
         }
@@ -119,7 +135,7 @@ namespace iFixit.UI.Services
         public async Task<string> ReadData(string fileName)
         {
             byte[] data;
-            fileName = fileName.Replace(@"'", "").Replace("\"", "");
+            fileName = fileName.CleanCharacters();
             StorageFile file = await baseFolder.GetFileAsync(fileName);
             using (Stream s = await file.OpenStreamForReadAsync())
             {
@@ -129,6 +145,7 @@ namespace iFixit.UI.Services
 
             return Encoding.UTF8.GetString(data, 0, data.Length);
         }
+              
 
         public void Save(string StorageId, string Content)
         {
@@ -137,7 +154,7 @@ namespace iFixit.UI.Services
                 using (IsolatedStorageFile store = IsolatedStorageFile.GetUserStoreForApplication())
                 {
 
-                    using (IsolatedStorageFileStream fileStream = new IsolatedStorageFileStream(StorageId, FileMode.Create, store))
+                    using (IsolatedStorageFileStream fileStream = new IsolatedStorageFileStream(StorageId.CleanCharacters(), FileMode.Create, store))
                     {
                         using (StreamWriter stream = new StreamWriter(fileStream))
                         {
@@ -156,9 +173,9 @@ namespace iFixit.UI.Services
         private string ReadFile(string filePath)
         {
             string Result = string.Empty;
-            if (myIsolatedStorage.FileExists(filePath))
+            if (myIsolatedStorage.FileExists(filePath.CleanCharacters()))
             {
-                using (IsolatedStorageFileStream fileStream = myIsolatedStorage.OpenFile(filePath, FileMode.Open, FileAccess.Read))
+                using (IsolatedStorageFileStream fileStream = myIsolatedStorage.OpenFile(filePath.CleanCharacters(), FileMode.Open, FileAccess.Read))
                 {
                     using (StreamReader reader = new StreamReader(fileStream))
                     {
@@ -175,21 +192,12 @@ namespace iFixit.UI.Services
             return Result;
         }
 
-        public void Delete(string StorageId)
+        public async Task Delete(string StorageId)
         {
-            using (var storageFile = IsolatedStorageFile.GetUserStoreForApplication())
-            {
-                if (storageFile.FileExists(StorageId))
-                    storageFile.DeleteFile(StorageId);
-            }
+            var file = await baseFolder.GetFileAsync(StorageId.CleanCharacters());
+            await file.DeleteAsync();
         }
 
 
-
-        private void testes()
-        {
-
-
-        }
     }
 }

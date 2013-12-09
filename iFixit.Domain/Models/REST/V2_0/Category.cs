@@ -72,8 +72,8 @@ namespace iFixit.Domain.Models.REST.V2_0.Category
         public int guideid { get; set; }
         public string locale { get; set; }
         public int revisionid { get; set; }
-        public int modified_date { get; set; }
-        public int prereq_modified_date { get; set; }
+        public double modified_date { get; set; }
+        public double? prereq_modified_date { get; set; }
         public string url { get; set; }
         public string type { get; set; }
         public string category { get; set; }

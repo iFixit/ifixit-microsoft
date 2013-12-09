@@ -1,0 +1,4 @@
+MainPackage=D:\Projects\iFixit\iFixit.NET\iFixit.NET\iFixit.W81.UI\bin\Release\iFixit.W81.UI_1.1.0.1_Bundle\iFixit.W81.UI_1.1.0.1_AnyCPU.appx
+SymbolPackage=D:\Projects\iFixit\iFixit.NET\iFixit.NET\iFixit.W81.UI\AppPackages\iFixit.W81.UI_1.1.0.1_Test\iFixit.W81.UI_1.1.0.1_AnyCPU.appxsym
+ResourcePack=D:\Projects\iFixit\iFixit.NET\iFixit.NET\iFixit.W81.UI\bin\Release\iFixit.W81.UI_1.1.0.1_Bundle\iFixit.W81.UI_1.1.0.1_scale-140.appx
+ResourcePack=D:\Projects\iFixit\iFixit.NET\iFixit.NET\iFixit.W81.UI\bin\Release\iFixit.W81.UI_1.1.0.1_Bundle\iFixit.W81.UI_1.1.0.1_scale-180.appx

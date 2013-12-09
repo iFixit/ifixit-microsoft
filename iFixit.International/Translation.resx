@@ -123,6 +123,9 @@
   <data name="AddToFavorites" xml:space="preserve">
     <value>+favorites</value>
   </data>
+  <data name="Author" xml:space="preserve">
+    <value>author</value>
+  </data>
   <data name="Cancel" xml:space="preserve">
     <value>cancel</value>
   </data>
@@ -141,11 +144,17 @@
   <data name="Devices" xml:space="preserve">
     <value>devices</value>
   </data>
+  <data name="Difficulty" xml:space="preserve">
+    <value>difficulty</value>
+  </data>
+  <data name="Documents" xml:space="preserve">
+    <value>documents</value>
+  </data>
   <data name="Email" xml:space="preserve">
     <value>email</value>
   </data>
   <data name="ErrorGetting" xml:space="preserve">
-     <value>not able to resolve this endpoint:{0} – the reason given was: {1}</value>
+    <value>not able to resolve this endpoint:{0} – the reason given was: {1}</value>
   </data>
   <data name="ErrorHTTP" xml:space="preserve">
     <value>an error as occured acessing the server {0}</value>
@@ -169,7 +178,7 @@
     <value>favorites</value>
   </data>
   <data name="FillForm" xml:space="preserve">
-    <value>please fill the form completely</value>
+    <value>Please fill out all fields</value>
   </data>
   <data name="ForgotPassword" xml:space="preserve">
     <value>forgot password</value>
@@ -180,8 +189,14 @@
   <data name="GuideBy" xml:space="preserve">
     <value>by {0}</value>
   </data>
+  <data name="GuideRemovedFavorites" xml:space="preserve">
+    <value>guide removed from your favorites</value>
+  </data>
   <data name="Guides" xml:space="preserve">
     <value>guides</value>
+  </data>
+  <data name="GuideSuccessfullySaved" xml:space="preserve">
+    <value>guide add to your favorites</value>
   </data>
   <data name="Help" xml:space="preserve">
     <value>help</value>
@@ -192,14 +207,26 @@
   <data name="Intro" xml:space="preserve">
     <value>intro</value>
   </data>
+  <data name="Introduction" xml:space="preserve">
+    <value>introduction</value>
+  </data>
+  <data name="IntroductionAndPartsAndTools" xml:space="preserve">
+    <value>introduction, parts and tools</value>
+  </data>
   <data name="Listen" xml:space="preserve">
     <value>listen</value>
   </data>
   <data name="Login" xml:space="preserve">
     <value>login</value>
   </data>
+  <data name="LoginSuccessfull" xml:space="preserve">
+    <value>login successfull</value>
+  </data>
   <data name="Logout" xml:space="preserve">
-    <value>logout</value>
+    <value>log out</value>
+  </data>
+  <data name="LogoutSuccessfull" xml:space="preserve">
+    <value>logout successfull</value>
   </data>
   <data name="Mission" xml:space="preserve">
     <value>mission</value>
@@ -219,8 +246,26 @@
   <data name="NoConnection" xml:space="preserve">
     <value>no connection</value>
   </data>
+  <data name="NoDevicesFound" xml:space="preserve">
+    <value>no devices found</value>
+  </data>
+  <data name="NoFavorites" xml:space="preserve">
+    <value>no guides favorited yet.</value>
+  </data>
+  <data name="NoGuidesFound" xml:space="preserve">
+    <value>no guides found </value>
+  </data>
+  <data name="NoProductsFound" xml:space="preserve">
+    <value>no products found</value>
+  </data>
   <data name="PageTitle_Search" xml:space="preserve">
     <value>search</value>
+  </data>
+  <data name="Parts" xml:space="preserve">
+    <value>parts</value>
+  </data>
+  <data name="PartsAndTools" xml:space="preserve">
+    <value>parts &amp; tools</value>
   </data>
   <data name="Password" xml:space="preserve">
     <value>password</value>
@@ -294,7 +339,28 @@
   <data name="Teardowns" xml:space="preserve">
     <value>teardowns</value>
   </data>
+  <data name="TimeRequired" xml:space="preserve">
+    <value>time required</value>
+  </data>
+  <data name="Tools" xml:space="preserve">
+    <value>tools</value>
+  </data>
   <data name="UserName" xml:space="preserve">
-    <value>username</value>
+    <value>name</value>
+  </data>
+  <data name="NoGuidesOnCategory" xml:space="preserve">
+    <value>there are no guides about yet.</value>
+  </data>
+  <data name="NoGuidesOnCategoryX" xml:space="preserve">
+    <value>there are no guides about {0} yet.</value>
+  </data>
+  <data name="LoginToViewYourFavorites" xml:space="preserve">
+    <value>to view your favorites.</value>
+  </data>
+  <data name="LogIn2" xml:space="preserve">
+    <value>log in</value>
+  </data>
+  <data name="ShareThisGuide" xml:space="preserve">
+    <value>look at this guide</value>
   </data>
 </root>

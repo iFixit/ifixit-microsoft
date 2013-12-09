@@ -43,12 +43,30 @@ namespace iFixit.Domain.Models.REST.V2_0.Login.Output
         public string original { get; set; }
     }
 
+    public class BadgeCounts
+    {
+        public int bronze { get; set; }
+        public int silver { get; set; }
+        public int gold { get; set; }
+        public int total { get; set; }
+    }
+
     public class RootObject
     {
-        public int userid { get; set; }
         public string username { get; set; }
+        public int userid { get; set; }
         public Image image { get; set; }
+        public int reputation { get; set; }
+        public List<int> teams { get; set; }
+        public double? join_date { get; set; }
+        public string location { get; set; }
+        public int certification_count { get; set; }
+        public BadgeCounts badge_counts { get; set; }
+        public string summary { get; set; }
+        public string about_raw { get; set; }
+        public string about_rendered { get; set; }
         public string authToken { get; set; }
+        //custom 
         public string email { get; set; }
     }
 }

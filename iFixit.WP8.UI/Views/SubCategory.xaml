@@ -40,6 +40,8 @@
         <code:UpperConverter x:Key="UpperConverter"/>
         <code:LowerConverter x:Key="LowerConverter"/>
         <code:HomeMenuConverter x:Key="HomeMenuConverter"/>
+        <code:SubStringConverter x:Key="SubStringConverter"/>
+        
     </code:PageBase.Resources>
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
@@ -64,17 +66,25 @@
 
         <Grid >
 
-            <phone:Pivot Name="MainPivot"  HeaderTemplate="{StaticResource MasterPivotHeader}"  Background="{StaticResource ThirdBackgroundBrush}">
-               
+            <phone:Pivot Name="MainPivot"    Background="{StaticResource ThirdBackgroundBrush}">
+                <phone:Pivot.HeaderTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <TextBlock Text="{Binding}" 
+                       Style="{StaticResource PhoneTextLargeStyle}"
+                       Foreground="{StaticResource BlackBrush}"  Margin="0,0,50,0"
+                       TextWrapping="Wrap" FontWeight="Bold" FontSize="48" />
+                        </Grid>
+                    </DataTemplate>
+                </phone:Pivot.HeaderTemplate>
 
-                <phone:PivotItem Header="{Binding Labels.Translation.MoreInfo, Source={StaticResource LabelsManager}}">
+                    <phone:PivotItem Header="{Binding CategoryName, ConverterParameter=8}">
                   
                     <Border BorderThickness="0,3,0,0" BorderBrush="{StaticResource FifthBackgroundBrush}" >
                         <telerikPrimitives:RadDataBoundListBox 
                                             Name="CategoryList"   
                                             ItemsSource="{Binding Items}" 
                                             ItemTemplate="{StaticResource CategoryItemInGrid}"
-                         
                                             Margin="0,0,0,0" 
                           
                                     >
@@ -98,8 +108,12 @@
                    
                     <Border BorderThickness="0,3,0,0" BorderBrush="{StaticResource FifthBackgroundBrush}" >
                         <StackPanel>
-                            <code4FunControls:SuperImage PlaceholderImageSource="/Assets/NoImage_300x225.jpg" Source="{Binding ImageUrl}" Stretch="UniformToFill">
+                            <Grid Background="{StaticResource PlaceHolderBackgroundBrush}">
+                                  <code4FunControls:SuperImage PlaceholderImageStretch="Uniform" 
+                                                               PlaceholderImageSource="/Assets/NoImage_300x225.jpg" Source="{Binding ImageUrl}" Stretch="UniformToFill">
                             </code4FunControls:SuperImage>
+                            </Grid>
+                          
                             <!--<telerikSlideView:PanAndZoomImage Stretch="UniformToFill" Source="{Binding ImageUrl}"/>-->
                             <TextBlock Text="{Binding DataContext.Description, ElementName=LayoutRoot}" TextWrapping="Wrap"></TextBlock>
                         </StackPanel>

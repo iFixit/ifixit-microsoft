@@ -1,0 +1,934 @@
+﻿<common:BasePage
+	x:Name="pageRoot"
+	x:Class="iFixit.W8.UI.Views.GuideDetails"
+	DataContext="{Binding Source={StaticResource Locator}, Path=Guide}"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:local="using:iFixit.W8.UI.Views"
+	xmlns:common="using:iFixit.W8.UI.Common"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:metroEventToCommand="using:MetroEventToCommand"
+	xmlns:Extensions="using:WinRTXamlToolkit.Controls.Extensions"
+	xmlns:shared="using:iFixit.UI.Shared"
+	xmlns:callisto="using:Callisto.Controls"
+	xmlns:WinRTXamlToolkit="using:WinRTXamlToolkit.Controls"
+	xmlns:callistoEffects="using:Callisto.Effects"
+	xmlns:Q42Controls="using:Q42.WinRT.Controls"
+	xmlns:coding4FunControls ="using:Coding4Fun.Toolkit.Controls"
+	xmlns:UC="using:iFixit.W8.UI.Views.UC"
+	NavigationCacheMode="Disabled"
+	mc:Ignorable="d">
+
+    <Page.Resources>
+
+        <Style x:Key="SuperImageWithAnimation" TargetType="coding4FunControls:SuperImage">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="coding4FunControls:SuperImage">
+                        <Grid>
+                            <Border
+							x:Name="PlaceholderBorder"
+							Opacity="{TemplateBinding PlaceholderOpacity}"
+                            Background="{TemplateBinding PlaceholderBackground}">
+                              
+                                    <!--<Image 
+								x:Name="PlaceholderImage"
+                                Source="{TemplateBinding PlaceholderImageSource}"
+                                Stretch="{TemplateBinding PlaceholderImageStretch}"/>-->
+                                    <ProgressRing 	x:Name="PlaceholderImage" Height="150" Foreground="{StaticResource iFixitBlueBrush}" 
+                                              Width="150" VerticalAlignment="Center" IsActive="True"
+                                              HorizontalAlignment="Center"></ProgressRing>
+
+                              
+                            </Border>
+                            <Image 
+							x:Name="PrimaryImage" 
+							Source="{TemplateBinding Source}"
+                            Stretch="{TemplateBinding Stretch}"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="HyperlinkButton">
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="FontFamily" Value="{StaticResource ContentControlThemeFontFamily}" />
+            <Setter Property="FontSize" Value="{StaticResource ControlContentThemeFontSize}" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="HyperlinkButton">
+                        <Grid>
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal" />
+                                    <VisualState x:Name="PointerOver">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Foreground">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource HyperlinkPointerOverForegroundThemeBrush}" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Pressed">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Foreground">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource HyperlinkPressedForegroundThemeBrush}" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Disabled">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Foreground">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource HyperlinkDisabledThemeBrush}" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                                <VisualStateGroup x:Name="FocusStates">
+                                    <VisualState x:Name="Focused">
+                                        <Storyboard>
+                                            <DoubleAnimation Storyboard.TargetName="FocusVisualWhite" Storyboard.TargetProperty="Opacity" To="1" Duration="0" />
+                                            <DoubleAnimation Storyboard.TargetName="FocusVisualBlack" Storyboard.TargetProperty="Opacity" To="1" Duration="0" />
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Unfocused" />
+                                    <VisualState x:Name="PointerFocused" />
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <Border x:Name="Border" Margin="0">
+                                <ContentPresenter x:Name="ContentPresenter" Content="{TemplateBinding Content}" ContentTransitions="{TemplateBinding ContentTransitions}" ContentTemplate="{TemplateBinding ContentTemplate}" Margin="{TemplateBinding Padding}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                            </Border>
+                            <Rectangle x:Name="FocusVisualWhite" IsHitTestVisible="False" Stroke="{StaticResource FocusVisualWhiteStrokeThemeBrush}" StrokeEndLineCap="Square" StrokeDashArray="1,1" Opacity="0" StrokeDashOffset="1.5" />
+                            <Rectangle x:Name="FocusVisualBlack" IsHitTestVisible="False" Stroke="{StaticResource FocusVisualBlackStrokeThemeBrush}" StrokeEndLineCap="Square" StrokeDashArray="1,1" Opacity="0" StrokeDashOffset="0.5" />
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="NoScrollListView" TargetType="ListView">
+            <Setter Property="IsTabStop" Value="False" />
+            <Setter Property="TabNavigation" Value="Once" />
+            <Setter Property="IsSwipeEnabled" Value="False" />
+            <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled" />
+            <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Disabled" />
+            <Setter Property="ScrollViewer.HorizontalScrollMode" Value="Disabled" />
+            <Setter Property="ScrollViewer.IsHorizontalRailEnabled" Value="False" />
+            <Setter Property="ScrollViewer.VerticalScrollMode" Value="Disabled" />
+            <Setter Property="ScrollViewer.IsVerticalRailEnabled" Value="False" />
+            <Setter Property="ScrollViewer.ZoomMode" Value="Disabled" />
+            <Setter Property="ScrollViewer.IsDeferredScrollingEnabled" Value="False" />
+            <Setter Property="ScrollViewer.BringIntoViewOnFocusChange" Value="True" />
+            <Setter Property="ItemContainerTransitions">
+                <Setter.Value>
+                    <TransitionCollection>
+                        <AddDeleteThemeTransition />
+                        <ContentThemeTransition />
+                        <ReorderThemeTransition />
+                        <EntranceThemeTransition IsStaggeringEnabled="False" />
+                    </TransitionCollection>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="ItemsPanel">
+                <Setter.Value>
+                    <ItemsPanelTemplate>
+                        <VirtualizingStackPanel Orientation="Vertical" Margin="0,-10,0,20"/>
+                    </ItemsPanelTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ListView">
+                        <ItemsPresenter Header="{TemplateBinding Header}" 
+										HeaderTemplate="{TemplateBinding HeaderTemplate}" Padding="0"
+										HeaderTransitions="{TemplateBinding HeaderTransitions}" Margin="0"
+										 />
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="StepsImages" TargetType="GridViewItem">
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="TabNavigation" Value="Local" />
+            <Setter Property="IsHoldingEnabled" Value="True" />
+            <Setter Property="HorizontalContentAlignment" Value="Left" />
+            <Setter Property="VerticalContentAlignment" Value="Top" />
+            <Setter Property="Margin" Value="0" />
+            <Setter Property="Template">
+                <Setter.Value>
+
+
+
+                    <ControlTemplate TargetType="GridViewItem">
+                        <Grid>
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Pressed">
+                                        <Storyboard>
+                                            <PointerDownThemeAnimation TargetName="contentPresenter" />
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <ContentPresenter x:Name="contentPresenter"
+										  ContentTransitions="{TemplateBinding ContentTransitions}" 
+										  ContentTemplate="{TemplateBinding ContentTemplate}" 
+										  Content="{TemplateBinding Content}" 
+										  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+										  VerticalAlignment="{TemplateBinding VerticalContentAlignment}" 
+										  Margin="0" />
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="Steps" TargetType="ListViewItem">
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="TabNavigation" Value="Local" />
+            <Setter Property="IsHoldingEnabled" Value="True" />
+            <Setter Property="HorizontalContentAlignment" Value="Left" />
+            <Setter Property="VerticalContentAlignment" Value="Top" />
+            <Setter Property="Margin" Value="0" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ListViewItem">
+                        <ContentPresenter x:Name="contentPresenter"
+										  ContentTransitions="{TemplateBinding ContentTransitions}" 
+										  ContentTemplate="{TemplateBinding ContentTemplate}" 
+										  Content="{TemplateBinding Content}" 
+										  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+										  VerticalAlignment="{TemplateBinding VerticalContentAlignment}" 
+										  Margin="0" />
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <DataTemplate x:Key="PartsTemplate">
+            <HyperlinkButton Margin="6"  NavigateUri="{Binding Url}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Border  BorderThickness="1" VerticalAlignment="Top" Margin="0,12,6,0" CornerRadius="5" Width="6" Height="6" >
+                        <Border.BorderBrush>
+                            <SolidColorBrush Color="Black"/>
+                        </Border.BorderBrush>
+                        <Border.Background>
+                            <SolidColorBrush Color="Black"/>
+                        </Border.Background>
+                    </Border>
+
+                    <TextBlock Grid.Column="1" Style="{StaticResource TitleTextStyle}" 
+						   TextWrapping="Wrap" FontSize="18"
+						   Foreground="{StaticResource iFixitBlueBrush}" 
+						   Text="{Binding Title}" FontWeight="Light"
+						   VerticalAlignment="Center"/>
+                </Grid>
+            </HyperlinkButton>
+
+        </DataTemplate>
+
+        <DataTemplate x:Key="ToolsTemplate">
+
+
+            <HyperlinkButton  Margin="6"   NavigateUri="{Binding Url}">
+
+                <TextBlock Grid.Column="1" Style="{StaticResource TitleTextStyle}" 
+						   TextWrapping="Wrap"
+						   Foreground="{StaticResource iFixitBlueBrush}" 
+						   Text="{Binding Title}" FontWeight="Light"
+						   VerticalAlignment="Center"/>
+
+            </HyperlinkButton>
+
+        </DataTemplate>
+
+        <DataTemplate x:Key="StepLine">
+            <Border HorizontalAlignment="Left" VerticalAlignment="Top" BorderThickness="6,0,0,0"  Margin="{Binding Level, Converter={StaticResource TextIdentConverter}}">
+
+
+                <Grid >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="10"></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Border  BorderThickness="1" VerticalAlignment="Top" Margin="0,10,0,0" CornerRadius="5" Width="10" Height="10" >
+                        <Border.BorderBrush>
+                            <SolidColorBrush Color="{Binding BulletColor}"/>
+                        </Border.BorderBrush>
+                        <Border.Background>
+                            <SolidColorBrush Color="{Binding BulletColor}"/>
+                        </Border.Background>
+                    </Border>
+                    <RichTextBlock Grid.Column="1" FontSize="18" Foreground="#333333" shared:Properties.Html="{Binding Title}" 
+						   Margin="6,0,0,6"></RichTextBlock>
+                    <Image VerticalAlignment="Top" Grid.Column="2" Width="52" Height="52" Source="{Binding GuideIcon,Converter={StaticResource IconConverter}}" 
+						   Visibility="{Binding GuideIcon, Converter={StaticResource IconVisibilityConverter}}"/>
+                </Grid>
+            </Border>
+
+        </DataTemplate>
+
+        <DataTemplate x:Key="StepLineImages">
+            <Border x:Name="OuterContainer" Margin="0,0,20,0"   
+					BorderThickness="1"  Width="140"
+					BorderBrush="{StaticResource BorderColorBrush}">
+
+                <coding4FunControls:SuperImage 
+												PlaceholderImageStretch="UniformToFill" 
+												PlaceholderImageSource="/Assets/no_image.png" 
+												Stretch="Uniform" 
+												Source="{Binding MediumImageUrl}"  
+																		  >
+                    <metroEventToCommand:EventToCommandManager.Collection>
+                        <metroEventToCommand:EventToCommand Command="{Binding DataContext.SwapImage, ElementName=pageRoot}"
+															CommandParameter="{Binding}"
+											Event="Tapped"></metroEventToCommand:EventToCommand>
+                    </metroEventToCommand:EventToCommandManager.Collection>
+
+                </coding4FunControls:SuperImage>
+            </Border>
+
+        </DataTemplate>
+
+        <DataTemplate x:Key="IntroPage">
+            <Grid VerticalAlignment="Stretch">
+                <StackPanel  Orientation="Horizontal" Margin="120,0,0,0"  VerticalAlignment="Stretch">
+                    <Grid VerticalAlignment="Stretch">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40"></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                        </Grid.RowDefinitions>
+
+
+                        <TextBlock Margin="0,0,0,0" Text="{Binding Labels.Translation.Introduction, Mode=OneWay, Source={StaticResource LabelsManager}}" Style="{StaticResource GridHeaderTitle}"></TextBlock>
+                        <Grid Width="340" Grid.Row="1"  Background="{StaticResource BackgroundBrush}">
+                            <ScrollViewer>
+
+                                <StackPanel Margin="20,10,20,0">
+                                    <StackPanel Orientation="Horizontal" Margin="0,6" Visibility="{Binding Author, Converter={StaticResource StringToVisibilityConverter}}">
+                                        <TextBlock Text="{Binding Labels.Translation.Author, Mode=OneWay, Source={StaticResource LabelsManager}}"  Style="{StaticResource IntroHeaderTitle}" ></TextBlock>
+                                        <TextBlock Text=":"  Style="{StaticResource IntroHeaderTitle}"></TextBlock>
+                                        <TextBlock Margin="6,0,0,0" Text="{Binding Author}"  Style="{StaticResource IntroHeaderContent}"  ></TextBlock>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Margin="0,6" Visibility="{Binding Difficulty, Converter={StaticResource StringToVisibilityConverter}}">
+                                        <TextBlock Text="{Binding Labels.Translation.Difficulty, Mode=OneWay, Source={StaticResource LabelsManager}}"  Style="{StaticResource IntroHeaderTitle}"></TextBlock>
+                                        <TextBlock Text=":"  Style="{StaticResource IntroHeaderTitle}"></TextBlock>
+                                        <TextBlock  Margin="6,0,0,0" Text="{Binding Difficulty}"  Style="{StaticResource IntroHeaderContent}"  ></TextBlock>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Margin="0,6" Visibility="{Binding TimeRequired, Converter={StaticResource StringToVisibilityConverter}}">
+                                        <TextBlock Text="{Binding Labels.Translation.TimeRequired, Mode=OneWay, Source={StaticResource LabelsManager}}"  Style="{StaticResource IntroHeaderTitle}"></TextBlock>
+                                        <TextBlock Text=":"  Style="{StaticResource IntroHeaderTitle}"></TextBlock>
+                                        <TextBlock  Margin="6,0,0,0" Text="{Binding TimeRequired}"  Style="{StaticResource IntroHeaderContent}" ></TextBlock>
+                                    </StackPanel>
+
+
+                                    <Grid Height="3" Background="{StaticResource iFixitBlueBrush}" Margin="0,12,0,12" Visibility="{Binding HasDocuments, Converter={StaticResource BooleanToVisibilityConverter}}"></Grid>
+                                    <ListView Margin="0,0,0,10" 
+											  Visibility="{Binding HasDocuments, Converter={StaticResource BooleanToVisibilityConverter}}"
+											  Header="{Binding Labels.Translation.Documents, Mode=OneWay, Source={StaticResource LabelsManager}}"  
+											  IsSwipeEnabled="False"
+											  ItemsSource="{Binding Documents}"  
+											  Style="{StaticResource NoScrollListView}"
+											  ItemTemplate="{StaticResource PartsTemplate}"
+											  ItemContainerStyle="{StaticResource Steps}"
+											  >
+                                        <ListView.HeaderTemplate>
+                                            <DataTemplate>
+                                                <Grid Margin="0,0,0,6">
+                                                    <TextBlock Text="{Binding}"  
+														   TextWrapping="Wrap" Margin="0" 
+														   Style="{StaticResource IntroHeaderTitle}"></TextBlock>
+                                                </Grid>
+                                            </DataTemplate>
+                                        </ListView.HeaderTemplate>
+
+                                    </ListView>
+
+                                    <RichTextBlock Grid.Column="1" FontSize="18" Foreground="#333333" shared:Properties.Html="{Binding Introduction}" 
+								   Margin="0"></RichTextBlock>
+                                    <Grid Height="20"></Grid>
+                                </StackPanel>
+
+
+                            </ScrollViewer>
+                            <Grid VerticalAlignment="Bottom" Grid.RowSpan="2" Height="50" Margin="0" IsHitTestVisible="False">
+                                <Grid.Background>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Offset="0" Color="#19FFFFFF"/>
+                                        <GradientStop Color="White" Offset="0.75"/>
+                                    </LinearGradientBrush>
+                                </Grid.Background>
+                            </Grid>
+                        </Grid>
+
+
+                    </Grid>
+                    <Grid Margin="80,0,0,0" VerticalAlignment="Stretch"   Visibility="{Binding HasPartsAndTools, Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40"></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Margin="0,0,0,0"   Text="{Binding Labels.Translation.PartsAndTools, Mode=OneWay, Source={StaticResource LabelsManager}}" Style="{StaticResource GridHeaderTitle}"></TextBlock>
+
+
+                        <Grid Width="340" Margin="0,0,0,0" Grid.Row="1" Background="{StaticResource BackgroundBrush}">
+                            <ScrollViewer VerticalScrollMode="Auto" ZoomMode="Disabled">
+
+                                <StackPanel>
+                                    <ListView Margin="20,10,20,0" 
+											  Visibility="{Binding HasParts, Converter={StaticResource BooleanToVisibilityConverter}}"
+											  Header="{Binding Labels.Translation.Parts, Mode=OneWay, Source={StaticResource LabelsManager}}"  
+											  IsSwipeEnabled="False"
+											  ItemsSource="{Binding Parts}"  
+											  Style="{StaticResource NoScrollListView}"
+											  ItemTemplate="{StaticResource PartsTemplate}"
+											  ItemContainerStyle="{StaticResource Steps}"
+											  >
+                                        <ListView.HeaderTemplate>
+                                            <DataTemplate>
+                                                <Grid Margin="0,0,0,6">
+                                                    <TextBlock Text="{Binding}"  TextWrapping="Wrap" Margin="0"  Style="{StaticResource GridHeaderTitle}"></TextBlock>
+                                                </Grid>
+                                            </DataTemplate>
+                                        </ListView.HeaderTemplate>
+
+                                    </ListView>
+                                    <ListView Margin="20,20,20,0"  
+											  Visibility="{Binding HasParts, Converter={StaticResource BooleanToVisibilityConverter}}"
+											  Header="{Binding Labels.Translation.Tools, Mode=OneWay, Source={StaticResource LabelsManager}}"  
+											  IsSwipeEnabled="False"
+											  Style="{StaticResource NoScrollListView}"
+											  ItemsSource="{Binding Tools}" 
+											  ItemTemplate="{StaticResource PartsTemplate}"
+											  ItemContainerStyle="{StaticResource Steps}"
+											  >
+                                        <ListView.HeaderTemplate>
+                                            <DataTemplate>
+                                                <Grid Margin="0,0,0,6">
+                                                    <TextBlock Text="{Binding}"  TextWrapping="Wrap" Margin="0"  Style="{StaticResource GridHeaderTitle}"></TextBlock>
+                                                </Grid>
+                                            </DataTemplate>
+                                        </ListView.HeaderTemplate>
+
+                                    </ListView>
+
+                                </StackPanel>
+
+                            </ScrollViewer>
+
+                        </Grid>
+                        <Grid VerticalAlignment="Bottom" Grid.RowSpan="2" Height="50" Margin="0" IsHitTestVisible="False">
+                            <Grid.Background>
+                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                    <GradientStop Offset="0" Color="#19FFFFFF"/>
+                                    <GradientStop Color="White" Offset="0.75"/>
+                                </LinearGradientBrush>
+                            </Grid.Background>
+                        </Grid>
+                    </Grid>
+                </StackPanel>
+            </Grid>
+        </DataTemplate>
+
+        <DataTemplate x:Key="StepPage">
+            <Grid  Margin="0,0,0,0"  >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <TextBlock Text="{Binding StepTitle}" Style="{StaticResource GridHeaderTitle}"></TextBlock>
+                <Grid Margin="0,0,0,0" Width="1000" Grid.Row="1" Background="{StaticResource BackgroundBrush}">
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="500"></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid>
+                        <Border x:Name="OuterContainer" Margin="20"   BorderThickness="1" BorderBrush="{StaticResource BorderColorBrush}">
+                            <Grid>
+                                <coding4FunControls:SuperImage Tapped="SuperImage_Tapped"
+												PlaceholderImageStretch="Uniform" 
+												PlaceholderImageSource="/Assets/no_image.png" 
+												Stretch="UniformToFill" 
+												Source="{Binding MainImage.MediumImageUrl}"  
+												Visibility="{Binding Video.ImageUrl, Converter={StaticResource NegativeStringToVisibilityConverter}}"                          >
+
+                                </coding4FunControls:SuperImage>
+                                <Grid Visibility="{Binding Video.ImageUrl, Converter={StaticResource StringToVisibilityConverter}}" >
+                                    <coding4FunControls:SuperImage Tapped="SuperImage_Tapped"
+												PlaceholderImageStretch="Uniform" 
+												PlaceholderImageSource="/Assets/no_image.png" 
+												Stretch="UniformToFill" IsHitTestVisible="False"
+												Source="{Binding Video.ImageUrl}"  
+																		/>
+                                    <Image Source="/Assets/play_icon.png" Tapped="StartImage" 
+										   Stretch="UniformToFill" VerticalAlignment="Center"
+										   Tag="{Binding Video.VideoUrl}"
+										   HorizontalAlignment="Center"></Image>
+
+
+                                </Grid>
+                            </Grid>  
+                        </Border>
+                    </Grid>
+                    <Grid Grid.Row="2"   VerticalAlignment="Top" >
+                        <GridView Name="listImages" Margin="20,0,0,20"
+										  IsSwipeEnabled="False"
+										  SelectionMode="None" 
+										  VerticalAlignment="Top"
+										  FlowDirection="LeftToRight"
+										  HorizontalAlignment="Left"
+										  Visibility="{Binding ShowListImages, Converter={StaticResource BooleanToVisibilityConverter}}"
+										  ItemsSource="{Binding Images}"  ScrollViewer.IsHorizontalScrollChainingEnabled="False"
+										  ScrollViewer.HorizontalScrollMode="Disabled"
+                                          ItemContainerStyle="{StaticResource StepsImages}"
+										  ItemTemplate="{StaticResource StepLineImages}">
+                            <GridView.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <VirtualizingStackPanel Margin="0" Orientation="Horizontal" HorizontalAlignment="Left"/>
+                                </ItemsPanelTemplate>
+                            </GridView.ItemsPanel>
+                        </GridView>
+                    </Grid>
+
+                    <Grid Grid.Column="1" Grid.RowSpan="2">
+                        <Grid  Margin="0,20,20,20" >
+                            <Grid>
+                                <ScrollViewer VerticalScrollMode="Auto" ZoomMode="Disabled" >
+                                    <ListView ItemsSource="{Binding Lines}" 
+										  IsSwipeEnabled="False" 
+										  ItemContainerStyle="{StaticResource Steps}"
+										  ItemTemplate="{StaticResource StepLine}" 
+										  Style="{StaticResource NoScrollListView}"
+										  SelectionMode="None"  
+										  BorderThickness="0" 
+										  Margin="0,0,0,50"
+										  VerticalAlignment="Stretch" 
+									  
+										  >
+                                        <ListView.ItemsPanel>
+                                            <ItemsPanelTemplate>
+                                                <VirtualizingStackPanel Margin="6,0,6,0" Orientation="Vertical" HorizontalAlignment="Stretch"/>
+                                            </ItemsPanelTemplate>
+                                        </ListView.ItemsPanel>
+                                    </ListView>
+                                </ScrollViewer>
+                                <Grid VerticalAlignment="Bottom"  Height="100" Margin="0" IsHitTestVisible="False">
+                                    <Grid.Background>
+                                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                            <GradientStop Offset="0" Color="#19FFFFFF"/>
+                                            <GradientStop Color="White" Offset="0.75"/>
+                                        </LinearGradientBrush>
+                                    </Grid.Background>
+                                </Grid>
+                            </Grid>
+                        </Grid>
+
+                    </Grid>
+
+                </Grid>
+            </Grid>
+        </DataTemplate>
+
+        <DataTemplate x:Key="IntroZoom">
+
+            <Grid Tapped="Grid_Tapped" Height="100" Width="188" Background="{StaticResource iFixitBlueBrush}">
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <TextBlock FontWeight="Light" TextWrapping="Wrap" FontSize="28" 
+						   Text="{Binding Labels.Translation.Introduction, Mode=OneWay, Source={StaticResource LabelsManager}}" Foreground="White" VerticalAlignment="Center" 
+						   HorizontalAlignment="Center"></TextBlock>
+
+                    <TextBlock FontWeight="Light" TextWrapping="Wrap" FontSize="28" Visibility="{Binding HasPartsAndTools, Converter={StaticResource BooleanToVisibilityConverter}}"
+						   Text="{Binding Labels.Translation.PartsAndTools, Mode=OneWay, Source={StaticResource LabelsManager}}" Foreground="White" VerticalAlignment="Center" 
+						   HorizontalAlignment="Center"></TextBlock>
+                </StackPanel>
+            </Grid>
+
+        </DataTemplate>
+
+        <DataTemplate x:Key="StepsZoom">
+
+            <Grid Tapped="Grid_Tapped" Height="100" Width="188">
+                <coding4FunControls:SuperImage 
+												PlaceholderImageStretch="Uniform" 
+												PlaceholderImageSource="/Assets/no_image.png" 
+												Stretch="UniformToFill" 
+												Source="{Binding MainImage.MediumImageUrl}"  
+																		  >
+
+                </coding4FunControls:SuperImage>
+
+                <Image Source="/Assets/play_icon_small.png" 	Visibility="{Binding Video.ImageUrl, Converter={StaticResource StringToVisibilityConverter}}"  
+										   Stretch="UniformToFill" VerticalAlignment="Center"
+										   Tag="{Binding Video.VideoUrl}"
+										   HorizontalAlignment="Center"></Image>
+
+                <Grid Height="40" MinWidth="40" VerticalAlignment="Top"  HorizontalAlignment="Left">
+                    <Grid.Background>
+                        <SolidColorBrush Color="Black" Opacity="0.5" />
+                    </Grid.Background>
+                    <TextBlock FontWeight="Light" FontSize="30" Text="{Binding StepIndex}" Foreground="White" VerticalAlignment="Center"  HorizontalAlignment="Center"></TextBlock>
+                </Grid>
+
+            </Grid>
+
+        </DataTemplate>
+
+        <shared:GuidePageSelector x:Key="GuidePageSelector"
+										IntroPage="{StaticResource IntroPage}"
+										StepPage="{StaticResource StepPage}"/>
+
+        <shared:GuidePageSelector x:Key="ZoomGuidePageSelector"
+								  IntroPage="{StaticResource IntroZoom}"
+								  StepPage="{StaticResource StepsZoom}"/>
+
+        <ItemsPanelTemplate x:Key="ItemsPanelTemplate1">
+            <VirtualizingStackPanel   Orientation="Horizontal" Margin="0,0,80,0"  VerticalAlignment="Stretch"/>
+        </ItemsPanelTemplate>
+
+        <Style TargetType="GridViewItem">
+            <Setter Property="VerticalContentAlignment" Value="Stretch" />
+        </Style>
+
+
+        <Style x:Key="NoActionGridView" TargetType="GridViewItem">
+            <Setter Property="FontFamily" Value="{StaticResource ContentControlThemeFontFamily}"/>
+            <Setter Property="FontSize" Value="{StaticResource ControlContentThemeFontSize}"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="TabNavigation" Value="Local"/>
+            <Setter Property="IsHoldingEnabled" Value="True"/>
+            <Setter Property="Margin" Value="0,0,2,2"/>
+
+            <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Disabled"/>
+            <Setter Property="ScrollViewer.VerticalScrollMode" Value="Disabled"/>
+            <Setter Property="ScrollViewer.ZoomMode" Value="Disabled" />
+
+            <Setter Property="ScrollViewer.IsHorizontalScrollChainingEnabled" Value="False"></Setter>
+
+            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+            <Setter Property="VerticalContentAlignment" Value="Stretch"></Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="GridViewItem">
+                        <Grid x:Name="OuterContainer" VerticalAlignment="Stretch" Margin="0,45,80,108">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal"/>
+                                    <VisualState x:Name="PointerOver">
+
+                                    </VisualState>
+                                    <VisualState x:Name="Pressed">
+
+                                    </VisualState>
+                                    <VisualState x:Name="PointerOverPressed">
+
+                                    </VisualState>
+                                    <VisualState x:Name="Disabled">
+
+                                    </VisualState>
+                                </VisualStateGroup>
+                                <VisualStateGroup x:Name="FocusStates">
+                                    <VisualState x:Name="Focused">
+
+                                    </VisualState>
+                                    <VisualState x:Name="Unfocused"/>
+                                    <VisualState x:Name="PointerFocused"/>
+                                </VisualStateGroup>
+                                <VisualStateGroup x:Name="SelectionHintStates">
+                                    <VisualStateGroup.Transitions>
+
+                                    </VisualStateGroup.Transitions>
+                                    <VisualState x:Name="VerticalSelectionHint">
+
+                                    </VisualState>
+                                    <VisualState x:Name="HorizontalSelectionHint">
+
+                                    </VisualState>
+                                    <VisualState x:Name="NoSelectionHint"/>
+                                </VisualStateGroup>
+                                <VisualStateGroup x:Name="SelectionStates">
+                                    <VisualState x:Name="Unselecting">
+
+                                    </VisualState>
+                                    <VisualState x:Name="Unselected">
+
+                                    </VisualState>
+                                    <VisualState x:Name="UnselectedPointerOver">
+
+                                    </VisualState>
+                                    <VisualState x:Name="UnselectedSwiping">
+
+                                    </VisualState>
+                                    <VisualState x:Name="Selecting">
+
+                                    </VisualState>
+                                    <VisualState x:Name="Selected">
+
+                                    </VisualState>
+                                    <VisualState x:Name="SelectedSwiping">
+
+                                    </VisualState>
+                                    <VisualState x:Name="SelectedUnfocused">
+
+                                    </VisualState>
+                                </VisualStateGroup>
+                                <VisualStateGroup x:Name="DragStates">
+                                    <VisualStateGroup.Transitions>
+
+                                    </VisualStateGroup.Transitions>
+                                    <VisualState x:Name="NotDragging"/>
+                                    <VisualState x:Name="Dragging">
+
+                                    </VisualState>
+                                    <VisualState x:Name="DraggingTarget">
+
+                                    </VisualState>
+                                    <VisualState x:Name="MultipleDraggingPrimary">
+
+                                    </VisualState>
+                                    <VisualState x:Name="MultipleDraggingSecondary">
+
+                                    </VisualState>
+                                </VisualStateGroup>
+                                <VisualStateGroup x:Name="ReorderHintStates">
+                                    <VisualStateGroup.Transitions>
+
+                                    </VisualStateGroup.Transitions>
+                                    <VisualState x:Name="NoReorderHint"/>
+                                    <VisualState x:Name="BottomReorderHint">
+
+                                    </VisualState>
+                                    <VisualState x:Name="TopReorderHint">
+
+                                    </VisualState>
+                                    <VisualState x:Name="RightReorderHint">
+
+                                    </VisualState>
+                                    <VisualState x:Name="LeftReorderHint">
+
+                                    </VisualState>
+                                </VisualStateGroup>
+                                <VisualStateGroup x:Name="DataVirtualizationStates">
+                                    <VisualState x:Name="DataAvailable"/>
+                                    <VisualState x:Name="DataPlaceholder">
+
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+
+                            <ContentPresenter x:Name="contentPresenter" 
+											  ContentTransitions="{TemplateBinding ContentTransitions}"
+											  HorizontalAlignment="Stretch" 
+											  Margin="0" 
+											  VerticalAlignment="Stretch"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+
+
+
+    </Page.Resources>
+
+    <common:LayoutAwarePage.BottomAppBar>
+        <AppBar Margin="0" BorderBrush="{StaticResource SecondaryBackgroundBrush}" BorderThickness="0,3,0,0" >
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+
+                    <Button Style="{StaticResource FavoriteAppBarButtonStyle}" Command="{Binding AddFavorite, Mode=OneTime}"   Visibility="{Binding NotFavorite, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                    <Button Style="{StaticResource UnfavoriteAppBarButtonStyle}"  Visibility="{Binding NotFavorite, Converter={StaticResource NegativeBooleanToVisibilityConverter}}"  Command="{Binding DeleteFavorite, Mode=OneTime}"/>
+                    <!--<Button Style="{StaticResource VolumeAppBarButtonStyle}" />-->
+
+
+                    <!--<Button Style="{StaticResource SendAppBarButtonStyle}" />
+					<Button Style="{StaticResource PinAppBarButtonStyle}" Name="pinToAppbar" Click="pinToAppBar_Click" />
+					<Button Style="{StaticResource UnPinAppBarButtonStyle}" />-->
+                </StackPanel>
+                <StackPanel Grid.Column="1" HorizontalAlignment="Right" Orientation="Horizontal"/>
+            </Grid>
+        </AppBar>
+
+
+    </common:LayoutAwarePage.BottomAppBar>
+
+    <metroEventToCommand:EventToCommandManager.Collection>
+        <metroEventToCommand:EventToCommand Command="{Binding GetGuide}" 
+											Event="Loaded"></metroEventToCommand:EventToCommand>
+    </metroEventToCommand:EventToCommandManager.Collection>
+
+
+    <Grid Name="rootGrid"  Background="{StaticResource ThirdBackgroundBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="61"/>
+            <RowDefinition />
+
+        </Grid.RowDefinitions>
+        <Grid.ChildrenTransitions>
+            <TransitionCollection>
+                <ContentThemeTransition/>
+            </TransitionCollection>
+        </Grid.ChildrenTransitions>
+        <UC:TopMenuWithSubTitle xmlns:UC="using:iFixit.W8.UI.Views.UC"/>
+
+        <SemanticZoom Grid.Row="1" Name="MainZoom" IsZoomOutButtonEnabled="False" ViewChangeStarted="SemanticZoom_ViewChangeStarted" >
+            <SemanticZoom.ZoomedInView>
+
+                <GridView 
+				Name="MainGridView"    
+				ItemsSource="{Binding Items}" 
+				SelectedItem="{Binding SelectedPage}"
+				ItemTemplateSelector="{StaticResource GuidePageSelector}"
+				Margin="0,0,0,0" IsSwipeEnabled="False" IsItemClickEnabled="False"
+				ItemsPanel="{StaticResource ItemsPanelTemplate1}"
+				ItemContainerStyle="{StaticResource NoActionGridView}"
+				HorizontalContentAlignment="Stretch" 
+				VerticalContentAlignment="Stretch" >
+                    <GridView.GroupStyle>
+                        <GroupStyle>
+                            <GroupStyle.ContainerStyle>
+                                <Style TargetType="GroupItem">
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="GroupItem">
+
+
+                                                <Grid>
+
+
+                                                    <ItemsControl x:Name="ItemsControl" 
+												ItemsSource="{Binding GroupItems}" Background="Cyan" Margin="20"
+												Grid.Row="1" HorizontalContentAlignment="Stretch" 
+												 ScrollViewer.VerticalScrollMode="Disabled"             VerticalContentAlignment="Stretch">
+
+                                                    </ItemsControl>
+                                                </Grid>
+
+
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </GroupStyle.ContainerStyle>
+                            <GroupStyle.HeaderTemplate>
+                                <DataTemplate>
+
+                                </DataTemplate>
+                            </GroupStyle.HeaderTemplate>
+                            <GroupStyle.Panel>
+                                <ItemsPanelTemplate>
+                                    <VirtualizingStackPanel Margin="20"  Orientation="Horizontal" ScrollViewer.VerticalScrollMode="Disabled" />
+                                </ItemsPanelTemplate>
+                            </GroupStyle.Panel>
+                        </GroupStyle>
+                    </GridView.GroupStyle>
+
+                </GridView>
+            </SemanticZoom.ZoomedInView>
+
+            <SemanticZoom.ZoomedOutView>
+                <GridView   VerticalAlignment="Top"  
+							HorizontalAlignment="Left" Name="ZoomedOutGridView" 
+							SelectionMode="None" SelectionChanged="ZoomedOutGridView_SelectionChanged_1"
+							ItemTemplateSelector="{StaticResource ZoomGuidePageSelector}"
+							ItemsSource="{Binding Items}"  Margin="120,48,70,20"
+							ScrollViewer.IsHorizontalScrollChainingEnabled="False" 
+							ScrollViewer.IsVerticalScrollChainingEnabled="False">
+
+                    <GridView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapGrid Orientation="Vertical" Margin="0" VerticalAlignment="Top" HorizontalAlignment="Left"
+												   ItemHeight="120" ItemWidth="208" MaximumRowsOrColumns="15"/>
+
+                        </ItemsPanelTemplate>
+                    </GridView.ItemsPanel>
+                </GridView>
+
+            </SemanticZoom.ZoomedOutView>
+        </SemanticZoom>
+
+
+        <Grid HorizontalAlignment="Stretch" Visibility="Collapsed"
+			  x:Name="ZoomImage"  Grid.RowSpan="2" 
+			 VerticalAlignment="Stretch" Background="{StaticResource BaseBackgroundBrush}">
+
+
+            <Button Style="{StaticResource PathBasedButtonStyle}" Foreground="White" Click="CloseButton_Click"  HorizontalAlignment="Left" VerticalAlignment="Top"
+					Margin="30,5,0,5" Background="Transparent" Height="61" Width="61"  
+					Content="M28.313 16.214c0 1.308-0.865 2.462-2.25 2.462H12.522l5.635 5.655c0.462 0.442 0.731 1.077 0.731 1.731  c0 0.654-0.27 1.289-0.731 1.731l-1.443 1.462c-0.442 0.442-1.077 0.711-1.731 0.711c-0.654 0-1.289-0.269-1.751-0.711L0.712 16.714  C0.27 16.272 0 15.637 0 14.984c0-0.654 0.27-1.289 0.712-1.751L13.233 0.731C13.695 0.269 14.33 0 14.984 0  c0.654 0 1.269 0.269 1.731 0.731l1.443 1.424c0.462 0.462 0.731 1.096 0.731 1.75s-0.27 1.289-0.731 1.75l-5.635 5.636h13.541  c1.385 0 2.25 1.154 2.25 2.462V16.214z" />
+
+
+            <ScrollViewer  x:Name="ImageScrollViewer"  Margin="120,0" 
+						   Background="{StaticResource BaseBackgroundBrush}"
+						   HorizontalScrollBarVisibility="Visible"  HorizontalAlignment="Stretch"   
+						   VerticalAlignment="Stretch" MinZoomFactor="1"    >
+                <Grid VerticalAlignment="Center" HorizontalAlignment="Stretch" >
+
+                    <coding4FunControls:SuperImage Name="SuperImage"   Style="{StaticResource SuperImageWithAnimation}"
+												PlaceholderImageStretch="Uniform" 
+												PlaceholderImageSource="/Assets/no_image.png" 
+												Stretch="Uniform"  
+												Source="{Binding MainImage.LargeImageUrl}"  >
+
+                    </coding4FunControls:SuperImage>
+                </Grid>
+            </ScrollViewer>
+        </Grid>
+        <Grid HorizontalAlignment="Stretch" Visibility="Collapsed"
+			  x:Name="Video"  Grid.RowSpan="2" 
+			 VerticalAlignment="Stretch" Background="{StaticResource BaseBackgroundBrush}">
+
+            <MediaElement  Visibility="{Binding Video.ImageUrl, Converter={StaticResource StringToVisibilityConverter}}" 
+						   Source="{Binding Video.VideoUrl}"  Name="VideoPlayer"
+						   BufferingProgressChanged="MediaElement_BufferingProgressChanged" 
+												   AutoPlay="{Binding PlayVideo}" 
+												   Tapped="VideoPlay"
+												   
+												   ></MediaElement>
+            <Button Style="{StaticResource PathBasedButtonStyle}"  Foreground="White" Click="CloseVideoButton_Click"  HorizontalAlignment="Left" VerticalAlignment="Top"
+					Margin="30,5,0,5" Background="Transparent" Height="61" Width="61"  
+					Content="M28.313 16.214c0 1.308-0.865 2.462-2.25 2.462H12.522l5.635 5.655c0.462 0.442 0.731 1.077 0.731 1.731  c0 0.654-0.27 1.289-0.731 1.731l-1.443 1.462c-0.442 0.442-1.077 0.711-1.731 0.711c-0.654 0-1.289-0.269-1.751-0.711L0.712 16.714  C0.27 16.272 0 15.637 0 14.984c0-0.654 0.27-1.289 0.712-1.751L13.233 0.731C13.695 0.269 14.33 0 14.984 0  c0.654 0 1.269 0.269 1.731 0.731l1.443 1.424c0.462 0.462 0.731 1.096 0.731 1.75s-0.27 1.289-0.731 1.75l-5.635 5.636h13.541  c1.385 0 2.25 1.154 2.25 2.462V16.214z" />
+
+        </Grid>
+        <UC:ProgressBar Grid.RowSpan="2" DataContext="{Binding}" VerticalAlignment="Top" Height="10" Margin="0,60,0,0" />
+
+        <VisualStateManager.VisualStateGroups>
+
+            <!-- Visual states reflect the application's view state -->
+            <VisualStateGroup x:Name="ApplicationViewStates">
+                <VisualState x:Name="FullScreenLandscape"/>
+                <VisualState x:Name="Filled"/>
+
+                <!-- The entire page respects the narrower 100-pixel margin convention for portrait -->
+                <VisualState x:Name="FullScreenPortrait">
+
+                </VisualState>
+
+                <!-- The back button and title have different styles when snapped -->
+                <VisualState x:Name="Snapped">
+
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+    </Grid>
+    
+</common:BasePage>

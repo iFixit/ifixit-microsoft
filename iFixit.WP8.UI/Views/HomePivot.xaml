@@ -14,7 +14,8 @@
 	xmlns:telerikPrimitives="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Primitives"
 	xmlns:telerikCore="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Core"
 	xmlns:telerikSlideView="clr-namespace:Telerik.Windows.Controls.SlideView;assembly=Telerik.Windows.Controls.Primitives"
-	telerikCore:InteractionEffectManager.IsInteractionEnabled="True"
+	xmlns:code4FunControls="clr-namespace:Coding4Fun.Toolkit.Controls;assembly=Coding4Fun.Toolkit.Controls"
+    telerikCore:InteractionEffectManager.IsInteractionEnabled="True"
 	toolkit:TiltEffect.IsTiltEnabled="True"
   
 	mc:Ignorable="d"
@@ -23,7 +24,7 @@
 	Foreground="{StaticResource PhoneForegroundBrush}"
 	SupportedOrientations="PortraitOrLandscape"  Orientation="Portrait"
 	shell:SystemTray.IsVisible="False" shell:SystemTray.Opacity="0">
-  
+
     <code:PageBase.Resources>
         <code:RandomTimeSpanGenerator x:Key="TimeSpanGenerator"/>
         <code:CachingImageConverter x:Key="CachingImageConverter"/>
@@ -75,7 +76,7 @@
 						IsEnabled="{Binding IsLoading, Converter={StaticResource NegativeBooleanConverter}}"
 						Command="{Binding SetSelectionMode, Mode=OneTime}" 
 						IconUri="/Assets/ApplicationBar.Cancel.png" Text="{Binding Labels.Translation.Cancel, Source={StaticResource LabelsManager}}" />
-                  
+
                 </cimbalinoBehaviors:ApplicationBar>
             </cimbalinoBehaviors:MultiApplicationBarBehavior>
         </i:Interaction.Behaviors>
@@ -359,9 +360,15 @@
                             </i:EventTrigger>
                         </i:Interaction.Triggers>
                         <telerikPrimitives:RadDataBoundListBox.ListHeaderContent>
-                            <Border BorderBrush="{StaticResource SecondaryBackgroundBrush}" BorderThickness="2" Margin="0,0,6,6">
-                                <Grid Height="140">
-                                    <Image Source="{Binding DataContext.MainCollectionImage, ElementName=LayoutRoot}" Height="140" Stretch="UniformToFill" />
+                            <Border  Height="140" BorderBrush="{StaticResource SecondaryBackgroundBrush}" BorderThickness="2"
+                                     Margin="0,0,6,6">
+                                <Grid>
+                                    <Grid.Background>
+                                        <ImageBrush Stretch="UniformToFill" ImageSource="{Binding DataContext.MainCollectionImage, ElementName=LayoutRoot}"></ImageBrush>
+                                    </Grid.Background>
+
+                                    <!--<Image Source="{Binding DataContext.MainCollectionImage, ElementName=LayoutRoot}" 
+                                           Stretch="UniformToFill" VerticalAlignment="Top" />-->
 
 
                                     <Grid VerticalAlignment="Bottom" >
@@ -408,51 +415,56 @@
                 </phone:PivotItem>
 
                 <phone:PivotItem Header="{Binding Labels.Translation.Favorites, Source={StaticResource LabelsManager}}">
-
-                    <toolkit:LongListMultiSelector 
+                    <Grid>
+                        <TextBlock Margin="12" 
+                           Foreground="{StaticResource SecondaryBackgroundBrush}"
+                           FontSize="36" Text="{Binding FavoritesDescription}" Visibility="{Binding FavoritesDescription, Converter={StaticResource StringToVisibilityConverter  }}" ></TextBlock>
+                        <toolkit:LongListMultiSelector 
 					ItemsSource="{Binding FavoritesItems}" 
 					LayoutMode="Grid"
 					x:Name="FavoritesList"
-					IsGroupingEnabled="False"
+					IsGroupingEnabled="False" 
 					SelectionChanged="FavoritesList_SelectionChanged"
 					EnforceIsSelectionEnabled="{Binding SelectionMode}"
 			  
 					GridCellSize="195,195" Margin="12,0,0,0"
 										 >
-                        <toolkit:LongListMultiSelector.ItemTemplate>
-                            <DataTemplate>
-                                <HyperlinkButton Command="{Binding DataContext.TapFavorite, ElementName=FavoritesList}"
+                            <toolkit:LongListMultiSelector.ItemTemplate>
+                                <DataTemplate>
+                                    <HyperlinkButton Command="{Binding DataContext.TapFavorite, ElementName=FavoritesList}"
 								CommandParameter="{Binding}"
 								Style="{StaticResource EmptyHyperlinkStyle}">
-                                    <Border  BorderThickness="2"
+                                        <Border  BorderThickness="2"
 											 BorderBrush="{StaticResource SecondaryBackgroundBrush}">
-                                        <Grid Width="195" Height="195" Margin="0">
-                                            <telerikSlideView:PanAndZoomImage   Width="200" Source="{Binding ImageUrl}" Stretch="UniformToFill" ZoomMode="None"/>
-                                            <StackPanel VerticalAlignment="Bottom" >
-                                                <StackPanel.Background>
-                                                    <SolidColorBrush Color="{StaticResource MainBackground}" Opacity="0.5"/>
-                                                </StackPanel.Background>
-                                                <TextBlock TextWrapping="Wrap" Text="{Binding Name}" Margin="12" 
+                                            <Grid Width="195" Height="195" Margin="0">
+                                                <telerikSlideView:PanAndZoomImage   Width="200" Source="{Binding ImageUrl}" Stretch="UniformToFill" ZoomMode="None"/>
+                                                <StackPanel VerticalAlignment="Bottom" >
+                                                    <StackPanel.Background>
+                                                        <SolidColorBrush Color="{StaticResource MainBackground}" Opacity="0.5"/>
+                                                    </StackPanel.Background>
+                                                    <TextBlock TextWrapping="Wrap" Text="{Binding Name}" Margin="12" 
 											Foreground="{StaticResource BackgroundBrush}" />
 
 
-                                            </StackPanel>
-                                        </Grid>
-                                    </Border>
-                                </HyperlinkButton>
-                            </DataTemplate>
-                        </toolkit:LongListMultiSelector.ItemTemplate>
+                                                </StackPanel>
+                                            </Grid>
+                                        </Border>
+                                    </HyperlinkButton>
+                                </DataTemplate>
+                            </toolkit:LongListMultiSelector.ItemTemplate>
 
-                        <i:Interaction.Triggers>
-                            <i:EventTrigger EventName="SelectionChanged">
-                                <cmd:EventToCommand Command="{Binding DataContext.TapFavorite, ElementName=FavoritesList, Mode=OneWay}"
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="SelectionChanged">
+                                    <cmd:EventToCommand Command="{Binding DataContext.TapFavorite, ElementName=FavoritesList, Mode=OneWay}"
 								CommandParameter="{Binding}"/>
 
-                            </i:EventTrigger>
-                        </i:Interaction.Triggers>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
 
 
-                    </toolkit:LongListMultiSelector>
+                        </toolkit:LongListMultiSelector>
+                    </Grid>
+
                 </phone:PivotItem>
 
                 <phone:PivotItem Header="{Binding Labels.Translation.More, Source={StaticResource LabelsManager}}" DataContext="{Binding Source={StaticResource Locator}}">
@@ -498,7 +510,7 @@
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="Tap">
                                     <cmd:EventToCommand Command="{Binding DataContext.GoToAbout, ElementName=LayoutRoot, Mode=OneWay}"
-								CommandParameter="1"/>
+								CommandParameter="2"/>
 
                                 </i:EventTrigger>
                             </i:Interaction.Triggers>

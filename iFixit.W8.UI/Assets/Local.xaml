@@ -1,0 +1,78 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:metroEventToCommand="using:MetroEventToCommand"
+    xmlns:coding4FunControls ="using:Coding4Fun.Toolkit.Controls"
+    xmlns:Extensions="using:WinRTXamlToolkit.Controls.Extensions"
+    xmlns:Q42Controls="using:Q42.WinRT.Controls"
+    xmlns:local="using:iFixit.W8.UI.Assets">
+
+    <DataTemplate x:Name="GridGuideButton">
+        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10">
+            <Border x:Name="ButtonBackground" HorizontalAlignment="Stretch" 
+                                            VerticalAlignment="Stretch" 
+                                            Margin="0" 
+                                            BorderBrush="{StaticResource SecondaryBackgroundBrush}" 
+                                            BorderThickness="0" >
+
+                <Grid x:Name="ButtonContent">
+
+                    <Image Extensions:ImageExtensions.FadeInOnLoaded="True"  Q42Controls:ImageExtensions.CacheUri="{Binding BigImageUrl}" Stretch="UniformToFill"/>
+
+                    <Grid Margin="0,0,0,0" x:Name="ButtonTitleContent" VerticalAlignment="Bottom" >
+                        <Grid.Background>
+                            <SolidColorBrush Color="{StaticResource Black}" Opacity="0.5"/>
+                        </Grid.Background>
+                        <TextBlock TextWrapping="Wrap"  x:Name="ButtonContentText"
+											                Text="{Binding Name}" 
+											                Margin="12" 
+											                HorizontalAlignment="Left"	
+											                VerticalAlignment="Center"	
+											                Foreground="{StaticResource BackgroundBrush}" />
+                    </Grid>
+
+                </Grid>
+
+
+            </Border>
+            <metroEventToCommand:EventToCommandManager.Collection>
+                <metroEventToCommand:EventToCommand Command="{Binding DataContext.GoToGuide, ElementName=pageRoot, Mode=OneWay}"
+                                                    CommandParameter="{Binding}"  Event="Tapped"></metroEventToCommand:EventToCommand>
+            </metroEventToCommand:EventToCommandManager.Collection>
+        </Grid>
+    </DataTemplate>
+
+    <DataTemplate x:Name="GridCategoryButton">
+        <Border BorderThickness="1" BorderBrush="{StaticResource TopGray1Brush}">
+            <Grid >
+                <coding4FunControls:SuperImage 
+                                                PlaceholderImageStretch="Uniform" 
+                                                PlaceholderImageSource="/Assets/no_image.png" 
+                                                Stretch="UniformToFill"
+                                                Source="{Binding ImageUrl}"  
+                                                HorizontalAlignment="Right"                             >
+
+                </coding4FunControls:SuperImage>
+
+
+                <Grid VerticalAlignment="Bottom">
+                    <Grid.Background>
+                        <SolidColorBrush Color="{StaticResource SecondaryBackground}" Opacity="0.5" />
+                    </Grid.Background>
+
+                    <TextBlock VerticalAlignment="Bottom" TextWrapping="Wrap" 
+                                                                                                               Text="{Binding Name}" Margin="12"   
+                                                       Foreground="White" 
+                                                       FontSize="16"   >
+
+                    </TextBlock>
+                </Grid>
+                <metroEventToCommand:EventToCommandManager.Collection>
+                    <metroEventToCommand:EventToCommand Command="{Binding DataContext.GoToCategory, ElementName=pageRoot, Mode=OneWay}"
+                                                    CommandParameter="{Binding}"  Event="Tapped"></metroEventToCommand:EventToCommand>
+                </metroEventToCommand:EventToCommandManager.Collection>
+            </Grid>
+        </Border>
+    </DataTemplate>
+
+</ResourceDictionary>

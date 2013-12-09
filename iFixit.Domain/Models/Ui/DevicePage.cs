@@ -65,6 +65,21 @@ namespace iFixit.Domain.Models.UI
         }
 
 
+        private string _DisplayTitle;
+        public string DisplayTitle
+        {
+            get { return this._DisplayTitle; }
+            set
+            {
+                if (_DisplayTitle != value)
+                {
+                    _DisplayTitle = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
+        
+
         private string _SolutionLink;
         public string SolutionLink
         {
@@ -126,6 +141,22 @@ namespace iFixit.Domain.Models.UI
 
     public class DeviceListingPage : DevicePage
     {
+
+        private string _HasItems;
+        public string HasItems
+        {
+            get { return _HasItems; }
+            set
+            {
+                if (_HasItems != value)
+                {
+                    _HasItems = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
+
+
         private ObservableCollection<SearchResultItem> _Items = new ObservableCollection<SearchResultItem>();
         public ObservableCollection<SearchResultItem> Items
         {
@@ -136,6 +167,7 @@ namespace iFixit.Domain.Models.UI
                 {
                     _Items = value;
                     NotifyPropertyChanged();
+                    NotifyPropertyChanged("HasItems");
                 }
             }
         }

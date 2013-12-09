@@ -65,13 +65,18 @@
               
                 <phone:PivotItem Header="{Binding Labels.Translation.Guides, Source={StaticResource LabelsManager}}">
                     <Grid>
+                        <TextBlock Margin="12" 
+                           Foreground="{StaticResource SecondaryBackgroundBrush}"
+                           FontSize="36" Text="{Binding GuidesDescription}" Visibility="{Binding GuidesDescription, Converter={StaticResource StringToVisibilityConverter  }}" ></TextBlock>
+
                         <telerikPrimitives:RadDataBoundListBox 
                         SelectedItem="{Binding SelectedGuide, Mode= TwoWay}"
-            			ItemsSource="{Binding Guides}" 
+            			ItemsSource="{Binding Guides}"  
+                        Margin="6,0,0,0"
                         ItemTemplate="{StaticResource SeachResultLine}"
                         AsyncBalanceMode="FillViewportFirst"
-                        Margin="6,0,0,0"
                         DataVirtualizationMode="OnDemandAutomatic"
+                        ItemLoadingTemplate="{StaticResource EmptyLoading}"
                         >
                           
 
@@ -91,6 +96,11 @@
                                     <Grid Height="70"></Grid>
                                 </DataTemplate>
                             </telerikPrimitives:RadDataBoundListBox.ListFooterTemplate>
+                            <telerikPrimitives:RadDataBoundListBox.EmptyContentTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text=""/>
+                                </DataTemplate>
+                            </telerikPrimitives:RadDataBoundListBox.EmptyContentTemplate>
                         </telerikPrimitives:RadDataBoundListBox>
                     </Grid>
                 </phone:PivotItem>
@@ -98,19 +108,33 @@
 
                 <phone:PivotItem Header="{Binding Labels.Translation.Devices, Source={StaticResource LabelsManager}}">
                     <Grid>
+                        <TextBlock Margin="12" 
+                           Foreground="{StaticResource SecondaryBackgroundBrush}"
+                           FontSize="36" Text="{Binding DevicesDescription}" Visibility="{Binding DevicesDescription, Converter={StaticResource StringToVisibilityConverter  }}" ></TextBlock>
+
                         <telerikPrimitives:RadDataBoundListBox 
                         x:Name="radDevicelist"
                         Margin="6,0,0,0"
                         SelectedItem="{Binding SelectedDevice, Mode=TwoWay}"
             			ItemsSource="{Binding Devices}" 
                         ItemTemplate="{StaticResource DeviceSearchResultGuideGridItem}"
+                        AsyncBalanceMode="FillViewportFirst"
                         DataVirtualizationMode="OnDemandAutomatic"
+                        ItemLoadingTemplate="{StaticResource EmptyLoading}"
                         >
                             <telerikPrimitives:RadDataBoundListBox.VirtualizationStrategyDefinition>
                                 <telerikPrimitives:WrapVirtualizationStrategyDefinition Orientation="Horizontal"/>
                             </telerikPrimitives:RadDataBoundListBox.VirtualizationStrategyDefinition>
-
-
+                            <telerikPrimitives:RadDataBoundListBox.ListFooterTemplate>
+                                <DataTemplate>
+                                    <Grid Height="70"></Grid>
+                                </DataTemplate>
+                            </telerikPrimitives:RadDataBoundListBox.ListFooterTemplate>
+                            <telerikPrimitives:RadDataBoundListBox.EmptyContentTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text=""/>
+                                </DataTemplate>
+                            </telerikPrimitives:RadDataBoundListBox.EmptyContentTemplate>
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="ItemTap">
                                     <cmd:EventToCommand Command="{Binding GoToDevice, Mode=OneWay}"
@@ -130,13 +154,29 @@
                 <phone:PivotItem Header="{Binding Labels.Translation.Products, Source={StaticResource LabelsManager}}">
 
                     <Grid>
+                        <TextBlock Margin="12" 
+                           Foreground="{StaticResource SecondaryBackgroundBrush}"
+                           FontSize="36" Text="{Binding ProductsDescription}" Visibility="{Binding ProductsDescription, Converter={StaticResource StringToVisibilityConverter  }}" ></TextBlock>
+
                         <telerikPrimitives:RadDataBoundListBox 
                         SelectedItem="{Binding SelectedProduct, Mode=TwoWay}"
             			ItemsSource="{Binding Products}" 
                         ItemTemplate="{StaticResource SearchResultProductItem}"
                         Name="radProductsList"    
                         Margin="6,0,0,0"
+                        
+                        ItemLoadingTemplate="{StaticResource EmptyLoading}"
                         >
+                            <telerikPrimitives:RadDataBoundListBox.EmptyContentTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text=""/>
+                                </DataTemplate>
+                            </telerikPrimitives:RadDataBoundListBox.EmptyContentTemplate>
+                            <telerikPrimitives:RadDataBoundListBox.ListFooterTemplate>
+                                <DataTemplate>
+                                    <Grid Height="70"></Grid>
+                                </DataTemplate>
+                            </telerikPrimitives:RadDataBoundListBox.ListFooterTemplate>
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="ItemTap">
                                     <cmd:EventToCommand Command="{Binding GoToProduct, Mode=OneWay}"  

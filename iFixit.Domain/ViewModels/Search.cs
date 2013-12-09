@@ -10,7 +10,8 @@ using System.Collections.ObjectModel;
 using iFixit.Domain.Models.REST;
 using iFixit.Domain.Models.UI;
 using iFixit.Domain.Services.V2_0;
-using RESTModels =  iFixit.Domain.Models.REST.V2_0;
+using RESTModels = iFixit.Domain.Models.REST.V2_0;
+using iFixit.Domain.Code;
 
 namespace iFixit.Domain.ViewModels
 {
@@ -20,6 +21,52 @@ namespace iFixit.Domain.ViewModels
         private string _lastSearchTerm = string.Empty;
 
         #region "Properties"
+
+
+        private string _GuidesDescription;
+        public string GuidesDescription
+        {
+            get { return this._GuidesDescription; }
+            set
+            {
+                if (_GuidesDescription != value)
+                {
+                    _GuidesDescription = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
+
+
+        private string _DevicesDescription;
+        public string DevicesDescription
+        {
+            get { return this._DevicesDescription; }
+            set
+            {
+                if (_DevicesDescription != value)
+                {
+                    _DevicesDescription = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
+
+
+        private string _ProductsDescription;
+        public string ProductsDescription
+        {
+            get { return this._ProductsDescription; }
+            set
+            {
+                if (_ProductsDescription != value)
+                {
+                    _ProductsDescription = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
+
 
         protected Dictionary<ServiceBroker.SEARCH_FILTERS, RESTModels.Search.Guide.Common> SearchSectionResult = new Dictionary<ServiceBroker.SEARCH_FILTERS, RESTModels.Search.Guide.Common>();
         protected Dictionary<ServiceBroker.SEARCH_FILTERS, int> SearchSectionCurrentPage = new Dictionary<ServiceBroker.SEARCH_FILTERS, int>();
@@ -189,6 +236,29 @@ namespace iFixit.Domain.ViewModels
             }
         }
 
+        private bool guidesMore = false;
+        public bool GuidesMore
+        {
+            get { return guidesMore; }
+            set { guidesMore = value; }
+        }
+
+        private bool devicesMore = false;
+        public bool DevicesMore
+        {
+            get { return devicesMore; }
+            set { devicesMore = value; }
+        }
+
+        private bool productsMore = false;
+        public bool ProductsMore
+        {
+            get { return productsMore; }
+            set { productsMore = value; }
+        }
+
+
+
 
         #endregion
 
@@ -210,6 +280,7 @@ namespace iFixit.Domain.ViewModels
 
                         await _uxService.OpenBrowser(pdr.UniqueId);
                         SelectedProduct = null;
+                        LoadingCounter--;
                     }
                     catch (Exception ex)
                     {
@@ -228,24 +299,82 @@ namespace iFixit.Domain.ViewModels
             get
             {
                 return _GoToDevice ?? (_GoToDevice = new RelayCommand<Models.UI.SearchResultItem>(
-                 (SearchResultItem) =>
-                 {
-                     LoadingCounter++;
-                     try
-                     {
-                         Models.UI.Category selected = new Models.UI.Category { Name = SearchResultItem.Name, UniqueId = SearchResultItem.Name };
-                         _navigationService.Navigate<Device>(false, selected);
-                         LoadingCounter--;
-                         SelectedDevice = null;
-                     }
-                     catch (Exception ex)
-                     {
-                         LoadingCounter--;
-                         throw ex;
-                     }
+               async (SearchResultItem) =>
+               {
+                   LoadingCounter++;
+                   try
+                   {
+                       if (_settingsService.IsConnectedToInternet())
+                       {
+                           Models.UI.Category selected = new Models.UI.Category { Name = SearchResultItem.Name, UniqueId = SearchResultItem.Name };
+                           _navigationService.Navigate<Device>(false, selected);
+                           LoadingCounter--;
+                           SelectedDevice = null;
+                       }
+                       else
+                       {
+                           await _uxService.ShowAlert(International.Translation.NoConnection);
 
-                 }));
+                       }
+                   }
+                   catch (Exception ex)
+                   {
+                       LoadingCounter--;
+                       throw ex;
+                   }
+
+               }));
             }
+        }
+
+        private RelayCommand<Models.UI.SearchResultItem> _GoToCategory;
+        public RelayCommand<Models.UI.SearchResultItem> GoToCategory
+        {
+            get
+            {
+                return _GoToCategory ?? (_GoToCategory = new RelayCommand<Models.UI.SearchResultItem>(
+               async (c) =>
+               {
+
+                   try
+                   {
+                       LoadingCounter++;
+
+
+                       var x = await Utils.GetCategoryContent(c.Name, _storageService, Broker);
+
+                       var category = new Models.UI.Category
+                                      {
+                                          Name = x.wiki_title
+                                          ,
+                                          UniqueId = x.wiki_title
+                                          ,
+                                          IndexOf = 1
+                                      };
+
+                       if (x.children == null || x.children.Count == 0)
+                       {
+                           _navigationService.Navigate<Device>(true, category);
+                       }
+                       else
+
+                           _navigationService.Navigate<SubCategories>(true, category);
+
+
+
+
+
+                       LoadingCounter--;
+                   }
+                   catch (Exception ex)
+                   {
+                       LoadingCounter--;
+                       throw ex;
+                   }
+
+               }));
+            }
+
         }
 
         private RelayCommand _GoToGuide;
@@ -254,23 +383,62 @@ namespace iFixit.Domain.ViewModels
             get
             {
                 return _GoToGuide ?? (_GoToGuide = new RelayCommand(
-                 () =>
-                 {
-                     LoadingCounter++;
-                     try
-                     {
-                         AppBase.Current.GuideId = SelectedGuide.UniqueId;
-                         _navigationService.Navigate<Guide>(true, SelectedGuide.UniqueId);
-                         SelectedGuide = null;
-                         LoadingCounter--;
-                     }
-                     catch (Exception ex)
-                     {
-                         LoadingCounter--;
-                         throw ex;
-                     }
+               async () =>
+               {
+                   if (_settingsService.IsConnectedToInternet())
+                   {
+                       LoadingCounter++;
+                       try
+                       {
+                           AppBase.Current.GuideId = SelectedGuide.UniqueId;
+                           _navigationService.Navigate<Guide>(true, SelectedGuide.UniqueId);
+                           SelectedGuide = null;
+                           LoadingCounter--;
+                       }
+                       catch (Exception ex)
+                       {
+                           LoadingCounter--;
+                           throw ex;
+                       }
+                   }
+                   else
+                   {
+                       await _uxService.ShowAlert(International.Translation.NoConnection);
 
-                 }));
+                   }
+               }));
+            }
+        }
+        private RelayCommand<SearchResultItem> _GoToGuideItem;
+        public RelayCommand<SearchResultItem> GoToGuideItem
+        {
+            get
+            {
+                return _GoToGuideItem ?? (_GoToGuideItem = new RelayCommand<SearchResultItem>(
+               async (guide) =>
+               {
+                   if (_settingsService.IsConnectedToInternet())
+                   {
+                       LoadingCounter++;
+                       try
+                       {
+                           AppBase.Current.GuideId = guide.UniqueId;
+                           _navigationService.Navigate<Guide>(true, guide.UniqueId);
+                           SelectedGuide = null;
+                           LoadingCounter--;
+                       }
+                       catch (Exception ex)
+                       {
+                           LoadingCounter--;
+                           throw ex;
+                       }
+                   }
+                   else
+                   {
+                       await _uxService.ShowAlert(International.Translation.NoConnection);
+
+                   }
+               }));
             }
         }
 
@@ -292,6 +460,7 @@ namespace iFixit.Domain.ViewModels
                              if (AppBase.Current.SearchTerm != _lastSearchTerm)
                              {
                                  ResetPageCounters();
+                                 DevicesMore = ProductsMore = GuidesMore = true;
                                  this.Guides = new ObservableCollection<SearchResultItem>();
                                  this.Devices = new ObservableCollection<SearchResultItem>();
                                  this.Products = new ObservableCollection<ProductItemList>();
@@ -356,10 +525,26 @@ namespace iFixit.Domain.ViewModels
                 return _LoadMoreGuides ?? (_LoadMoreGuides = new RelayCommand(
                 async () =>
                 {
-                    if (SearchSectionCurrentPage[ServiceBroker.SEARCH_FILTERS.guide] != 0)
-                        await SearchGuides();
+                    await MoreGuides();
 
                 }));
+            }
+        }
+
+        public async Task MoreGuides()
+        {
+            if (_settingsService.IsConnectedToInternet())
+            {
+
+                if (SearchSectionCurrentPage[ServiceBroker.SEARCH_FILTERS.guide] != 0)
+                    await SearchGuides();
+            }
+
+            else
+            {
+                await _uxService.ShowAlert(International.Translation.NoConnection);
+
+
             }
         }
 
@@ -371,10 +556,25 @@ namespace iFixit.Domain.ViewModels
                 return _LoadMoreDevices ?? (_LoadMoreDevices = new RelayCommand(
                 async () =>
                 {
-                    if (SearchSectionCurrentPage[ServiceBroker.SEARCH_FILTERS.device] != 0)
-                        await SearchDevices();
+                    await MoreDevices();
 
                 }));
+            }
+        }
+
+        public async Task MoreDevices()
+        {
+            if (_settingsService.IsConnectedToInternet())
+            {
+                if (SearchSectionCurrentPage[ServiceBroker.SEARCH_FILTERS.device] != 0)
+                    await SearchDevices();
+            }
+
+            else
+            {
+                await _uxService.ShowAlert(International.Translation.NoConnection);
+
+
             }
         }
 
@@ -386,10 +586,24 @@ namespace iFixit.Domain.ViewModels
                 return _LoadMoreProducts ?? (_LoadMoreProducts = new RelayCommand(
                 async () =>
                 {
-                    if (SearchSectionCurrentPage[ServiceBroker.SEARCH_FILTERS.product] != 0)
-                        await SearchProducts();
-
+                    await MoreProducts();
                 }));
+            }
+        }
+
+        public async Task MoreProducts()
+        {
+            if (_settingsService.IsConnectedToInternet())
+            {
+                if (SearchSectionCurrentPage[ServiceBroker.SEARCH_FILTERS.product] != 0)
+                    await SearchProducts();
+            }
+
+            else
+            {
+                await _uxService.ShowAlert(International.Translation.NoConnection);
+
+
             }
         }
 
@@ -400,76 +614,97 @@ namespace iFixit.Domain.ViewModels
         {
 
             if (!SearchSectionCurrentLoading[ServiceBroker.SEARCH_FILTERS.guide])
+                if (GuidesMore)
 
-
-                try
-                {
-                    LoadingCounter++;
-                    SearchSectionCurrentLoading[ServiceBroker.SEARCH_FILTERS.guide] = true;
-                    var Result = await Broker.SearchGuides(AppBase.Current.SearchTerm, SearchSectionCurrentPage[ServiceBroker.SEARCH_FILTERS.guide]);
-                    this.GuidesItemLabel = string.Format("{0} ({1})", International.Translation.Guides, Result.totalResults);
-
-                    if (Result != null)
+                    try
                     {
-                        foreach (var item in Result.results)
+                        LoadingCounter++;
+                        SearchSectionCurrentLoading[ServiceBroker.SEARCH_FILTERS.guide] = true;
+                        var Result = await Broker.SearchGuides(AppBase.Current.SearchTerm, SearchSectionCurrentPage[ServiceBroker.SEARCH_FILTERS.guide]);
+                        this.GuidesItemLabel = string.Format("{0} ({1})", International.Translation.Guides, Result.totalResults);
+                        this.GuidesMore = Result.moreResults;
+                        if (Result != null)
                         {
-                            var newItem = new SearchResultItem
+                            foreach (var item in Result.results)
                             {
-                                Name = item.title.Trim(),
-                                Summary = item.type.ToUpper(),
-                                ImageUrl = item.image != null ? item.image.standard : "",
-                                UniqueId = item.guideid.ToString()
+                                var newItem = new SearchResultItem
+                                {
+                                    Name = item.title.Trim().Replace("&quot;", "''"),
+                                    Summary = item.type.ToUpper(),
+                                    ImageUrl = item.image != null ? item.image.standard : "",
+                                    UniqueId = item.guideid.ToString()
 
-                            };
-                            if (!Guides.Contains(newItem))
-                                Guides.Add(newItem);
+                                };
+                                if (!Guides.Contains(newItem))
+                                    Guides.Add(newItem);
+                            }
+
+                            SearchSectionCurrentPage[ServiceBroker.SEARCH_FILTERS.guide] += 1;
+                            SearchSectionCurrentLoading[ServiceBroker.SEARCH_FILTERS.guide] = false;
+                            SearchSectionResult[ServiceBroker.SEARCH_FILTERS.guide] = (RESTModels.Search.Guide.Common)Result;
+
+                            if (Result.totalResults == 0)
+                                GuidesDescription = International.Translation.NoGuidesFound;
+                            else
+                                GuidesDescription = string.Empty;
                         }
 
-                        SearchSectionCurrentPage[ServiceBroker.SEARCH_FILTERS.guide] += 1;
-                        SearchSectionCurrentLoading[ServiceBroker.SEARCH_FILTERS.guide] = false;
-                        SearchSectionResult[ServiceBroker.SEARCH_FILTERS.guide] = (RESTModels.Search.Guide.Common)Result;
-
+                        LoadingCounter--;
                     }
-                    LoadingCounter--;
-                }
-                catch (Exception ex)
-                {
-                    LoadingCounter--;
-                    //  _uxService.ShowAlert(International.Translation.ErrorSearchDevices).RunSynchronously();
-                }
+                    catch (Exception ex)
+                    {
+                        LoadingCounter--;
+                        //  _uxService.ShowAlert(International.Translation.ErrorSearchDevices).RunSynchronously();
+                    }
 
         }
 
         private async Task SearchDevices()
         {
-            if (!SearchSectionCurrentLoading[ServiceBroker.SEARCH_FILTERS.device])
-                try
-                {
-                    LoadingCounter++;
-                    var Result = await Broker.SearchDevice(AppBase.Current.SearchTerm, SearchSectionCurrentPage[ServiceBroker.SEARCH_FILTERS.device]);
-                    this.DevicesItemsLabel = string.Format("{0} ({1})", International.Translation.Devices, Result.totalResults);
-                    foreach (var item in Result.results)
-                    {
-                        var newItem = new SearchResultItem
-                        {
-                            Name = item.title,
-                            Summary = item.summary,
-                            ImageUrl = item.image != null ? item.image.standard : "",
-                            UniqueId = item.url
 
-                        };
-                        if (!Devices.Contains(newItem))
-                            Devices.Add(newItem);
+            if (!SearchSectionCurrentLoading[ServiceBroker.SEARCH_FILTERS.device])
+                if (DevicesMore)
+                    try
+                    {
+                        LoadingCounter++;
+                        var Result = await Broker.SearchDevice(AppBase.Current.SearchTerm
+                            , SearchSectionCurrentPage[ServiceBroker.SEARCH_FILTERS.device]);
+                        this.DevicesItemsLabel = string.Format("{0} ({1})", International.Translation.Devices, Result.totalResults);
+                        DevicesMore = Result.moreResults;
+
+
+
+                        foreach (var item in Result.results)
+                        {
+                            var newItem = new SearchResultItem
+                            {
+                                Name = item.title,
+                                Summary = item.summary,
+                                ImageUrl = item.image != null ? item.image.standard : "",
+                                UniqueId = item.url
+
+                            };
+                            if (!Devices.Any(o => o.UniqueId == newItem.UniqueId))
+                                Devices.Add(newItem);
+                            else
+                                throw new ArgumentException("item repetido");
+                        }
+                        SearchSectionCurrentPage[ServiceBroker.SEARCH_FILTERS.device] += 1;
+
+                        if (Result.totalResults == 0)
+                            DevicesDescription = International.Translation.NoDevicesFound;
+                        else
+                            DevicesDescription = string.Empty;
+
+
+                        LoadingCounter--;
                     }
-                    SearchSectionCurrentPage[ServiceBroker.SEARCH_FILTERS.device] += 1;
-                    LoadingCounter--;
-                }
-                catch (Exception)
-                {
-                    LoadingCounter--;
-                    //throw ex;
-                    //  _uxService.ShowAlert(International.Translation.ErrorSearchDevices).RunSynchronously();
-                }
+                    catch (Exception)
+                    {
+                        LoadingCounter--;
+                        //throw ex;
+                        //  _uxService.ShowAlert(International.Translation.ErrorSearchDevices).RunSynchronously();
+                    }
 
 
         }
@@ -477,41 +712,46 @@ namespace iFixit.Domain.ViewModels
         private async Task SearchProducts()
         {
             if (!SearchSectionCurrentLoading[ServiceBroker.SEARCH_FILTERS.product])
-
-                try
-                {
-                    LoadingCounter++;
-                    var Result = await Broker.SearchProducts(AppBase.Current.SearchTerm, SearchSectionCurrentPage[ServiceBroker.SEARCH_FILTERS.product]);
-                    this.ProductsItemsLabel = string.Format("{0} ({1})", International.Translation.Devices, Result.totalResults);
-
-                    foreach (var item in Result.results)
+                if (ProductsMore)
+                    try
                     {
-                        var newItem = new ProductItemList
+                        LoadingCounter++;
+                        var Result = await Broker.SearchProducts(AppBase.Current.SearchTerm, SearchSectionCurrentPage[ServiceBroker.SEARCH_FILTERS.product]);
+                        this.ProductsItemsLabel = string.Format("{0} ({1})", International.Translation.Devices, Result.totalResults);
+                        this.ProductsMore = Result.moreResults;
+                        foreach (var item in Result.results)
                         {
-                            Title = item.title,
-                            Summary = item.text,
-                            Price = item.price,
-                            UniqueId = item.url
+                            var newItem = new ProductItemList
+                            {
+                                Title = item.title,
+                                Summary = item.text,
+                                Price = item.price,
+                                UniqueId = item.url
 
-                        };
-                        if (item.image != null)
-                            newItem.ImageUrl = item.image.thumbnail;
+                            };
+                            if (item.image != null)
+                                newItem.ImageUrl = item.image.thumbnail.Replace(".thumbnail", ".standard");
 
-                        if (!Products.Contains(newItem))
-                            Products.Add(newItem);
+                            if (!Products.Contains(newItem))
+                                Products.Add(newItem);
+                        }
+                        SearchSectionCurrentPage[ServiceBroker.SEARCH_FILTERS.product] += 1;
+
+                        if (Result.totalResults == 0)
+                            ProductsDescription = International.Translation.NoProductsFound;
+                        else
+                            ProductsDescription = string.Empty;
+                        LoadingCounter--;
                     }
-                    SearchSectionCurrentPage[ServiceBroker.SEARCH_FILTERS.product] += 1;
-                    LoadingCounter--;
-                }
-                catch (Exception)
-                {
+                    catch (Exception)
+                    {
 
-                    LoadingCounter--;
-                    //await _uxService.ShowAlert(International.Translation.ErrorSearchDevices);
-                }
+                        LoadingCounter--;
+                        //await _uxService.ShowAlert(International.Translation.ErrorSearchDevices);
+                    }
 
         }
-        
+
         private void ResetPageCounters()
         {
             SearchSectionCurrentPage = new Dictionary<ServiceBroker.SEARCH_FILTERS, int>();

@@ -1,0 +1,233 @@
+﻿<common:BasePage
+    xmlns:shared="using:iFixit.UI.Shared"
+    x:Name="pageRoot"
+    x:Class="iFixit.W8.UI.Views.Device"
+    DataContext="{Binding Device, Mode=OneWay, Source={StaticResource Locator}}" 
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:common="using:iFixit.W8.UI.Common"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:Extensions="using:WinRTXamlToolkit.Controls.Extensions"
+    xmlns:WinRTXamlToolkit="using:WinRTXamlToolkit.Controls"
+    xmlns:metroEventToCommand="using:MetroEventToCommand"
+    xmlns:callistoEffects="using:Callisto.Effects"
+   
+    xmlns:Q42Controls="using:Q42.WinRT.Controls"
+    xmlns:coding4FunControls ="using:Coding4Fun.Toolkit.Controls"
+    mc:Ignorable="d">
+
+    <Page.Resources>
+
+        <!--<DataTemplate x:Key="DeviceTemplate">
+            <shared:DevicePageTemplateSelector Content="{Binding}">
+                <shared:DevicePageTemplateSelector.Intro>
+                    <DataTemplate>
+
+                        <Grid Background="Beige">
+                            <StackPanel>
+                                <Grid Margin="0,12,12,12" Background="{StaticResource PlaceHolderBackgroundBrush}">
+                                    <Image  Source="{Binding Image}"  Stretch="UniformToFill">
+
+                                    </Image>
+
+
+                                    <StackPanel VerticalAlignment="Bottom" >
+                                        <StackPanel.Background>
+                                            <SolidColorBrush  Opacity="0.5"/>
+                                        </StackPanel.Background>
+                                        <TextBlock TextWrapping="Wrap" Text="{Binding PageTitle}" Margin="12,0,12,0"  Foreground="White" ></TextBlock>
+                                    </StackPanel>
+                                </Grid>
+
+
+                                <RichTextBlock Margin="10" Foreground="Blue"
+                                           shared:Properties.Html="{Binding Summary}"
+                                           TextWrapping="Wrap"></RichTextBlock>
+
+                                --><!--<TextBlock TextWrapping="Wrap" Text="{Binding Categories}"  Margin="0,0,12,0">
+                                    <TextBlock.Foreground>
+                                        <SolidColorBrush Color="{StaticResource ThirdBackground}"/>
+                                    </TextBlock.Foreground>
+                                </TextBlock>--><!--
+
+                            </StackPanel>
+                        </Grid>
+
+                    </DataTemplate>
+                </shared:DevicePageTemplateSelector.Intro>
+                <shared:DevicePageTemplateSelector.GuideListing>
+                    <DataTemplate>
+                        <Grid Background="Red">
+                            <shared:VariableGridView SelectionMode="None"   ItemsSource="{Binding Items}" 
+                                ItemRowSpanPropertyPath="IndexOf"
+                                ItemColSpanPropertyPath="IndexOf"
+                                >
+
+                                <shared:VariableGridView.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <VariableSizedWrapGrid Orientation="Vertical" Margin="0,0,80,0" 
+                                                   ItemHeight="160" ItemWidth="320" MaximumRowsOrColumns="5"/>
+                                    </ItemsPanelTemplate>
+                                </shared:VariableGridView.ItemsPanel>
+                                <shared:VariableGridView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                            <Button callistoEffects:Tilt.IsTiltEnabled="True" 
+        					            Command="{Binding DataContext.GoToGuide, ElementName=pageRoot}" CommandParameter="{Binding}"
+        					            Content="{Binding Name}" Style="{StaticResource SmallerButtonStyleGuide}" 
+        					             />
+                                        </Grid>
+                                    </DataTemplate>
+                                </shared:VariableGridView.ItemTemplate>
+                            </shared:VariableGridView>
+
+
+                        </Grid>
+                    </DataTemplate>
+                </shared:DevicePageTemplateSelector.GuideListing>
+            </shared:DevicePageTemplateSelector>
+        </DataTemplate>-->
+
+
+   
+
+    </Page.Resources>
+
+    <metroEventToCommand:EventToCommandManager.Collection>
+        <metroEventToCommand:EventToCommand Command="{Binding Load}" 
+                                            Event="Loaded"></metroEventToCommand:EventToCommand>
+    </metroEventToCommand:EventToCommandManager.Collection>
+
+    <Grid  Background="{StaticResource ThirdBackgroundBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="62"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ChildrenTransitions>
+            <TransitionCollection>
+                <ContentThemeTransition/>
+            </TransitionCollection>
+        </Grid.ChildrenTransitions>
+        <UC:TopMenu  DataContext="{Binding}" xmlns:UC="using:iFixit.W8.UI.Views.UC"/>
+
+        <Grid Grid.Row="1"  >
+            <ScrollViewer VerticalScrollBarVisibility="Disabled"  
+                                  HorizontalScrollBarVisibility="Auto" 
+                                  Margin="0" Padding="0"
+                      ZoomMode="Disabled" VerticalScrollMode="Disabled">
+                <Grid Margin="120,0,0,0">
+            		<Grid Height="80" Margin="340,0,20,0"  VerticalAlignment="Top">
+
+                		<UC:BreadCrumbCategories xmlns:UC="using:iFixit.W8.UI.Views.UC" DataContext="{Binding}" Margin="0,0,0,20"/>
+
+
+                	</Grid>
+
+                	<Grid>
+                		<Grid.ColumnDefinitions>
+                			<ColumnDefinition Width="320"/>
+                			<ColumnDefinition/>
+
+                		</Grid.ColumnDefinitions>
+                		<Grid Margin="0,78,0,108"  DataContext="{Binding DevicePages[1]}">
+                            <ScrollViewer VerticalScrollMode="Auto" ZoomMode="Disabled"   ManipulationCompleted="ScrollLongDescrition_ManipulationCompleted"
+                                          x:Name="ScrollLongDescrition" VerticalScrollBarVisibility="Auto" Margin="0" Padding="0" 
+                                          HorizontalScrollBarVisibility="Disabled">
+                				<Grid>
+                					<Grid.RowDefinitions>
+                						<RowDefinition />
+                					</Grid.RowDefinitions>
+
+
+                					<StackPanel Width="320" Background="{StaticResource BaseBackgroundBrush}" >
+                						<Grid Height="260" Width="320" Background="{StaticResource BackgroundBrush}">
+
+                							<coding4FunControls:SuperImage 
+                								PlaceholderImageStretch="Uniform" 
+                								PlaceholderImageSource="/Assets/no_image.png" 
+                								Stretch="UniformToFill" 
+                								Source="{Binding Image}"  
+                                                                          />
+                						</Grid>
+                                        <TextBlock TextWrapping="Wrap" Foreground="White" FontSize="20" Margin="10,10,10,0" Text="{Binding DisplayTitle}"></TextBlock>
+
+                						<RichTextBlock Margin="10,0,30,10" Foreground="White" FontSize="18"
+                							shared:Properties.Html="{Binding Summary}"
+                							TextWrapping="Wrap"/>
+                					</StackPanel>
+                				</Grid>
+                			</ScrollViewer>
+                            <Grid VerticalAlignment="Bottom" Height="100" Margin="0" IsHitTestVisible="False" x:Name="GradientText">
+                                <Grid.Background>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#00333333"/>
+                                        <GradientStop Color="#FF333333" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Grid.Background>
+                            </Grid>
+                        </Grid>
+
+                		<Grid Margin="20,78,20,108"  Grid.Column="1" >
+                			
+                			<shared:VariableGridView SelectionMode="None"   
+                				Grid.Row="1" 
+                				ItemsSource="{Binding DevicePages[0].Items}"
+                				ItemRowSpanPropertyPath="IndexOf"
+                				Background="{StaticResource BackgroundBrush}"
+                				ItemColSpanPropertyPath="IndexOf" 
+                				IsSwipeEnabled="False"
+                				ItemContainerStyle="{StaticResource DeviceGuidesGridStyle}"
+                                              
+                                >
+
+                				<shared:VariableGridView.ItemsPanel>
+                					<ItemsPanelTemplate>
+                						<VariableSizedWrapGrid Orientation="Vertical" Margin="10,10,10,0" 
+                							ItemHeight="166" ItemWidth="340" MaximumRowsOrColumns="15"/>
+                					</ItemsPanelTemplate>
+                				</shared:VariableGridView.ItemsPanel>
+                				<shared:VariableGridView.ItemTemplate>
+                					<DataTemplate>
+
+                						<Button  Width="320" Height="146"
+                							Command="{Binding DataContext.GoToGuide, ElementName=pageRoot}" CommandParameter="{Binding}"
+                							Content="{Binding Name}" Style="{StaticResource SmallerButtonStyleGuide}" 
+        					             />
+
+
+                					</DataTemplate>
+                				</shared:VariableGridView.ItemTemplate>
+                			</shared:VariableGridView>
+                            <TextBlock HorizontalAlignment="Left"  Visibility="{Binding DevicePages[0].HasItems, Converter={StaticResource StringToVisibilityConverter}}" TextWrapping="Wrap" Text="{Binding DevicePages[0].HasItems}" VerticalAlignment="Top" Style="{StaticResource GridHeaderTitle}" Margin="20"/>
+
+                        </Grid>
+
+                	</Grid>
+
+            	</Grid>
+
+            </ScrollViewer>
+        </Grid>
+
+        <UC:LoadingRing Grid.RowSpan="2" DataContext="{Binding}"  xmlns:UC="using:iFixit.W8.UI.Views.UC"/>
+
+
+
+        <VisualStateManager.VisualStateGroups>
+
+            <!-- Visual states reflect the application's view state -->
+            <VisualStateGroup x:Name="ApplicationViewStates">
+                <VisualState x:Name="FullScreenLandscape"/>
+                <VisualState x:Name="Filled"/>
+
+                <!-- The entire page respects the narrower 100-pixel margin convention for portrait -->
+                <VisualState x:Name="FullScreenPortrait"/>
+
+                <!-- The back button and title have different styles when snapped -->
+                <VisualState x:Name="Snapped"/>
+
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+    </Grid>
+</common:BasePage>

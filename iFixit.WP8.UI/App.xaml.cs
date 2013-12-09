@@ -12,6 +12,7 @@ using iFixit.WP8.UI.Code;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Linq;
+using iFixit.UI.Services;
 
 namespace iFixit.WP8.UI
 {
@@ -26,6 +27,7 @@ namespace iFixit.WP8.UI
         /// </summary>
         public RadRateApplicationReminder rateReminder;
 
+        private UiSettings AppSettings = new UiSettings();
 
         /// <summary>
         /// used for Fast resume
@@ -93,13 +95,16 @@ namespace iFixit.WP8.UI
             rateReminder.RecurrencePerUsageCount = 20;
             ThemeManager.ToLightTheme();
             ThemeManager.SetAccentColor(new Color { A = 255, B = 219, G = 110, R = 0 });
+
+            Domain.AppBase.Current.HiResApp = false;
+            Domain.AppBase.Current.ExtendeInfoApp = false;
         }
 
         // Code to execute when the application is launching (eg, from Start)
         // This code will not execute when the application is reactivated
         private void Application_Launching(object sender, LaunchingEventArgs e)
         {
-            ApplicationUsageHelper.Init("1.0");
+            ApplicationUsageHelper.Init(AppSettings.AppVersion());
             // LowMemoryHelper.BeginRecording();
         }
 

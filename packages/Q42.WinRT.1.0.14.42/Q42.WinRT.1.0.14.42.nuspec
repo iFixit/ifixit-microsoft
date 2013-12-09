@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>Q42.WinRT</id>
+    <version>1.0.14.42</version>
+    <title>Q42.WinRT</title>
+    <authors>Michiel Post,  Q42</authors>
+    <owners>Michiel Post,  Q42</owners>
+    <projectUrl>https://github.com/Q42/Q42.WinRT</projectUrl>
+    <iconUrl>http://a0.twimg.com/profile_images/2142700938/q42-logo-big-square.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Open source library for Windows 8 XAML applications. This library is focused on web connected and data driven applications. It includes helpers to easily cache data from API calls and cache web images to the local storage. There's also a DataLoader included which functions as a wrapper around a Task&lt;T&gt; method. You can bind a progress bar to the DataLoader and show it as long as the task is running.</description>
+    <summary>Open source library for Windows 8 XAML applications.</summary>
+    <releaseNotes />
+    <copyright />
+    <language>en-US</language>
+    <tags>winrt metro xaml</tags>
+    <dependencies>
+      <dependency id="Newtonsoft.Json" />
+      <dependency id="Q42.WinRT.Portable" />
+    </dependencies>
+  </metadata>
+</package>

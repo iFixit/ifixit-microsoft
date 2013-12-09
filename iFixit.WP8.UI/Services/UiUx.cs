@@ -25,6 +25,12 @@ namespace iFixit.UI.Services
 {
     public class UiUx : Domain.Interfaces.IUxService
     {
+
+
+       public string SanetizeHTML(string html)
+        {
+            return html;
+        }
         public Task OpenBrowser(string Url)
         {
 
@@ -65,6 +71,12 @@ namespace iFixit.UI.Services
 
         }
 
+
+        public async Task LoginMessaging(string m)
+        {
+
+            await ShowAlert(m);
+        }
         private IAsyncAction task;
         private CancellationToken ct;
         public void CancelSpeech()
@@ -84,67 +96,84 @@ namespace iFixit.UI.Services
 
         public async Task OpenTextSpeechUI(Domain.ViewModels.Guide guideToRead)
         {
-            ObservableCollection<GuideBasePage> pagesToRead = guideToRead.Items;
-
-            SpeechSynthesizer synth = new SpeechSynthesizer();
-            var voices = InstalledVoices.All.Where(o => o.Language.StartsWith("en"));
-            synth.SetVoice(voices.First());
-
-            guideToRead.BeingRead = true;
-
-
-            if (guideToRead.SelectedPageIndex == 0)
+            try
             {
-                var toRead = ((GuideIntro)pagesToRead[0]);
-                if (!string.IsNullOrEmpty(toRead.Subject))
+                ObservableCollection<GuideBasePage> pagesToRead = guideToRead.Items;
+
+                SpeechSynthesizer synth = new SpeechSynthesizer();
+                var voices = InstalledVoices.All.Where(o => o.Language.StartsWith("en"));
+
+                if (voices.Count() > 0)
                 {
-                    task = synth.SpeakTextAsync(toRead.Subject);
-                    await task;
+                    synth.SetVoice(voices.First());
+
+                    guideToRead.BeingRead = true;
+
+
+                    if (guideToRead.SelectedPageIndex == 0)
+                    {
+                        var toRead = ((GuideIntro)pagesToRead[0]);
+                        if (!string.IsNullOrEmpty(toRead.Subject))
+                        {
+                            task = synth.SpeakTextAsync(toRead.Subject);
+                            await task;
+                        }
+                        if (!string.IsNullOrEmpty(toRead.Summary))
+                        {
+                            task = synth.SpeakTextAsync(toRead.Summary);
+                            await task;
+                        }
+
+                        guideToRead.SelectedPageIndex = 1;
+                    }
+
+
+                    for (int i = guideToRead.SelectedPageIndex; i < pagesToRead.Count; i++)
+                    {
+                        if (guideToRead.BeingRead == false)
+                            break;
+
+                        guideToRead.SelectedPage = (GuideBasePage)pagesToRead[i];
+
+                        guideToRead.SelectedPageIndex = guideToRead.Items.IndexOf(guideToRead.SelectedPage);
+
+                        var item = (GuideStepItem)pagesToRead[i];
+                        int m = 0;
+
+                        foreach (var line in item.Lines)
+                        {
+                            if (guideToRead.BeingRead == false)
+                                break;
+
+                            guideToRead.SelectedStepLine = m;
+                            try
+                            {
+                                task = synth.SpeakTextAsync(line.VoiceText);
+                                await task;
+                            }
+                            catch (Exception ex)
+                            {
+
+                                //  throw;
+                            }
+                            m++;
+                        }
+
+                    }
+
+                    guideToRead.BeingRead = false;
                 }
-                if (!string.IsNullOrEmpty(toRead.Summary))
+                else
                 {
-                    task = synth.SpeakTextAsync(toRead.Summary);
-                    await task;
+                    MessageBox.Show("please install the english voice languague pack ");
                 }
 
-                guideToRead.SelectedPageIndex = 1;
             }
-
-
-            for (int i = guideToRead.SelectedPageIndex; i < pagesToRead.Count; i++)
+            catch (Exception)
             {
-                if (guideToRead.BeingRead == false)
-                    break;
 
-                guideToRead.SelectedPage = (GuideBasePage)pagesToRead[i];
-
-                guideToRead.SelectedPageIndex = guideToRead.Items.IndexOf(guideToRead.SelectedPage);
-
-                var item = (GuideStepItem)pagesToRead[i];
-                int m = 0;
-
-                foreach (var line in item.Lines)
-                {
-                    if (guideToRead.BeingRead == false)
-                        break;
-
-                    guideToRead.SelectedStepLine = m;
-                    try
-                    {
-                        task = synth.SpeakTextAsync(line.VoiceText);
-                        await task;
-                    }
-                    catch (Exception ex)
-                    {
-
-                        //  throw;
-                    }
-                    m++;
-                }
 
             }
-
-            guideToRead.BeingRead = false;
 
         }
 
@@ -357,6 +386,8 @@ namespace iFixit.UI.Services
 
         }
 
+       
+
         private void DoSearch(string searchTerm)
         {
             ((RadPhoneApplicationFrame)Application.Current.RootVisual).Transition = new RadTurnstileTransition();
@@ -369,5 +400,31 @@ namespace iFixit.UI.Services
 
         }
 
+
+
+        public void GoToLogin()
+        {
+            Services.UiNavigation nav = new UiNavigation();
+            nav.Navigate<Domain.ViewModels.Login>(false);
+        }
+
+        public void DoLogin()
+        {
+            Services.UiNavigation nav = new UiNavigation();
+            nav.GoBack();
+        }
+
+
+        public void GoToProfile()
+        {
+            Services.UiNavigation nav = new UiNavigation();
+            nav.Navigate<Domain.ViewModels.Profile>(false);
+        }
+
+        public void DoLogOff()
+        {
+            Services.UiNavigation nav = new UiNavigation();
+            nav.GoBack();
+        }
     }
 }

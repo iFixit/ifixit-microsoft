@@ -1,8 +1,11 @@
-﻿using System;
+﻿using Cimbalino.Phone.Toolkit.Helpers;
+using Cimbalino.Phone.Toolkit.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace iFixit.UI.Services
 {
@@ -13,10 +16,18 @@ namespace iFixit.UI.Services
             throw new NotImplementedException();
         }
 
+        public string AppVersion()
+        {
+
+            ApplicationManifestService manifest = new ApplicationManifestService();
+
+
+            return manifest.GetApplicationManifest().App.Version;
+        }
+
         public string AppKey()
         {
-            // ReadFromFile
-            return "6f8cb5333f1147170595c875d8bac50a";
+             return "6f8cb5333f1147170595c875d8bac50a";
         }
 
         public string PublisherEmail()

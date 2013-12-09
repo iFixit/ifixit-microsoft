@@ -22,7 +22,7 @@ namespace iFixit.Domain.Models.REST.V1_1.Search.Guide
         public string dataType { get; set; }
         public int guideid { get; set; }
         public bool revisionid { get; set; }
-        public int modified_date { get; set; }
+        public double modified_date { get; set; }
         public object prereq_modified_date { get; set; }
         public string url { get; set; }
         public string type { get; set; }

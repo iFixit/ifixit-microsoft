@@ -1,0 +1,144 @@
+﻿<UserControl
+    x:Class="iFixit.W8.UI.Views.UC.Login"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:iFixit.W8.UI.Views.UC"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:CodeConverters="using:iFixit.W8.UI.Common"
+    xmlns:metroEventToCommand="using:MetroEventToCommand"
+    xmlns:xamltoolkit="using:WinRTXamlToolkit.Controls"
+    DataContext="{Binding Source={StaticResource Locator}, Path=Login}"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="420">
+    <UserControl.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="{StaticResource ButtonBackgroundThemeBrush}" />
+            <Setter Property="Foreground" Value="{StaticResource ButtonForegroundThemeBrush}" />
+            <Setter Property="BorderBrush" Value="{StaticResource ButtonBorderThemeBrush}" />
+            <Setter Property="BorderThickness" Value="{StaticResource ButtonBorderThemeThickness}" />
+            <Setter Property="Padding" Value="12,4,12,4" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="FontFamily" Value="{StaticResource ContentControlThemeFontFamily}" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+            <Setter Property="FontSize" Value="{StaticResource ControlContentThemeFontSize}" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid>
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal" />
+                                    <VisualState x:Name="PointerOver">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Border" Storyboard.TargetProperty="Background">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource ButtonPointerOverBackgroundThemeBrush}" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Foreground">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource ButtonPointerOverForegroundThemeBrush}" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Pressed">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Border" Storyboard.TargetProperty="Background">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource ButtonPressedBackgroundThemeBrush}" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Foreground">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource ButtonPressedForegroundThemeBrush}" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Disabled">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Border" Storyboard.TargetProperty="Background">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource ButtonDisabledBackgroundThemeBrush}" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Border" Storyboard.TargetProperty="BorderBrush">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource ButtonDisabledBorderThemeBrush}" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Foreground">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource ButtonDisabledForegroundThemeBrush}" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                                <VisualStateGroup x:Name="FocusStates">
+                                    <VisualState x:Name="Focused">
+                                        <Storyboard>
+                                            <DoubleAnimation Storyboard.TargetName="FocusVisualWhite" Storyboard.TargetProperty="Opacity" To="1" Duration="0" />
+                                            <DoubleAnimation Storyboard.TargetName="FocusVisualBlack" Storyboard.TargetProperty="Opacity" To="1" Duration="0" />
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Unfocused" />
+                                    <VisualState x:Name="PointerFocused" />
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <Border x:Name="Border" Background="#0071CE" CornerRadius="10"
+                                    BorderBrush="#0071CE" BorderThickness="{TemplateBinding BorderThickness}" Margin="3">
+                                <ContentPresenter x:Name="ContentPresenter" Foreground="White"
+                                                  Content="{TemplateBinding Content}" 
+                                                  ContentTransitions="{TemplateBinding ContentTransitions}" 
+                                                  ContentTemplate="{TemplateBinding ContentTemplate}" 
+                                                  Margin="{TemplateBinding Padding}" 
+                                                  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                                                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                            </Border>
+                            <Rectangle x:Name="FocusVisualWhite" IsHitTestVisible="False" Stroke="{StaticResource FocusVisualWhiteStrokeThemeBrush}" StrokeEndLineCap="Square" StrokeDashArray="1,1" Opacity="0" StrokeDashOffset="1.5" />
+                            <Rectangle x:Name="FocusVisualBlack" IsHitTestVisible="False" Stroke="{StaticResource FocusVisualBlackStrokeThemeBrush}" StrokeEndLineCap="Square" StrokeDashArray="1,1" Opacity="0" StrokeDashOffset="0.5" />
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        
+    </UserControl.Resources>
+    <Grid HorizontalAlignment="Stretch" Margin="0" Width="500">
+
+        <StackPanel x:Name="ContentPanel" Orientation="Vertical"  >
+            <StackPanel Orientation="Vertical" Visibility="{Binding RegistrationProcess, Converter={StaticResource BooleanToVisibilityConverter}}">
+
+                <xamltoolkit:WatermarkTextBox Margin="0,0,0,20"  Text="{Binding UserName, Mode=TwoWay}"   WatermarkText="{Binding Labels.Translation.UserName, Source={StaticResource LabelsManager}}" Width="500"/>
+            </StackPanel>
+
+
+            <xamltoolkit:WatermarkTextBox  Margin="0,0,0,20"  Text="{Binding Email, Mode=TwoWay}"   WatermarkText="{Binding Labels.Translation.Email, Source={StaticResource LabelsManager}}" Width="500" InputScope="EmailSmtpAddress"/>
+            <xamltoolkit:WatermarkPasswordBox   Margin="0,0,00,20"   Password="{Binding Password, Mode=TwoWay}"   
+                                               WatermarkText="{Binding Labels.Translation.Password, Source={StaticResource LabelsManager}}" Width="500"  IsPasswordRevealButtonEnabled="True" />
+
+            <StackPanel Margin="0,0,0,100" Orientation="Vertical" Visibility="{Binding RegistrationProcess, Converter={StaticResource BooleanToVisibilityConverter}}">
+
+                <!--<xamltoolkit:WatermarkPasswordBox  Margin="20" Password="{Binding ConfirmationPassword, Mode=TwoWay}"  
+                                               WatermarkText="{Binding Labels.Translation.ConfirmPassword, Source={StaticResource LabelsManager}}" IsPasswordRevealButtonEnabled="True"></xamltoolkit:WatermarkPasswordBox>-->
+
+            </StackPanel>
+            <Grid>
+                <StackPanel Orientation="Horizontal" >
+                    <Button Content="{Binding Labels.Translation.Login, Source={StaticResource LabelsManager}}"	Command="{Binding DoLoginP, Mode=OneTime}" 
+                            Visibility="{Binding RegistrationProcess, Converter={StaticResource NegativeBooleanToVisibilityConverter}}"></Button>
+
+                    <!--<Button Content="{Binding Labels.Translation.Register, Source={StaticResource LabelsManager}}"	
+                            Visibility="{Binding RegistrationProcess, Converter={StaticResource BooleanToVisibilityConverter}}"
+                            Command="{Binding DoLoginP, Mode=OneTime}"></Button>-->
+
+                    <!--<Grid  Visibility="{Binding DataContext.RegistrationProcess, Converter={StaticResource NegativeBooleanToVisibilityConverter}, ElementName=LayoutRoot}"
+                      HorizontalAlignment="Right">
+                        <HyperlinkButton  Content="{Binding Labels.Translation.RegisterNewAccount, Source={StaticResource LabelsManager}}" 
+							HorizontalAlignment="Right" 
+							Command="{Binding StartRegistration, Mode=OneWay}" 
+									 />
+                    </Grid>-->
+                </StackPanel>
+            </Grid>
+            <TextBlock FontSize="18" Margin="0,12" Text="{Binding ServiceMessages}" Foreground="Red" Visibility="{Binding ServiceMessages, Converter={StaticResource StringToVisibilityConverter}}"></TextBlock>
+
+        </StackPanel >
+        <UC:LoadingRing  DataContext="{Binding}"  xmlns:UC="using:iFixit.W8.UI.Views.UC" d:IsHidden="True" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+
+
+
+    </Grid>
+</UserControl>

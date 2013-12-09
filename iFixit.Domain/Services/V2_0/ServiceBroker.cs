@@ -16,17 +16,17 @@ namespace iFixit.Domain.Services.V2_0
 {
     public class ServiceBroker
     {
-       const string BaseUrl = "https://www.ifixit.com/"; //
-    
+        const string BaseUrl = "https://www.ifixit.com/"; //
+        private int Limit = 20;
         private const string CATEGORIES = "api/2.0/categories";
         private const string CATEGORY = "api/2.0/categories/{0}";
         private const string GUIDES = "api/2.0/guides";
         private const string GUIDE = "api/2.0/guides/{0}";
         private const string COLLECTIONS = "api/0.1/collections";
-        private const string SEARCH_GUIDES = "api/2.0/search/{0}?filter=teardown,guide&limit=20&offset={1}";
-        private const string SEARCH_PRODUCTS = "api/2.0/search/{0}?filter={1}&offset={2}&limit=20";
-        private const string SEARCH_DEVICE = "api/2.0/search/{0}?filter={1}&offset={2}&limit=20";
-        private const string GENERIC_SEARCH = "api/2.0/search/{0}?filter={1}&offset={2}&limit=20";
+        private const string SEARCH_GUIDES = "api/2.0/search/{0}?filter=teardown,guide&offset={1}&limit={2}";
+        private const string SEARCH_PRODUCTS = "api/2.0/search/{0}?filter={1}&offset={2}&limit={3}";
+        private const string SEARCH_DEVICE = "api/2.0/search/{0}?filter={1}&offset={2}&limit={3}";
+        private const string GENERIC_SEARCH = "api/2.0/search/{0}?filter={1}&offset={2}&limit={3}";
         private const string LOGIN = "api/2.0/user/token";
         private const string USER_REGISTRATION = "api/2.0/users";
         private const string FAVORITES = "api/2.0/users/{0}/favorites/guides";
@@ -87,10 +87,12 @@ namespace iFixit.Domain.Services.V2_0
                 StringBuilder Url = new StringBuilder();
                 Url.Append(BaseUrl).AppendFormat(FAVORITES_ACTION, guideId);
                 AddAuthorizationHeader(user);
+                Debug.WriteLine("sending new favorite");
                 HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Put, new Uri(Url.ToString(), UriKind.RelativeOrAbsolute));
                 var result = await client.SendAsync(request);
                 var content = await result.Content.ReadAsStringAsync();
                 Debug.WriteLine(content);
+                Debug.WriteLine("new favorite added");
                 //Result = JsonConvert.DeserializeObject<iFixit.Domain.Models.REST.V2_0.Favorites.RootObject[]>(content);
 
             }
@@ -151,6 +153,7 @@ namespace iFixit.Domain.Services.V2_0
 
                 var result = await client.SendAsync(request);
                 var content = await result.Content.ReadAsStringAsync();
+                Debug.WriteLine(content);
                 Result = JsonConvert.DeserializeObject<Models.REST.V2_0.Login.Output.RootObject>(content);
                 Result.email = email;
             }
@@ -273,33 +276,33 @@ namespace iFixit.Domain.Services.V2_0
         {
             if (!string.IsNullOrEmpty(uniqueId))
             {
- StringBuilder Url = new StringBuilder();
-            Url.Append(BaseUrl).AppendFormat(CATEGORY, uniqueId);
-            RemoveAuthorizationHeader();
-            try
-            {
-                return await ReturnHTTPGet<Models.REST.V2_0.Category.RootObject>(Url.ToString());
+                StringBuilder Url = new StringBuilder();
+                Url.Append(BaseUrl).AppendFormat(CATEGORY, uniqueId);
+                RemoveAuthorizationHeader();
+                try
+                {
+                    return await ReturnHTTPGet<Models.REST.V2_0.Category.RootObject>(Url.ToString());
 
-            }
-            catch (HttpRequestException hex)
-            {
-                throw new ArgumentException("HTTP");
-            }
-            catch (JsonException jex)
-            {
-                throw new ArgumentException("Error JSON" + jex.InnerException);
-            }
-            catch (Exception ex)
-            {
+                }
+                catch (HttpRequestException hex)
+                {
+                    throw new ArgumentException("HTTP");
+                }
+                catch (JsonException jex)
+                {
+                    throw new ArgumentException("Error JSON" + jex.InnerException);
+                }
+                catch (Exception ex)
+                {
 
-                throw ex;
-            }
+                    throw ex;
+                }
             }
             else
             {
                 throw new ArgumentException("Missing Id for calling service");
             }
-           
+
 
 
         }
@@ -308,7 +311,8 @@ namespace iFixit.Domain.Services.V2_0
         {
 
             StringBuilder Url = new StringBuilder();
-            Url.Append(BaseUrl).AppendFormat(SEARCH_GUIDES, searchTerm, currentPage);
+            int Offset = currentPage * Limit;
+            Url.Append(BaseUrl).AppendFormat(SEARCH_GUIDES, searchTerm, Offset, Limit);
             RemoveAuthorizationHeader();
             try
             {
@@ -331,7 +335,8 @@ namespace iFixit.Domain.Services.V2_0
         public async Task<Models.REST.V2_0.Search.Product.RootObject> SearchProducts(string searchTerm, int currentPage)
         {
             StringBuilder Url = new StringBuilder();
-            Url.Append(BaseUrl).AppendFormat(SEARCH_PRODUCTS, searchTerm, SEARCH_FILTERS.product.convertToString(), currentPage);
+            int Offset = currentPage * Limit;
+            Url.Append(BaseUrl).AppendFormat(SEARCH_PRODUCTS, searchTerm, SEARCH_FILTERS.product.convertToString(), Offset, Limit);
             RemoveAuthorizationHeader();
 
             try
@@ -355,7 +360,8 @@ namespace iFixit.Domain.Services.V2_0
         {
 
             StringBuilder Url = new StringBuilder();
-            Url.Append(BaseUrl).AppendFormat(SEARCH_DEVICE, searchTerm, SEARCH_FILTERS.device.convertToString(), currentPage);
+            int Offset = currentPage * Limit;
+            Url.Append(BaseUrl).AppendFormat(SEARCH_DEVICE, searchTerm, SEARCH_FILTERS.device.convertToString(), Offset, Limit);
             RemoveAuthorizationHeader();
 
             try
@@ -481,7 +487,7 @@ namespace iFixit.Domain.Services.V2_0
 
                 //  return await ReturnHTTPGet<Models.REST.V2_0.Guide.RootObject>(Url.ToString());
 
-                Debug.WriteLine(Url);
+                Debug.WriteLine(Url.ToString());
                 HttpResponseMessage response = await client.GetAsync(Url.ToString());
                 response.EnsureSuccessStatusCode();
 
@@ -522,7 +528,7 @@ namespace iFixit.Domain.Services.V2_0
                 Debug.WriteLine(content);
 
 
-               // content = content.Replace("&quot;", "''").Replace("&amp;", "&");
+                // content = content.Replace("&quot;", "''").Replace("&amp;", "&");
 
                 return content.LoadFromJson<T>();
 
@@ -530,6 +536,10 @@ namespace iFixit.Domain.Services.V2_0
             catch (HttpRequestException hex)
             {
                 throw new ArgumentException(International.Translation.ErrorHTTP, hex.Message);
+            }
+            catch (JsonException jex)
+            {
+                throw new ArgumentException("Error JSON" + jex.InnerException);
             }
             catch (Exception ex)
             {
@@ -539,7 +549,7 @@ namespace iFixit.Domain.Services.V2_0
 
         }
 
-        private void RemoveAuthorizationHeader()
+        private void    RemoveAuthorizationHeader()
         {
             if (client.DefaultRequestHeaders.Any(o => o.Key == "Authorization"))
                 client.DefaultRequestHeaders.Remove("Authorization");
@@ -599,15 +609,17 @@ namespace iFixit.Domain.Services.V2_0
         public ServiceBroker()
         {
             client = new HttpClient();
-       
+
         }
 
-        public ServiceBroker(string AppId)
+        public ServiceBroker(string AppId, string AppVersion)
         {
             client = new HttpClient();
             if (!client.DefaultRequestHeaders.Any(o => o.Key == "X-App-Id"))
                 client.DefaultRequestHeaders.Add("X-App-Id", AppId);
-         
+            if (!client.DefaultRequestHeaders.Any(o => o.Key == "User-Agent"))
+                client.DefaultRequestHeaders.Add("User-Agent", string.Format("ifixit wp+{0}",AppVersion));
+
         }
     }
 }

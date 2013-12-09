@@ -6,7 +6,23 @@ using System.Threading.Tasks;
 
 namespace iFixit.Domain.Models.UI
 {
-    public class HomeItem : ModelBase
+    public class CustomGridBase : ModelBase
+    {
+        private int _IndexOf = 0;
+        public int IndexOf
+        {
+            get { return (this._IndexOf == 0) ? 2 : 1; }
+            set
+            {
+
+                _IndexOf = value;
+                NotifyPropertyChanged();
+
+            }
+        }
+    }
+
+    public class HomeItem : CustomGridBase
     {
 
         private string _ImageUrl;
@@ -18,6 +34,20 @@ namespace iFixit.Domain.Models.UI
                 if (_ImageUrl != value)
                 {
                     _ImageUrl = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
+
+        private string _BigImageUrl;
+        public string BigImageUrl
+        {
+            get { return this._BigImageUrl; }
+            set
+            {
+                if (_BigImageUrl != value)
+                {
+                    _BigImageUrl = value;
                     NotifyPropertyChanged();
                 }
             }
@@ -50,5 +80,9 @@ namespace iFixit.Domain.Models.UI
                 }
             }
         }
+
+
+      
+
     }
 }

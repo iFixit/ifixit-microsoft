@@ -151,11 +151,24 @@ namespace iFixit.Domain.ViewModels
             }
         }
 
+
+
+        private string _ServiceMessages;
+        public string ServiceMessages
+        {
+            get { return this._ServiceMessages; }
+            set
+            {
+                if (_ServiceMessages != value)
+                {
+                    _ServiceMessages = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
+
+
         #endregion
-
-
-
-
 
 
         private RelayCommand _DoLoginP;
@@ -167,27 +180,41 @@ namespace iFixit.Domain.ViewModels
                   async () =>
                   {
                       string hasError = string.Empty;
+                      ServiceMessages = string.Empty;
                       try
                       {
                           if (this.DoLoginProcess)
                           {
-                              LoadingCounter++;
-
-                              var user = await Broker.DoLogin(this.Email, this.Password);
-                              if (user != null && user.authToken != null)
+                              if (!string.IsNullOrEmpty(this.Email) && !string.IsNullOrEmpty(this.Password))
                               {
-                                  _storageService.Save("Authorization", await user.SaveAsJson());
-                                  BindAuthentication(user);
-                                  _navigationService.GoBack();
-                                  LoadingCounter--;
-                                  //TODO: How to fire the Add Favorite if login was asked because of this. 
+                                  LoadingCounter++;
+
+                                  var user = await Broker.DoLogin(this.Email, this.Password);
+                                  if (user != null && user.authToken != null)
+                                  {
+                                      _storageService.Save(Constants.AUTHORIZATION, await user.SaveAsJson());
+                                      BindAuthentication(user);
+
+                                      _uxService.DoLogin();
+
+                                      await _uxService.ShowToast(International.Translation.LoginSuccessfull);
+                                      LoadingCounter--;
+                                      //TODO: How to fire the Add Favorite if login was asked because of this. 
+                                  }
+                                  else
+                                  {
+                                      ServiceMessages = International.Translation.ErrorLogin;
+                                      await _uxService.LoginMessaging(ServiceMessages);
+                                      LoadingCounter--;
+                                  }
                               }
                               else
                               {
-
-                                  await _uxService.ShowAlert(International.Translation.ErrorLogin);
+                                  ServiceMessages = International.Translation.FillForm;
+                                  await _uxService.LoginMessaging(International.Translation.FillForm);
                                   LoadingCounter--;
                               }
+
                           }
                           else if (RegistrationProcess)
                           {
@@ -198,12 +225,12 @@ namespace iFixit.Domain.ViewModels
                                   {
                                       LoadingCounter++;
                                       var result = await Broker.RegistrationLogin(this.Email, this.UserName, this.Password);
-                                   
+
                                       this.RegistrationProcess = false;
                                       this.DoLoginProcess = true;
                                       BindAuthentication(result);
                                       LoadingCounter--;
-                                      _navigationService.GoBack();
+                                      _uxService.DoLogin();
 
 
                                   }
@@ -229,8 +256,10 @@ namespace iFixit.Domain.ViewModels
 
                               }
                               if (!string.IsNullOrEmpty(hasError))
-                                  await _uxService.ShowAlert(string.Format("{0}:{1}", International.Translation.ErrorRegistration, hasError));
-
+                              {
+                                  ServiceMessages = string.Format("{0}:{1}", International.Translation.ErrorRegistration, hasError);
+                                  await _uxService.LoginMessaging(ServiceMessages);
+                              }
                               LoadingCounter--;
                           }
                           else if (RecoverPasswordProcess)
@@ -275,6 +304,8 @@ namespace iFixit.Domain.ViewModels
                            RegistrationProcess = false;
                            RecoverPasswordProcess = false;
                            DoLoginProcess = true;
+                           this.Email = this.Password = this.ConfirmationPassword = this.UserName = string.Empty;
+
                            ButtonLabel = International.Translation.Login;
 
 
@@ -348,8 +379,6 @@ namespace iFixit.Domain.ViewModels
             }
 
         }
-
-
 
 
         public Login(INavigation<Domain.Interfaces.NavigationModes> navigationService, IStorage storageService, ISettings settingsService, IUxService uxService, IPeerConnector peerConnector)

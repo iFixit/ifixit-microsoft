@@ -11,6 +11,7 @@ using Microsoft.Phone.Shell;
 using Telerik.Windows.Controls.SlideView;
 using System.Windows.Media.Imaging;
 using System.Windows.Media;
+using Telerik.Windows.Controls;
 
 namespace iFixit.WP8.UI.Views
 {
@@ -21,15 +22,26 @@ namespace iFixit.WP8.UI.Views
         {
             InitializeComponent();
 
+            this.Loaded += Details_Loaded;
 
+        }
 
+        void Details_Loaded(object sender, RoutedEventArgs e)
+        {
+            SetOrientation(this.Orientation);
         }
 
         protected override void OnOrientationChanged(OrientationChangedEventArgs e)
         {
 
             base.OnOrientationChanged(e);
-            switch (e.Orientation)
+            var orientation = e.Orientation;
+            SetOrientation(orientation);
+        }
+
+        private void SetOrientation(PageOrientation orientation)
+        {
+            switch (orientation)
             {
                 case PageOrientation.Landscape:
 
@@ -51,10 +63,10 @@ namespace iFixit.WP8.UI.Views
                     break;
             }
 
-            switch (e.Orientation)
+            switch (orientation)
             {
                 case PageOrientation.Landscape:
-                    
+
                     break;
                 case PageOrientation.LandscapeLeft:
                     ContentPanel.Margin = new Thickness(0, 0, 75, 0);
@@ -66,14 +78,14 @@ namespace iFixit.WP8.UI.Views
                     break;
                 case PageOrientation.None:
 
-                   
+
                 case PageOrientation.Portrait:
-                   
+
                 case PageOrientation.PortraitDown:
-                   
+
                 case PageOrientation.PortraitUp:
 
-                   
+
                 default:
                     ContentPanel.Margin = new Thickness(0, 0, 0, 0);
                     IndexNav.Margin = new Thickness(0, 0, 0, 0);
@@ -91,11 +103,7 @@ namespace iFixit.WP8.UI.Views
             {
                 var VM = this.DataContext as Domain.ViewModels.Guide;
                 VM.Reset();
-                //VM.SelectedPage = new Domain.Models.UI.GuideBasePage();
-                //VM.Items.Clear();
-                //VM.SelectedPage = null;
-                //VM.FullImagePath = null;
-                //VM.ShowingFullImage = false;
+                radWindow.IsOpen = false;
             }
         }
 
@@ -104,5 +112,31 @@ namespace iFixit.WP8.UI.Views
           
           //  ZoomImage. =  (this.DataContext as Domain.ViewModels.Guide).FullImagePath;
         }
+
+        private void radSlideView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            RadSlideView slideView = sender as RadSlideView;
+            if (slideView != null)
+            {
+                var scrollViewer = ElementTreeHelper.FindVisualDescendant<ScrollViewer>(slideView.SelectedItemContainer);
+                if (scrollViewer != null)
+                {
+                    scrollViewer.ScrollToVerticalOffset(0);
+                }
+            }
+        }
+
+        private void RadDataBoundListBox_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
+        {
+            var VM =this.DataContext as Domain.ViewModels.Guide;
+            var item = (RadDataBoundListBox) sender;
+            if (item.SelectedItem != null)
+            {
+              
+                radWindow.IsOpen = true;  item.SelectedItem = null;
+            }
+        }
+
+       
     }
 }

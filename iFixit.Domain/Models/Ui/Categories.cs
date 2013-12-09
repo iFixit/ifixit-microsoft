@@ -21,10 +21,24 @@ namespace iFixit.Domain.Models.UI
 
     public enum CategoryPage { Index, Intro, Root, Categories }
 
-    public class Category : ModelBase
+    public class Category : CustomGridBase
     {
 
 
+        private string _Content;
+        public string Content
+        {
+            get { return this._Content; }
+            set
+            {
+                if (_Content != value)
+                {
+                    _Content = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
+        
         private CategoryPage _Type;
         public CategoryPage Type
         {

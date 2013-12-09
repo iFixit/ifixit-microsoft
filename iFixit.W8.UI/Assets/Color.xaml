@@ -1,0 +1,84 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    >
+
+    <Color x:Key="MainBackground">#3c3c3c</Color>
+    <SolidColorBrush x:Key="MainBackgroundBrush" Color="{StaticResource MainBackground}"/>
+
+    <Color x:Key="iFixitBlue">#0071CE</Color>
+    <SolidColorBrush x:Key="iFixitBlueBrush" Color="{StaticResource iFixitBlue}"/>
+
+    <Color x:Key="TopGray1">#B7B7B7</Color>
+    <SolidColorBrush x:Key="TopGray1Brush" Color="{StaticResource TopGray1}"/>
+
+    <Color x:Key="TopGray2">#D2D2D2</Color>
+    <SolidColorBrush x:Key="TopGray2Brush" Color="{StaticResource TopGray2}"/>
+
+
+    <Color x:Key="MainForground">#3c3c3c</Color>
+
+    <Color x:Key="PlaceHolderBackground">#F3F6FB</Color>
+    <SolidColorBrush x:Key="PlaceHolderBackgroundBrush" Color="{StaticResource PlaceHolderBackground}"/>
+
+    <Color x:Key="Background">#FFFFFF</Color>
+    <SolidColorBrush x:Key="BackgroundBrush" Color="{StaticResource Background}"/>
+
+
+    <SolidColorBrush x:Key="MainForegroundBrush" Color="{StaticResource MainForground}"/>
+
+    <Color x:Key="SecondaryBackground">#888888</Color>
+    <SolidColorBrush x:Key="SecondaryBackgroundBrush" Color="{StaticResource SecondaryBackground}"/>
+
+    <Color x:Key="ThirdBackground">#EEEEEE</Color>
+    <SolidColorBrush x:Key="ThirdBackgroundBrush" Color="{StaticResource ThirdBackground}"/>
+
+    <Color x:Key="FourthBackground">#666666</Color>
+    <SolidColorBrush x:Key="FourthBackgroundBrush" Color="{StaticResource FourthBackground}"/>
+
+    <Color x:Key="FifthBackground">#DBDBDB</Color>
+    <SolidColorBrush x:Key="FifthBackgroundBrush" Color="{StaticResource FifthBackground}"/>
+
+    <Color x:Key="SixthBackground">#333333</Color>
+    <SolidColorBrush x:Key="SixthBackgroundBrush" Color="{StaticResource SixthBackground}"/>
+
+    <Color x:Key="Black">#000000</Color>
+    <SolidColorBrush x:Key="BlackBrush" Color="{StaticResource Black}"/>
+
+    <Color x:Key="Highlight">#006EDB</Color>
+    <SolidColorBrush x:Key="HighlightBrush" Color="{StaticResource Highlight}" />
+    <SolidColorBrush x:Key="HighlightBrushTransparent" Color="{StaticResource Highlight}" Opacity="0.8"/>
+
+    <Color x:Key="PhoneAccentColor">#006EDB</Color>
+
+    <SolidColorBrush x:Key="PhoneAccentBrush" Color="{StaticResource PhoneAccentColor}"/>
+
+    <!-- Final Styles -->
+    <Color x:Key="BaseBackground">#333333</Color>
+    <SolidColorBrush x:Key="BaseBackgroundBrush" Color="{StaticResource BaseBackground}"/>
+
+    <Color x:Key="LinkColor">#0071CE</Color>
+    <SolidColorBrush x:Key="LinkColorBrush" Color="{StaticResource LinkColor}"/>
+
+    <Color x:Key="BorderColor">#E5E5E5</Color>
+    <SolidColorBrush x:Key="BorderColorBrush" Color="{StaticResource BorderColor}"/>
+
+    <Color x:Key="HoverColor">#cbdce4</Color>
+    <SolidColorBrush x:Key="HoverColorBrush" Color="{StaticResource HoverColor}"/>
+
+    
+    <!-- -->
+    <Color x:Key="Orange">#F37C1F</Color>
+    <SolidColorBrush x:Key="OrangeBrush" Color="{StaticResource Orange}"/>
+
+    <Color x:Key="BulletBack">#000000</Color>
+    <Color x:Key="BulletRed">#000000</Color>
+    <Color x:Key="BulletOrange">#000000</Color>
+    <Color x:Key="BulletYellow">#000000</Color>
+    <Color x:Key="BulletGreen">#000000</Color>
+    <Color x:Key="BulletBlue">#000000</Color>
+    <Color x:Key="BulletViolet">#000000</Color>
+
+
+
+</ResourceDictionary>

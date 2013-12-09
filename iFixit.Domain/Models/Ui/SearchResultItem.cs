@@ -80,10 +80,10 @@ namespace iFixit.Domain.Models.UI
                 }
             }
         }
-        
+
     }
 
-   public class SearchResultItem:ModelBase
+    public class SearchResultItem : CustomGridBase
     {
 
         private string _UniqueId;
@@ -130,7 +130,7 @@ namespace iFixit.Domain.Models.UI
                 }
             }
         }
-        
+
 
         private string _ImageUrl;
         public string ImageUrl
@@ -146,6 +146,19 @@ namespace iFixit.Domain.Models.UI
             }
         }
 
+        private string _BigImageUrl;
+        public string BigImageUrl
+        {
+            get { return this._BigImageUrl; }
+            set
+            {
+                if (_BigImageUrl != value)
+                {
+                    _BigImageUrl = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
 
         private string _Author;
         public string Author
@@ -175,7 +188,7 @@ namespace iFixit.Domain.Models.UI
                 }
             }
         }
-        
-        
+
+
     }
 }

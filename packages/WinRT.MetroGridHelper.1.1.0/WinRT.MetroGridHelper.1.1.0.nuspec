@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>WinRT.MetroGridHelper</id>
+    <version>1.1.0</version>
+    <title>Metro Grid Helper for WinRT</title>
+    <authors>Mark Monster</authors>
+    <owners>Mark Monster</owners>
+    <projectUrl>http://mark.mymonster.nl/tag/winrt</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Get the Metro design right in your Windows 8 app.
+
+Support for Filled, Snapped and Fullscreen, Landscape and Portrait.
+
+Based on the MetroGridHelper for Windows Phone by Jeff Wilcox.</description>
+    <releaseNotes />
+    <copyright>2012</copyright>
+    <language />
+    <tags>metro winrt win8 design "Windows 8" Surface</tags>
+  </metadata>
+</package>

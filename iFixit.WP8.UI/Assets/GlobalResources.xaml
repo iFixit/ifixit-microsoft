@@ -23,7 +23,8 @@
 
     <Color x:Key="MainForground">#3c3c3c</Color>
 
-
+    <Color x:Key="PlaceHolderBackground">#F3F6FB</Color>
+    <SolidColorBrush x:Key="PlaceHolderBackgroundBrush" Color="{StaticResource PlaceHolderBackground}"/>
 
     <Color x:Key="Background">#FFFFFF</Color>
     <SolidColorBrush x:Key="BackgroundBrush" Color="{StaticResource Background}"/>
@@ -74,10 +75,10 @@
     <c4fControlsConverters:VisibilityToBooleanConverter x:Key="VisibilityToBooleanConverter" />
     <c4fControlsConverters:ThemedImageConverter x:Key="ThemedImageConverter" />
     <CimbalinoConverters:NegativeBooleanConverter x:Key="NegativeBooleanConverter"/>
-   
+
     <c4fControlsConverters:StringToVisibilityConverter x:Key="StringToVisibilityConverter"/>
     <LabelsInternational:LabelsManager x:Key="LabelsManager"/>
-   
+
 
     <!--<Style TargetType="code4FunControls:SuperImage">
         <Setter Property="PlaceholderImageSource" Value="/Assets/NoImage_300x225.jpg"/>
@@ -294,9 +295,12 @@
                                 BorderThickness="2"
                                 BorderBrush="{StaticResource SecondaryBackgroundBrush}">
                             <Grid>
-                                <Grid x:Name="ButtonContent" >
+                                <Grid x:Name="ButtonContent" Background="{StaticResource PlaceHolderBackgroundBrush}" >
 
-                                    <code4FunControls:SuperImage  PlaceholderImageStretch="UniformToFill" PlaceholderImageSource="/Assets/NoImage_300x225.jpg" Source="{Binding ImageUrl}" Stretch="UniformToFill">
+                                    <code4FunControls:SuperImage  PlaceholderImageStretch="Uniform" 
+                                                                  PlaceholderImageSource="/Assets/NoImage_300x225.jpg" 
+                                                                  Source="{Binding ImageUrl}" 
+                                                                  Stretch="UniformToFill">
                                     </code4FunControls:SuperImage>
                                     <Grid VerticalAlignment="Bottom" x:Name="ButtonTitleContent"  Margin="0,0,0,0">
 
@@ -359,9 +363,12 @@
                                 BorderThickness="2"
                                 BorderBrush="{StaticResource SecondaryBackgroundBrush}">
                             <Grid>
-                                <Grid x:Name="ButtonContent" >
+                                <Grid x:Name="ButtonContent" Background="{StaticResource PlaceHolderBackgroundBrush}">
 
-                                    <code4FunControls:SuperImage  PlaceholderImageStretch="UniformToFill" PlaceholderImageSource="/Assets/NoImage_300x225.jpg" Source="{Binding ImageUrl}" Stretch="UniformToFill">
+                                    <code4FunControls:SuperImage  PlaceholderImageStretch="Uniform" 
+                                                                  PlaceholderImageSource="/Assets/NoImage_300x225.jpg" 
+                                                                  Source="{Binding ImageUrl}" 
+                                                                  Stretch="UniformToFill">
                                     </code4FunControls:SuperImage>
                                     <Grid VerticalAlignment="Bottom" x:Name="ButtonTitleContent"  Margin="0,0,0,0">
 
@@ -482,7 +489,7 @@
             </Setter.Value>
         </Setter>
     </Style>
-  
+
     <Style x:Key="iFixitLinkButton" TargetType="HyperlinkButton">
 
         <Setter Property="Background" Value="Transparent"/>
@@ -543,7 +550,7 @@
     </DataTemplate>
 
     <DataTemplate x:Key="PivotHeader">
-        <Border BorderThickness="0,0,0,0" Margin="-12,0,0,0">
+        <Border BorderThickness="0,0,0,0" Margin="0,0,0,0">
             <Border.BorderBrush>
                 <SolidColorBrush Color="{StaticResource ThirdBackground}"/>
             </Border.BorderBrush>
@@ -555,16 +562,13 @@
     </DataTemplate>
 
     <DataTemplate x:Key="MasterPivotHeader">
-        <Border BorderThickness="0,0,0,0" Margin="-12,0,12,0">
-            <Border.BorderBrush>
-                <SolidColorBrush Color="{StaticResource ThirdBackground}"/>
-            </Border.BorderBrush>
 
+        <Grid>
             <TextBlock Text="{Binding Content, RelativeSource={RelativeSource TemplatedParent}}" 
                        Style="{StaticResource PhoneTextLargeStyle}"
-                       Foreground="{StaticResource BlackBrush}" 
+                       Foreground="{StaticResource BlackBrush}"  Margin="0,0,50,0"
                        TextWrapping="Wrap" FontWeight="Bold" FontSize="48" />
-        </Border>
+        </Grid>
 
     </DataTemplate>
 
@@ -586,12 +590,15 @@
     <DataTemplate x:Name="SearchResultGuideItem">
         <Grid>
             <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
-                <code4FunControls:SuperImage PlaceholderImageSource="/Assets/NoImage_300x225.jpg" 
-                                         PlaceholderImageStretch="UniformToFill"
+                <Grid Margin="0,6,0,0"   Background="{StaticResource PlaceHolderBackgroundBrush}"
+                                               Width="100" Height="100" >
+                    <code4FunControls:SuperImage PlaceholderImageSource="/Assets/NoImage_300x225.jpg" 
+                                         PlaceholderImageStretch="Uniform"
                                          Stretch="UniformToFill"
-                                         VerticalAlignment="Top" Margin="0,6,0,0"   
-                                               Width="100" Height="100" 
-                                               Source="{Binding ImageUrl}" />
+                                         VerticalAlignment="Top" 
+                                         Source="{Binding ImageUrl}" />
+                </Grid>
+
                 <StackPanel Orientation="Vertical" Margin="12,0,0,0">
                     <TextBlock Text="{Binding Name}" TextWrapping="Wrap"></TextBlock>
                     <TextBlock Text="{Binding Summary}" TextWrapping="Wrap" Foreground="{StaticResource ThirdBackgroundBrush}"></TextBlock>
@@ -602,14 +609,14 @@
     </DataTemplate>
 
     <DataTemplate x:Name="SearchResultGuideGridItem">
-        <Grid Width="190" Height="190" Margin="0,0,6,6">
-
-            <code4FunControls:SuperImage PlaceholderImageSource="/Assets/NoImage_300x225.jpg" 
-                                         PlaceholderImageStretch="UniformToFill"
+        <Grid Width="190" Height="190" Margin="0,0,6,6" >
+            <Grid Background="{StaticResource PlaceHolderBackgroundBrush}" Width="190" Height="190">
+                <code4FunControls:SuperImage PlaceholderImageSource="/Assets/NoImage_300x225.jpg" 
+                                         PlaceholderImageStretch="Uniform"
                                          Stretch="UniformToFill"
                                          VerticalAlignment="Top" Margin="0,6,0,0"   
-                                               Width="190" Height="190" 
-                                               Source="{Binding ImageUrl}" />
+                                         Source="{Binding ImageUrl}" />
+            </Grid>
 
 
 
@@ -629,15 +636,15 @@
     <DataTemplate x:Name="DeviceSearchResultGuideGridItem">
         <Border Width="190" Height="190"  Margin="0,0,6,6" BorderBrush="{StaticResource SecondaryBackgroundBrush}" BorderThickness="2" >
 
-            <Grid>
+            <Grid Margin="0,0,0,0" Width="190" Height="190" >
 
-
-                <code4FunControls:SuperImage PlaceholderImageSource="/Assets/NoImage_300x225.jpg" 
-                                      PlaceholderImageStretch="UniformToFill"
+                <Grid Width="190" Height="190" Background="{StaticResource PlaceHolderBackgroundBrush}">
+                    <code4FunControls:SuperImage PlaceholderImageSource="/Assets/NoImage_300x225.jpg" 
+                                      PlaceholderImageStretch="Uniform"
                                        Stretch="UniformToFill"
-                                       VerticalAlignment="Top" Margin="0,0,0,0"   
-                                               Width="190" Height="190" 
+                                       VerticalAlignment="Top" 
                                                Source="{Binding ImageUrl}" />
+                </Grid>
 
 
 
@@ -656,12 +663,13 @@
     <DataTemplate x:Name="SearchResultProductItem">
         <Grid Margin="0,0,0,6">
             <StackPanel Orientation="Horizontal">
-                <Border  VerticalAlignment="Top" Margin="0,0,0,0"   
-        	         BorderBrush="{StaticResource SecondaryBackgroundBrush}" BorderThickness="2">
+                <Border  VerticalAlignment="Top" Margin="0,0,0,0"  Width="100" Height="100"   
+        	         BorderBrush="{StaticResource SecondaryBackgroundBrush}" Background="{StaticResource PlaceHolderBackgroundBrush}" BorderThickness="2">
 
                     <code4FunControls:SuperImage PlaceholderImageSource="/Assets/NoImage_300x225.jpg" 
-                                      Stretch="UniformToFill"  PlaceholderImageStretch="UniformToFill"
-                                      VerticalAlignment="Top" Margin="0,0,0,0"   Width="100" Height="100" 
+                                      Stretch="UniformToFill"  
+                                      PlaceholderImageStretch="Uniform"
+                                      VerticalAlignment="Top" Margin="0,0,0,0"  
                                                Source="{Binding ImageUrl}" />
                 </Border>
                 <StackPanel Orientation="Vertical" Margin="12">
@@ -776,7 +784,7 @@
     </DataTemplate>
 
 
- 
+
 
     <DataTemplate x:Key="CollectionsHeader">
         <Border Height="140" Margin="0,0,6,6" BorderBrush="{StaticResource SecondaryBackgroundBrush}" BorderThickness="2" >
@@ -818,14 +826,17 @@
                 </Grid.ColumnDefinitions>
 
 
-                <Border  VerticalAlignment="Top" Margin="0,0,0,0"   
-        	         BorderBrush="{StaticResource SecondaryBackgroundBrush}" BorderThickness="2">
+                <Border  VerticalAlignment="Top" Margin="0,0,0,0"    Width="100" Height="100"   
+        	         BorderBrush="{StaticResource SecondaryBackgroundBrush}" 
+                         Background="{StaticResource PlaceHolderBackgroundBrush}"
+                         BorderThickness="2">
 
                     <code4FunControls:SuperImage PlaceholderImageSource="/Assets/NoImage_300x225.jpg" 
-                                       PlaceholderImageStretch="UniformToFill"
-                                      Width="100" Height="100" 
+                                                 
+                                      PlaceholderImageStretch="Uniform"
+                                   
         			                  Source="{Binding ImageUrl}" 
-        			                   Stretch="UniformToFill"  />
+        			                  Stretch="UniformToFill"  />
                 </Border>
 
                 <StackPanel Grid.Column="1" Margin="12,0,0,0" >
@@ -944,4 +955,7 @@
             </Setter.Value>
         </Setter>
     </Style>
+    <DataTemplate x:Key="EmptyLoading">
+       
+    </DataTemplate>
 </ResourceDictionary>

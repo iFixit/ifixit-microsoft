@@ -10,6 +10,8 @@ namespace iFixit.Domain.Interfaces
 {
    public interface IUxService
     {
+       string SanetizeHTML(string html);
+
         Task ShowAlert(string m);
 
         Task ShowToast(string m);
@@ -37,5 +39,15 @@ namespace iFixit.Domain.Interfaces
         Task OpenBrowser(string Url);
 
         void ShowVideo(string Url);
+
+        void GoToLogin();
+
+        void GoToProfile();
+
+        void DoLogin();
+
+        void DoLogOff();
+
+        Task LoginMessaging(string Message);
     }
 }

@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "iFixit.Domain", "iFixit.Domain\iFixit.Domain.csproj", "{D64C3434-5472-4D59-9E29-578A057BE77E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "iFixit.WP8.UI", "iFixit.WP8.UI\iFixit.WP8.UI.csproj", "{C5F91915-971F-4626-A862-6D604837FB4B}"
@@ -13,17 +15,16 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{CA094A
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{36E20BF8-2168-45B1-9CDA-81EF55A85D56}"
-	ProjectSection(SolutionItems) = preProject
-		Shared\PeerConnector.cs = Shared\PeerConnector.cs
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "iFixit.W8.UI", "iFixit.W8.UI\iFixit.W8.UI.csproj", "{A33C67BD-09A2-4372-80E5-4885AD4603F6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "iFixit.International", "iFixit.International\iFixit.International.csproj", "{10DE514D-28E8-4709-8F7F-8C7846BBE235}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "iFixit.W81.UI", "iFixit.W81.UI\iFixit.W81.UI.csproj", "{E1260BEA-AC64-4478-B267-C2BDF23785FA}"
+EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 5
+		SccNumberOfProjects = 6
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = https://ideiasemmovimento.tfspreview.com/defaultcollection
 		SccLocalPath0 = .
@@ -39,6 +40,9 @@ Global
 		SccProjectUniqueName4 = iFixit.International\\iFixit.International.csproj
 		SccProjectName4 = iFixit.International
 		SccLocalPath4 = iFixit.International
+		SccProjectUniqueName5 = iFixit.W81.UI\\iFixit.W81.UI.csproj
+		SccProjectName5 = iFixit.W81.UI
+		SccLocalPath5 = iFixit.W81.UI
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -115,6 +119,30 @@ Global
 		{10DE514D-28E8-4709-8F7F-8C7846BBE235}.Release|ARM.ActiveCfg = Release|Any CPU
 		{10DE514D-28E8-4709-8F7F-8C7846BBE235}.Release|x64.ActiveCfg = Release|Any CPU
 		{10DE514D-28E8-4709-8F7F-8C7846BBE235}.Release|x86.ActiveCfg = Release|Any CPU
+		{E1260BEA-AC64-4478-B267-C2BDF23785FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E1260BEA-AC64-4478-B267-C2BDF23785FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E1260BEA-AC64-4478-B267-C2BDF23785FA}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{E1260BEA-AC64-4478-B267-C2BDF23785FA}.Debug|ARM.ActiveCfg = Debug|ARM
+		{E1260BEA-AC64-4478-B267-C2BDF23785FA}.Debug|ARM.Build.0 = Debug|ARM
+		{E1260BEA-AC64-4478-B267-C2BDF23785FA}.Debug|ARM.Deploy.0 = Debug|ARM
+		{E1260BEA-AC64-4478-B267-C2BDF23785FA}.Debug|x64.ActiveCfg = Debug|x64
+		{E1260BEA-AC64-4478-B267-C2BDF23785FA}.Debug|x64.Build.0 = Debug|x64
+		{E1260BEA-AC64-4478-B267-C2BDF23785FA}.Debug|x64.Deploy.0 = Debug|x64
+		{E1260BEA-AC64-4478-B267-C2BDF23785FA}.Debug|x86.ActiveCfg = Debug|x86
+		{E1260BEA-AC64-4478-B267-C2BDF23785FA}.Debug|x86.Build.0 = Debug|x86
+		{E1260BEA-AC64-4478-B267-C2BDF23785FA}.Debug|x86.Deploy.0 = Debug|x86
+		{E1260BEA-AC64-4478-B267-C2BDF23785FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E1260BEA-AC64-4478-B267-C2BDF23785FA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E1260BEA-AC64-4478-B267-C2BDF23785FA}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{E1260BEA-AC64-4478-B267-C2BDF23785FA}.Release|ARM.ActiveCfg = Release|ARM
+		{E1260BEA-AC64-4478-B267-C2BDF23785FA}.Release|ARM.Build.0 = Release|ARM
+		{E1260BEA-AC64-4478-B267-C2BDF23785FA}.Release|ARM.Deploy.0 = Release|ARM
+		{E1260BEA-AC64-4478-B267-C2BDF23785FA}.Release|x64.ActiveCfg = Release|x64
+		{E1260BEA-AC64-4478-B267-C2BDF23785FA}.Release|x64.Build.0 = Release|x64
+		{E1260BEA-AC64-4478-B267-C2BDF23785FA}.Release|x64.Deploy.0 = Release|x64
+		{E1260BEA-AC64-4478-B267-C2BDF23785FA}.Release|x86.ActiveCfg = Release|x86
+		{E1260BEA-AC64-4478-B267-C2BDF23785FA}.Release|x86.Build.0 = Release|x86
+		{E1260BEA-AC64-4478-B267-C2BDF23785FA}.Release|x86.Deploy.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

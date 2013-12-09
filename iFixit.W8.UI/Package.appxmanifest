@@ -1,42 +1,35 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest">
-
-  <Identity Name="da2519f1-2007-4120-abde-c3d112eb5953"
-            Publisher="CN=cmorgado"
-            Version="1.0.0.0" />
-
+  <Identity Name="IFIXIT.iFixitRepairManual" Publisher="CN=FAEE55AF-5720-4CDD-82C3-567FD8452C22" Version="0.0.1.46" />
   <Properties>
-    <DisplayName>iFixit.W8.UI</DisplayName>
-    <PublisherDisplayName>cmorgado</PublisherDisplayName>
-    <Logo>Assets\StoreLogo.png</Logo>
+    <DisplayName>iFixit: Repair Manual</DisplayName>
+    <PublisherDisplayName>IFIXIT</PublisherDisplayName>
+    <Logo>Assets\App\StoreLogo.jpg</Logo>
   </Properties>
-
   <Prerequisites>
     <OSMinVersion>6.2.1</OSMinVersion>
     <OSMaxVersionTested>6.2.1</OSMaxVersionTested>
   </Prerequisites>
-
   <Resources>
-    <Resource Language="x-generate"/>
+    <Resource Language="x-generate" />
   </Resources>
-
   <Applications>
-    <Application Id="App"
-        Executable="$targetnametoken$.exe"
-        EntryPoint="iFixit.W8.UI.App">
-        <VisualElements
-            DisplayName="iFixit.W8.UI"
-            Logo="Assets\Logo.png"
-            SmallLogo="Assets\SmallLogo.png"
-            Description="iFixit.W8.UI"
-            ForegroundText="light"
-            BackgroundColor="#464646">
-            <DefaultTile ShowName="allLogos" />
-            <SplashScreen Image="Assets\SplashScreen.png" />
-        </VisualElements>
+    <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="iFixit.W8.UI.App">
+      <VisualElements DisplayName="iFixit" Logo="Assets\App\Square150x150Logo.png" SmallLogo="Assets\App\Square30x30Logo.png" Description="iFixit.W8.UI" ForegroundText="light" BackgroundColor="#333333" ToastCapable="true">
+        <DefaultTile ShowName="noLogos" ShortName="iFixit" WideLogo="Assets\app\Wide310x150Logo.png" />
+        <SplashScreen Image="Assets\App\SplashScreen.png" BackgroundColor="#333333" />
+        <InitialRotationPreference>
+          <Rotation Preference="landscape" />
+          <Rotation Preference="landscapeFlipped" />
+        </InitialRotationPreference>
+      </VisualElements>
+      <Extensions>
+        <Extension Category="windows.search" />
+      </Extensions>
     </Application>
   </Applications>
   <Capabilities>
     <Capability Name="internetClient" />
+    <DeviceCapability Name="proximity" />
   </Capabilities>
 </Package>

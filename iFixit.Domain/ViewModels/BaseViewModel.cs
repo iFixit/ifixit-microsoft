@@ -112,6 +112,18 @@ namespace iFixit.Domain.ViewModels
         }
 
 
+        private bool _CanGoBack=false;
+        public bool CanGoBack
+        {
+            get { return _CanGoBack; }
+            set
+            {
+                _CanGoBack = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+
         private bool _IsAuthenticated = false;
         public bool IsAuthenticated
         {
@@ -167,14 +179,68 @@ namespace iFixit.Domain.ViewModels
 
                       try
                       {
-
-                          _navigationService.Navigate<Home>(false);
+                          LoadingCounter++;
+                          _navigationService.Navigate<Home>(false, "-1");
+                          LoadingCounter--;
 
                       }
                       catch (Exception ex)
                       {
                           LoadingCounter--;
                           throw ex;
+                      }
+
+                  }));
+            }
+
+        }
+
+        private RelayCommand _GoSearchResults;
+        public RelayCommand GoSearchResults
+        {
+            get
+            {
+                return _GoSearchResults ?? (_GoSearchResults = new RelayCommand(
+                  () =>
+                  {
+
+                      try
+                      {
+                          LoadingCounter++;
+                          _navigationService.Navigate<Search>(false);
+                          LoadingCounter--;
+
+                      }
+                      catch (Exception ex)
+                      {
+                          LoadingCounter--;
+                          throw ex;
+                      }
+
+                  }));
+            }
+
+        }
+
+        private RelayCommand _GoBack;
+        public RelayCommand GoBack
+        {
+            get
+            {
+                return _GoBack ?? (_GoBack = new RelayCommand(
+                  () =>
+                  {
+
+                      try
+                      {
+
+                          _navigationService.GoBack();
+
+                      }
+                      catch (Exception ex)
+                      {
+                          LoadingCounter--;
+                          //throw ex;
                       }
 
                   }));
@@ -220,7 +286,7 @@ namespace iFixit.Domain.ViewModels
                      try
                      {
 
-                      
+
                          _uxService.OpenSearch();
                          LoadingCounter--;
                      }
@@ -248,11 +314,13 @@ namespace iFixit.Domain.ViewModels
 
                           if (AppBase.Current.User == null)
                           {
-                              _navigationService.Navigate<Login>(false);
+                              _uxService.GoToLogin();
+
                           }
                           else
                           {
-                              _navigationService.Navigate<Profile>(false);
+                              _uxService.GoToProfile();
+
                           }
 
 
@@ -304,7 +372,8 @@ namespace iFixit.Domain.ViewModels
             _settingsService = settingsService;
             _uxService = uxService;
             _peerConnector = peerConnector;
-            Broker = new ServicesEngine.ServiceBroker(_settingsService.AppKey());
+
+            Broker = new ServicesEngine.ServiceBroker(_settingsService.AppKey(), _settingsService.AppVersion());
             _peerConnector.ConnectionStatusChanged += _peerConnector_ConnectionStatusChanged;
             _peerConnector.GuideReceived += _peerConnector_GuideReceived;
         }

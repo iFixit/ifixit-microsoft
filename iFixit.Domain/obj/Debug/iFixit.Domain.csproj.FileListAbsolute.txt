@@ -77,13 +77,10 @@ D:\Projects\iFixit\iFixit.NET\iFixit.NET\iFixit.Domain\bin\Debug\System.Net.Http
 D:\Projects\iFixit\iFixit.NET\iFixit.NET\iFixit.Domain\bin\Debug\System.Net.Http.Extensions.dll
 D:\Projects\iFixit\iFixit.NET\iFixit.NET\iFixit.Domain\bin\Debug\System.Net.Http.Primitives.dll
 D:\Projects\iFixit\iFixit.NET\iFixit.NET\iFixit.Domain\bin\Debug\Zlib.Portable.dll
-D:\Projects\iFixit\iFixit.NET\iFixit.NET\iFixit.Domain\obj\Debug\iFixit.Domain.csproj.App.config
-D:\Projects\iFixit\iFixit.NET\iFixit.NET\iFixit.Domain\obj\Debug\iFixit.Domain.dll
-D:\Projects\iFixit\iFixit.NET\iFixit.NET\iFixit.Domain\obj\Debug\iFixit.Domain.pdb
 D:\Projects\iFixit\iFixit.NET\iFixit.NET\iFixit.Domain\bin\Debug\iFixit.International.pdb
 D:\Projects\iFixit\iFixit.NET\iFixit.NET\iFixit.Domain\bin\Debug\AdvancedREI.Net.Http.Compression.pdb
-D:\Projects\iFixit\iFixit.NET\iFixit.NET\iFixit.Domain\bin\Debug\GalaSoft.MvvmLight.pdb
-D:\Projects\iFixit\iFixit.NET\iFixit.NET\iFixit.Domain\bin\Debug\GalaSoft.MvvmLight.Extras.pdb
+D:\Projects\iFixit\iFixit.NET\iFixit.NET\iFixit.Domain\bin\Debug\GalaSoft.MvvmLight.xml
+D:\Projects\iFixit\iFixit.NET\iFixit.NET\iFixit.Domain\bin\Debug\GalaSoft.MvvmLight.Extras.xml
 D:\Projects\iFixit\iFixit.NET\iFixit.NET\iFixit.Domain\bin\Debug\Microsoft.Practices.ServiceLocation.pdb
 D:\Projects\iFixit\iFixit.NET\iFixit.NET\iFixit.Domain\bin\Debug\Microsoft.Practices.ServiceLocation.xml
 D:\Projects\iFixit\iFixit.NET\iFixit.NET\iFixit.Domain\bin\Debug\Microsoft.Threading.Tasks.xml
@@ -94,4 +91,7 @@ D:\Projects\iFixit\iFixit.NET\iFixit.NET\iFixit.Domain\bin\Debug\System.Net.Http
 D:\Projects\iFixit\iFixit.NET\iFixit.NET\iFixit.Domain\bin\Debug\System.Net.Http.Extensions.xml
 D:\Projects\iFixit\iFixit.NET\iFixit.NET\iFixit.Domain\bin\Debug\System.Net.Http.Primitives.xml
 D:\Projects\iFixit\iFixit.NET\iFixit.NET\iFixit.Domain\bin\Debug\Zlib.Portable.pdb
+D:\Projects\iFixit\iFixit.NET\iFixit.NET\iFixit.Domain\obj\Debug\iFixit.Domain.csproj.App.config
 D:\Projects\iFixit\iFixit.NET\iFixit.NET\iFixit.Domain\obj\Debug\iFixit.Domain.csprojResolveAssemblyReference.cache
+D:\Projects\iFixit\iFixit.NET\iFixit.NET\iFixit.Domain\obj\Debug\iFixit.Domain.dll
+D:\Projects\iFixit\iFixit.NET\iFixit.NET\iFixit.Domain\obj\Debug\iFixit.Domain.pdb

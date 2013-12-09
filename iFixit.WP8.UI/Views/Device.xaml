@@ -17,24 +17,26 @@
     xmlns:telerikCore="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Core"
     telerikCore:InteractionEffectManager.IsInteractionEnabled="True"
     xmlns:Tempates="clr-namespace:iFixit.WP8.UI.Code"
-   
+    xmlns:coding4Fun="clr-namespace:Coding4Fun.Toolkit.Controls;assembly=Coding4Fun.Toolkit.Controls"
+      xmlns:msp="clr-namespace:MSPToolkit.Controls;assembly=MSPToolkit" 
+  
     mc:Ignorable="d"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
-    SupportedOrientations="Portrait"  Orientation="Portrait"
+    SupportedOrientations="PortraitOrLandscape"  Orientation="Portrait"
     DataContext="{Binding Device, Mode=OneWay, Source={StaticResource Locator}}" 
     shell:SystemTray.IsVisible="False" shell:SystemTray.Opacity="0">
 
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <cmd:EventToCommand Command="{Binding Load, Mode=OneWay}" />
 
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
 
     <Grid x:Name="LayoutRoot" Background="{StaticResource BackgroundBrush}">
-        <i:Interaction.Triggers>
-            <i:EventTrigger EventName="Loaded">
-                <cmd:EventToCommand Command="{Binding Load, Mode=OneWay}" />
 
-            </i:EventTrigger>
-        </i:Interaction.Triggers>
 
         <i:Interaction.Behaviors>
             <cimbalinoBehaviors:MultiApplicationBarBehavior 
@@ -58,30 +60,33 @@
 
                 <phone:Pivot.HeaderTemplate>
                     <DataTemplate>
-                        <Border BorderThickness="0,0,0,0" Margin="-12,0,0,0">
-                            <!--<Border.BorderBrush>
-                                <SolidColorBrush Color="{StaticResource ThirdBackground}"/>
-                            </Border.BorderBrush>-->
+                        <Grid Margin="0,0,0,0">
+
 
                             <TextBlock Text="{Binding PageTitle}"  Style="{StaticResource PhoneTextLargeStyle}"
                                   Foreground="{StaticResource BlackBrush}" 
                                   TextWrapping="Wrap" FontWeight="Bold" FontSize="48" />
-                        </Border>
+                        </Grid>
                     </DataTemplate>
                 </phone:Pivot.HeaderTemplate>
+
                 <phone:Pivot.ItemTemplate>
                     <DataTemplate>
                         <Tempates:DevicePageTemplateSelector Content="{Binding}" VerticalAlignment="Top">
                             <Tempates:DevicePageTemplateSelector.Intro>
                                 <DataTemplate>
-                                    <Grid >
-                                        <ScrollViewer>
-                                            <StackPanel>
-                                                <Grid Margin="0,12,12,12">
-                                                    <telerikSlideView:PanAndZoomImage  
-                                                             Source="{Binding Image}" Stretch="UniformToFill" ZoomMode="None">
 
-                                                    </telerikSlideView:PanAndZoomImage>
+                                    <ScrollViewer Margin="12,0,0,0">
+                                        <Grid >
+                                            <StackPanel>
+                                                <Grid Margin="0,12,12,12" Background="{StaticResource PlaceHolderBackgroundBrush}">
+                                                    <coding4Fun:SuperImage PlaceholderImageSource="/Assets/NoImage_300x225.jpg" 
+                                                                           PlaceholderImageStretch="Uniform"
+                                                                           Source="{Binding Image}" 
+                                                                           Stretch="UniformToFill">
+
+                                                    </coding4Fun:SuperImage>
+
 
                                                     <StackPanel VerticalAlignment="Bottom" >
                                                         <StackPanel.Background>
@@ -90,7 +95,8 @@
                                                         <TextBlock TextWrapping="Wrap" Text="{Binding PageTitle}" Margin="12,0,12,0"  Style="{StaticResource PhoneTextTitle2Style}" Foreground="White" ></TextBlock>
                                                     </StackPanel>
                                                 </Grid>
-                                                <TextBlock TextWrapping="Wrap" Text="{Binding Summary}" Style="{StaticResource PhoneTextNormalStyle}" Foreground="White" Margin="0,0,12,0"/>
+                                                <msp:HTMLTextBox  Html="{Binding Summary}" NavigaionPolitic="Automatic" />
+
                                                 <TextBlock TextWrapping="Wrap" Text="{Binding Categories}" Style="{StaticResource PhoneTextAccentStyle}" Margin="0,0,12,0">
                                                     <TextBlock.Foreground>
                                                         <SolidColorBrush Color="{StaticResource ThirdBackground}"/>
@@ -98,14 +104,15 @@
                                                 </TextBlock>
 
                                             </StackPanel>
-                                        </ScrollViewer>
-                                    </Grid>
+                                        </Grid>
+                                    </ScrollViewer>
+
 
                                 </DataTemplate>
                             </Tempates:DevicePageTemplateSelector.Intro>
                             <Tempates:DevicePageTemplateSelector.Guides>
                                 <DataTemplate>
-                                    <Grid>
+                                    <Grid Margin="12,0,0,0">
                                         <telerikPrimitives:RadDataBoundListBox 
                                         Name="GuidesList"
             			                ItemsSource="{Binding Items}" 
@@ -113,7 +120,7 @@
                                         ItemTemplate="{StaticResource SeachResultLine}" >
                                             <i:Interaction.Triggers>
                                                 <i:EventTrigger EventName="ItemTap">
-                                                    <cmd:EventToCommand Command="{Binding DataContext.GoToGuide,  Mode=OneWay, ElementName=LayoutRoot}"  />
+                                                    <cmd:EventToCommand CommandParameter="{Binding SelectedItem, ElementName=GuidesList }"  Command="{Binding DataContext.GoToGuide,  Mode=OneWay, ElementName=LayoutRoot}"  />
 
                                                 </i:EventTrigger>
                                             </i:Interaction.Triggers>
@@ -124,6 +131,7 @@
                         </Tempates:DevicePageTemplateSelector>
                     </DataTemplate>
                 </phone:Pivot.ItemTemplate>
+
             </phone:Pivot>
         </Grid>
         <ProgressBar VerticalAlignment="Top"

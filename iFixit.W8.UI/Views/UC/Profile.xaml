@@ -1,0 +1,51 @@
+﻿<UserControl
+    x:Class="iFixit.W8.UI.Views.UC.Profile"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:iFixit.W8.UI.Views.UC"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:CodeConverters="using:iFixit.W8.UI.Common"
+    xmlns:metroEventToCommand="using:MetroEventToCommand"
+    xmlns:xamltoolkit="using:WinRTXamlToolkit.Controls"
+    xmlns:coding4FunControls ="using:Coding4Fun.Toolkit.Controls"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="400"
+       
+     DataContext="{Binding Source={StaticResource Locator}, Path=Profile}"
+    >
+    <UserControl.Resources>
+      
+    </UserControl.Resources>
+    <Grid  >
+        <metroEventToCommand:EventToCommandManager.Collection>
+            <metroEventToCommand:EventToCommand Command="{Binding LoadProfile}" 
+                                            Event="Loaded"></metroEventToCommand:EventToCommand>
+        </metroEventToCommand:EventToCommandManager.Collection>
+        <StackPanel Orientation="Vertical">
+
+            <Grid Margin="12,0,0,0" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <coding4FunControls:SuperImage  Height="150"
+                                                PlaceholderImageStretch="UniformToFill" 
+                                                PlaceholderImageSource="/Assets/no_image.png" 
+                                                Stretch="UniformToFill" 
+                                                Source="{Binding  User.ImageUrl}" Width="150"  
+                                                                          />
+
+                <StackPanel Margin="20,0,0,0" Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Left">
+                    <TextBlock TextWrapping="Wrap" Text="{Binding User.UserName}" Style="{StaticResource GridHeaderTitle}" />
+                    <TextBlock TextWrapping="Wrap" Text="{Binding User.Email}"  Style="{StaticResource GridHeaderTitle}"/>
+                </StackPanel>
+            </Grid>
+        </StackPanel>
+        <UC:LoadingRing  DataContext="{Binding}"  xmlns:UC="using:iFixit.W8.UI.Views.UC" d:IsHidden="True"/>
+
+
+
+    </Grid>
+</UserControl>

@@ -26,6 +26,21 @@ namespace iFixit.Domain.ViewModels
 
 
 
+        private string _FavoritesDescription = International.Translation.LoginToViewYourFavorites;
+        public string FavoritesDescription
+        {
+            get { return this._FavoritesDescription; }
+            set
+            {
+                if (_FavoritesDescription != value)
+                {
+                    _FavoritesDescription = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
+
+
 
 
         private ObservableCollection<Models.UI.Category> _Categories = new ObservableCollection<Models.UI.Category>();
@@ -72,6 +87,35 @@ namespace iFixit.Domain.ViewModels
             }
         }
 
+
+        private Models.UI.RssItem _MainNews = new Models.UI.RssItem();
+        public Models.UI.RssItem MainNews
+        {
+            get { return this._MainNews; }
+            set
+            {
+                if (_MainNews != value)
+                {
+                    _MainNews = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
+        
+
+        private ObservableCollection<Models.UI.RssItem> _News = new ObservableCollection<Models.UI.RssItem>();
+        public ObservableCollection<Models.UI.RssItem> News
+        {
+            get { return this._News; }
+            set
+            {
+                if (_News != value)
+                {
+                    _News = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
 
         private string _MainCollectionDescriptions;
         public string MainCollectionDescriptions
@@ -162,18 +206,38 @@ namespace iFixit.Domain.ViewModels
         }
 
 
-        private ObservableCollection<Models.UI.HomeItem> _SelectedFavoritesItems = new ObservableCollection<Models.UI.HomeItem>();
-        public ObservableCollection<Models.UI.HomeItem> SelectedFavoritesItems
+
+        private bool _IsLoggedIn=false;
+        public bool IsLoggedIn
+        {
+            get { return this._IsLoggedIn; }
+            set
+            {
+                if (_IsLoggedIn != value)
+                {
+                    _IsLoggedIn = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
+        
+
+        private ObservableCollection<object> _SelectedFavoritesItems = new ObservableCollection<object>();
+        public ObservableCollection<object> SelectedFavoritesItems
         {
             get { return this._SelectedFavoritesItems; }
             set
             {
-                if (_SelectedFavoritesItems != value)
-                {
-                    _SelectedFavoritesItems = value;
 
-                    NotifyPropertyChanged();
+                _SelectedFavoritesItems = value;
+
+                if (_SelectedFavoritesItems.Count > 0)
+                {
+                    SelectionMode = true;
                 }
+                else { SelectionMode = false; }
+                NotifyPropertyChanged();
+
             }
         }
 
@@ -208,6 +272,13 @@ namespace iFixit.Domain.ViewModels
         }
 
 
+
+
+        
+        
+        
+
+
         #endregion
 
         #region Commands
@@ -222,20 +293,29 @@ namespace iFixit.Domain.ViewModels
                 return _GoToNextCollection ?? (_GoToNextCollection = new RelayCommand<int>(
                  async (param) =>
                  {
-                     LoadingCounter++;
-                     CollectionsItems.Clear();
-                     var _ResultsCollections = await getCollections(param);
-                     Task[] guidesToLoad = new Task[_ResultsCollections[param].guideids.Count];
 
-                     for (int i = 0; i < _ResultsCollections[param].guideids.Count; i++)
+                     if (_settingsService.IsConnectedToInternet())
                      {
-                         guidesToLoad[i] = GetGuide(_ResultsCollections[param].guideids[i].ToString());
+                         LoadingCounter++;
+                         CollectionsItems.Clear();
+                         var _ResultsCollections = await getCollections(param);
+                         Task[] guidesToLoad = new Task[_ResultsCollections[param].guideids.Count];
+
+                         for (int i = 0; i < _ResultsCollections[param].guideids.Count; i++)
+                         {
+                             guidesToLoad[i] = GetGuide(_ResultsCollections[param].guideids[i].ToString());
+
+                         }
+
+                         await Task.WhenAll(guidesToLoad);
+
+                         LoadingCounter--;
+                     }
+                     else
+                     {
+                         await _uxService.ShowAlert(International.Translation.NoConnection);
 
                      }
-
-                     await Task.WhenAll(guidesToLoad);
-
-                     LoadingCounter--;
                  }));
             }
         }
@@ -256,14 +336,13 @@ namespace iFixit.Domain.ViewModels
                      Task[] foldersToDelete = new Task[SelectedFavoritesItems.Count];
                      for (int i = 0; i < SelectedFavoritesItems.Count; i++)
                      {
-                         toDelete[i] = Broker.RemoveFavorites(AppBase.Current.User, SelectedFavoritesItems[i].UniqueId);
-                         foldersToDelete[i] = _storageService.RemoveFolder(string.Format(Constants.GUIDE_CACHE_FOLDER, SelectedFavoritesItems[i].UniqueId));
+                         Models.UI.HomeItem item = SelectedFavoritesItems[i] as Models.UI.HomeItem;
+                         toDelete[i] = Broker.RemoveFavorites(AppBase.Current.User, item.UniqueId);
+                         foldersToDelete[i] = _storageService.RemoveFolder(string.Format(Constants.GUIDE_CACHE_FOLDER, item.UniqueId));
                      }
 
                      await Task.WhenAll(toDelete);
                      await Task.WhenAll(foldersToDelete);
-
-
                      await GetUserFavorites();
 
                      this.SelectionMode = !this.SelectionMode;
@@ -278,19 +357,52 @@ namespace iFixit.Domain.ViewModels
             get
             {
                 return _SetSelectionMode ?? (_SetSelectionMode = new RelayCommand(
-                async () =>
-                {
-                    if (this.FavoritesItems.Count == 0)
-                    {
-                        _navigationService.Navigate<Login>(false);
-                    }
-                    else
-                    {
-                        this.SelectionMode = !this.SelectionMode;
-                    }
+                 () =>
+                 {
+                     if (this.FavoritesItems.Count == 0)
+                     {
+                         _navigationService.Navigate<Login>(false);
+                     }
+                     else
+                     {
+                         this.SelectionMode = !this.SelectionMode;
+                     }
 
 
-                }));
+                 }));
+            }
+        }
+
+        private RelayCommand _ClearSelectedItems;
+        public RelayCommand ClearSelectedItems
+        {
+            get
+            {
+                return _ClearSelectedItems ?? (_ClearSelectedItems = new RelayCommand(
+                 () =>
+                 {
+                     this.SelectedFavoritesItems.Clear();
+
+
+                 }));
+            }
+        }
+
+        private RelayCommand _SelectAllSelectedItems;
+        public RelayCommand SelectAllSelectedItems
+        {
+            get
+            {
+                return _SelectAllSelectedItems ?? (_SelectAllSelectedItems = new RelayCommand(
+                 () =>
+                 {
+                     foreach (var item in this.FavoritesItems)
+                     {
+                         SelectedFavoritesItems.Add(item);
+                     }
+
+
+                 }));
             }
         }
 
@@ -368,10 +480,12 @@ namespace iFixit.Domain.ViewModels
             get
             {
                 return _GoToGuide ?? (_GoToGuide = new RelayCommand<iFixit.Domain.Models.UI.HomeItem>(
-                 (SelectedGuide) =>
-                 {
+             async (SelectedGuide) =>
+             {
 
-                     try
+                 try
+                 {
+                     if (_settingsService.IsConnectedToInternet())
                      {
                          LoadingCounter++;
                          AppBase.Current.GuideId = SelectedGuide.UniqueId;
@@ -379,13 +493,19 @@ namespace iFixit.Domain.ViewModels
                          SelectedGuide = null;
                          LoadingCounter--;
                      }
-                     catch (Exception ex)
+                     else
                      {
-                         LoadingCounter--;
-                         throw ex;
-                     }
+                         await _uxService.ShowAlert(International.Translation.NoConnection);
 
-                 }));
+                     }
+                 }
+                 catch (Exception ex)
+                 {
+                     LoadingCounter--;
+                     throw ex;
+                 }
+
+             }));
             }
         }
 
@@ -396,24 +516,32 @@ namespace iFixit.Domain.ViewModels
             get
             {
                 return _GoToCategory ?? (_GoToCategory = new RelayCommand<Models.UI.Category>(
-                 (selectedCategory) =>
-                 {
+                async (selectedCategory) =>
+                {
 
-                     try
-                     {
-                         LoadingCounter++;
-                         AppBase.Current.CurrentPage = 0;
-                         SelectedCategory = null;
-                         _navigationService.Navigate<SubCategories>(true, selectedCategory);
-                         LoadingCounter--;
-                     }
-                     catch (Exception ex)
-                     {
-                         LoadingCounter--;
-                         throw ex;
-                     }
+                    try
+                    {
+                        if (_settingsService.IsConnectedToInternet())
+                        {
+                            LoadingCounter++;
+                            AppBase.Current.CurrentPage = 0;
+                            SelectedCategory = null;
+                            _navigationService.Navigate<SubCategories>(true, selectedCategory);
+                            LoadingCounter--;
+                        }
+                        else
+                        {
+                            await _uxService.ShowAlert(International.Translation.NoConnection);
 
-                 }));
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        LoadingCounter--;
+                        throw ex;
+                    }
+
+                }));
             }
 
         }
@@ -430,13 +558,21 @@ namespace iFixit.Domain.ViewModels
                 {
                     await LoadUser();
 
+                    var isStart = this.NavigationParameter<string>();
+
                     bool firstLoad = false;
 
                     switch (this.NavigationType)
                     {
                         case NavigationModes.New:
-                            firstLoad = true;
-
+                            if (string.IsNullOrEmpty(isStart))
+                                firstLoad = true;
+                            else
+                            {
+                                LoadingCounter++;
+                                await GetUserFavorites();
+                                LoadingCounter--;
+                            }
                             break;
                         case NavigationModes.Forward:
                             break;
@@ -465,14 +601,14 @@ namespace iFixit.Domain.ViewModels
                             try
                             {
 
-                                Models.UI.Category Result = null;
+
                                 Models.REST.V0_1.Collections collections = null;
 
                                 // must do paralel ....
-                               // var _ResultsCategory = GetCategories(Result);
+                                // var _ResultsCategory = GetCategories(Result);
                                 var _ResultsCollections = getCollections(0);
                                 var _ResultLogin = GetUserFavorites();
-                                await Task.WhenAll( _ResultsCollections, _ResultLogin);
+                                await Task.WhenAll(_ResultsCollections, _ResultLogin);
 
                                 //Result = _ResultsCategory.Result;
                                 //TODO: New UI
@@ -494,15 +630,29 @@ namespace iFixit.Domain.ViewModels
 
                                 for (int i = 0; i < collections[0].guideids.Count; i++)
                                 {
-                                    guidesToLoad[i] = GetGuide(collections[0].guideids[i].ToString());
+                                    var item = collections[0].guideids[i].ToString();
+                                    if (!CollectionsItems.Any(o => o.UniqueId == item))
+                                        this.CollectionsItems.Add(new Models.UI.HomeItem
+                                        {
+                                            UniqueId = item,
+                                            IndexOf = i
+                                        });
+                                    guidesToLoad[i] = GetGuide(item);
 
                                 }
 
-                               await Task.WhenAll(guidesToLoad);
+                                if (AppBase.Current.ExtendeInfoApp)
+                                {
+                                    News = await Utils.LoadRss(_uxService, _settingsService);
+                                    if (News.Count > 0)
+                                        MainNews = News[0];
+
+                                }
+                                await Task.WhenAll(guidesToLoad);
                                 await Task.WhenAll(categoriesToLoad);
 
 
-
+                              
 
                             }
                             catch (Exception ex)
@@ -545,7 +695,7 @@ namespace iFixit.Domain.ViewModels
             {
                 Models.REST.V0_1.Collections collections = new Models.REST.V0_1.Collections();
                 LoadingCounter++;
-                var isCollectionsCached = await _storageService.Exists(Constants.COLLECTIONS);
+                var isCollectionsCached = await _storageService.Exists(Constants.COLLECTIONS, new TimeSpan(0, 12, 0, 0));
                 if (isCollectionsCached)
                 {
                     var rd = await _storageService.ReadData(Constants.COLLECTIONS);
@@ -613,6 +763,7 @@ namespace iFixit.Domain.ViewModels
             LoadingCounter++;
             if (AppBase.Current.User != null)
             {
+                IsLoggedIn = true;
                 if (_settingsService.IsConnectedToInternet())
                 {
                     var r = await Broker.GetFavorites(AppBase.Current.User);
@@ -627,6 +778,8 @@ namespace iFixit.Domain.ViewModels
             }
             else
             {
+                 IsLoggedIn=false;
+                FavoritesDescription = International.Translation.LoginToViewYourFavorites;
                 FavoritesItems.Clear();
             }
             LoadingCounter--;
@@ -636,20 +789,32 @@ namespace iFixit.Domain.ViewModels
         {
             FavoritesItems.Clear();
             HasFavorites = false;
+
             if (r != null && r.Count() > 0)
             {
+                FavoritesDescription = string.Empty;
                 HasFavorites = true;
                 foreach (var item in r)
                 {
                     if (!FavoritesItems.Any(o => o.UniqueId == item.guide.guideid.ToString()))
                         FavoritesItems.Add(new Models.UI.HomeItem
                         {
-                            Name = item.guide.title,
-                            UniqueId = item.guide.guideid.ToString(),
+                            Name = item.guide.title
+                            ,
+                            UniqueId = item.guide.guideid.ToString()
+                            ,
                             ImageUrl = item.guide.image != null ? item.guide.image.standard : ""
+                            ,
+                            BigImageUrl = item.guide.image != null ? item.guide.image.large : ""
+                            ,
+                            IndexOf = 1
                         });
                     //TODO: check if guide is stored and downloaded
                 }
+            }
+            else
+            {
+                FavoritesDescription = International.Translation.NoFavorites;
             }
 
         }
@@ -659,13 +824,14 @@ namespace iFixit.Domain.ViewModels
             LoadingCounter++;
             string cachedItemName = string.Format(Constants.GUIDE, idGuide);
             Debug.WriteLine(string.Format("going for guide :{0}", idGuide));
-            var isCategoryCached = await _storageService.Exists(cachedItemName);
+            var isCategoryCached = await _storageService.Exists(cachedItemName, new TimeSpan(5, 0, 0, 0));
 
             RESTModels.Guide.RootObject guide = null;
             if (isCategoryCached)
             {
-                Debug.WriteLine(string.Format("Cached :{0}", idGuide));
+                Debug.WriteLine(string.Format("going for cached :{0}", idGuide));
                 var rd = await _storageService.ReadData(cachedItemName);
+                Debug.WriteLine(string.Format("cached :{0} : {1}", idGuide, rd));
                 guide = rd.LoadFromJson<RESTModels.Guide.RootObject>();
             }
             else
@@ -676,12 +842,23 @@ namespace iFixit.Domain.ViewModels
                 await _storageService.WriteData(cachedItemName, await guide.SaveAsJson());
             }
 
-            CollectionsItems.Add(new Models.UI.HomeItem
+
+            var itemtoUpdate = CollectionsItems.SingleOrDefault(o => o.UniqueId == idGuide);
+            if (itemtoUpdate != null)
             {
-                Name = guide.title,
-                ImageUrl = guide.image.standard,
-                UniqueId = guide.guideid.ToString()
-            });
+                itemtoUpdate.Name = guide.title;
+                itemtoUpdate.ImageUrl = guide.image.standard;
+                itemtoUpdate.BigImageUrl = guide.image.large;
+
+            }
+            else
+            {
+                throw new ArgumentException("Where's the guide?" + idGuide);
+            }
+
+
+            //if (CollectionsItems.Where(o => o.UniqueId == newCollectionItem.UniqueId).SingleOrDefault() == null)
+            //    CollectionsItems.Add(newCollectionItem);
             LoadingCounter--;
 
         }
@@ -691,22 +868,26 @@ namespace iFixit.Domain.ViewModels
 
             LoadingCounter++;
             Debug.WriteLine(string.Format("going for category :{0}", idCategory));
-            var isCategoryCached = await _storageService.Exists(Constants.CATEGORIES + idCategory);
+            var isCategoryCached = await _storageService.Exists(Constants.CATEGORIES + idCategory, new TimeSpan(5, 0, 0, 0));
             RESTModels.Category.RootObject category = null;
             if (isCategoryCached)
             {
+                Debug.WriteLine(string.Format("get from cache category :{0}", idCategory));
                 var rd = await _storageService.ReadData(Constants.CATEGORIES + idCategory);
                 category = rd.LoadFromJson<RESTModels.Category.RootObject>();
             }
             else
             {
+                Debug.WriteLine(string.Format("get from service category :{0}", idCategory));
                 category = await Broker.GetCategory(idCategory);
+
                 await _storageService.WriteData(Constants.CATEGORIES + idCategory, await category.SaveAsJson());
+                Debug.WriteLine(string.Format("saved category :{0}", idCategory));
             }
             if (category.image != null)
             {
-              var c =    Categories.Single(o => o.UniqueId == idCategory);
-              c.ImageUrl = category.image.standard;
+                var c = Categories.Single(o => o.UniqueId == idCategory);
+                c.ImageUrl = category.image.standard;
             }
             LoadingCounter--;
 
@@ -719,7 +900,7 @@ namespace iFixit.Domain.ViewModels
             try
             {
                 LoadingCounter++;
-                var isCached = await _storageService.Exists(Constants.CATEGORIES);
+                var isCached = await _storageService.Exists(Constants.CATEGORIES, new TimeSpan(10, 0, 0, 0));
 
                 if (isCached)
                 {
@@ -760,23 +941,23 @@ namespace iFixit.Domain.ViewModels
             : base(navigationService, storageService, settingsService, uxService, peerConnector)
         {
 
-            this.Categories.Add(new Models.UI.Category { Order = 0 , Name = "pc", UniqueId ="pc" });
-            this.Categories.Add(new Models.UI.Category { Order = 1, Name = "electronics", UniqueId = "electronics" });
-            this.Categories.Add(new Models.UI.Category { Order = 2, Name = "media player", UniqueId = "media player" });
-            this.Categories.Add(new Models.UI.Category { Order = 3, Name = "computer hardware", UniqueId = "computer hardware" });
-            this.Categories.Add(new Models.UI.Category { Order = 4, Name = "game console", UniqueId = "game console" });
-            this.Categories.Add(new Models.UI.Category { Order = 5, Name = "car and truck", UniqueId = "car and truck" });
-            this.Categories.Add(new Models.UI.Category { Order = 6, Name = "appliance", UniqueId = "appliance" });
-            this.Categories.Add(new Models.UI.Category { Order = 7, Name = "mac", UniqueId = "mac" });
-            this.Categories.Add(new Models.UI.Category { Order = 8, Name = "apparel", UniqueId = "apparel" });
-            this.Categories.Add(new Models.UI.Category { Order = 9, Name = "phone", UniqueId = "phone" });
-            this.Categories.Add(new Models.UI.Category { Order = 10, Name = "camera", UniqueId = "camera" });
-            this.Categories.Add(new Models.UI.Category { Order = 11, Name = "vehicle", UniqueId = "vehicle" });
-            this.Categories.Add(new Models.UI.Category { Order = 12, Name = "tablet", UniqueId = "tablet" });
-            this.Categories.Add(new Models.UI.Category { Order = 13, Name = "household", UniqueId = "household" });
-            this.Categories.Add(new Models.UI.Category { Order = 14, Name = "skills", UniqueId = "skills" });
+            this.Categories.Add(new Models.UI.Category { IndexOf = 1, Order = 0, Name = "pc", UniqueId = "pc" });
+            this.Categories.Add(new Models.UI.Category { IndexOf = 1, Order = 1, Name = "electronics", UniqueId = "electronics" });
+            this.Categories.Add(new Models.UI.Category { IndexOf = 1, Order = 2, Name = "media player", UniqueId = "media player" });
+            this.Categories.Add(new Models.UI.Category { IndexOf = 1, Order = 3, Name = "computer hardware", UniqueId = "computer hardware" });
+            this.Categories.Add(new Models.UI.Category { IndexOf = 1, Order = 4, Name = "game console", UniqueId = "game console" });
+            this.Categories.Add(new Models.UI.Category { IndexOf = 1, Order = 5, Name = "car and truck", UniqueId = "car and truck" });
+            this.Categories.Add(new Models.UI.Category { IndexOf = 1, Order = 6, Name = "appliance", UniqueId = "appliance" });
+            this.Categories.Add(new Models.UI.Category { IndexOf = 1, Order = 7, Name = "mac", UniqueId = "mac" });
+            this.Categories.Add(new Models.UI.Category { IndexOf = 1, Order = 8, Name = "apparel", UniqueId = "apparel" });
+            this.Categories.Add(new Models.UI.Category { IndexOf = 1, Order = 9, Name = "phone", UniqueId = "phone" });
+            this.Categories.Add(new Models.UI.Category { IndexOf = 1, Order = 10, Name = "camera", UniqueId = "camera" });
+            this.Categories.Add(new Models.UI.Category { IndexOf = 1, Order = 11, Name = "vehicle", UniqueId = "vehicle" });
+            this.Categories.Add(new Models.UI.Category { IndexOf = 1, Order = 12, Name = "tablet", UniqueId = "tablet" });
+            this.Categories.Add(new Models.UI.Category { IndexOf = 1, Order = 13, Name = "household", UniqueId = "household" });
+            this.Categories.Add(new Models.UI.Category { IndexOf = 1, Order = 14, Name = "skills", UniqueId = "skills" });
 
-          
+
         }
     }
 }

@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>MSPToolkit</id>
+    <version>2.6.7</version>
+    <title>MSP Toolkit</title>
+    <authors>Dmitry Adodin, Dmitry Kazarin, Samat Kurmanov</authors>
+    <owners>Dmitry Adodin, Dmitry Kazarin, Samat Kurmanov</owners>
+    <licenseUrl>http://msptoolkit.codeplex.com/license</licenseUrl>
+    <projectUrl>http://msptoolkit.codeplex.com/</projectUrl>
+    <iconUrl>https://public.sn2.livefilestore.com/y1p73L2_wWH5GEBmEKR66B1nWzyD3jsVhA7eZhI1ZIPWLPmDGAPtUpoMnfxjwBzBS-SHA7r2wMW9U51wEhQq4tOng/ApplicationIcon.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>MSP Toolkit provides some helpers and utilites for WP7 maded by Russian Microsoft Student Partners.
+Includes: 
+ - TrialHelper 
+ - IsolatedStorageHelper 
+ - TileImageGenerator
+ - HtmlTextBox
+ - SwitchFocusOnKeyPressBehavior
+ - TextBoxWatermarkBehavior
+ - WebBrowserHtmlPropertyBehavior
+
+Single-byte encodings: 
+  windows1250 — Central and East European Latin 
+  windows1251 — Cyrillic 
+  windows1252 — West European Latin 
+  windows1253 — Greek 
+  windows1254 — Turkish 
+  windows1255 — Hebrew 
+  windows1256 — Arabic 
+  windows1257 — Baltic 
+  windows1258 — Vietnamese 
+  windows874 — Thai</description>
+    <releaseNotes>TileImageGenerator:
+&gt;Support for wp7.8/wp8 tiles size
+
+HTMLTextBox &amp; HTMLViewer:
+ &gt; Base64 image supported
+ &gt; Other bugfixing</releaseNotes>
+    <copyright>2013</copyright>
+    <language />
+    <tags>wp7 wp7.8 silverlight encodings tiles toolkit isolated storage trialhelper msp html behaviors</tags>
+  </metadata>
+</package>

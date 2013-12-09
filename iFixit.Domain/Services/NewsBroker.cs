@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
@@ -24,6 +25,7 @@ namespace iFixit.Domain.Services
             response.EnsureSuccessStatusCode();
 
             var content = await response.Content.ReadAsStringAsync();
+            Debug.WriteLine(content);
             content = content.Replace("content:encoded", "htmlcontent").Replace("dc:creator","creator");
             Result = System.Xml.Linq.XDocument.Parse(content);
 

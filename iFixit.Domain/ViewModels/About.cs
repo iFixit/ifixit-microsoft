@@ -27,7 +27,7 @@ namespace iFixit.Domain.ViewModels
                 }
             }
         }
-        
+
 
         private ObservableCollection<Models.UI.RssItem> _News = new ObservableCollection<Models.UI.RssItem>();
         public ObservableCollection<Models.UI.RssItem> News
@@ -59,7 +59,32 @@ namespace iFixit.Domain.ViewModels
         }
 
 
-        //GoToNewsItem
+        private RelayCommand<string> _GoToItem;
+        public RelayCommand<string> GoToItem
+        {
+            get
+            {
+                return _GoToItem ?? (_GoToItem = new RelayCommand<string>(
+                async (item) =>
+                {
+
+                    try
+                    {
+
+                        await _uxService.OpenBrowser(item);
+                        SelectedItem = null;
+
+                    }
+                    catch (Exception ex)
+                    {
+                        LoadingCounter--;
+                        throw ex;
+                    }
+
+                }));
+            }
+
+        }
 
         private RelayCommand<Models.UI.RssItem> _GoToNewsItem;
         public RelayCommand<Models.UI.RssItem> GoToNewsItem
@@ -73,8 +98,8 @@ namespace iFixit.Domain.ViewModels
                     try
                     {
 
-                       await _uxService.OpenBrowser(item.Url);
-                       SelectedItem = null;
+                        await _uxService.OpenBrowser(item.Url);
+                        SelectedItem = null;
 
                     }
                     catch (Exception ex)
@@ -117,37 +142,48 @@ namespace iFixit.Domain.ViewModels
         }
 
 
-        private async Task LoadRss()
+        public async Task LoadRss()
         {
-            NewsBroker nBroker = new NewsBroker();
 
-            var xml = await nBroker.GetNews();
-
-            var itemNodes = xml.Nodes();
-
-            var morenodes = (from n in xml.Descendants("rss") select n).Descendants("item").Select(x => new
-            Models.UI.RssItem
+            if (_settingsService.IsConnectedToInternet())
             {
-                Title = (string)x.Element("title")
-                ,
-                Summary = (string)x.Element("description")
-                
-                ,
-                ImageUrl = Regex.Match(((string)(x.Element("htmlcontent"))), "<img.+?src=[\"'](.+?)[\"'].+?>", RegexOptions.IgnoreCase).Groups[1].Value
+                NewsBroker nBroker = new NewsBroker();
 
-                ,
-                Url = (string)x.Element("guid")
-                ,
-                PubDate = (DateTime)x.Element("pubDate")
-                ,  Author = string.Format(International.Translation.RssDateAndAuthor, (string)x.Element("creator"))
-            }).ToList();
+                var xml = await nBroker.GetNews();
 
-          
-            News.Clear();
-            foreach (var item in morenodes)
-            {
-                News.Add(item);
+                var itemNodes = xml.Nodes();
+
+                var morenodes = (from n in xml.Descendants("rss") select n).Descendants("item").Select(x => new
+                Models.UI.RssItem
+                {
+                    Title = (string)x.Element("title")
+                    ,
+                    Summary = (string)x.Element("description")
+
+                    ,
+                    ImageUrl = Regex.Match(((string)(x.Element("htmlcontent"))), "<img.+?src=[\"'](.+?)[\"'].+?>", RegexOptions.IgnoreCase).Groups[1].Value
+
+                    ,
+                    Url = (string)x.Element("guid")
+                    ,
+                    PubDate = (DateTime)x.Element("pubDate")
+                    ,
+                    Author = string.Format(International.Translation.RssDateAndAuthor, (string)x.Element("creator"))
+                }).ToList();
+
+
+                News.Clear();
+                foreach (var item in morenodes)
+                {
+                    News.Add(item);
+                }
             }
+            else
+            {
+                await _uxService.ShowAlert(International.Translation.NoConnection);
+
+            }
+
         }
 
         public About(INavigation<Domain.Interfaces.NavigationModes> navigationService, IStorage storageService, ISettings settingsService, IUxService uxService, IPeerConnector peerConnector)

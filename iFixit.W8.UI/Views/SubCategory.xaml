@@ -1,0 +1,326 @@
+﻿<common:BasePage
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:iFixit.W8.UI.Views"
+    xmlns:common="using:iFixit.W8.UI.Common"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:Extensions="using:WinRTXamlToolkit.Controls.Extensions"
+    xmlns:WinRTXamlToolkit="using:WinRTXamlToolkit.Controls"
+    xmlns:metroEventToCommand="using:MetroEventToCommand"
+    xmlns:callistoEffects="using:Callisto.Effects"
+    xmlns:Q42Controls="using:Q42.WinRT.Controls"
+    xmlns:coding4FunControls ="using:Coding4Fun.Toolkit.Controls"
+    xmlns:shared="using:iFixit.UI.Shared"
+    x:Name="pageRoot"
+    x:Class="iFixit.W8.UI.Views.SubCategory"
+    DataContext="{Binding SubCategories, Mode=OneWay, Source={StaticResource Locator}}" 
+    mc:Ignorable="d">
+
+    <common:LayoutAwarePage.Resources>
+
+
+        <Style x:Key="PathBasedAppBarButtonStyle" BasedOn="{StaticResource AppBarButtonStyle}" TargetType="ButtonBase">
+            <Setter Property="ContentTemplate">
+                <Setter.Value>
+                    <DataTemplate>
+                        <Path Width="18" Height="18" 
+             Stretch="Uniform" HorizontalAlignment="Center" VerticalAlignment="Center"
+                       Margin="0 0 2 0" RenderTransformOrigin="0.5,0.5" 
+             Fill="{Binding Path=Foreground, RelativeSource={RelativeSource Mode=TemplatedParent}}" 
+             Data="{Binding Path=Content, RelativeSource={RelativeSource Mode=TemplatedParent}}"/>
+                    </DataTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+
+        <Style x:Key="HomeAppBarButtonStyle" BasedOn="{StaticResource PathBasedAppBarButtonStyle}" TargetType="ButtonBase">
+            <Setter Property="AutomationProperties.Name" Value="Home"/>
+            <Setter Property="AutomationProperties.AutomationId" Value="HomeAppBarButton"/>
+            <Setter Property="Content" Value="F1M1337.43,1007.95L1337.43,1027.45 1350.23,1027.45 1350.23,1010.99 1362.27,1010.99 1362.27,1027.51 1374.51,1027.51 1374.51,1007.83 1356.25,991.558 1337.43,1007.95z M1374.48,995.962L1374.48,985.032 1368.65,985.032 1368.65,990.799 1356.17,979.755 1356.13,979.713 1329.47,1003.31 1333.08,1007.39 1356.13,986.992 1379.2,1007.41 1382.81,1003.34 1374.48,995.962z"/>
+        </Style>
+
+        <Style x:Key="CategoryGridStyle" TargetType="GridViewItem">
+            <Setter Property="FontFamily" Value="{StaticResource ContentControlThemeFontFamily}"/>
+            <Setter Property="FontSize" Value="{StaticResource ControlContentThemeFontSize}"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="TabNavigation" Value="Local"/>
+            <Setter Property="IsHoldingEnabled" Value="True"/>
+            <Setter Property="Margin" Value="0"/>
+            <Setter Property="Padding" Value="10"></Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="GridViewItem">
+
+                        <Border x:Name="OuterContainer" Height="146" Width="160"  BorderThickness="1" BorderBrush="{StaticResource BorderColorBrush}">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal"/>
+                                    <VisualState x:Name="PointerOver">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="OuterContainer">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource HoverColorBrush}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background" Storyboard.TargetName="TitleArea">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource HoverColorBrush}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity" Storyboard.TargetName="TitleArea">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="0.9"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Pressed">
+                                        <Storyboard>
+                                            <PointerDownThemeAnimation TargetName="OuterContainer"/>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="OuterContainer">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource HoverColorBrush}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background" Storyboard.TargetName="TitleArea">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource HoverColorBrush}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity" Storyboard.TargetName="TitleArea">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="0.9"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="PointerOverPressed">
+                                        <Storyboard>
+                                            <PointerDownThemeAnimation TargetName="OuterContainer"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Disabled">
+                                        <Storyboard>
+
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                                <VisualStateGroup x:Name="FocusStates">
+                                    <VisualState x:Name="Focused">
+                                        <Storyboard>
+                                            <DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="FocusVisual"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Unfocused"/>
+                                    <VisualState x:Name="PointerFocused"/>
+                                </VisualStateGroup>
+
+                                <VisualStateGroup x:Name="DataVirtualizationStates">
+                                    <VisualState x:Name="DataAvailable"/>
+                                    <VisualState x:Name="DataPlaceholder">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Duration="0" Storyboard.TargetProperty="Visibility" Storyboard.TargetName="PlaceholderTextBlock">
+                                                <DiscreteObjectKeyFrame KeyTime="0">
+                                                    <DiscreteObjectKeyFrame.Value>
+                                                        <Visibility>Visible</Visibility>
+                                                    </DiscreteObjectKeyFrame.Value>
+                                                </DiscreteObjectKeyFrame>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Duration="0" Storyboard.TargetProperty="Visibility" Storyboard.TargetName="PlaceholderRect">
+                                                <DiscreteObjectKeyFrame KeyTime="0">
+                                                    <DiscreteObjectKeyFrame.Value>
+                                                        <Visibility>Visible</Visibility>
+                                                    </DiscreteObjectKeyFrame.Value>
+                                                </DiscreteObjectKeyFrame>
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+
+                            <Grid Name="ContentContainer">
+                                <coding4FunControls:SuperImage 
+                                                PlaceholderImageStretch="Uniform" 
+                                                PlaceholderImageSource="/Assets/no_image.png" 
+                                                Stretch="UniformToFill"
+                                                Source="{Binding ImageUrl}"  
+                                                HorizontalAlignment="Right"  >
+
+                                </coding4FunControls:SuperImage>
+
+
+                                <Grid VerticalAlignment="Bottom" Name="TitleArea">
+                                    <Grid.Background>
+                                        <SolidColorBrush Color="{StaticResource BorderColor}" Opacity="0.9" />
+                                    </Grid.Background>
+
+                                    <TextBlock VerticalAlignment="Bottom" TextWrapping="Wrap" Text="{Binding Name}" Margin="12"   
+                                                       Foreground="Black" 
+                                                       FontSize="16"   >
+
+                                    </TextBlock>
+                                </Grid>
+                                <metroEventToCommand:EventToCommandManager.Collection>
+                                    <metroEventToCommand:EventToCommand Command="{Binding DataContext.GoToCategory, ElementName=pageRoot, Mode=OneWay}"
+                                                    CommandParameter="{Binding}"  Event="Tapped"></metroEventToCommand:EventToCommand>
+                                </metroEventToCommand:EventToCommandManager.Collection>
+                            </Grid>
+
+
+
+                        </Border>
+
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+    </common:LayoutAwarePage.Resources>
+
+
+    <metroEventToCommand:EventToCommandManager.Collection>
+        <metroEventToCommand:EventToCommand Command="{Binding Load}" 
+                                            Event="Loaded"></metroEventToCommand:EventToCommand>
+    </metroEventToCommand:EventToCommandManager.Collection>
+
+
+
+    <Grid  Background="{StaticResource ThirdBackgroundBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="62"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ChildrenTransitions>
+            <TransitionCollection>
+                <ContentThemeTransition/>
+            </TransitionCollection>
+        </Grid.ChildrenTransitions>
+        <UC:TopMenu  DataContext="{Binding}"  xmlns:UC="using:iFixit.W8.UI.Views.UC"/>
+        <Grid Grid.Row="1">
+            <ScrollViewer VerticalScrollBarVisibility="Disabled" 
+                                  HorizontalScrollBarVisibility="Auto" 
+                                  Margin="0" Padding="0"
+                                  ZoomMode="Disabled" 
+                                  VerticalScrollMode="Disabled">
+                <Grid Margin="120,0,0,108">
+                    <Grid >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="340"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="20"/>
+                            <ColumnDefinition Width="Auto"/>
+
+                        </Grid.ColumnDefinitions>
+                        <Grid Margin="0,78,20,0">
+                            <ScrollViewer VerticalScrollMode="Auto" ZoomMode="Disabled"   ManipulationCompleted="ScrollLongDescrition_ManipulationCompleted"
+                                          x:Name="ScrollLongDescrition" VerticalScrollBarVisibility="Auto" Margin="0" Padding="0" 
+                                          HorizontalScrollBarVisibility="Disabled">
+                                <ScrollViewer.Background>
+                                    <SolidColorBrush Color="{StaticResource BaseBackground}"/>
+                                </ScrollViewer.Background>
+
+                                <StackPanel Width="320" Background="{StaticResource BaseBackgroundBrush}" Margin="0" >
+                                    <Grid   Background="{StaticResource BackgroundBrush}">
+                                        <coding4FunControls:SuperImage 
+                                        PlaceholderImageStretch="Uniform" 
+                                        PlaceholderImageSource="/Assets/no_image.png" 
+                                        Source="{Binding ImageUrl}" Stretch="UniformToFill" Width="320" HorizontalAlignment="Left"   />
+
+                                    </Grid>
+
+                                    <TextBlock Foreground="White" FontSize="20" Margin="10,10,10,0" Text="{Binding DisplayTitle}" TextWrapping="Wrap"></TextBlock>
+                                    <RichTextBlock Margin="10,0,30,50" Foreground="White" FontSize="18" Name="rbDescription" 
+                                           shared:Properties.Html="{Binding DataContext.LongDescription, ElementName=pageRoot}"
+                                           TextWrapping="Wrap"></RichTextBlock>
+                                </StackPanel>
+
+                            </ScrollViewer>
+                            <Grid VerticalAlignment="Bottom" Height="100" Margin="0" IsHitTestVisible="False" x:Name="GradientText">
+                                <Grid.Background>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#00333333"/>
+                                        <GradientStop Color="#FF333333" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Grid.Background>
+                            </Grid>
+                        </Grid>
+
+
+                        <Grid Margin="0,78,0,0"  Grid.Column="1"   Visibility="{Binding IsLoading, Converter={StaticResource NegativeBooleanToVisibilityConverter}}" >
+                            <shared:VariableGridView    Background="{StaticResource BackgroundBrush}"
+                                                    ItemsSource="{Binding Items, Mode=OneWay}" 
+                                                    SelectionMode="None" 
+                                                    IsSwipeEnabled="False"
+                                                    ItemRowSpanPropertyPath="IndexOf"
+                                                    ItemColSpanPropertyPath="IndexOf" 
+                                                    ItemContainerStyle="{StaticResource CategoryGridStyle}">
+
+                                <shared:VariableGridView.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <VariableSizedWrapGrid Orientation="Vertical" 
+                                                           Margin="10,10,10,0" 
+                                                           ItemHeight="166" ItemWidth="180" 
+                                                           MaximumRowsOrColumns="10"/>
+                                    </ItemsPanelTemplate>
+                                </shared:VariableGridView.ItemsPanel>
+
+                            </shared:VariableGridView>
+                        </Grid>
+                        <Grid Margin="0,78,20,0"  Grid.Column="3"   Visibility="{Binding HasGuides, Converter={StaticResource BooleanToVisibilityConverter}}">
+                            <shared:VariableGridView SelectionMode="None"   
+                                                Grid.Row="1" 
+                                                ItemsSource="{Binding Guides}"
+                                                ItemRowSpanPropertyPath="IndexOf"
+                                                Background="{StaticResource BackgroundBrush}"
+                                                ItemColSpanPropertyPath="IndexOf" 
+                                                IsSwipeEnabled="False" 
+                                                ItemContainerStyle="{StaticResource DeviceGuidesGridStyle}"
+                                              
+                                >
+
+                                <shared:VariableGridView.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <VariableSizedWrapGrid Orientation="Vertical" Margin="10,10,10,0" 
+                                                   ItemHeight="166" ItemWidth="340" MaximumRowsOrColumns="15"/>
+                                    </ItemsPanelTemplate>
+                                </shared:VariableGridView.ItemsPanel>
+                                <shared:VariableGridView.ItemTemplate>
+                                    <DataTemplate>
+
+                                        <Button  Width="320" Height="146"
+        					            Command="{Binding DataContext.GoToGuide, ElementName=pageRoot}" CommandParameter="{Binding}"
+        					            Content="{Binding Name}" Style="{StaticResource SmallerButtonStyleGuide}" 
+        					             />
+
+
+                                    </DataTemplate>
+                                </shared:VariableGridView.ItemTemplate>
+                            </shared:VariableGridView>
+                            <TextBlock HorizontalAlignment="Left"  Visibility="{Binding HasGuides, Converter={StaticResource NegativeBooleanToVisibilityConverter}}" TextWrapping="Wrap" Text="{Binding Labels.Translation.NoGuidesOnCategory, Mode=OneWay, Source={StaticResource LabelsManager}}" VerticalAlignment="Top" Style="{StaticResource GridHeaderTitle}" Margin="20"/>
+                        </Grid>
+                    </Grid>
+                    <Grid  Height="80" Margin="340,0,0,0"  VerticalAlignment="Top">
+                        <UC:BreadCrumbCategories DataContext="{Binding}" Margin="0,0,0,20" xmlns:UC="using:iFixit.W8.UI.Views.UC"/>
+                    </Grid>
+
+                </Grid>
+
+            </ScrollViewer>
+        </Grid>
+
+
+        <UC:LoadingRing Grid.RowSpan="2" DataContext="{Binding}"  xmlns:UC="using:iFixit.W8.UI.Views.UC" d:IsHidden="True"/>
+
+
+
+        <VisualStateManager.VisualStateGroups>
+
+            <!-- Visual states reflect the application's view state -->
+            <VisualStateGroup x:Name="ApplicationViewStates">
+                <VisualState x:Name="FullScreenLandscape"/>
+                <VisualState x:Name="Filled"/>
+
+                <!-- The entire page respects the narrower 100-pixel margin convention for portrait -->
+                <VisualState x:Name="FullScreenPortrait"/>
+
+                <!-- The back button and title have different styles when snapped -->
+                <VisualState x:Name="Snapped"/>
+
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+
+
+
+
+    </Grid>
+</common:BasePage>

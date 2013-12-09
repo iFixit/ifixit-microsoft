@@ -16,142 +16,113 @@
 	xmlns:telerikCore="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Core"
 	xmlns:ec="clr-namespace:Microsoft.Expression.Interactivity.Core;assembly=Microsoft.Expression.Interactions"
 	x:Class="iFixit.WP8.UI.Views.Login"
+	xmlns:UI="clr-namespace:iFixit.WP8.UI"
 	telerikCore:InteractionEffectManager.IsInteractionEnabled="True"
 	toolkit:TiltEffect.IsTiltEnabled="True"
   
-	SupportedOrientations="Portrait" Orientation="Portrait"
+	SupportedOrientations="PortraitOrLandscape" Orientation="Portrait"
 	mc:Ignorable="d" shell:SystemTray.Opacity="0" 
 >
 
-	<CodeConverters:PageBase.Resources>
-		<CodeConverters:NegativeBooleanVisibilityConverter x:Key="NegativeBooleanVisibilityConverter"/>
-		<CodeConverters:ArrayBoolVisibility x:Key="ArrayBoolVisibility"/>
-	</CodeConverters:PageBase.Resources>
+    <CodeConverters:PageBase.Resources>
+        <CodeConverters:NegativeBooleanVisibilityConverter x:Key="NegativeBooleanVisibilityConverter"/>
+        <CodeConverters:ArrayBoolVisibility x:Key="ArrayBoolVisibility"/>
+    </CodeConverters:PageBase.Resources>
 
 
 
-	<CodeConverters:PageBase.DataContext>
-		<Binding Mode="OneWay" Path="Login" Source="{StaticResource Locator}"/>
-	</CodeConverters:PageBase.DataContext>
+    <CodeConverters:PageBase.DataContext>
+        <Binding Mode="OneWay" Path="Login" Source="{StaticResource Locator}"/>
+    </CodeConverters:PageBase.DataContext>
 
 
-	<Grid x:Name="LayoutRoot" Background="{StaticResource BackgroundBrush}">
-		<i:Interaction.Behaviors>
-			<cimbalinoBehaviors:MultiApplicationBarBehavior SelectedIndex="0">
-				<cimbalinoBehaviors:ApplicationBar Opacity="0.5" >
-					<cimbalinoBehaviors:ApplicationBarIconButton 
+    <Grid x:Name="LayoutRoot" Background="{StaticResource BackgroundBrush}">
+        <i:Interaction.Behaviors>
+            <cimbalinoBehaviors:MultiApplicationBarBehavior SelectedIndex="0">
+                <cimbalinoBehaviors:ApplicationBar Opacity="0.5" >
+                    <cimbalinoBehaviors:ApplicationBarIconButton 
 						IsEnabled="{Binding IsLoading, Converter={StaticResource NegativeBooleanConverter}}"
 						Command="{Binding DoLoginP, Mode=OneTime}" 
 						IconUri="/Assets/ApplicationBar.Check.png" Text="{Binding ButtonLabel}" />
 
 
 
-					<cimbalinoBehaviors:ApplicationBarIconButton 
+                    <cimbalinoBehaviors:ApplicationBarIconButton 
 						IsEnabled="{Binding IsLoading, Converter={StaticResource NegativeBooleanConverter}}"
 						IsVisible="{Binding DoLoginProcess, Converter={StaticResource NegativeBooleanConverter}}"
 						Command="{Binding DoCancel, Mode=OneTime}" 
 						IconUri="/Assets/ApplicationBar.Cancel.png" Text="{Binding Labels.Translation.Cancel, Source={StaticResource LabelsManager}}" 
 														   />
 
-				</cimbalinoBehaviors:ApplicationBar>
+                </cimbalinoBehaviors:ApplicationBar>
 
-			</cimbalinoBehaviors:MultiApplicationBarBehavior>
-		</i:Interaction.Behaviors>
-		<Grid>
-		  
-			<Grid.RowDefinitions>
-				<RowDefinition Height="Auto"/>
-				<RowDefinition Height="*"/>
-			</Grid.RowDefinitions>
-			<Grid Grid.Row="0" Margin="0" Height="70">
-				<Grid.ColumnDefinitions>
-					<ColumnDefinition/>
-					<ColumnDefinition Width="2*"/>
-					<ColumnDefinition/>
-				</Grid.ColumnDefinitions>
-				<Button x:Name="button" HorizontalAlignment="Center" VerticalAlignment="Center" BorderThickness="0" Style="{StaticResource BorderLessGridButton02}">
-					<i:Interaction.Triggers>
-						<i:EventTrigger EventName="Tap">
-							<cmd:EventToCommand Command="{Binding DoLogin}" />
-						</i:EventTrigger>
-					</i:Interaction.Triggers>
-					<Image HorizontalAlignment="Center" Height="35" VerticalAlignment="Center" Source="/Assets/topbar/User-Profile.png"/>
-				</Button>
-				<Button HorizontalAlignment="Center" VerticalAlignment="Center" BorderThickness="0" Grid.Column="2" Style="{StaticResource BorderLessGridButton02}">
-					<i:Interaction.Triggers>
-                        <i:EventTrigger EventName="Tap">
-							<cmd:EventToCommand Command="{Binding GoHome}"/>
-						</i:EventTrigger>
-					</i:Interaction.Triggers>
-					<Image HorizontalAlignment="Center" VerticalAlignment="Center" Source="/Assets/topbar/Search-Find.png" Height="35"/>
-				</Button>
-				<Button HorizontalAlignment="Center" VerticalAlignment="Center" BorderThickness="0" Style="{StaticResource BorderLessGridButton02}" Grid.Column="1" Margin="0" Padding="0">
-					<i:Interaction.Triggers>
-                        <i:EventTrigger EventName="Tap">
-                            <cmd:EventToCommand  Command="{Binding GoToSearch}"/>
-						</i:EventTrigger>
-					</i:Interaction.Triggers>
-					<Image HorizontalAlignment="Center" VerticalAlignment="Center" Source="/Assets/iFixit_logo_black.png" Height="60"/>
-				</Button>
-			</Grid>
-			<Border Grid.Row="1"  BorderBrush="{StaticResource FourthBackgroundBrush}" BorderThickness="0,3,0,0" Background="{StaticResource ThirdBackgroundBrush}" >
-				<StackPanel x:Name="ContentPanel"  Grid.Row="1"  >
+            </cimbalinoBehaviors:MultiApplicationBarBehavior>
+        </i:Interaction.Behaviors>
 
-					<StackPanel Orientation="Vertical" Visibility="{Binding RegistrationProcess, Converter={StaticResource BooleanToVisibilityConverter}}">
-						<TextBlock TextWrapping="Wrap" 
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <UI:TopMenuControl x:Name="TopMenu"/>
+        <Border Grid.Row="1"  BorderBrush="{StaticResource FourthBackgroundBrush}" BorderThickness="0,3,0,0" Background="{StaticResource ThirdBackgroundBrush}" >
+            <ScrollViewer  VerticalScrollBarVisibility="Visible">
+                <Grid>
+                    <StackPanel x:Name="ContentPanel"  Grid.Row="1"   >
+
+                        <StackPanel Orientation="Vertical" Visibility="{Binding RegistrationProcess, Converter={StaticResource BooleanToVisibilityConverter}}">
+                            <TextBlock TextWrapping="Wrap" 
 							Text="{Binding Labels.Translation.UserName, Source={StaticResource LabelsManager}}" 
 							Foreground="{StaticResource MainForegroundBrush}" Margin="12,0,0,0" Style="{StaticResource JumpListStringStyle}"/>
-						<TextBox  TextWrapping="Wrap" Text="{Binding UserName, Mode=TwoWay}"/>
+                            <TextBox GotFocus="TextBox_GotFocus"  TextWrapping="Wrap" Text="{Binding UserName, Mode=TwoWay}" TabIndex="1" KeyUp="TextBox_KeyUp"/>
 
-					</StackPanel>
-					<TextBlock TextWrapping="Wrap" Text="{Binding Labels.Translation.Email, Source={StaticResource LabelsManager}}" Foreground="{StaticResource MainForegroundBrush}" Margin="12,0,0,0" Style="{StaticResource JumpListStringStyle}"/>
-					<TextBox TextWrapping="Wrap" Text="{Binding Email, Mode=TwoWay}" InputScope="EmailUserName"/>
+                        </StackPanel>
+                        <TextBlock TextWrapping="Wrap" Text="{Binding Labels.Translation.Email, Source={StaticResource LabelsManager}}" Foreground="{StaticResource MainForegroundBrush}" Margin="12,0,0,0" Style="{StaticResource JumpListStringStyle}"/>
+                        <TextBox  GotFocus="TextBox_GotFocus" TextWrapping="Wrap" Text="{Binding Email, Mode=TwoWay}" InputScope="EmailUserName" TabIndex="2" KeyDown="TextBox_KeyUp"/>
 
-					<StackPanel Orientation="Vertical" >
-						<i:Interaction.Behaviors>
-							<cimbalinoBehaviors:MultiBindingBehavior Converter="{StaticResource ArrayBoolVisibility}" ConverterParameter="Any" PropertyName="Visibility">
-								<cimbalinoBehaviors:MultiBindingItem Value="{Binding DoLoginProcess}" />
-								<cimbalinoBehaviors:MultiBindingItem Value="{Binding RegistrationProcess}" />
-							</cimbalinoBehaviors:MultiBindingBehavior>
-						</i:Interaction.Behaviors>
-						<TextBlock TextWrapping="Wrap" Text="{Binding Labels.Translation.Password, Source={StaticResource LabelsManager}}" Foreground="{StaticResource MainForegroundBrush}" Margin="12,0,0,0" Style="{StaticResource JumpListStringStyle}"/>
-						
-						<telerikPrimitives:RadPasswordBox Password="{Binding Password, Mode=TwoWay}" />
-					</StackPanel>
+                        <StackPanel Orientation="Vertical" >
+                            <i:Interaction.Behaviors>
+                                <cimbalinoBehaviors:MultiBindingBehavior Converter="{StaticResource ArrayBoolVisibility}" ConverterParameter="Any" PropertyName="Visibility">
+                                    <cimbalinoBehaviors:MultiBindingItem Value="{Binding DoLoginProcess}" />
+                                    <cimbalinoBehaviors:MultiBindingItem Value="{Binding RegistrationProcess}" />
+                                </cimbalinoBehaviors:MultiBindingBehavior>
+                            </i:Interaction.Behaviors>
+                            <TextBlock  TextWrapping="Wrap" Text="{Binding Labels.Translation.Password, Source={StaticResource LabelsManager}}" Foreground="{StaticResource MainForegroundBrush}" Margin="12,0,0,0" Style="{StaticResource JumpListStringStyle}"/>
+                            <ContentControl HorizontalContentAlignment="Stretch">
+                                <telerikPrimitives:RadPasswordBox LostFocus="RadPasswordBox_LostFocus"  GotFocus="TextBox_GotFocus" Password="{Binding Password, Mode=TwoWay}" TabIndex="3" KeyUp="TextBox_KeyUp"  />
+                            </ContentControl>
+                        </StackPanel>
 
-					<StackPanel Orientation="Vertical" Visibility="{Binding RegistrationProcess, Converter={StaticResource BooleanToVisibilityConverter}}">
-						<TextBlock TextWrapping="Wrap" 
+                        <StackPanel Margin="0,0,0,100" Orientation="Vertical" Visibility="{Binding RegistrationProcess, Converter={StaticResource BooleanToVisibilityConverter}}">
+                            <TextBlock TextWrapping="Wrap" 
 							Text="{Binding Labels.Translation.ConfirmPassword, Source={StaticResource LabelsManager}}" 
 							Foreground="{StaticResource MainForegroundBrush}" Margin="12,0,0,0" Style="{StaticResource JumpListStringStyle}"/>
-						<telerikPrimitives:RadPasswordBox Password="{Binding ConfirmationPassword, Mode=TwoWay}" />
+                            <ContentControl HorizontalContentAlignment="Stretch">
+                                <telerikPrimitives:RadPasswordBox Name="ConfirmaPassword"  GotFocus="TextBox_GotFocus" Password="{Binding ConfirmationPassword, Mode=TwoWay}" TabIndex="4" KeyUp="TextBox_KeyUp" />
+                            </ContentControl>
+                        </StackPanel>
 
-					</StackPanel>
+                        <Grid Visibility="{Binding DataContext.RegistrationProcess, Converter={StaticResource NegativeBooleanVisibilityConverter}, ElementName=LayoutRoot}">
 
-					<Grid >
 
-						<!--<HyperlinkButton Content="{Binding Labels.Translation.ForgotPassword, Source={StaticResource LabelsManager}}" 
-							HorizontalAlignment="Left" VerticalAlignment="Top" 
-							Command="{Binding StartRecoverPassword, Mode=OneWay}"
-							Visibility="{Binding RecoverPasswordProcess, Converter={StaticResource NegativeBooleanVisibilityConverter}}"
-									 />-->
-						<!--<HyperlinkButton Content="{Binding Labels.Translation.Login, Source={StaticResource LabelsManager}}" HorizontalAlignment="Left" VerticalAlignment="Top" 
-									 Command="{Binding StartRecoverPassword, Mode=OneWay}"
-									 Visibility="{Binding DataContext.DoLoginProcess, ElementName=LayoutRoot, Converter={StaticResource NegativeBooleanVisibilityConverter}}"
-									 />-->
-						<HyperlinkButton Content="{Binding Labels.Translation.RegisterNewAccount, Source={StaticResource LabelsManager}}" 
+                            <HyperlinkButton TabIndex="5" Content="{Binding Labels.Translation.RegisterNewAccount, Source={StaticResource LabelsManager}}" 
 							HorizontalAlignment="Right" 
 							Command="{Binding StartRegistration, Mode=OneWay}"
-							Visibility="{Binding DataContext.RegistrationProcess, Converter={StaticResource NegativeBooleanVisibilityConverter}, ElementName=LayoutRoot}"
+							
 									 />
-					</Grid>
-				</StackPanel>
-			</Border>
-			<ProgressBar VerticalAlignment="Top"
+                        </Grid>
+                        <Rectangle Height="450"></Rectangle>
+                    </StackPanel >
+
+                </Grid>
+            </ScrollViewer>
+        </Border>
+        <ProgressBar VerticalAlignment="Top"
 				IsIndeterminate="True" 
 				Visibility="{Binding IsLoading, Converter={StaticResource BooleanToVisibilityConverter}}" 
 				x:Name="_performanceProgressBar" Height="10" Foreground="{StaticResource FourthBackgroundBrush}"/>
 
-		</Grid>
-	</Grid>
+
+    </Grid>
 
 </CodeConverters:PageBase>

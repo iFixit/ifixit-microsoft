@@ -13,7 +13,53 @@ namespace iFixit.Domain.Models.UI
 
     }
 
-    public enum GuideStepLineIcon { Black = 1, Red = 2, Orange = 3, Yellow = 4, Green = 5, Blue = 6, Violet = 7, Icon_Note = 8, Icon_reminder = 9, Icon_Caution = 10 };
+    public class Flag : ModelBase
+    {
+        private string _Title;
+        public string Title
+        {
+            get { return _Title; }
+            set
+            {
+                if (value != _Title)
+                {
+                    _Title = value;
+                    NotifyPropertyChanged();
+                }
+            }
+
+
+        }
+        private string _Text;
+        public string Text
+        {
+            get { return _Text; }
+            set
+            {
+                if (value != _Text)
+                {
+                    _Text = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
+
+        private string _Type;
+        public string Type
+        {
+            get { return this._Type; }
+            set
+            {
+                if (_Type != value)
+                {
+                    _Type = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
+    }
+
+    public enum GuideStepLineIcon { Black = 1, Red = 2, Orange = 3, Yellow = 4, Green = 5, Blue = 6, Violet = 7, Icon_Note = 8, Icon_reminder = 9, Icon_Caution = 10, Teal = 11 };
 
     public enum GuidesPageTypes { Intro, Prerequisites, Step }
 
@@ -120,6 +166,34 @@ namespace iFixit.Domain.Models.UI
             }
         }
 
+        private string _Difficulty;
+        public string Difficulty
+        {
+            get { return _Difficulty; }
+            set
+            {
+                if (value != _Difficulty)
+                {
+                    _Difficulty = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
+
+        private string _TimeRequired;
+        public string TimeRequired
+        {
+            get { return _TimeRequired; }
+            set
+            {
+                if (value != _TimeRequired)
+                {
+                    _TimeRequired = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
+
 
         private string _Summary;
         public string Summary
@@ -130,6 +204,20 @@ namespace iFixit.Domain.Models.UI
                 if (value != _Summary)
                 {
                     _Summary = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
+
+        private string _Introduction;
+        public string Introduction
+        {
+            get { return _Introduction; }
+            set
+            {
+                if (value != _Introduction)
+                {
+                    _Introduction = value;
                     NotifyPropertyChanged();
                 }
             }
@@ -164,6 +252,34 @@ namespace iFixit.Domain.Models.UI
             }
         }
 
+        private bool _HasPartsAndTools = false;
+        public bool HasPartsAndTools
+        {
+            get { return this._HasPartsAndTools; }
+            set
+            {
+                if (_HasPartsAndTools != value)
+                {
+                    _HasPartsAndTools = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
+
+        private bool _HasPreRequisites = false;
+        public bool HasPreRequisites
+        {
+            get { return this._HasPreRequisites; }
+            set
+            {
+                if (_HasPreRequisites != value)
+                {
+                    _HasPreRequisites = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
+
 
         private ObservableCollection<SearchResultItem> _PreRequisites = new ObservableCollection<SearchResultItem>();
         public ObservableCollection<SearchResultItem> PreRequisites
@@ -174,11 +290,26 @@ namespace iFixit.Domain.Models.UI
                 if (value != _PreRequisites)
                 {
                     _PreRequisites = value;
+
                     NotifyPropertyChanged();
                 }
             }
         }
 
+
+        private bool _HasTools = false;
+        public bool HasTools
+        {
+            get { return this._HasTools; }
+            set
+            {
+                if (_HasTools != value)
+                {
+                    _HasTools = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
 
         private ObservableCollection<Tool> _Tools = new ObservableCollection<Tool>();
         public ObservableCollection<Tool> Tools
@@ -189,13 +320,86 @@ namespace iFixit.Domain.Models.UI
                 if (value != _Tools)
                 {
                     _Tools = value;
+
+                    NotifyPropertyChanged();
+                }
+            }
+        }
+
+        private bool _HasParts = false;
+        public bool HasParts
+        {
+            get { return this._HasParts; }
+            set
+            {
+                if (_HasParts != value)
+                {
+                    _HasParts = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
+        private ObservableCollection<Tool> _Parts = new ObservableCollection<Tool>();
+        public ObservableCollection<Tool> Parts
+        {
+            get { return _Parts; }
+            set
+            {
+                if (value != _Parts)
+                {
+                    _Tools = value;
+
                     NotifyPropertyChanged();
                 }
             }
         }
 
 
+        private ObservableCollection<Flag> _Flags = new ObservableCollection<Flag>();
+        public ObservableCollection<Flag> Flags
+        {
+            get { return _Flags; }
+            set
+            {
+                if (value != _Flags)
+                {
+                    _Flags = value;
 
+                    NotifyPropertyChanged();
+                }
+            }
+        }
+
+
+        private bool _HasDocuments;
+        public bool HasDocuments
+        {
+            get { return Documents.Count > 0; }
+            set
+            {
+                if (_HasDocuments != value)
+                {
+                    _HasDocuments = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
+
+
+        private ObservableCollection<Document> _Documents = new ObservableCollection<Document>();
+        public ObservableCollection<Document> Documents
+        {
+            get { return this._Documents; }
+            set
+            {
+                if (_Documents != value)
+                {
+                    _Documents = value;
+                    NotifyPropertyChanged();
+                    NotifyPropertyChanged("HasDocuments");
+                }
+            }
+        }
 
 
         public GuideIntro()
@@ -229,7 +433,7 @@ namespace iFixit.Domain.Models.UI
     public class GuideStepVideo : ModelBase
     {
 
-        private string _VideoUrl= string.Empty;
+        private string _VideoUrl = string.Empty;
         public string VideoUrl
         {
             get { return this._VideoUrl; }
@@ -243,7 +447,7 @@ namespace iFixit.Domain.Models.UI
             }
         }
 
-        private string _ImageUrl=string.Empty;
+        private string _ImageUrl = string.Empty;
         public string ImageUrl
         {
             get { return this._ImageUrl; }
@@ -256,12 +460,26 @@ namespace iFixit.Domain.Models.UI
                 }
             }
         }
-        
+
 
     }
 
     public class GuideStepItem : GuideBasePage
     {
+
+        private int _StepIndex;
+        public int StepIndex
+        {
+            get { return _StepIndex; }
+            set
+            {
+                if (value != _StepIndex)
+                {
+                    _StepIndex = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
 
         private int _index;
         public int index
@@ -278,7 +496,7 @@ namespace iFixit.Domain.Models.UI
         }
 
 
-        private GuideStepVideo _Video= new GuideStepVideo();
+        private GuideStepVideo _Video = new GuideStepVideo();
         public GuideStepVideo Video
         {
             get { return this._Video; }
@@ -291,8 +509,22 @@ namespace iFixit.Domain.Models.UI
                 }
             }
         }
-        
 
+
+
+        private bool _PlayVideo = false;
+        public bool PlayVideo
+        {
+            get { return _PlayVideo; }
+            set
+            {
+                if (value != _PlayVideo)
+                {
+                    _PlayVideo = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
 
         private GuideStepImage _MainImage = new GuideStepImage();
         public GuideStepImage MainImage
@@ -339,6 +571,22 @@ namespace iFixit.Domain.Models.UI
             }
         }
 
+
+        private bool _ShowListImages=true;
+        public bool ShowListImages
+        {
+            get { return this._ShowListImages; }
+            set
+            {
+                if (_ShowListImages != value)
+                {
+                    _ShowListImages = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
+
+        
 
         public GuideStepItem()
         {
@@ -410,6 +658,19 @@ namespace iFixit.Domain.Models.UI
             }
         }
 
+        private string _LargeImageUrl;
+        public string LargeImageUrl
+        {
+            get { return _LargeImageUrl; }
+            set
+            {
+                if (value != _LargeImageUrl)
+                {
+                    _LargeImageUrl = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
 
         private string _SmallImageUrl;
         public string SmallImageUrl
@@ -450,6 +711,8 @@ namespace iFixit.Domain.Models.UI
                     return GuideStepLineIcon.Violet;
                 case "blue":
                     return GuideStepLineIcon.Blue;
+                case "teal":
+                    return GuideStepLineIcon.Teal;
                 case "icon_note":
                     return GuideStepLineIcon.Icon_Note;
                 case "icon_reminder":
@@ -463,24 +726,26 @@ namespace iFixit.Domain.Models.UI
 
         public static string SetIconColor(string val)
         {
-
+            //TODO : real colors
             switch (val)
             {
 
                 case "black":
                     return "#000000";
                 case "red":
-                    return "#BC2B0E";
+                    return "#c1280b";
                 case "orange":
-                    return "#CA6812";
+                    return "#ff9024";
                 case "yellow":
-                    return "#FFD800";
+                    return "#f3e00e";
                 case "green":
-                    return "#00A197";
+                    return "#16dc81";
                 case "violet":
-                    return "#BA52D3";
+                    return "#dc54b7";
                 case "blue":
-                    return "#1818FF";
+                    return "#2343e8";
+                case "teal":
+                    return "#1bb1e9";
 
                 case "icon_reminder":
                 case "icon_caution":

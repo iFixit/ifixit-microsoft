@@ -21,5 +21,24 @@ namespace iFixit.Domain
         public int CurrentPage = 0;
         public Models.UI.User User = null;
         public string SearchTerm { get; set; }
+
+        private bool _HiResApp = false;
+
+        public bool HiResApp
+        {
+            get { return _HiResApp; }
+            set { _HiResApp = value; }
+        }
+
+
+        private bool _ExtendedInfoApp = false;
+
+        public bool ExtendeInfoApp
+        {
+            get { return _ExtendedInfoApp; }
+            set { _ExtendedInfoApp = value; }
+        }
+
+
     }
 }

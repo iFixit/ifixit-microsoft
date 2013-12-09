@@ -11,6 +11,7 @@ namespace iFixit.Domain.Interfaces
         Task<bool> FolderExists(string folderName);
         Task RemoveFolder(string folderName);
         Task<bool> Exists(string fileName);
+        Task<bool> Exists(string fileName, string folder);
         Task<bool> Exists(string fileName, TimeSpan expitation);
         Task<string> ReadData(string fileName);
 
@@ -19,6 +20,7 @@ namespace iFixit.Domain.Interfaces
         Task WriteBinary(string folder, string fileName, byte[] content);
       
 
-        void Delete(string StorageId);
+        Task Delete(string StorageId);
+        string BasePath();
     }
 }

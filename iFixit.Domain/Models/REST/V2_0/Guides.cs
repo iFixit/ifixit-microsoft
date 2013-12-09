@@ -21,8 +21,8 @@ namespace iFixit.Domain.Models.REST.V2_0.Guides
     {
         public int guideid { get; set; }
         public bool revisionid { get; set; }
-        public int modified_date { get; set; }
-        public int? prereq_modified_date { get; set; }
+        public double modified_date { get; set; }
+        public double? prereq_modified_date { get; set; }
         public string type { get; set; }
         public string topic { get; set; }
         public string subject { get; set; }

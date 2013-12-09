@@ -55,6 +55,8 @@ Processing file: D:\Projects\iFixit\iFixit.NET\iFixit.NET\iFixit.WP8.UI\Bin\Debu
 File D:\Projects\iFixit\iFixit.NET\iFixit.NET\iFixit.WP8.UI\Bin\Debug\MDIL\Microsoft.Threading.Tasks.dll is not in the compile filter. Skipping.
 Processing file: D:\Projects\iFixit\iFixit.NET\iFixit.NET\iFixit.WP8.UI\Bin\Debug\MDIL\Microsoft.Threading.Tasks.Extensions.dll
 File D:\Projects\iFixit\iFixit.NET\iFixit.NET\iFixit.WP8.UI\Bin\Debug\MDIL\Microsoft.Threading.Tasks.Extensions.dll is not in the compile filter. Skipping.
+Processing file: D:\Projects\iFixit\iFixit.NET\iFixit.NET\iFixit.WP8.UI\Bin\Debug\MDIL\MSPToolkit.dll
+File D:\Projects\iFixit\iFixit.NET\iFixit.NET\iFixit.WP8.UI\Bin\Debug\MDIL\MSPToolkit.dll is not in the compile filter. Skipping.
 Processing file: D:\Projects\iFixit\iFixit.NET\iFixit.NET\iFixit.WP8.UI\Bin\Debug\MDIL\Newtonsoft.Json.dll
 File D:\Projects\iFixit\iFixit.NET\iFixit.NET\iFixit.WP8.UI\Bin\Debug\MDIL\Newtonsoft.Json.dll is not in the compile filter. Skipping.
 Processing file: D:\Projects\iFixit\iFixit.NET\iFixit.NET\iFixit.WP8.UI\Bin\Debug\MDIL\PhonePerformance.dll

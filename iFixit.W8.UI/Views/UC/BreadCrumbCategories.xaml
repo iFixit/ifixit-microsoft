@@ -1,0 +1,62 @@
+﻿<UserControl
+    x:Class="iFixit.W8.UI.Views.UC.BreadCrumbCategories"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:iFixit.W8.UI.Views.UC"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:metroEventToCommand="using:MetroEventToCommand"
+    xmlns:callistoEffects="using:Callisto.Effects"
+    mc:Ignorable="d"
+    d:DesignHeight="40"
+    d:DesignWidth="200">
+
+    <StackPanel Orientation="Horizontal" Name="UCControlRoot">
+        <Path Data="F1M1337.43,1007.95L1337.43,1027.45 1350.23,1027.45 1350.23,1010.99 1362.27,1010.99 1362.27,1027.51 1374.51,1027.51 1374.51,1007.83 1356.25,991.558 1337.43,1007.95z M1374.48,995.962L1374.48,985.032 1368.65,985.032 1368.65,990.799 1356.17,979.755 1356.13,979.713 1329.47,1003.31 1333.08,1007.39 1356.13,986.992 1379.2,1007.41 1382.81,1003.34 1374.48,995.962z" Stretch="Uniform" 
+		Fill="{StaticResource BaseBackgroundBrush}"
+                                      Width="26" Height="26" 
+                                      Margin="0,0,0,0" 
+                                      RenderTransformOrigin="0.5,0.5" 
+									  HorizontalAlignment="Left" VerticalAlignment="Bottom">
+            <Path.RenderTransform>
+                <TransformGroup>
+                    <TransformGroup.Children>
+                        <RotateTransform Angle="0" />
+                        <ScaleTransform ScaleX="1" ScaleY="1" />
+                    </TransformGroup.Children>
+                </TransformGroup>
+            </Path.RenderTransform>
+            <metroEventToCommand:EventToCommandManager.Collection>
+                <metroEventToCommand:EventToCommand Command="{Binding GoHome, Mode=OneWay}"
+                            CommandParameter="{Binding}"  Event="Tapped"></metroEventToCommand:EventToCommand>
+            </metroEventToCommand:EventToCommandManager.Collection>
+        </Path>
+        <ListBox Margin="6,0,0,0"  
+                 ItemsSource="{Binding BreadCrumb}" 
+                 Style="{StaticResource ReadOnlyListBox}"
+                 ItemContainerStyle="{StaticResource ReadOnlyListBoxItem}"
+                 SelectionMode="Single" VerticalAlignment="Bottom"  >
+
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal" >
+
+                        <Path Data="M6.847 6.302L1.268 11.88C1.197 11.952 1.089 12 0.993 12c-0.096 0-0.204-0.048-0.276-0.12l-0.599-0.598  C0.048 11.21 0 11.114 0 11.006c0-0.095 0.048-0.204 0.119-0.275l4.705-4.705L0.119 1.322C0.048 1.25 0 1.142 0 1.046  C0 0.95 0.048 0.843 0.119 0.771l0.599-0.598c0.072-0.072 0.179-0.12 0.276-0.12c0.096 0 0.204 0.048 0.275 0.12l5.579 5.579  c0.072 0.072 0.12 0.18 0.12 0.276C6.967 6.122 6.919 6.23 6.847 6.302z" Fill="#FFACACAC" VerticalAlignment="Bottom" Margin="6,0">
+
+                        </Path>
+                        <Button MinWidth="10" Margin="0,0,5,-5" Content="{Binding Name}" Style="{StaticResource SimpleTextButtonStyle}"
+                                    Command="{Binding DataContext.GoToCategory, ElementName=UCControlRoot, Mode=OneWay}"
+                                    CommandParameter="{Binding}" Foreground="#FFACACAC"  FontSize="18" VerticalAlignment="Bottom"
+                                ></Button>
+                   
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <Path  Data="M6.847 6.302L1.268 11.88C1.197 11.952 1.089 12 0.993 12c-0.096 0-0.204-0.048-0.276-0.12l-0.599-0.598  C0.048 11.21 0 11.114 0 11.006c0-0.095 0.048-0.204 0.119-0.275l4.705-4.705L0.119 1.322C0.048 1.25 0 1.142 0 1.046  C0 0.95 0.048 0.843 0.119 0.771l0.599-0.598c0.072-0.072 0.179-0.12 0.276-0.12c0.096 0 0.204 0.048 0.275 0.12l5.579 5.579  c0.072 0.072 0.12 0.18 0.12 0.276C6.967 6.122 6.919 6.23 6.847 6.302z" Fill="#FFACACAC" VerticalAlignment="Bottom" Margin="6,0">
+
+        </Path>
+        <TextBlock Text="{Binding CategoryBreadcrumb}" Margin="0,0,0,-5" Foreground="{StaticResource BaseBackgroundBrush}"  FontSize="18" VerticalAlignment="Bottom"></TextBlock>
+
+    </StackPanel>
+</UserControl>

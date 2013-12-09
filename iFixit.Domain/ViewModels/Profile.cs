@@ -1,4 +1,5 @@
 ﻿using GalaSoft.MvvmLight.Command;
+using iFixit.Domain.Code;
 using iFixit.Domain.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -68,11 +69,9 @@ namespace iFixit.Domain.ViewModels
                      try
                      {
                          LoadingCounter++;
-                         await Broker.DoLogout(AppBase.Current.User);
-                         AppBase.Current.User = null;
-                         _storageService.Delete("Authorization");
-                         _navigationService.Navigate<Home>(false);
-
+                         await Utils.DoLogOut(_storageService, _uxService, Broker);
+                         _uxService.DoLogOff();
+                         LoadingCounter--;
                      }
                      catch (Exception ex)
                      {
@@ -84,6 +83,9 @@ namespace iFixit.Domain.ViewModels
             }
 
         }
+
+     
+
 
 
 
