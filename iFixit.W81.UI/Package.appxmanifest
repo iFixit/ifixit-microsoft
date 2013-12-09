@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest" xmlns:m2="http://schemas.microsoft.com/appx/2013/manifest">
-  <Identity Name="IFIXIT.iFixitRepairManual" Publisher="CN=FAEE55AF-5720-4CDD-82C3-567FD8452C22" Version="1.1.0.1" />
+  <Identity Name="IFIXIT.iFixitRepairManual" Publisher="CN=FAEE55AF-5720-4CDD-82C3-567FD8452C22" Version="1.1.0.3" />
   <Properties>
     <DisplayName>iFixit: Repair Manual</DisplayName>
     <PublisherDisplayName>IFIXIT</PublisherDisplayName>

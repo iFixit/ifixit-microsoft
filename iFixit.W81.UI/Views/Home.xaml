@@ -547,7 +547,7 @@
                 	ItemsPanel="{StaticResource ItemsPanelTemplate1}"
                     ItemContainerStyle="{StaticResource HomeGridView}"
                     HorizontalContentAlignment="Stretch" 
-                    Margin="0,0,0,-10"
+                    Margin="0,0,0,-15"
 				    VerticalContentAlignment="Stretch" >
             <GridView.GroupStyle>
                 <GroupStyle>
@@ -584,7 +584,7 @@
             <GridViewItem  >
                 <Grid  Width="520"  Margin="0,0,0,0"  >
                     <Grid IsHitTestVisible="False" >
-                        <Image Stretch="None" 
+                        <Image Stretch="UniformToFill" 
                                Extensions:ImageExtensions.FadeInOnLoaded="True" 
                                Extensions:ImageExtensions.ImageLoadedTransitionType="FadeIn" 
                              
@@ -595,20 +595,14 @@
                         </Image>
                         
                     </Grid>
-                    <!--<coding4FunControls:SuperImage Width="520"
-                                            PlaceholderImageStretch="Uniform" 
-                                            PlaceholderImageSource="/Assets/no_image.jpg" 
-                                            Source="{Binding MainNews.ImageUrl}"  
-                                            Stretch="UniformToFill"                            >
+               
 
-                        </coding4FunControls:SuperImage>-->
-
-                    <Grid Margin="0,0,0,0" Height="240" VerticalAlignment="Bottom" 
+                    <Grid Margin="0,0,0,0"  VerticalAlignment="Bottom" 
                               Visibility="{Binding MainNews.DateString, Converter={StaticResource StringToVisibilityConverter}}" >
                         <Grid.Background>
                             <SolidColorBrush Color="{StaticResource Black}" Opacity="0.5"/>
                         </Grid.Background>
-                        <StackPanel  Margin="20"  >
+                        <StackPanel  Margin="20,20,20,20"  >
 
 
                             <TextBlock TextWrapping="Wrap" Text="{Binding MainNews.DateString}" 

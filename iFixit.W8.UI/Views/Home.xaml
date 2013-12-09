@@ -547,7 +547,7 @@
         <GridView   Grid.Row="1" Name="MainGridView"
                 	ItemsPanel="{StaticResource ItemsPanelTemplate1}"
                     ItemContainerStyle="{StaticResource HomeGridView}"
-                    HorizontalContentAlignment="Stretch"    Margin="0,0,0,-10"
+                    HorizontalContentAlignment="Stretch"    Margin="0,0,0,-15"
 				    VerticalContentAlignment="Stretch" >
             <GridView.GroupStyle>
                 <GroupStyle>
@@ -590,15 +590,9 @@
                              
                                Source="{Binding  MainNews.ImageUrl}"></Image>
 
-                        <!--<coding4FunControls:SuperImage Width="520"
-                                            PlaceholderImageStretch="Uniform" 
-                                            PlaceholderImageSource="/Assets/no_image.jpg" 
-                                            Source="{Binding MainNews.ImageUrl}"  
-                                            Stretch="UniformToFill"                            >
+                  
 
-                        </coding4FunControls:SuperImage>-->
-
-                        <Grid Margin="0,0,0,0" Height="240" VerticalAlignment="Bottom" Visibility="{Binding MainNews.DateString, Converter={StaticResource StringToVisibilityConverter}}" >
+                        <Grid Margin="0,0,0,0"  VerticalAlignment="Bottom" Visibility="{Binding MainNews.DateString, Converter={StaticResource StringToVisibilityConverter}}" >
                             <Grid.Background>
                                 <SolidColorBrush Color="{StaticResource Black}" Opacity="0.5"/>
                             </Grid.Background>
