@@ -171,6 +171,9 @@
     <metroEventToCommand:EventToCommandManager.Collection>
         <metroEventToCommand:EventToCommand Command="{Binding Load}" 
                                             Event="Loaded"></metroEventToCommand:EventToCommand>
+        <metroEventToCommand:EventToCommand Command="{Binding UnLoad}" 
+                                            Event="Unloaded"></metroEventToCommand:EventToCommand>
+
     </metroEventToCommand:EventToCommandManager.Collection>
 
 

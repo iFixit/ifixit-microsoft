@@ -50,6 +50,8 @@ namespace iFixit.W81.UI.Views
 
         }
 
+      
+
         //void VM_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         //{
         //    if (e.PropertyName == "LongDescription")

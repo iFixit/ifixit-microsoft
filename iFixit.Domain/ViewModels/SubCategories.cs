@@ -210,7 +210,7 @@ namespace iFixit.Domain.ViewModels
                 }
             }
         }
-        
+
 
         private string _DisplayTitle;
         public string DisplayTitle
@@ -225,7 +225,7 @@ namespace iFixit.Domain.ViewModels
                 }
             }
         }
-        
+
 
         private RelayCommand<Models.UI.HomeItem> _GoToGuide;
         public RelayCommand<Models.UI.HomeItem> GoToGuide
@@ -295,6 +295,32 @@ namespace iFixit.Domain.ViewModels
 
         }
 
+        private RelayCommand _UnLoad;
+        public RelayCommand UnLoad
+        {
+            get
+            {
+                return _UnLoad ?? (_UnLoad = new RelayCommand(
+                () =>
+                {
+
+                    try
+                    {
+                        LoadingCounter++;
+                        this.ClearCurrent();
+                        LoadingCounter--;
+                    }
+                    catch (Exception ex)
+                    {
+                        LoadingCounter--;
+                        throw ex;
+                    }
+
+                }));
+            }
+
+        }
+
         private RelayCommand _Load;
         public RelayCommand Load
         {
@@ -315,7 +341,7 @@ namespace iFixit.Domain.ViewModels
                              LoadingCounter++;
                              var selectedCategory = this.NavigationParameter<Models.UI.Category>();
                              var selectedItem = await Utils.GetCategoryContent(selectedCategory.UniqueId, _storageService, Broker);
-                             CategoryName =  selectedItem.wiki_title;
+                             CategoryName = selectedItem.wiki_title;
                              DisplayTitle = _uxService.SanetizeHTML(selectedItem.display_title);
                              Description = selectedItem.description;
                              ImageUrl = selectedItem.image.medium;
@@ -425,6 +451,9 @@ namespace iFixit.Domain.ViewModels
             this.CategoryName = string.Empty;
             this.Description = string.Empty;
             this.LongDescription = string.Empty;
+            this.ImageUrl = string.Empty;
+            this.CategoryBreadcrumb = string.Empty;
+            this.DisplayTitle = string.Empty;
             this.ImageUrl = string.Empty;
             HasGuides = true;
         }
