@@ -1,9 +1,9 @@
 # ifixit-microsoft
 ================
 
-iFixit mobile app development for Windows Phone 8 and Windows 8
+iFixit mobile app development for Windows Phone 8, Windows 8 and Windows 8.1
 
-## BEST PRATICES 
+## BEST PRACTICES 
 
 * Build with MVVM & PCL
 * All business rules one one place only
