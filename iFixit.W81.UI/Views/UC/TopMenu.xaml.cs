@@ -22,6 +22,12 @@ namespace iFixit.W81.UI.Views.UC
         public TopMenu()
         {
             this.InitializeComponent();
+            this.Loaded += TopMenu_Loaded;
+        }
+
+        void TopMenu_Loaded(object sender, RoutedEventArgs e)
+        {
+            this.Focus(FocusState.Programmatic);
         }
 
         private void SearchBox_QuerySubmitted(SearchBox sender, SearchBoxQuerySubmittedEventArgs args)

@@ -22,6 +22,13 @@ namespace iFixit.W81.UI.Views.UC
         public TopMenuWithSubTitle()
         {
             this.InitializeComponent();
+
+            this.Loaded += TopMenuWithSubTitle_Loaded;
+        }
+
+        void TopMenuWithSubTitle_Loaded(object sender, RoutedEventArgs e)
+        {
+            
         }
 
         private void SearchBox_QuerySubmitted(SearchBox sender, SearchBoxQuerySubmittedEventArgs args)
