@@ -138,7 +138,7 @@ namespace iFixit.W8.UI.Services
             var f = Window.Current.Content as Frame;
             f.Navigate(f.Content.GetType());
             f.GoBack();
-            f.Focus(FocusState.Programmatic);
+          //  f.Focus(FocusState.Programmatic);
         }
 
         public void DoLogOff()
@@ -146,7 +146,7 @@ namespace iFixit.W8.UI.Services
             var f = Window.Current.Content as Frame;
             f.Navigate(f.Content.GetType());
             f.GoBack();
-            f.Focus(FocusState.Programmatic);
+         //   f.Focus(FocusState.Programmatic);
         }
     }
 }

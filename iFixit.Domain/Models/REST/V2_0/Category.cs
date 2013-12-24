@@ -55,16 +55,6 @@ namespace iFixit.Domain.Models.REST.V2_0.Category
         public string url { get; set; }
     }
 
-    public class Image2
-    {
-        public int id { get; set; }
-        public string mini { get; set; }
-        public string thumbnail { get; set; }
-        public string standard { get; set; }
-        public string medium { get; set; }
-        public string large { get; set; }
-        public string original { get; set; }
-    }
 
     public class Guide
     {
@@ -83,7 +73,7 @@ namespace iFixit.Domain.Models.REST.V2_0.Category
         public int userid { get; set; }
         public string username { get; set; }
         //public List<object> flags { get; set; }
-        public Image2 image { get; set; }
+        public Image image { get; set; }
     }
 
     public class RootObject
@@ -96,7 +86,7 @@ namespace iFixit.Domain.Models.REST.V2_0.Category
         public string description { get; set; }
         //  public List<object> flags { get; set; }
         public Solutions solutions { get; set; }
-        public Parts parts { get; set; }
+       // public List<Parts> parts { get; set; }
         public List<Tool> tools { get; set; }
         public List<Guide> guides { get; set; }
         public List<string> ancestors { get; set; }

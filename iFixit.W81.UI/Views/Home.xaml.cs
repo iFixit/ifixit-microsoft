@@ -25,8 +25,7 @@ namespace iFixit.W81.UI.Views
     {
 
         private NavigationHelper navigationHelper;
-        private ObservableDictionary defaultViewModel = new ObservableDictionary();
-
+     
 
         /// <summary>
         /// NavigationHelper is used on each page to aid in navigation and 
