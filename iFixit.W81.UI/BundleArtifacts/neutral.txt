@@ -1,4 +1,4 @@
-MainPackage=D:\Projects\GIT\ifixit-microsoft\iFixit.W81.UI\bin\Release\iFixit.W81.UI_1.1.0.4_Bundle\iFixit.W81.UI_1.1.0.4_AnyCPU.appx
-SymbolPackage=D:\Projects\GIT\ifixit-microsoft\iFixit.W81.UI\AppPackages\iFixit.W81.UI_1.1.0.4_Test\iFixit.W81.UI_1.1.0.4_AnyCPU.appxsym
-ResourcePack=D:\Projects\GIT\ifixit-microsoft\iFixit.W81.UI\bin\Release\iFixit.W81.UI_1.1.0.4_Bundle\iFixit.W81.UI_1.1.0.4_scale-140.appx
-ResourcePack=D:\Projects\GIT\ifixit-microsoft\iFixit.W81.UI\bin\Release\iFixit.W81.UI_1.1.0.4_Bundle\iFixit.W81.UI_1.1.0.4_scale-180.appx
+MainPackage=D:\Projects\GIT\ifixit-microsoft\iFixit.W81.UI\bin\Release\iFixit.W81.UI_1.1.1.5_Bundle\iFixit.W81.UI_1.1.1.5_AnyCPU.appx
+SymbolPackage=D:\Projects\GIT\ifixit-microsoft\iFixit.W81.UI\AppPackages\iFixit.W81.UI_1.1.1.5_Test\iFixit.W81.UI_1.1.1.5_AnyCPU.appxsym
+ResourcePack=D:\Projects\GIT\ifixit-microsoft\iFixit.W81.UI\bin\Release\iFixit.W81.UI_1.1.1.5_Bundle\iFixit.W81.UI_1.1.1.5_scale-140.appx
+ResourcePack=D:\Projects\GIT\ifixit-microsoft\iFixit.W81.UI\bin\Release\iFixit.W81.UI_1.1.1.5_Bundle\iFixit.W81.UI_1.1.1.5_scale-180.appx

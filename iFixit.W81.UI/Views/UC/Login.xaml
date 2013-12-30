@@ -105,29 +105,57 @@
         <StackPanel x:Name="ContentPanel" Orientation="Vertical"  HorizontalAlignment="Stretch" >
             <StackPanel Orientation="Vertical" Visibility="{Binding RegistrationProcess, Converter={StaticResource BooleanToVisibilityConverter}}">
 
-                <xamltoolkit:WatermarkTextBox Margin="0,0,0,20"  Text="{Binding UserName, Mode=TwoWay}"   WatermarkText="{Binding Labels.Translation.UserName, Source={StaticResource LabelsManager}}" HorizontalAlignment="Stretch"/>
+                <xamltoolkit:WatermarkTextBox Margin="0,0,0,20"  Text="{Binding UserName, Mode=TwoWay}" 
+                                              Width="400"
+                                              WatermarkText="{Binding Labels.Translation.UserName, Source={StaticResource LabelsManager}}" 
+                                              HorizontalAlignment="Stretch"/>
             </StackPanel>
 
 
             <xamltoolkit:WatermarkTextBox  Margin="0,0,0,20"  Text="{Binding Email, Mode=TwoWay}"   
                                            WatermarkText="{Binding Labels.Translation.Email, Source={StaticResource LabelsManager}}" 
                                            Width="400" InputScope="EmailSmtpAddress"/>
-            <xamltoolkit:WatermarkPasswordBox  Margin="0,0,0,20"   Width="400"  Password="{Binding Password, Mode=TwoWay}"   
+            <!--<xamltoolkit:WatermarkPasswordBox  Margin="0,0,0,20"   Width="400"  Password="{Binding Password, Mode=TwoWay}"   
                                                WatermarkText="{Binding Labels.Translation.Password, Source={StaticResource LabelsManager}}" 
-                                               IsPasswordRevealButtonEnabled="True" />
+                                               IsPasswordRevealButtonEnabled="True" />-->
 
-            <StackPanel Margin="0,0,0,100" Orientation="Vertical" Visibility="{Binding RegistrationProcess, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <PasswordBox  Margin="0,0,0,20"  Width="400" Password="{Binding Password, Mode=TwoWay}"  
+                              PlaceholderText="{Binding Labels.Translation.Password, Source={StaticResource LabelsManager}}" IsPasswordRevealButtonEnabled="True" 
+                              />
+                <StackPanel Margin="0,0,0,100" Orientation="Vertical" Visibility="{Binding RegistrationProcess, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <!--<xamltoolkit:WatermarkPasswordBox   Margin="0,0,0,20"   Width="400" Password="{Binding ConfirmationPassword, Mode=TwoWay}"  
+                                                    WatermarkText="{Binding Labels.Translation.ConfirmPassword, Source={StaticResource LabelsManager}}" 
+                                                    IsPasswordRevealButtonEnabled="True"></xamltoolkit:WatermarkPasswordBox>-->
 
-            
+                <PasswordBox  Margin="0,0,0,20"  Width="400" Password="{Binding ConfirmationPassword, Mode=TwoWay}"  
+                       IsPasswordRevealButtonEnabled="True"       PlaceholderText="{Binding Labels.Translation.ConfirmPassword, Source={StaticResource LabelsManager}}" 
+                              >
+                    
+                </PasswordBox>
             </StackPanel>
             <Grid>
                 <StackPanel Orientation="Horizontal" >
                     <Button Content="{Binding Labels.Translation.Login, Source={StaticResource LabelsManager}}"	Command="{Binding DoLoginP, Mode=OneTime}" 
                             Visibility="{Binding RegistrationProcess, Converter={StaticResource NegativeBooleanToVisibilityConverter}}"></Button>
 
+                    <Button Content="{Binding Labels.Translation.Register, Source={StaticResource LabelsManager}}"	
+                            Visibility="{Binding RegistrationProcess, Converter={StaticResource BooleanToVisibilityConverter}}"
+                            Command="{Binding DoLoginP, Mode=OneTime}"></Button>
+                  
+                    <Button Content="{Binding Labels.Translation.Cancel, Source={StaticResource LabelsManager}}"	
+                            Visibility="{Binding RegistrationProcess, Converter={StaticResource BooleanToVisibilityConverter}}"
+                            Command="{Binding DoCancel, Mode=OneTime}"></Button>
+                 
+                    <Grid  Visibility="{Binding DataContext.RegistrationProcess, Converter={StaticResource NegativeBooleanToVisibilityConverter}, ElementName=LayoutRoot}"
+                      HorizontalAlignment="Right">
+                        <HyperlinkButton  Content="{Binding Labels.Translation.RegisterNewAccount, Source={StaticResource LabelsManager}}" 
+							HorizontalAlignment="Right" 
+							Command="{Binding StartRegistration, Mode=OneWay}" 
+									 />
+                    </Grid>
                 </StackPanel>
             </Grid>
-            <TextBlock FontSize="18" Margin="0,12" Text="{Binding ServiceMessages}" Foreground="Red" Visibility="{Binding ServiceMessages, Converter={StaticResource StringToVisibilityConverter}}"></TextBlock>
+            <TextBlock FontSize="18" Margin="0,12" TextWrapping="WrapWholeWords" Text="{Binding ServiceMessages}" Foreground="Red" Visibility="{Binding ServiceMessages, Converter={StaticResource StringToVisibilityConverter}}"></TextBlock>
 
         </StackPanel >
         <UC:LoadingRing  DataContext="{Binding}"  xmlns:UC="using:iFixit.W81.UI.Views.UC" d:IsHidden="True" HorizontalAlignment="Center" VerticalAlignment="Center"/>

@@ -8,6 +8,8 @@
     xmlns:CodeConverters="using:iFixit.W8.UI.Common"
     xmlns:metroEventToCommand="using:MetroEventToCommand"
     xmlns:xamltoolkit="using:WinRTXamlToolkit.Controls"
+    xmlns:callistoControls="using:Callisto.Controls"
+    xmlns:callistoEffects ="using:Callisto.Effects"
     DataContext="{Binding Source={StaticResource Locator}, Path=Login}"
     mc:Ignorable="d"
     d:DesignHeight="300"
@@ -110,29 +112,32 @@
 
             <StackPanel Margin="0,0,0,100" Orientation="Vertical" Visibility="{Binding RegistrationProcess, Converter={StaticResource BooleanToVisibilityConverter}}">
 
-                <!--<xamltoolkit:WatermarkPasswordBox  Margin="20" Password="{Binding ConfirmationPassword, Mode=TwoWay}"  
-                                               WatermarkText="{Binding Labels.Translation.ConfirmPassword, Source={StaticResource LabelsManager}}" IsPasswordRevealButtonEnabled="True"></xamltoolkit:WatermarkPasswordBox>-->
-
-            </StackPanel>
+                <xamltoolkit:WatermarkPasswordBox   Margin="0,0,0,20" Password="{Binding ConfirmationPassword, Mode=TwoWay}"  
+                                               WatermarkText="{Binding Labels.Translation.ConfirmPassword, Source={StaticResource LabelsManager}}" IsPasswordRevealButtonEnabled="True"></xamltoolkit:WatermarkPasswordBox>
+           </StackPanel>
             <Grid>
                 <StackPanel Orientation="Horizontal" >
                     <Button Content="{Binding Labels.Translation.Login, Source={StaticResource LabelsManager}}"	Command="{Binding DoLoginP, Mode=OneTime}" 
                             Visibility="{Binding RegistrationProcess, Converter={StaticResource NegativeBooleanToVisibilityConverter}}"></Button>
 
-                    <!--<Button Content="{Binding Labels.Translation.Register, Source={StaticResource LabelsManager}}"	
+                    <Button Content="{Binding Labels.Translation.Register, Source={StaticResource LabelsManager}}"	
                             Visibility="{Binding RegistrationProcess, Converter={StaticResource BooleanToVisibilityConverter}}"
-                            Command="{Binding DoLoginP, Mode=OneTime}"></Button>-->
+                            Command="{Binding DoLoginP, Mode=OneTime}"></Button>
+                  
+                    <Button Content="{Binding Labels.Translation.Cancel, Source={StaticResource LabelsManager}}"	
+                            Visibility="{Binding RegistrationProcess, Converter={StaticResource BooleanToVisibilityConverter}}"
+                            Command="{Binding DoCancel, Mode=OneTime}"></Button>
 
-                    <!--<Grid  Visibility="{Binding DataContext.RegistrationProcess, Converter={StaticResource NegativeBooleanToVisibilityConverter}, ElementName=LayoutRoot}"
+                    <Grid  Visibility="{Binding DataContext.RegistrationProcess, Converter={StaticResource NegativeBooleanToVisibilityConverter}, ElementName=LayoutRoot}"
                       HorizontalAlignment="Right">
                         <HyperlinkButton  Content="{Binding Labels.Translation.RegisterNewAccount, Source={StaticResource LabelsManager}}" 
 							HorizontalAlignment="Right" 
 							Command="{Binding StartRegistration, Mode=OneWay}" 
 									 />
-                    </Grid>-->
+                    </Grid>
                 </StackPanel>
             </Grid>
-            <TextBlock FontSize="18" Margin="0,12" Text="{Binding ServiceMessages}" Foreground="Red" Visibility="{Binding ServiceMessages, Converter={StaticResource StringToVisibilityConverter}}"></TextBlock>
+            <TextBlock FontSize="18" Margin="0,12" Text="{Binding ServiceMessages}" Foreground="Red" Visibility="{Binding ServiceMessages, Converter={StaticResource StringToVisibilityConverter}}" TextWrapping="Wrap"></TextBlock>
 
         </StackPanel >
         <UC:LoadingRing  DataContext="{Binding}"  xmlns:UC="using:iFixit.W8.UI.Views.UC" d:IsHidden="True" HorizontalAlignment="Center" VerticalAlignment="Center"/>
