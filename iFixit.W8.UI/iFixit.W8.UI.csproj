@@ -405,9 +405,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.Net.Http.2.2.18\lib\win8\System.Net.Http.Primitives.dll</HintPath>
     </Reference>
-    <Reference Include="WinRTXamlToolkit, Version=1.5.4.2, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="WinRTXamlToolkit, Version=1.5.4.3, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\WinRTXamlToolkit.1.5.4.2\lib\netcore45\WinRTXamlToolkit.dll</HintPath>
+      <HintPath>..\packages\WinRTXamlToolkit.1.5.4.3\lib\netcore45\WinRTXamlToolkit.dll</HintPath>
     </Reference>
     <Reference Include="Zlib.Portable, Version=1.9.1.9000, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
