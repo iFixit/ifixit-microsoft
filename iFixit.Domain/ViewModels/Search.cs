@@ -278,7 +278,7 @@ namespace iFixit.Domain.ViewModels
                     try
                     {
 
-                        await _uxService.OpenBrowser(pdr.UniqueId);
+                         _uxService.OpenIe(pdr.UniqueId);
                         SelectedProduct = null;
                         LoadingCounter--;
                     }
