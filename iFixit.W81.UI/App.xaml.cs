@@ -116,6 +116,7 @@ namespace iFixit.W81.UI
                     settings.Title = International.Translation.Login;
                     settings.Content = new iFixit.W81.UI.Views.UC.Login();
                     settings.Show();
+                    
 
                 });
 

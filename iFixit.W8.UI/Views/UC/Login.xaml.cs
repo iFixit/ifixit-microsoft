@@ -18,13 +18,35 @@ namespace iFixit.W8.UI.Views.UC
 {
     public sealed partial class Login : UserControl
     {
+
+        Domain.ViewModels.Login vm;
+
         public Login()
         {
-            this.InitializeComponent();
+            this.InitializeComponent(); this.Loaded += Login_Loaded;
+
 
 
         }
 
+        void Login_Loaded(object sender, RoutedEventArgs e)
+        {
+            vm = (Domain.ViewModels.Login)this.DataContext;
+
+            vm.PropertyChanged += vm_PropertyChanged;
+        }
+
+        void vm_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == "IsAuthenticated")
+            {
+                if (vm.IsAuthenticated == true)
+                {
+                    var x = (Callisto.Controls.SettingsFlyout)this.Parent;
+                    x.IsOpen = false;
+                }
+            }
+        }
         private void HyperlinkButton_Click(object sender, RoutedEventArgs e)
         {
 
