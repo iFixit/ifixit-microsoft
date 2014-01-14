@@ -156,12 +156,14 @@ namespace iFixit.W8.UI.Views
         {
             var v = (MediaElement)sender;
             if (v.CurrentState == MediaElementState.Playing)
-                v.Stop();
+                v.Pause();
             else
             {
                 Domain.ViewModels.Guide vm = (Domain.ViewModels.Guide)this.DataContext;
                 vm.IsLoading = true;
                 v.Play();
+                v.IsLooping = true;
+                
             }
         }
 
@@ -208,6 +210,7 @@ namespace iFixit.W8.UI.Views
         {
 
             Video.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
+            VideoPlayer.Stop();
         }
     }
 }

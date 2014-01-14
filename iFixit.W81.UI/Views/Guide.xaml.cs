@@ -179,7 +179,7 @@ namespace iFixit.W81.UI.Views
         {
             var v = (MediaElement)sender;
             if (v.CurrentState == MediaElementState.Playing)
-                v.Stop();
+                v.Pause();
             else
             {
                 Domain.ViewModels.Guide vm = (Domain.ViewModels.Guide)this.DataContext;
@@ -231,6 +231,7 @@ namespace iFixit.W81.UI.Views
         {
 
             Video.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
+            VideoPlayer.Stop();
         }
     }
 }

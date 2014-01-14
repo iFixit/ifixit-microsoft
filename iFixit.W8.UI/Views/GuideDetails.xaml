@@ -476,10 +476,9 @@
 												Source="{Binding Video.ImageUrl}"  
 																		/>
                                     <Image Source="/Assets/play_icon.png" Tapped="StartImage" 
-										   Stretch="UniformToFill" VerticalAlignment="Center"
+										   Stretch="Uniform" VerticalAlignment="Center" Width="100"
 										   Tag="{Binding Video.VideoUrl}"
 										   HorizontalAlignment="Center"></Image>
-
 
                                 </Grid>
                             </Grid>  
