@@ -376,7 +376,7 @@ namespace iFixit.International {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to login successfull.
+        ///   Looks up a localized string similar to login successful.
         /// </summary>
         public static string LoginSuccessfull {
             get {
@@ -403,7 +403,7 @@ namespace iFixit.International {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to logout successfull.
+        ///   Looks up a localized string similar to logout successful.
         /// </summary>
         public static string LogoutSuccessfull {
             get {

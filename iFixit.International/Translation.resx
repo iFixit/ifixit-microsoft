@@ -220,13 +220,13 @@
     <value>login</value>
   </data>
   <data name="LoginSuccessfull" xml:space="preserve">
-    <value>login successfull</value>
+    <value>login successful</value>
   </data>
   <data name="Logout" xml:space="preserve">
     <value>log out</value>
   </data>
   <data name="LogoutSuccessfull" xml:space="preserve">
-    <value>logout successfull</value>
+    <value>logout successful</value>
   </data>
   <data name="Mission" xml:space="preserve">
     <value>mission</value>
