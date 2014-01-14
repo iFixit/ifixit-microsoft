@@ -180,7 +180,7 @@
 
     <Grid  Background="{StaticResource ThirdBackgroundBrush}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="62"/>
+            <RowDefinition Height="61"/>
             <RowDefinition />
         </Grid.RowDefinitions>
         <Grid.ChildrenTransitions>
