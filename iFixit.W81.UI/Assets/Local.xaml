@@ -3,6 +3,80 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:iFixit.W81.UI.Assets">
 
+
+    <!-- SearchBox background when the mouse is out of the control -->
+    <SolidColorBrush x:Key="SearchBoxBackgroundThemeBrush" Color="#CCFFFFFF" />
+
+    <!-- SearchBox background when the mouse is over the control -->
+    <SolidColorBrush x:Key="SearchBoxPointerOverBackgroundThemeBrush"
+                         Color="#DDFFFFFF" />
+
+    <!-- SearchBox background when the control is focused. 
+             It is also the background of the Search button when it is pressed -->
+    <SolidColorBrush x:Key="SearchBoxFocusedBackgroundThemeBrush" Color="#FFFFFFFF" />
+
+    <!-- SearchBox border when the mouse is out of the control -->
+    <SolidColorBrush x:Key="SearchBoxBorderThemeBrush" Color="#0071CE" />
+
+    <!-- SearchBox border when the mouse is over the control -->
+    <SolidColorBrush x:Key="SearchBoxPointerOverBorderThemeBrush" Color="#FFDDDDDD" />
+
+    <!-- SearchBox border when the control is focused -->
+    <SolidColorBrush x:Key="SearchBoxFocusedBorderThemeBrush" Color="#0071CE" />
+
+    <!-- Search button background when when the control is focused, but the mouse is 
+             out of the button.
+             It is also the background of search suggestions when the mouse is over 
+             them -->
+    <SolidColorBrush x:Key="SearchBoxButtonBackgroundThemeBrush" Color="#0071CE" />
+
+    <!-- Search button background when the mouse is over the button
+             (when the control is focused or not) -->
+    <SolidColorBrush x:Key="SearchBoxButtonPointerOverBackgroundThemeBrush"
+                         Color="#0071CE" />
+
+    <!-- Search button color when the mouse is out of the control -->
+    <SolidColorBrush x:Key="SearchBoxForegroundThemeBrush" Color="#FF000000" />
+
+    <!-- Search button color when the mouse is over the control -->
+    <SolidColorBrush x:Key="SearchBoxPointerOverTextThemeBrush" Color="#99000000" />
+
+    <!-- Search button color when the control is focused. 
+             It is also the search suggestions color when the mouse is over them -->
+    <SolidColorBrush x:Key="SearchBoxButtonForegroundThemeBrush" Color="White" />
+
+    <!-- Search button color when the mouse is over the button and the control 
+             is focused -->
+    <SolidColorBrush x:Key="SearchBoxButtonPointerOverForegroundThemeBrush"
+                         Color="#FFFFFFFF" />
+
+    <!-- Search button color when it is pressed -->
+    <SolidColorBrush x:Key="SearchBoxFocusedTextThemeBrush" Color="#FF000000" />
+
+    <!-- Search suggestions color seprator -->
+    <SolidColorBrush x:Key="SearchBoxSeparatorSuggestionForegroundThemeBrush"
+                         Color="#FF000000" />
+
+    <!-- Color of highlighted characters in the result suggestions -->
+    <SolidColorBrush x:Key="SearchBoxHitHighlightForegroundThemeBrush"
+                         Color="#0071CE" />
+
+    <!-- Color of highlighted characters in the result suggestions when the mouse is 
+             over the element -->
+    <SolidColorBrush x:Key="SearchBoxHitHighlightSelectedForegroundThemeBrush"
+                         Color="#0071CE" />
+
+    <!-- Disabled SearchBox background -->
+    <SolidColorBrush x:Key="SearchBoxDisabledBackgroundThemeBrush"
+                         Color="Transparent" />
+
+    <!-- Disabled SearchBox border -->
+    <SolidColorBrush x:Key="SearchBoxDisabledBorderThemeBrush" Color="#0071CE" />
+
+    <!-- Disabled search button color -->
+    <SolidColorBrush x:Key="SearchBoxDisabledTextThemeBrush" Color="#66FFFFFF" />
+
+
     <Style TargetType="SearchBox">
         <Setter Property="Background" Value="{ThemeResource SearchBoxBackgroundThemeBrush}"/>
         <Setter Property="BorderBrush" Value="{ThemeResource SearchBoxBorderThemeBrush}"/>
