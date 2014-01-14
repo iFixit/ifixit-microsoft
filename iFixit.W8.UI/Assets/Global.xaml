@@ -135,6 +135,7 @@
     </Style>
     <Style TargetType="RichTextBlock">
         <Setter Property="FontSize" Value="14"></Setter>
+        <Setter Property="LineHeight" Value="18"/>
     </Style>
 
     <x:Double x:Key="H1">24</x:Double>
@@ -149,33 +150,26 @@
         <Setter Property="Margin" Value="-30,0,0,1" />
     </Style>
 
-    <DataTemplate x:Key="RTLinkContent">
+    <DataTemplate x:Key="RTLinkContent" >
         <TextBlock Text="{Binding}" FontSize="18" Foreground="#0071CE" TextWrapping="Wrap"></TextBlock>
     </DataTemplate>
-    <Style x:Key="RTLink" TargetType="HyperlinkButton">
+
+    <Style x:Key="RTLink" TargetType="HyperlinkButton"  >
         <Setter Property="BorderThickness" Value="0" />
         <Setter Property="FontSize" Value="18" />
-        <Setter Property="Margin" Value="0,0,0,-7" />
+        <Setter Property="Margin" Value="0,0,0,-8" />
         <Setter Property="Padding" Value="0"/>
+     
         <Setter Property="VerticalAlignment" Value="Bottom"></Setter>
         <Setter Property="Foreground" Value="#0071CE"></Setter>
         <Setter Property="ContentTemplate" Value="{StaticResource RTLinkContent}"></Setter>
     </Style>
 
-    <Style x:Key="RTLinkOnly" TargetType="HyperlinkButton">
-        <Setter Property="BorderThickness" Value="0" />
-        <Setter Property="FontSize" Value="14" />
-        <Setter Property="Margin" Value="0" />
-        <Setter Property="Foreground" Value="#0071CE"></Setter>
+    <Style x:Key="RTLinkOnly" TargetType="HyperlinkButton" BasedOn="{StaticResource RTLink}"> 
     </Style>
 
-    <Style x:Key="RTLinkLI" TargetType="HyperlinkButton">
-        <Setter Property="BorderThickness" Value="0" />
-        <Setter Property="FontSize" Value="18" />
-        <Setter Property="Margin" Value="0,0,0,-7" />
-        <Setter Property="Padding" Value="0"/>
-        <Setter Property="VerticalAlignment" Value="Bottom"></Setter>
-        <Setter Property="Foreground" Value="#0071CE"></Setter>
+    <Style x:Key="RTLinkLI" TargetType="HyperlinkButton" BasedOn="{StaticResource RTLink}">
+     
     </Style>
 
     <Style x:Key="RTImage" TargetType="Image">
