@@ -117,9 +117,6 @@
     <Compile Include="..\iFixit.W8.UI\Shared\Converters.cs">
       <Link>Shared\Converters.cs</Link>
     </Compile>
-    <Compile Include="..\iFixit.W8.UI\Shared\RichTextBlockProperties.cs">
-      <Link>Shared\RichTextBlockProperties.cs</Link>
-    </Compile>
     <Compile Include="..\iFixit.W8.UI\Shared\TemplateSelector.cs">
       <Link>Shared\TemplateSelector.cs</Link>
     </Compile>
@@ -148,6 +145,7 @@
     <Compile Include="Services\UiNavigation.cs" />
     <Compile Include="Services\UiStorage.cs" />
     <Compile Include="Services\UiUx.cs" />
+    <Compile Include="Shared\RichTextBlockProperties.cs" />
     <Compile Include="Views\BlankPage1.xaml.cs">
       <DependentUpon>BlankPage1.xaml</DependentUpon>
     </Compile>
@@ -297,10 +295,8 @@
       <Link>Assets\no_image.png</Link>
     </Content>
     <None Include="Package.StoreAssociation.xml" />
+    <Content Include="Shared\RichTextBlockHtml2Xaml.xslt" />
     <Content Include="Views\CTntWJTcOFYqYJye.jpg" />
-    <EmbeddedResource Include="..\iFixit.W8.UI\Shared\RichTextBlockHtml2Xaml.xslt">
-      <Link>Shared\RichTextBlockHtml2Xaml.xslt</Link>
-    </EmbeddedResource>
     <Content Include="..\iFixit.W8.UI\Assets\play_icon.png">
       <Link>Assets\play_icon.png</Link>
     </Content>

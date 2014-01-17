@@ -450,6 +450,12 @@
         </Setter>
     </Style>
 
+
+    <SolidColorBrush x:Key="HyperlinkDisabledThemeBrush" Color="#66000000" />
+    <SolidColorBrush x:Key="HyperlinkForegroundThemeBrush" Color="#0071CE" />
+    <SolidColorBrush x:Key="HyperlinkPointerOverForegroundThemeBrush" Color="#CC0071CE" />
+    <SolidColorBrush x:Key="HyperlinkPressedForegroundThemeBrush" Color="#FF0071CE" />
+
     <Style x:Key="GroupHeaderTextStyle" TargetType="TextBlock">
         <Setter Property="FontFamily" Value="{StaticResource ContentControlThemeFontFamily}"/>
         <Setter Property="TextTrimming" Value="WordEllipsis"/>
