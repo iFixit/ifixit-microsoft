@@ -1,4 +1,0 @@
-C:\cmorgado\GitHub\ifixit-microsoft\iFixit.Domain\iFixit.Domain.csproj;neutral
-C:\cmorgado\GitHub\ifixit-microsoft\iFixit.International\iFixit.International.csproj;neutral
-C:\cmorgado\GitHub\ifixit-microsoft\iFixit.International\iFixit.International.csproj;neutral
-C:\cmorgado\GitHub\ifixit-microsoft\iFixit.W8.UI\iFixit.W8.UI.csproj;neutral
