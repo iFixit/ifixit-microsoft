@@ -1,0 +1,232 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>GalaSoft.MvvmLight.Platform</name>
+    </assembly>
+    <members>
+        <member name="T:System.Windows.IWeakEventListener">
+            <summary>
+            Provides event listening support for classes that expect to receive events 
+            through the WeakEvent pattern and a WeakEventManager.
+            </summary>
+        </member>
+        <member name="M:System.Windows.IWeakEventListener.ReceiveWeakEvent(System.Type,System.Object,System.EventArgs)">
+            <summary>
+            Receives events from the centralized event manager. 
+            </summary>
+            <param name="managerType">The type of the WeakEventManager calling this method.</param>
+            <param name="sender">Object that originated the event.</param>
+            <param name="e">Event data.</param>
+            <returns>true if the listener handled the event. It is considered an error by the 
+            WeakEventManager handling in WPF to register a listener for an event that the 
+            listener does not handle. Regardless, the method should return false if it receives 
+            an event that it does not recognize or handle.
+            </returns>
+        </member>
+        <member name="T:GalaSoft.MvvmLight.Helpers.Extensions">
+            <summary>
+            Defines extension methods used to add data bindings and commands between Xamarin
+            Android and iOS elements.
+            </summary>
+        </member>
+        <member name="M:GalaSoft.MvvmLight.Helpers.Extensions.AddBinding``1(System.Object,System.Linq.Expressions.Expression{System.Func{``0}},System.Object,System.Linq.Expressions.Expression{System.Func{``0}},GalaSoft.MvvmLight.Helpers.BindingMode)">
+            <summary>
+            Adds a data binding between two properties. If the source implements INotifyPropertyChanged, the source property raises the PropertyChanged event
+            and the BindingMode is OneWay or TwoWay, the target property will be synchronized with the source property. If
+            the target implements INotifyPropertyChanged, the target property raises the PropertyChanged event and the BindingMode is
+            TwoWay, the source property will also be synchronized with the target property.
+            </summary>
+            <typeparam name="T">The type of the property that is being databound.</typeparam>
+            <param name="target">The target of the binding. If this object implements INotifyPropertyChanged and the
+            BindingMode is TwoWay, the source will be notified of changes to the source property.</param>
+            <param name="targetPropertyExpression">An expression pointing to the target property. It can be
+            a simple expression "() => [target].MyProperty" or a composed expression "() => [target].SomeObject.SomeOtherObject.SomeProperty".</param>
+            <param name="source">The source of the binding. If this object implements INotifyPropertyChanged and the
+            BindingMode is OneWay or TwoWay, the target will be notified of changes to the target property.</param>
+            <param name="sourcePropertyExpression">An expression pointing to the source property. It can be
+            a simple expression "() => [source].MyProperty" or a composed expression "() => [source].SomeObject.SomeOtherObject.SomeProperty".</param>
+            <param name="mode">The mode of the binding. OneTime means that the target property will be set once (when the binding is
+            created) but that subsequent changes will be ignored. OneWay means that the target property will be set, and
+            if the PropertyChanged event is raised by the source, the target property will be updated. TwoWay means that the source
+            property will also be updated if the target raises the PropertyChanged event. Default means OneWay if only the source
+            implements INPC, and TwoWay if both the source and the target implement INPC.</param>
+            <returns>The new Binding instance.</returns>
+        </member>
+        <member name="M:GalaSoft.MvvmLight.Helpers.Extensions.AddBinding``1(System.Object,System.Linq.Expressions.Expression{System.Func{``0}},System.Linq.Expressions.Expression{System.Func{``0}},GalaSoft.MvvmLight.Helpers.BindingMode)">
+            <summary>
+            Adds a data binding between two properties of the same object. If the source implements INotifyPropertyChanged, has observable properties
+            and the BindingMode is OneWay or TwoWay, the target property will be notified of changes to the source property. If
+            the target implements INotifyPropertyChanged, has observable properties and the BindingMode is
+            TwoWay, the source will also be notified of changes to the target's properties.
+            </summary>
+            <typeparam name="T">The type of the property that is being databound.</typeparam>
+            <param name="target">The target of the binding. If this object implements INotifyPropertyChanged and the
+            BindingMode is TwoWay, the source will be notified of changes to the source property.</param>
+            <param name="targetPropertyExpression">An expression pointing to the target property. It can be
+            a simple expression "() => [target].MyProperty" or a composed expression "() => [target].SomeObject.SomeOtherObject.SomeProperty".</param>
+            <param name="source">The source of the binding. If this object implements INotifyPropertyChanged and the
+            BindingMode is OneWay or TwoWay, the target will be notified of changes to the target property.</param>
+            <param name="sourcePropertyExpression">An expression pointing to the source property. It can be
+            a simple expression "() => [source].MyProperty" or a composed expression "() => [source].SomeObject.SomeOtherObject.SomeProperty".</param>
+            <param name="mode">The mode of the binding. OneTime means that the target property will be set once (when the binding is
+            created) but that subsequent changes will be ignored. OneWay means that the target property will be set, and
+            if the PropertyChanged event is raised by the source, the target property will be updated. TwoWay means that the source
+            property will also be updated if the target raises the PropertyChanged event. Default means OneWay if only the source
+            implements INPC, and TwoWay if both the source and the target implement INPC.</param>
+            <returns>The new Binding instance.</returns>
+        </member>
+        <member name="M:GalaSoft.MvvmLight.Helpers.Extensions.AddBinding``1(System.Object,System.String,System.Object,System.String,GalaSoft.MvvmLight.Helpers.BindingMode)">
+            <summary>
+            Adds a data binding between two properties. If the source implements INotifyPropertyChanged, the source property raises the PropertyChanged event
+            and the BindingMode is OneWay or TwoWay, the target property will be synchronized with the source property. If
+            the target implements INotifyPropertyChanged, the target property raises the PropertyChanged event and the BindingMode is
+            TwoWay, the source property will also be synchronized with the target property.
+            </summary>
+            <typeparam name="T">The type of the property that is being databound.</typeparam>
+            <param name="target">The target of the binding. If this object implements INotifyPropertyChanged and the
+            BindingMode is TwoWay, the source will be notified of changes to the source property.</param>
+            <param name="targetPropertyName">The name of the target property. This must be a simple name, without dots.</param>
+            <param name="source">The source of the binding. If this object implements INotifyPropertyChanged and the
+            BindingMode is OneWay or TwoWay, the target will be notified of changes to the target property.</param>
+            <param name="sourcePropertyName">The name of the source property. This must be a simple name, without dots.</param>
+            <param name="mode">The mode of the binding. OneTime means that the target property will be set once (when the binding is
+            created) but that subsequent changes will be ignored. OneWay means that the target property will be set, and
+            if the PropertyChanged event is raised by the source, the target property will be updated. TwoWay means that the source
+            property will also be updated if the target raises the PropertyChanged event. Default means OneWay if only the source
+            implements INPC, and TwoWay if both the source and the target implement INPC.</param>
+            <returns>The new Binding instance.</returns>
+        </member>
+        <member name="M:GalaSoft.MvvmLight.Helpers.Extensions.AddBinding``1(System.Object,System.String,System.String,GalaSoft.MvvmLight.Helpers.BindingMode)">
+            <summary>
+            Adds a data binding between two properties of the same object. If the source implements INotifyPropertyChanged, has observable properties
+            and the BindingMode is OneWay or TwoWay, the target property will be notified of changes to the source property. If
+            the target implements INotifyPropertyChanged, has observable properties and the BindingMode is
+            TwoWay, the source will also be notified of changes to the target's properties.
+            </summary>
+            <typeparam name="T">The type of the property that is being databound.</typeparam>
+            <param name="target">The target of the binding. If this object implements INotifyPropertyChanged and the
+            BindingMode is TwoWay, the source will be notified of changes to the source property.</param>
+            <param name="targetPropertyName">The name of the target property. This must be a simple name, without dots.</param>
+            <param name="source">The source of the binding. If this object implements INotifyPropertyChanged and the
+            BindingMode is OneWay or TwoWay, the target will be notified of changes to the target property.</param>
+            <param name="sourcePropertyName">The name of the source property. This must be a simple name, without dots.</param>
+            <param name="mode">The mode of the binding. OneTime means that the target property will be set once (when the binding is
+            created) but that subsequent changes will be ignored. OneWay means that the target property will be set, and
+            if the PropertyChanged event is raised by the source, the target property will be updated. TwoWay means that the source
+            property will also be updated if the target raises the PropertyChanged event. Default means OneWay if only the source
+            implements INPC, and TwoWay if both the source and the target implement INPC.</param>
+            <returns>The new Binding instance.</returns>
+        </member>
+        <member name="M:GalaSoft.MvvmLight.Helpers.Extensions.AddCommand``2(System.Object,System.String,GalaSoft.MvvmLight.Command.RelayCommand{``0},GalaSoft.MvvmLight.Helpers.Binding{``0})">
+            <summary>
+            Adds a generic RelayCommand to an object and actuate the command when a specific event is raised. This method
+            should be used when the event uses an EventHandler&lt;TEventArgs&gt;.
+            </summary>
+            <typeparam name="T">The type of the CommandParameter that will be passed to the RelayCommand.</typeparam>
+            <typeparam name="TEventArgs">The type of the event's arguments.</typeparam>
+            <param name="element">The element to which the command is added.</param>
+            <param name="eventName">The name of the event that will be subscribed to to actuate the command.</param>
+            <param name="command">The command that must be added to the element.</param>
+            <param name="commandParameterBinding">A <see cref="T:GalaSoft.MvvmLight.Helpers.Binding`1">Binding</see> instance subscribed to
+            the CommandParameter that will passed to the RelayCommand. Depending on the Binding, the CommandParameter
+            will be observed and changes will be passed to the command, for example to update the CanExecute.</param>
+        </member>
+        <member name="M:GalaSoft.MvvmLight.Helpers.Extensions.AddCommand``1(System.Object,System.String,GalaSoft.MvvmLight.Command.RelayCommand{``0},GalaSoft.MvvmLight.Helpers.Binding{``0})">
+            <summary>
+            Adds a generic RelayCommand to an object and actuate the command when a specific event is raised. This method
+            can only be used when the event uses a standard EventHandler. 
+            </summary>
+            <typeparam name="T">The type of the CommandParameter that will be passed to the RelayCommand.</typeparam>
+            <param name="element">The element to which the command is added.</param>
+            <param name="eventName">The name of the event that will be subscribed to to actuate the command.</param>
+            <param name="command">The command that must be added to the element.</param>
+            <param name="commandParameterBinding">A <see cref="T:GalaSoft.MvvmLight.Helpers.Binding`1">Binding</see> instance subscribed to
+            the CommandParameter that will passed to the RelayCommand. Depending on the Binding, the CommandParameter
+            will be observed and changes will be passed to the command, for example to update the CanExecute.</param>
+        </member>
+        <member name="M:GalaSoft.MvvmLight.Helpers.Extensions.AddCommand(System.Object,System.String,GalaSoft.MvvmLight.Command.RelayCommand)">
+            <summary>
+            Adds a non-generic RelayCommand to an object and actuate the command when a specific event is raised. This method
+            can only be used when the event uses a standard EventHandler. 
+            </summary>
+            <param name="element">The element to which the command is added.</param>
+            <param name="eventName">The name of the event that will be subscribed to to actuate the command.</param>
+            <param name="command">The command that must be added to the element.</param>
+        </member>
+        <member name="T:System.Windows.PropertyChangedEventManager">
+            <summary>
+            Provides an implementation so that you can use the 
+            "weak event listener" pattern to attach listeners
+            for the <see cref="M:System.Windows.PropertyChangedEventManager.PropertyChanged(System.Object,System.ComponentModel.PropertyChangedEventArgs)"/> event. 
+            </summary>
+        </member>
+        <member name="M:System.Windows.PropertyChangedEventManager.AddListener(System.ComponentModel.INotifyPropertyChanged,System.Windows.IWeakEventListener,System.String)">
+            <summary>
+            Adds the specified listener to the list of listeners on the specified source. 
+            </summary>
+            <param name="source">The object with the event.</param>
+            <param name="listener">The object to add as a listener.</param>
+            <param name="propertyName">The name of the property that exists on
+            source upon which to listen for changes.</param>
+        </member>
+        <member name="M:System.Windows.PropertyChangedEventManager.RemoveListener(System.ComponentModel.INotifyPropertyChanged,System.Windows.IWeakEventListener,System.String)">
+            <summary>
+            Removes the specified listener from the list of listeners on the 
+            specified source. 
+            </summary>
+            <param name="source">The object with the event.</param>
+            <param name="listener">The object to remove as a listener.</param>
+            <param name="propertyName">The name of the property that exists 
+            on source upon which to listen for changes.</param>
+        </member>
+        <member name="M:System.Windows.PropertyChangedEventManager.StartListening(System.ComponentModel.INotifyPropertyChanged)">
+            <summary>
+            Begin listening for the <see cref="M:System.Windows.PropertyChangedEventManager.PropertyChanged(System.Object,System.ComponentModel.PropertyChangedEventArgs)"/> event on 
+            the provided source.
+            </summary>
+            <param name="source">The object on which to start listening 
+            for <see cref="M:System.Windows.PropertyChangedEventManager.PropertyChanged(System.Object,System.ComponentModel.PropertyChangedEventArgs)"/>.</param>
+        </member>
+        <member name="M:System.Windows.PropertyChangedEventManager.StopListening(System.ComponentModel.INotifyPropertyChanged)">
+            <summary>
+            Stop listening for the <see cref="M:System.Windows.PropertyChangedEventManager.PropertyChanged(System.Object,System.ComponentModel.PropertyChangedEventArgs)"/> event on the 
+            provided source.
+            </summary>
+            <param name="source">The object on which to start listening for 
+            <see cref="M:System.Windows.PropertyChangedEventManager.PropertyChanged(System.Object,System.ComponentModel.PropertyChangedEventArgs)"/>.</param>
+        </member>
+        <member name="M:System.Windows.PropertyChangedEventManager.PropertyChanged(System.Object,System.ComponentModel.PropertyChangedEventArgs)">
+            <summary>
+            The method that handles the <see cref="E:System.ComponentModel.INotifyPropertyChanged.PropertyChanged"/> event.
+            </summary>
+            <param name="sender">The source of the event.</param>
+            <param name="args">A <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> that 
+            contains the event data.</param>
+        </member>
+        <member name="M:System.Windows.PropertyChangedEventManager.PrivateAddListener(System.ComponentModel.INotifyPropertyChanged,System.Windows.IWeakEventListener,System.String)">
+            <summary>
+            Private method to add the specified listener to the list of listeners 
+            on the specified source. 
+            </summary>
+            <param name="source">The object with the event.</param>
+            <param name="listener">The object to add as a listener.</param>
+            <param name="propertyName">The name of the property that exists 
+            on source upon which to listen for changes.</param>
+        </member>
+        <member name="M:System.Windows.PropertyChangedEventManager.PrivateRemoveListener(System.ComponentModel.INotifyPropertyChanged,System.Windows.IWeakEventListener,System.String)">
+            <summary>
+            Private method to remove the specified listener from the list of listeners 
+            on the specified source. 
+            </summary>
+            <param name="source">The object with the event.</param>
+            <param name="listener">The object to remove as a listener.</param>
+            <param name="propertyName">The name of the property that exists on 
+            source upon which to listen for changes.</param>
+        </member>
+        <member name="P:System.Windows.PropertyChangedEventManager.Instance">
+            <summary>
+            Get the current instance of <see cref="T:System.Windows.PropertyChangedEventManager"/>
+            </summary>
+        </member>
+    </members>
+</doc>

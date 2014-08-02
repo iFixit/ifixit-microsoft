@@ -5,25 +5,17 @@
 		<ResourceMapSubtree name="Files">
 			<ResourceMapSubtree name="WinRTXamlToolkit">
 				<ResourceMapSubtree name="Controls">
-					<NamedResource name="AnimatingContainer.xaml" uri="ms-resource://WinRTXamlToolkit/Files/WinRTXamlToolkit/Controls/AnimatingContainer.xaml">
-						<Candidate type="Path">
-							<Value>WinRTXamlToolkit\Controls\AnimatingContainer.xaml</Value>
-						</Candidate>
-					</NamedResource>
-					<NamedResource name="CascadingTextBlock.xaml" uri="ms-resource://WinRTXamlToolkit/Files/WinRTXamlToolkit/Controls/CascadingTextBlock.xaml">
-						<Candidate type="Path">
-							<Value>WinRTXamlToolkit\Controls\CascadingTextBlock.xaml</Value>
-						</Candidate>
-					</NamedResource>
-					<NamedResource name="CountdownControl.xaml" uri="ms-resource://WinRTXamlToolkit/Files/WinRTXamlToolkit/Controls/CountdownControl.xaml">
-						<Candidate type="Path">
-							<Value>WinRTXamlToolkit\Controls\CountdownControl.xaml</Value>
-						</Candidate>
-					</NamedResource>
 					<ResourceMapSubtree name="AlternativeFrame">
 						<NamedResource name="AlternativeFrame.xaml" uri="ms-resource://WinRTXamlToolkit/Files/WinRTXamlToolkit/Controls/AlternativeFrame/AlternativeFrame.xaml">
 							<Candidate type="Path">
 								<Value>WinRTXamlToolkit\Controls\AlternativeFrame\AlternativeFrame.xaml</Value>
+							</Candidate>
+						</NamedResource>
+					</ResourceMapSubtree>
+					<ResourceMapSubtree name="AnimatingContainer">
+						<NamedResource name="AnimatingContainer.xaml" uri="ms-resource://WinRTXamlToolkit/Files/WinRTXamlToolkit/Controls/AnimatingContainer/AnimatingContainer.xaml">
+							<Candidate type="Path">
+								<Value>WinRTXamlToolkit\Controls\AnimatingContainer\AnimatingContainer.xaml</Value>
 							</Candidate>
 						</NamedResource>
 					</ResourceMapSubtree>
@@ -41,10 +33,24 @@
 							</Candidate>
 						</NamedResource>
 					</ResourceMapSubtree>
+					<ResourceMapSubtree name="CascadingTextBlock">
+						<NamedResource name="CascadingTextBlock.xaml" uri="ms-resource://WinRTXamlToolkit/Files/WinRTXamlToolkit/Controls/CascadingTextBlock/CascadingTextBlock.xaml">
+							<Candidate type="Path">
+								<Value>WinRTXamlToolkit\Controls\CascadingTextBlock\CascadingTextBlock.xaml</Value>
+							</Candidate>
+						</NamedResource>
+					</ResourceMapSubtree>
 					<ResourceMapSubtree name="ColorPicker">
 						<NamedResource name="ColorPicker.xaml" uri="ms-resource://WinRTXamlToolkit/Files/WinRTXamlToolkit/Controls/ColorPicker/ColorPicker.xaml">
 							<Candidate type="Path">
 								<Value>WinRTXamlToolkit\Controls\ColorPicker\ColorPicker.xaml</Value>
+							</Candidate>
+						</NamedResource>
+					</ResourceMapSubtree>
+					<ResourceMapSubtree name="CountdownControl">
+						<NamedResource name="CountdownControl.xaml" uri="ms-resource://WinRTXamlToolkit/Files/WinRTXamlToolkit/Controls/CountdownControl/CountdownControl.xaml">
+							<Candidate type="Path">
+								<Value>WinRTXamlToolkit\Controls\CountdownControl\CountdownControl.xaml</Value>
 							</Candidate>
 						</NamedResource>
 					</ResourceMapSubtree>
@@ -101,6 +107,13 @@
 						<NamedResource name="NumericUpDown.xaml" uri="ms-resource://WinRTXamlToolkit/Files/WinRTXamlToolkit/Controls/NumericUpDown/NumericUpDown.xaml">
 							<Candidate type="Path">
 								<Value>WinRTXamlToolkit\Controls\NumericUpDown\NumericUpDown.xaml</Value>
+							</Candidate>
+						</NamedResource>
+					</ResourceMapSubtree>
+					<ResourceMapSubtree name="ToolWindow">
+						<NamedResource name="ToolWindow.xaml" uri="ms-resource://WinRTXamlToolkit/Files/WinRTXamlToolkit/Controls/ToolWindow/ToolWindow.xaml">
+							<Candidate type="Path">
+								<Value>WinRTXamlToolkit\Controls\ToolWindow\ToolWindow.xaml</Value>
 							</Candidate>
 						</NamedResource>
 					</ResourceMapSubtree>
