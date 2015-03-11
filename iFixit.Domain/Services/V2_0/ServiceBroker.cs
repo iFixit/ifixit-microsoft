@@ -22,7 +22,7 @@ namespace iFixit.Domain.Services.V2_0
         private const string CATEGORY = "api/2.0/categories/{0}";
         private const string GUIDES = "api/2.0/guides";
         private const string GUIDE = "api/2.0/guides/{0}";
-        private const string COLLECTIONS = "api/0.1/collections";
+        private const string COLLECTIONS = "api/2.0/collections";
         private const string SEARCH_GUIDES = "api/2.0/search/{0}?filter=teardown,guide&offset={1}&limit={2}";
         private const string SEARCH_PRODUCTS = "api/2.0/search/{0}?filter={1}&offset={2}&limit={3}";
         private const string SEARCH_DEVICE = "api/2.0/search/{0}?filter={1}&offset={2}&limit={3}";
@@ -247,7 +247,7 @@ namespace iFixit.Domain.Services.V2_0
             return Result;
         }
 
-        public async Task<Models.REST.V0_1.Collections> GetCollections()
+        public async Task<Models.REST.V2_0.Collections> GetCollections()
         {
             StringBuilder Url = new StringBuilder();
             Url.Append(BaseUrl).Append(COLLECTIONS);
@@ -255,7 +255,7 @@ namespace iFixit.Domain.Services.V2_0
             try
             {
 
-                return await ReturnHTTPGet<Models.REST.V0_1.Collections>(Url.ToString());
+                return await ReturnHTTPGet<Models.REST.V2_0.Collections>(Url.ToString());
 
             }
             catch (HttpRequestException hex)

@@ -1,58 +1,70 @@
-﻿<CodeConverters:PageBase
-    xmlns:code="clr-namespace:iFixit.WP8.UI.Code"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
-    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
-    xmlns:cmd="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras"
-    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit" 
-    xmlns:cimbalinoBehaviors="clr-namespace:Cimbalino.Phone.Toolkit.Behaviors;assembly=Cimbalino.Phone.Toolkit"
-    xmlns:delay="clr-namespace:Delay;assembly=PhonePerformance"
-    xmlns:telerikPrimitives="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Primitives"
-    xmlns:telerikSlideView="clr-namespace:Telerik.Windows.Controls.SlideView;assembly=Telerik.Windows.Controls.Primitives"
-    xmlns:telerikCore="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Core"
-    xmlns:coding4Fun="clr-namespace:Coding4Fun.Toolkit.Controls;assembly=Coding4Fun.Toolkit.Controls"
-    xmlns:Tempates="clr-namespace:iFixit.WP8.UI.Code"
-    xmlns:msp="clr-namespace:MSPToolkit.Controls;assembly=MSPToolkit" 
-    xmlns:CodeConverters="clr-namespace:iFixit.WP8.UI.Code"
-    xmlns:UI="clr-namespace:iFixit.WP8.UI"
-    x:Class="iFixit.WP8.UI.Views.Details"
-    telerikCore:InteractionEffectManager.IsInteractionEnabled="True"
-    toolkit:TiltEffect.IsTiltEnabled="True"
-    SupportedOrientations="PortraitOrLandscape" 
-    Orientation="Portrait"
-    mc:Ignorable="d" d:DesignHeight="800" 
-    d:DesignWidth="480"
-    shell:SystemTray.IsVisible="False" 
-    shell:SystemTray.Opacity="0"
-    x:Name="root"
-    >
+﻿<CodeConverters:PageBase x:Class="iFixit.WP8.UI.Views.Details"
+                         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                         xmlns:CodeConverters="clr-namespace:iFixit.WP8.UI.Code"
+                         xmlns:Tempates="clr-namespace:iFixit.WP8.UI.Code"
+                         xmlns:UI="clr-namespace:iFixit.WP8.UI"
+                         xmlns:cimbalinoBehaviors="clr-namespace:Cimbalino.Phone.Toolkit.Behaviors;assembly=Cimbalino.Phone.Toolkit"
+                         xmlns:cmd="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Platform"
+                         xmlns:code="clr-namespace:iFixit.WP8.UI.Code"
+                         xmlns:coding4Fun="clr-namespace:Coding4Fun.Toolkit.Controls;assembly=Coding4Fun.Toolkit.Controls"
+                         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                         xmlns:delay="clr-namespace:Delay;assembly=PhonePerformance"
+                         xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+                         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                         xmlns:msp="clr-namespace:MSPToolkit.Controls;assembly=MSPToolkit"
+                         xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+                         xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+                         xmlns:telerikCore="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Core"
+                         xmlns:telerikPrimitives="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Primitives"
+                         xmlns:telerikSlideView="clr-namespace:Telerik.Windows.Controls.SlideView;assembly=Telerik.Windows.Controls.Primitives"
+                         xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+                         x:Name="root"
+                         Orientation="Portrait"
+                         SupportedOrientations="PortraitOrLandscape"
+                         d:DesignHeight="800"
+                         d:DesignWidth="480"
+                         shell:SystemTray.IsVisible="False"
+                         shell:SystemTray.Opacity="0"
+                         telerikCore:InteractionEffectManager.IsInteractionEnabled="True"
+                         toolkit:TiltEffect.IsTiltEnabled="True"
+                         mc:Ignorable="d">
 
     <CodeConverters:PageBase.Resources>
 
-        <CodeConverters:TextIdentConverter x:Key="TextIdentConverter"/>
-        <CodeConverters:TextEmptyHideConverter x:Key="TextEmptyHideConverter"/>
-        <CodeConverters:GuideMenuIndexConverter x:Key="GuideMenuIndexConverter"/>
-        <CodeConverters:NegativeBooleanVisibilityConverter x:Key="NegativeBooleanVisibilityConverter"/>
-        <CodeConverters:IconConverter x:Key="IconConverter"></CodeConverters:IconConverter>
-        <CodeConverters:IconVisibilityConverter x:Key="IconVisibilityConverter"></CodeConverters:IconVisibilityConverter>
+        <CodeConverters:TextIdentConverter x:Key="TextIdentConverter" />
+        <CodeConverters:TextEmptyHideConverter x:Key="TextEmptyHideConverter" />
+        <CodeConverters:GuideMenuIndexConverter x:Key="GuideMenuIndexConverter" />
+        <CodeConverters:NegativeBooleanVisibilityConverter x:Key="NegativeBooleanVisibilityConverter" />
+        <CodeConverters:IconConverter x:Key="IconConverter" />
+        <CodeConverters:IconVisibilityConverter x:Key="IconVisibilityConverter" />
         <DataTemplate x:Key="introPage">
             <ScrollViewer Margin="0,0,12,75">
                 <StackPanel Margin="0">
                     <StackPanel Margin="-12,0,0,0">
-                        <TextBlock Text="{Binding Subject}"  TextWrapping="Wrap" Style="{StaticResource PhoneTextNormalStyle}" Foreground="{StaticResource SecondaryBackgroundBrush}" Padding="0"/>
-                        <TextBlock Text="{Binding Summary}"  TextWrapping="Wrap" Style="{StaticResource PhoneTextNormalStyle}" Foreground="{StaticResource SecondaryBackgroundBrush}" Padding="0"/>
-                        <TextBlock Text="{Binding Author}"  TextWrapping="Wrap" Style="{StaticResource PhoneTextNormalStyle}"  Foreground="{StaticResource SecondaryBackgroundBrush}" Padding="0"/>
+                        <TextBlock Foreground="{StaticResource SecondaryBackgroundBrush}"
+                                   Padding="0"
+                                   Style="{StaticResource PhoneTextNormalStyle}"
+                                   Text="{Binding Subject}"
+                                   TextWrapping="Wrap" />
+                        <TextBlock Foreground="{StaticResource SecondaryBackgroundBrush}"
+                                   Padding="0"
+                                   Style="{StaticResource PhoneTextNormalStyle}"
+                                   Text="{Binding Summary}"
+                                   TextWrapping="Wrap" />
+                        <TextBlock Foreground="{StaticResource SecondaryBackgroundBrush}"
+                                   Padding="0"
+                                   Style="{StaticResource PhoneTextNormalStyle}"
+                                   Text="{Binding Author}"
+                                   TextWrapping="Wrap" />
                     </StackPanel>
-                    <telerikPrimitives:RadDataBoundListBox ScrollViewer.VerticalScrollBarVisibility="Disabled"  
-        				Visibility="{Binding HasPreRequisites, Converter={StaticResource BooleanToVisibilityConverter}}"
-        				EmptyContentDisplayMode ="DataSourceNull"
-        				ItemsSource="{Binding PreRequisites}" 
-        				x:Name="PreReqsList" 
-        				Margin="0,0,0,0" >
+                    <telerikPrimitives:RadDataBoundListBox x:Name="PreReqsList"
+                                                           Margin="0,0,0,0"
+                                                           EmptyContentDisplayMode="DataSourceNull"
+                                                           ItemsSource="{Binding PreRequisites}"
+                                                           ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                                                           Visibility="{Binding HasPreRequisites,
+                                                                                Converter={StaticResource BooleanToVisibilityConverter}}">
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="ItemTap">
                                 <cmd:EventToCommand Command="{Binding DataContext.GoToGuide, ElementName=LayoutRoot, Mode=OneWay}" CommandParameter="{Binding SelectedItem, ElementName=PreReqsList}" />
@@ -61,39 +73,58 @@
                         </i:Interaction.Triggers>
                         <telerikPrimitives:RadDataBoundListBox.ListHeaderTemplate>
                             <DataTemplate>
-                                <TextBlock Text="prerequisites"  TextWrapping="Wrap" Margin="0,12,0,0" Style="{StaticResource PhoneTextGroupHeaderStyle}" Foreground="{StaticResource SecondaryBackgroundBrush}"/>
+                                <TextBlock Margin="0,12,0,0"
+                                           Foreground="{StaticResource SecondaryBackgroundBrush}"
+                                           Style="{StaticResource PhoneTextGroupHeaderStyle}"
+                                           Text="prerequisites"
+                                           TextWrapping="Wrap" />
                             </DataTemplate>
                         </telerikPrimitives:RadDataBoundListBox.ListHeaderTemplate>
                         <telerikPrimitives:RadDataBoundListBox.ItemTemplate>
                             <DataTemplate>
 
-                                <TextBlock Text="{Binding Name}" Margin="12,0,12,0" TextWrapping="Wrap" Foreground="{StaticResource OrangeBrush}" FontSize="{StaticResource PhoneFontSizeMedium}" TextDecorations="Underline" />
+                                <TextBlock Margin="12,0,12,0"
+                                           FontSize="{StaticResource PhoneFontSizeMedium}"
+                                           Foreground="{StaticResource OrangeBrush}"
+                                           Text="{Binding Name}"
+                                           TextDecorations="Underline"
+                                           TextWrapping="Wrap" />
                             </DataTemplate>
                         </telerikPrimitives:RadDataBoundListBox.ItemTemplate>
                         <telerikPrimitives:RadDataBoundListBox.EmptyContentTemplate>
                             <DataTemplate>
-                                <TextBlock Text="No prerequisites found"/>
+                                <TextBlock Text="No prerequisites found" />
                             </DataTemplate>
                         </telerikPrimitives:RadDataBoundListBox.EmptyContentTemplate>
 
                     </telerikPrimitives:RadDataBoundListBox>
-                    <telerikPrimitives:RadDataBoundListBox ScrollViewer.VerticalScrollBarVisibility="Disabled"  
-        				EmptyContentDisplayMode ="DataSourceNull"
-        				Visibility="{Binding HasTools, Converter={StaticResource BooleanToVisibilityConverter}}"
-        				ItemsSource="{Binding Tools}" Margin="0,0,0,0" >
+                    <telerikPrimitives:RadDataBoundListBox Margin="0,0,0,0"
+                                                           EmptyContentDisplayMode="DataSourceNull"
+                                                           ItemsSource="{Binding Tools}"
+                                                           ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                                                           Visibility="{Binding HasTools,
+                                                                                Converter={StaticResource BooleanToVisibilityConverter}}">
                         <telerikPrimitives:RadDataBoundListBox.ListHeaderTemplate>
                             <DataTemplate>
-                                <TextBlock Text="tools"  TextWrapping="Wrap" Margin="0,12,0,0" Style="{StaticResource PhoneTextGroupHeaderStyle}" Foreground="{StaticResource SecondaryBackgroundBrush}"/>
+                                <TextBlock Margin="0,12,0,0"
+                                           Foreground="{StaticResource SecondaryBackgroundBrush}"
+                                           Style="{StaticResource PhoneTextGroupHeaderStyle}"
+                                           Text="tools"
+                                           TextWrapping="Wrap" />
                             </DataTemplate>
                         </telerikPrimitives:RadDataBoundListBox.ListHeaderTemplate>
                         <telerikPrimitives:RadDataBoundListBox.ItemTemplate>
                             <DataTemplate>
-                                <HyperlinkButton Content="{Binding Title}" TargetName="_blank" NavigateUri="{Binding Url}" HorizontalAlignment="Left" Style="{StaticResource iFixitLinkButton}"  />
+                                <HyperlinkButton HorizontalAlignment="Left"
+                                                 Content="{Binding Title}"
+                                                 NavigateUri="{Binding Url}"
+                                                 Style="{StaticResource iFixitLinkButton}"
+                                                 TargetName="_blank" />
                             </DataTemplate>
                         </telerikPrimitives:RadDataBoundListBox.ItemTemplate>
                         <telerikPrimitives:RadDataBoundListBox.EmptyContent>
                             <DataTemplate>
-                                <TextBlock Text="No recomended tools"/>
+                                <TextBlock Text="No recomended tools" />
                             </DataTemplate>
                         </telerikPrimitives:RadDataBoundListBox.EmptyContent>
                     </telerikPrimitives:RadDataBoundListBox>
@@ -105,27 +136,35 @@
         <DataTemplate x:Key="stepPage">
             <ScrollViewer Margin="0,0,12,0">
                 <StackPanel>
-                    <telerikPrimitives:RadDataBoundListBox ScrollViewer.VerticalScrollBarVisibility="Disabled" 
-        				toolkit:TiltEffect.IsTiltEnabled="False" 
-        				EmptyContentDisplayMode ="DataSourceNull"
-        				ItemAnimationMode="None"
-        				telerikCore:InteractionEffectManager.IsInteractionEnabled="False"
-        				ItemsSource="{Binding Lines}" Margin="0,12,0,12" >
+                    <telerikPrimitives:RadDataBoundListBox Margin="0,12,0,12"
+                                                           EmptyContentDisplayMode="DataSourceNull"
+                                                           ItemAnimationMode="None"
+                                                           ItemsSource="{Binding Lines}"
+                                                           ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                                                           telerikCore:InteractionEffectManager.IsInteractionEnabled="False"
+                                                           toolkit:TiltEffect.IsTiltEnabled="False">
                         <telerikPrimitives:RadDataBoundListBox.ItemTemplate>
                             <DataTemplate>
-                                <Border HorizontalAlignment="Left" VerticalAlignment="Top" BorderThickness="6,0,0,0"  Margin="{Binding Level, Converter={StaticResource TextIdentConverter}}">
+                                <Border Margin="{Binding Level,
+                                                         Converter={StaticResource TextIdentConverter}}"
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Top"
+                                        BorderThickness="6,0,0,0">
                                     <Border.BorderBrush>
-                                        <SolidColorBrush Color="{Binding BulletColor}"/>
+                                        <SolidColorBrush Color="{Binding BulletColor}" />
                                     </Border.BorderBrush>
-                                    <Grid >
+                                    <Grid>
                                         <Grid.ColumnDefinitions>
-                                            <ColumnDefinition></ColumnDefinition>
-                                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                            <ColumnDefinition />
+                                            <ColumnDefinition Width="Auto" />
                                         </Grid.ColumnDefinitions>
                                         <msp:HTMLTextBox Html="{Binding Title}" NavigaionPolitic="Automatic" />
-                                        <Image VerticalAlignment="Top" Grid.Column="1" Source="{Binding GuideIcon,Converter={StaticResource IconConverter}}"
-                                               Visibility="{Binding GuideIcon, Converter={StaticResource IconVisibilityConverter}}"
-                                               ></Image>
+                                        <Image Grid.Column="1"
+                                               VerticalAlignment="Top"
+                                               Source="{Binding GuideIcon,
+                                                                Converter={StaticResource IconConverter}}"
+                                               Visibility="{Binding GuideIcon,
+                                                                    Converter={StaticResource IconVisibilityConverter}}" />
                                     </Grid>
                                 </Border>
 
@@ -133,27 +172,32 @@
                         </telerikPrimitives:RadDataBoundListBox.ItemTemplate>
                     </telerikPrimitives:RadDataBoundListBox>
 
-                    <Border  BorderBrush="{StaticResource SecondaryBackgroundBrush}" BorderThickness="2" Visibility="{Binding Video.ImageUrl, Converter={StaticResource StringToVisibilityConverter}}" >
+                    <Border BorderBrush="{StaticResource SecondaryBackgroundBrush}"
+                            BorderThickness="2"
+                            Visibility="{Binding Video.ImageUrl,
+                                                 Converter={StaticResource StringToVisibilityConverter}}">
 
                         <Grid Background="{StaticResource PlaceHolderBackgroundBrush}">
-                            <coding4Fun:SuperImage PlaceholderImageSource="/Assets/NoImage_300x225.jpg" 
+                            <coding4Fun:SuperImage CacheMode="BitmapCache"
+                                                   PlaceholderImageSource="/Assets/NoImage_300x225.jpg"
                                                    PlaceholderImageStretch="Uniform"
-                                                   CacheMode="BitmapCache" 
-                                                   Source="{Binding Video.ImageUrl}" Stretch="UniformToFill">
+                                                   Source="{Binding Video.ImageUrl}"
+                                                   Stretch="UniformToFill">
                                 <i:Interaction.Triggers>
                                     <i:EventTrigger EventName="Tap">
-                                        <cmd:EventToCommand Command="{Binding DataContext.ShowVideo, ElementName=LayoutRoot, Mode=OneWay}" 
-        									CommandParameter="{Binding Video.VideoUrl}" />
+                                        <cmd:EventToCommand Command="{Binding DataContext.ShowVideo, ElementName=LayoutRoot, Mode=OneWay}" CommandParameter="{Binding Video.VideoUrl}" />
 
                                     </i:EventTrigger>
 
                                 </i:Interaction.Triggers>
                             </coding4Fun:SuperImage>
-                            <Image Source="/assets/Media-Play-Button.png" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <Image HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   Source="/assets/Media-Play-Button.png"
+                                   Stretch="None">
                                 <i:Interaction.Triggers>
                                     <i:EventTrigger EventName="Tap">
-                                        <cmd:EventToCommand Command="{Binding DataContext.ShowVideo, ElementName=LayoutRoot, Mode=OneWay}" 
-        									CommandParameter="{Binding Video.VideoUrl}" />
+                                        <cmd:EventToCommand Command="{Binding DataContext.ShowVideo, ElementName=LayoutRoot, Mode=OneWay}" CommandParameter="{Binding Video.VideoUrl}" />
 
                                     </i:EventTrigger>
 
@@ -162,53 +206,57 @@
                             </Image>
                         </Grid>
                     </Border>
-                    <telerikPrimitives:RadDataBoundListBox ScrollViewer.VerticalScrollBarVisibility="Disabled" 
-        				ItemsSource="{Binding Images}" 
-                            SelectionChanged="RadDataBoundListBox_SelectionChanged_1"                             >
+                    <telerikPrimitives:RadDataBoundListBox ItemsSource="{Binding Images}"
+                                                           ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                                                           SelectionChanged="RadDataBoundListBox_SelectionChanged_1">
 
                         <telerikPrimitives:RadDataBoundListBox.ItemTemplate>
                             <DataTemplate>
-                                <Grid Margin="0,12,6,12" Width="460" Background="{StaticResource PlaceHolderBackgroundBrush}" >
+                                <Grid Width="460"
+                                      Margin="0,12,6,12"
+                                      Background="{StaticResource PlaceHolderBackgroundBrush}">
                                     <i:Interaction.Triggers>
                                         <i:EventTrigger EventName="Tap">
-                                            <cmd:EventToCommand Command="{Binding DataContext.ShowFullImage, ElementName=root, Mode=OneWay}" 
-        										CommandParameter="{Binding MediumImageUrl}" />
+                                            <cmd:EventToCommand Command="{Binding DataContext.ShowFullImage, ElementName=root, Mode=OneWay}" CommandParameter="{Binding MediumImageUrl}" />
 
                                         </i:EventTrigger>
 
                                     </i:Interaction.Triggers>
-                                    <coding4Fun:SuperImage PlaceholderImageSource="/Assets/NoImage_300x225.jpg" 
-        								PlaceholderImageStretch="Uniform" 
-                                                           CacheMode="BitmapCache"
-        								Source="{Binding MediumImageUrl}" Stretch="UniformToFill"/>
+                                    <coding4Fun:SuperImage CacheMode="BitmapCache"
+                                                           PlaceholderImageSource="/Assets/NoImage_300x225.jpg"
+                                                           PlaceholderImageStretch="Uniform"
+                                                           Source="{Binding MediumImageUrl}"
+                                                           Stretch="UniformToFill" />
                                 </Grid>
                             </DataTemplate>
                         </telerikPrimitives:RadDataBoundListBox.ItemTemplate>
 
                     </telerikPrimitives:RadDataBoundListBox>
-                    <Grid Height="75"/>
+                    <Grid Height="75" />
                 </StackPanel>
             </ScrollViewer>
         </DataTemplate>
 
-        <CodeConverters:DetailsTemplateSelector x:Key="templateSelector" 
-                            Intro="{StaticResource introPage}" 
-                            Step="{StaticResource stepPage}"/>
+        <CodeConverters:DetailsTemplateSelector x:Key="templateSelector"
+                                                Intro="{StaticResource introPage}"
+                                                Step="{StaticResource stepPage}" />
 
 
     </CodeConverters:PageBase.Resources>
 
     <CodeConverters:PageBase.FontFamily>
-        <StaticResource ResourceKey="PhoneFontFamilyNormal"/>
+        <StaticResource ResourceKey="PhoneFontFamilyNormal" />
     </CodeConverters:PageBase.FontFamily>
     <CodeConverters:PageBase.FontSize>
-        <StaticResource ResourceKey="PhoneFontSizeNormal"/>
+        <StaticResource ResourceKey="PhoneFontSizeNormal" />
     </CodeConverters:PageBase.FontSize>
     <CodeConverters:PageBase.Foreground>
-        <StaticResource ResourceKey="PhoneForegroundBrush"/>
+        <StaticResource ResourceKey="PhoneForegroundBrush" />
     </CodeConverters:PageBase.Foreground>
     <CodeConverters:PageBase.DataContext>
-        <Binding Mode="OneWay" Path="Guide" Source="{StaticResource Locator}"/>
+        <Binding Mode="OneWay"
+                 Path="Guide"
+                 Source="{StaticResource Locator}" />
     </CodeConverters:PageBase.DataContext>
 
     <i:Interaction.Triggers>
@@ -222,112 +270,163 @@
         </i:EventTrigger>
     </i:Interaction.Triggers>
 
-    <Grid x:Name="LayoutRoot" Background="{StaticResource ThirdBackgroundBrush}" >
+    <Grid x:Name="LayoutRoot" Background="{StaticResource ThirdBackgroundBrush}">
         <i:Interaction.Behaviors>
             <cimbalinoBehaviors:MultiApplicationBarBehavior SelectedIndex="{Binding SelectedPageIndex, Converter={StaticResource GuideMenuIndexConverter}}">
-                <cimbalinoBehaviors:ApplicationBar Opacity="0.5" >
-                    <cimbalinoBehaviors:ApplicationBarIconButton Command="{Binding OpenTextSpeech, Mode=OneTime}"
-						IsEnabled="{Binding IsLoading, Converter={StaticResource NegativeBooleanConverter}}"
-						IconUri="/Assets/appbar/Speaker.png" Text="{Binding Labels.Translation.Listen, Source={StaticResource LabelsManager}}" />
+                <cimbalinoBehaviors:ApplicationBar Opacity="0.5">
+                    <cimbalinoBehaviors:ApplicationBarIconButton Command="{Binding OpenTextSpeech,
+                                                                                   Mode=OneTime}"
+                                                                 IconUri="/Assets/appbar/Speaker.png"
+                                                                 IsEnabled="{Binding IsLoading,
+                                                                                     Converter={StaticResource NegativeBooleanConverter}}"
+                                                                 Text="{Binding Labels.Translation.Listen,
+                                                                                Source={StaticResource LabelsManager}}" />
 
-                    <cimbalinoBehaviors:ApplicationBarIconButton Command="{Binding Share, Mode=OneTime}" 
-						IsEnabled="{Binding IsLoading, Converter={StaticResource NegativeBooleanConverter}}"
-						IconUri="/Assets/appbar/Share.png" Text="{Binding Labels.Translation.Share, Source={StaticResource LabelsManager}}" />
-                    <cimbalinoBehaviors:ApplicationBarIconButton Command="{Binding AddFavorite, Mode=OneTime}" 
-						IsVisible="{Binding NotFavorite}"
-						IsEnabled="{Binding IsLoading, Converter={StaticResource NegativeBooleanConverter}}"
-						IconUri="/Assets/appbar.favs.addto.rest.png" Text="{Binding Labels.Translation.AddToFavorites, Source={StaticResource LabelsManager}}" />
+                    <cimbalinoBehaviors:ApplicationBarIconButton Command="{Binding Share,
+                                                                                   Mode=OneTime}"
+                                                                 IconUri="/Assets/appbar/Share.png"
+                                                                 IsEnabled="{Binding IsLoading,
+                                                                                     Converter={StaticResource NegativeBooleanConverter}}"
+                                                                 Text="{Binding Labels.Translation.Share,
+                                                                                Source={StaticResource LabelsManager}}" />
+                    <cimbalinoBehaviors:ApplicationBarIconButton Command="{Binding AddFavorite,
+                                                                                   Mode=OneTime}"
+                                                                 IconUri="/Assets/appbar.favs.addto.rest.png"
+                                                                 IsEnabled="{Binding IsLoading,
+                                                                                     Converter={StaticResource NegativeBooleanConverter}}"
+                                                                 IsVisible="{Binding NotFavorite}"
+                                                                 Text="{Binding Labels.Translation.AddToFavorites,
+                                                                                Source={StaticResource LabelsManager}}" />
 
 
                 </cimbalinoBehaviors:ApplicationBar>
-                <cimbalinoBehaviors:ApplicationBar Opacity="0.5" >
-                    <cimbalinoBehaviors:ApplicationBarIconButton Command="{Binding RWTextSpeech, Mode=OneTime}" 
-						IsEnabled="{Binding IsLoading, Converter={StaticResource NegativeBooleanConverter}}"
-						IconUri="/Assets/appbar/transport.rew.png" Text="{Binding Labels.Translation.Previous, Source={StaticResource LabelsManager}}" />
+                <cimbalinoBehaviors:ApplicationBar Opacity="0.5">
+                    <cimbalinoBehaviors:ApplicationBarIconButton Command="{Binding RWTextSpeech,
+                                                                                   Mode=OneTime}"
+                                                                 IconUri="/Assets/appbar/transport.rew.png"
+                                                                 IsEnabled="{Binding IsLoading,
+                                                                                     Converter={StaticResource NegativeBooleanConverter}}"
+                                                                 Text="{Binding Labels.Translation.Previous,
+                                                                                Source={StaticResource LabelsManager}}" />
 
-                    <cimbalinoBehaviors:ApplicationBarIconButton 
-						IsVisible="{Binding BeingRead}" 
-						Command="{Binding PauseTextSpeech, Mode=OneTime}" 
-						IsEnabled="{Binding IsLoading, Converter={StaticResource NegativeBooleanConverter}}"
-						IconUri="/Assets/appbar/transport.pause.png" Text="{Binding Labels.Translation.Pause, Source={StaticResource LabelsManager}}" />
+                    <cimbalinoBehaviors:ApplicationBarIconButton Command="{Binding PauseTextSpeech,
+                                                                                   Mode=OneTime}"
+                                                                 IconUri="/Assets/appbar/transport.pause.png"
+                                                                 IsEnabled="{Binding IsLoading,
+                                                                                     Converter={StaticResource NegativeBooleanConverter}}"
+                                                                 IsVisible="{Binding BeingRead}"
+                                                                 Text="{Binding Labels.Translation.Pause,
+                                                                                Source={StaticResource LabelsManager}}" />
 
-                    <cimbalinoBehaviors:ApplicationBarIconButton IsVisible="{Binding BeingRead, Converter={StaticResource NegativeBooleanConverter}}" 
-						Command="{Binding OpenTextSpeech, Mode=OneTime}" 
-						IsEnabled="{Binding IsLoading, Converter={StaticResource NegativeBooleanConverter}}"
-						IconUri="/Assets/appbar/transport.play.png" Text="{Binding Labels.Translation.Play, Source={StaticResource LabelsManager}}" />
+                    <cimbalinoBehaviors:ApplicationBarIconButton Command="{Binding OpenTextSpeech,
+                                                                                   Mode=OneTime}"
+                                                                 IconUri="/Assets/appbar/transport.play.png"
+                                                                 IsEnabled="{Binding IsLoading,
+                                                                                     Converter={StaticResource NegativeBooleanConverter}}"
+                                                                 IsVisible="{Binding BeingRead,
+                                                                                     Converter={StaticResource NegativeBooleanConverter}}"
+                                                                 Text="{Binding Labels.Translation.Play,
+                                                                                Source={StaticResource LabelsManager}}" />
 
-                    <cimbalinoBehaviors:ApplicationBarIconButton Command="{Binding StopTextSpeech, Mode=OneTime}" 
-						IsEnabled="{Binding IsLoading, Converter={StaticResource NegativeBooleanConverter}}"
-						IconUri="/Assets/appbar/stop.png" Text="{Binding Labels.Translation.Stop, Source={StaticResource LabelsManager}}" />
+                    <cimbalinoBehaviors:ApplicationBarIconButton Command="{Binding StopTextSpeech,
+                                                                                   Mode=OneTime}"
+                                                                 IconUri="/Assets/appbar/stop.png"
+                                                                 IsEnabled="{Binding IsLoading,
+                                                                                     Converter={StaticResource NegativeBooleanConverter}}"
+                                                                 Text="{Binding Labels.Translation.Stop,
+                                                                                Source={StaticResource LabelsManager}}" />
 
-                    <cimbalinoBehaviors:ApplicationBarIconButton Command="{Binding FFTextSpeech, Mode=OneTime}" 
-						IsEnabled="{Binding IsLoading, Converter={StaticResource NegativeBooleanConverter}}"
-						IconUri="/Assets/appbar/transport.ff.png" Text="{Binding Labels.Translation.Next, Source={StaticResource LabelsManager}}" />
+                    <cimbalinoBehaviors:ApplicationBarIconButton Command="{Binding FFTextSpeech,
+                                                                                   Mode=OneTime}"
+                                                                 IconUri="/Assets/appbar/transport.ff.png"
+                                                                 IsEnabled="{Binding IsLoading,
+                                                                                     Converter={StaticResource NegativeBooleanConverter}}"
+                                                                 Text="{Binding Labels.Translation.Next,
+                                                                                Source={StaticResource LabelsManager}}" />
 
 
                 </cimbalinoBehaviors:ApplicationBar>
             </cimbalinoBehaviors:MultiApplicationBarBehavior>
         </i:Interaction.Behaviors>
-        <Grid >
+        <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition/>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition />
             </Grid.RowDefinitions>
 
-            <UI:TopMenuControl x:Name="TopMenu"/>
+            <UI:TopMenuControl x:Name="TopMenu" />
 
             <Border Grid.Row="1"
-				BorderThickness="0,5,0,0"
-				BorderBrush="{StaticResource SecondaryBackgroundBrush}"
-				Background="{StaticResource FourthBackgroundBrush}" Margin="0">
-                <TextBlock x:Name="PageTitle" Text="{Binding GuideTitle}" TextWrapping="Wrap" 
-					Style="{StaticResource PhoneTextLargeStyle}" 
-					FontWeight="Bold" 
-					Margin="0" 
-					Foreground="White"
-					HorizontalAlignment="Center"
-                               />
+                    Margin="0"
+                    Background="{StaticResource FourthBackgroundBrush}"
+                    BorderBrush="{StaticResource SecondaryBackgroundBrush}"
+                    BorderThickness="0,5,0,0">
+                <TextBlock x:Name="PageTitle"
+                           Margin="0"
+                           HorizontalAlignment="Center"
+                           FontWeight="Bold"
+                           Foreground="White"
+                           Style="{StaticResource PhoneTextLargeStyle}"
+                           Text="{Binding GuideTitle}"
+                           TextWrapping="Wrap" />
             </Border>
 
-            <Grid Grid.Row="2" x:Name="IndexNav" Visibility="{Binding IsLoading, Converter={StaticResource NegativeBooleanVisibilityConverter}}"  Background="{StaticResource ThirdBackgroundBrush}" Height="60">
+            <Grid x:Name="IndexNav"
+                  Grid.Row="2"
+                  Height="60"
+                  Background="{StaticResource ThirdBackgroundBrush}"
+                  Visibility="{Binding IsLoading,
+                                       Converter={StaticResource NegativeBooleanVisibilityConverter}}">
 
-                <telerikPrimitives:RadPaginationControl PageProvider="{Binding ElementName=radSlideView}" 
-					DisplayMode="Thumbnails"
-					NavigationMode="Direct"                 >
+                <telerikPrimitives:RadPaginationControl DisplayMode="Thumbnails"
+                                                        NavigationMode="Direct"
+                                                        PageProvider="{Binding ElementName=radSlideView}">
                     <telerikPrimitives:RadPaginationControl.ItemTemplate>
                         <DataTemplate>
-                            <TextBlock Text="{Binding StepTitle}" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource SecondaryBackgroundBrush}" FontWeight="Bold" FontSize="48"/>
+                            <TextBlock FontSize="48"
+                                       FontWeight="Bold"
+                                       Foreground="{StaticResource SecondaryBackgroundBrush}"
+                                       Style="{StaticResource PhoneTextLargeStyle}"
+                                       Text="{Binding StepTitle}" />
 
                         </DataTemplate>
                     </telerikPrimitives:RadPaginationControl.ItemTemplate>
                     <telerikPrimitives:RadPaginationControl.CurrentItemTemplate>
                         <DataTemplate>
-                            <TextBlock Text="{Binding StepTitle}"  Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource BlackBrush}" FontWeight="Bold" FontSize="48"/>
+                            <TextBlock FontSize="48"
+                                       FontWeight="Bold"
+                                       Foreground="{StaticResource BlackBrush}"
+                                       Style="{StaticResource PhoneTextLargeStyle}"
+                                       Text="{Binding StepTitle}" />
                         </DataTemplate>
                     </telerikPrimitives:RadPaginationControl.CurrentItemTemplate>
                 </telerikPrimitives:RadPaginationControl>
             </Grid>
 
-            <Grid x:Name="ContentPanel" Grid.Row="3" Margin="0" Visibility="{Binding IsLoading, Converter={StaticResource NegativeBooleanVisibilityConverter}}" >
+            <Grid x:Name="ContentPanel"
+                  Grid.Row="3"
+                  Margin="0"
+                  Visibility="{Binding IsLoading,
+                                       Converter={StaticResource NegativeBooleanVisibilityConverter}}">
                 <Grid.Background>
                     <SolidColorBrush Color="{StaticResource ThirdBackground}" />
                 </Grid.Background>
-                <Grid Margin="12,12,12,0"   >
+                <Grid Margin="12,12,12,0">
 
                     <telerikPrimitives:RadSlideView x:Name="radSlideView"
-                        
-						ItemRealizationMode="ViewportItem"
-        			
-						ItemsSource="{Binding Items}" 
-						SelectionChanged="radSlideView_SelectionChanged"
-						SelectedItem="{Binding DataContext.SelectedPage, ElementName=LayoutRoot, Mode=TwoWay}"
-						IsLoopingEnabled="True"
-						ItemTemplateSelector="{StaticResource templateSelector}"
-						AdjacentItemsPreviewMode="None">
+                                                    AdjacentItemsPreviewMode="None"
+                                                    IsLoopingEnabled="True"
+                                                    ItemRealizationMode="ViewportItem"
+                                                    ItemTemplateSelector="{StaticResource templateSelector}"
+                                                    ItemsSource="{Binding Items}"
+                                                    SelectedItem="{Binding DataContext.SelectedPage,
+                                                                           ElementName=LayoutRoot,
+                                                                           Mode=TwoWay}"
+                                                    SelectionChanged="radSlideView_SelectionChanged">
                         <telerikPrimitives:RadSlideView.ItemTemplate>
-                            <DataTemplate/>
+                            <DataTemplate />
                         </telerikPrimitives:RadSlideView.ItemTemplate>
 
 
@@ -336,18 +435,19 @@
                 </Grid>
             </Grid>
 
-            <ProgressBar VerticalAlignment="Top"
-				IsIndeterminate="True" 
-				Visibility="{Binding IsLoading, Converter={StaticResource BooleanToVisibilityConverter}}" 
-				x:Name="_performanceProgressBar" Height="10" Foreground="{StaticResource FourthBackgroundBrush}"/>
+            <ProgressBar x:Name="_performanceProgressBar"
+                         Height="10"
+                         VerticalAlignment="Top"
+                         Foreground="{StaticResource FourthBackgroundBrush}"
+                         IsIndeterminate="True"
+                         Visibility="{Binding IsLoading,
+                                              Converter={StaticResource BooleanToVisibilityConverter}}" />
 
-            <telerikPrimitives:RadWindow x:Name="radWindow" 
-				IsFullScreen="True"   
-				IsAnimationEnabled="False"  
-             
-			
-				IsClosedOnBackButton="True"  
-                d:IsHidden="True">
+            <telerikPrimitives:RadWindow x:Name="radWindow"
+                                         IsAnimationEnabled="False"
+                                         IsClosedOnBackButton="True"
+                                         IsFullScreen="True"
+                                         d:IsHidden="True">
                 <!--<telerikPrimitives:RadWindow.OpenAnimation>
                     <telerikCore:RadFadeAnimation StartOpacity="0.0" EndOpacity="1.0" Duration="0:0:0.3" />
                 </telerikPrimitives:RadWindow.OpenAnimation>
@@ -355,8 +455,10 @@
                     <telerikCore:RadFadeAnimation StartOpacity="1.0" EndOpacity="0.0" Duration="0:0:0.3" />
                 </telerikPrimitives:RadWindow.CloseAnimation>-->
                 <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                    <telerikSlideView:PanAndZoomImage   x:Name="ZoomImage"  
-                     Source="{Binding FullImagePath}" Stretch="Uniform" ZoomMode="Free"/>
+                    <telerikSlideView:PanAndZoomImage x:Name="ZoomImage"
+                                                      Source="{Binding FullImagePath}"
+                                                      Stretch="Uniform"
+                                                      ZoomMode="Free" />
 
                 </Grid>
 

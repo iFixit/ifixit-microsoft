@@ -26,6 +26,7 @@
 *.sln.docstates
 *.key
 
+
 # Build results
 
 [Dd]ebug/
@@ -34,6 +35,10 @@ x64/
 build/
 [Bb]in/
 [Oo]bj/
+**/[Bb]in/
+**/[Oo]bj/
+**/[Dd]ebug/
+**/[Rr]elease/
 
 # MSTest test Results
 [Tt]est[Rr]esult*/
@@ -115,7 +120,7 @@ publish/
 
 # NuGet Packages Directory
 ## TODO: If you have NuGet Package Restore enabled, uncomment the next line
-#packages/
+packages/
 
 # Windows Azure Build Output
 csx
@@ -135,6 +140,7 @@ ClientBin/
 *.[Pp]ublish.xml
 *.pfx
 *.publishsettings
+
 
 # RIA/Silverlight projects
 Generated_Code/
@@ -198,3 +204,5 @@ pip-log.txt
 
 #Mr Developer
 .mr.developer.cfg
+
+

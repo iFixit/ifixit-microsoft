@@ -1,72 +1,82 @@
-﻿<phone:PhoneApplicationPage
-    x:Class="iFixit.WP8.UI.Views.Profile"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
-    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
-    xmlns:cmd="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras"
-    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit" 
-    xmlns:cimbalinoBehaviors="clr-namespace:Cimbalino.Phone.Toolkit.Behaviors;assembly=Cimbalino.Phone.Toolkit"
-    xmlns:telerikPrimitives="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Primitives"
-    xmlns:telerikCore="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Core"
-    xmlns:telerikSlideView="clr-namespace:Telerik.Windows.Controls.SlideView;assembly=Telerik.Windows.Controls.Primitives"
-    telerikCore:InteractionEffectManager.IsInteractionEnabled="True"
-    toolkit:TiltEffect.IsTiltEnabled="True"
-  
-    FontFamily="{StaticResource PhoneFontFamilyNormal}"
-    FontSize="{StaticResource PhoneFontSizeNormal}"
-    Foreground="{StaticResource PhoneForegroundBrush}"
-    SupportedOrientations="PortraitOrLandscape" Orientation="Portrait"
-    mc:Ignorable="d"
-     DataContext="{Binding Profile, Mode=OneWay, Source={StaticResource Locator}}"
-    shell:SystemTray.IsVisible="False">
+﻿<phone:PhoneApplicationPage x:Class="iFixit.WP8.UI.Views.Profile"
+                            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                            xmlns:cimbalinoBehaviors="clr-namespace:Cimbalino.Phone.Toolkit.Behaviors;assembly=Cimbalino.Phone.Toolkit"
+                            xmlns:cmd="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Platform"
+                            xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                            xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+                            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                            xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+                            xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+                            xmlns:telerikCore="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Core"
+                            xmlns:telerikPrimitives="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Primitives"
+                            xmlns:telerikSlideView="clr-namespace:Telerik.Windows.Controls.SlideView;assembly=Telerik.Windows.Controls.Primitives"
+                            xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+                            DataContext="{Binding Profile,
+                                                  Mode=OneWay,
+                                                  Source={StaticResource Locator}}"
+                            FontFamily="{StaticResource PhoneFontFamilyNormal}"
+                            FontSize="{StaticResource PhoneFontSizeNormal}"
+                            Foreground="{StaticResource PhoneForegroundBrush}"
+                            Orientation="Portrait"
+                            SupportedOrientations="PortraitOrLandscape"
+                            shell:SystemTray.IsVisible="False"
+                            telerikCore:InteractionEffectManager.IsInteractionEnabled="True"
+                            toolkit:TiltEffect.IsTiltEnabled="True"
+                            mc:Ignorable="d">
 
     <Grid x:Name="LayoutRoot" Background="{StaticResource MainBackgroundBrush}">
         <i:Interaction.Triggers>
             <i:EventTrigger EventName="Loaded">
-                <cmd:EventToCommand Command="{Binding LoadProfile, Mode=OneWay}"   />
+                <cmd:EventToCommand Command="{Binding LoadProfile, Mode=OneWay}" />
             </i:EventTrigger>
         </i:Interaction.Triggers>
         <i:Interaction.Behaviors>
-            <cimbalinoBehaviors:MultiApplicationBarBehavior 
-				SelectedIndex="{Binding SelectedIndex, ElementName=MainInfo}" >
-                <cimbalinoBehaviors:ApplicationBar Mode="Minimized" Opacity="0.5" IsMenuEnabled="{Binding IsLoading, Converter={StaticResource NegativeBooleanConverter}}">
+            <cimbalinoBehaviors:MultiApplicationBarBehavior SelectedIndex="{Binding SelectedIndex, ElementName=MainInfo}">
+                <cimbalinoBehaviors:ApplicationBar IsMenuEnabled="{Binding IsLoading,
+                                                                           Converter={StaticResource NegativeBooleanConverter}}"
+                                                   Mode="Minimized"
+                                                   Opacity="0.5">
                     <cimbalinoBehaviors:ApplicationBar.MenuItems>
-                        <cimbalinoBehaviors:ApplicationBarMenuItem Command="{Binding GoToAbout, Mode=OneTime}"  Text="{Binding Labels.Translation.About, Source={StaticResource LabelsManager}}">
-
-                        </cimbalinoBehaviors:ApplicationBarMenuItem>
+                        <cimbalinoBehaviors:ApplicationBarMenuItem Command="{Binding GoToAbout, Mode=OneTime}" Text="{Binding Labels.Translation.About, Source={StaticResource LabelsManager}}" />
                     </cimbalinoBehaviors:ApplicationBar.MenuItems>
                 </cimbalinoBehaviors:ApplicationBar>
             </cimbalinoBehaviors:MultiApplicationBarBehavior>
         </i:Interaction.Behaviors>
         <Grid>
 
-            <phone:Pivot x:Name="MainInfo" 
-                         HeaderTemplate="{StaticResource MasterPivotHeader}"
-                         Background="{StaticResource ThirdBackgroundBrush}" >
+            <phone:Pivot x:Name="MainInfo"
+                         Background="{StaticResource ThirdBackgroundBrush}"
+                         HeaderTemplate="{StaticResource MasterPivotHeader}">
 
                 <phone:PivotItem Header="{Binding Labels.Translation.Profile, Source={StaticResource LabelsManager}}">
                     <StackPanel Orientation="Vertical">
 
-                        <Grid Margin="12,0,0,0" >
+                        <Grid Margin="12,0,0,0">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="150"/>
+                                <ColumnDefinition Width="150" />
                                 <ColumnDefinition />
                             </Grid.ColumnDefinitions>
-                            <Image Height="150" Source="{Binding User.ImageUrl}"/>
-                            <StackPanel Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Left">
-                                <TextBlock TextWrapping="Wrap" Text="{Binding User.UserName}" Style="{StaticResource PhoneTextNormalStyle}"/>
-                                <TextBlock TextWrapping="Wrap" Text="{Binding User.Email}" Style="{StaticResource PhoneTextNormalStyle}"/>
+                            <Image Height="150" Source="{Binding User.ImageUrl}" />
+                            <StackPanel Grid.Column="1"
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Top">
+                                <TextBlock Style="{StaticResource PhoneTextNormalStyle}"
+                                           Text="{Binding User.UserName}"
+                                           TextWrapping="Wrap" />
+                                <TextBlock Style="{StaticResource PhoneTextNormalStyle}"
+                                           Text="{Binding User.Email}"
+                                           TextWrapping="Wrap" />
                             </StackPanel>
                         </Grid>
-                        <Button Content="{Binding Labels.Translation.Logout, Source={StaticResource LabelsManager}}" VerticalAlignment="Top" BorderBrush="{StaticResource FourthBackgroundBrush}" Foreground="{StaticResource SecondaryBackgroundBrush}"
-                            >
+                        <Button VerticalAlignment="Top"
+                                BorderBrush="{StaticResource FourthBackgroundBrush}"
+                                Content="{Binding Labels.Translation.Logout,
+                                                  Source={StaticResource LabelsManager}}"
+                                Foreground="{StaticResource SecondaryBackgroundBrush}">
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="Tap">
-                                    <cmd:EventToCommand Command="{Binding DoLogout}"/>
+                                    <cmd:EventToCommand Command="{Binding DoLogout}" />
                                 </i:EventTrigger>
                             </i:Interaction.Triggers>
                         </Button>

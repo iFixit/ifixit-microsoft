@@ -299,11 +299,11 @@ namespace iFixit.Domain.ViewModels
                          LoadingCounter++;
                          CollectionsItems.Clear();
                          var _ResultsCollections = await getCollections(param);
-                         Task[] guidesToLoad = new Task[_ResultsCollections[param].guideids.Count];
+                         Task[] guidesToLoad = new Task[_ResultsCollections[param].guides.Count()];
 
-                         for (int i = 0; i < _ResultsCollections[param].guideids.Count; i++)
+                         for (int i = 0; i < _ResultsCollections[param].guides.Count(); i++)
                          {
-                             guidesToLoad[i] = GetGuide(_ResultsCollections[param].guideids[i].ToString());
+                             guidesToLoad[i] = GetGuide(_ResultsCollections[param].guides[i].guideid.ToString());
 
                          }
 
@@ -602,7 +602,7 @@ namespace iFixit.Domain.ViewModels
                             {
 
 
-                                Models.REST.V0_1.Collections collections = null;
+                                Models.REST.V2_0.Collections collections = null;
 
                                 // must do paralel ....
                                 // var _ResultsCategory = GetCategories(Result);
@@ -616,8 +616,8 @@ namespace iFixit.Domain.ViewModels
                                 collections = _ResultsCollections.Result;
 
 
-                                int howManyCallsToDo = collections[0].guideids.Count + Categories.Count;
-                                Task[] guidesToLoad = new Task[collections[0].guideids.Count];
+                                int howManyCallsToDo = collections[0].guides.Count() + Categories.Count;
+                                Task[] guidesToLoad = new Task[collections[0].guides.Count()];
                                 Task[] categoriesToLoad = new Task[Categories.Count];
 
 
@@ -628,16 +628,16 @@ namespace iFixit.Domain.ViewModels
 
                                 }
 
-                                for (int i = 0; i < collections[0].guideids.Count; i++)
+                                for (int i = 0; i < collections[0].guides.Count(); i++)
                                 {
-                                    var item = collections[0].guideids[i].ToString();
-                                    if (!CollectionsItems.Any(o => o.UniqueId == item))
+                                    var item = collections[0].guides[i].guideid;
+                                    if (!CollectionsItems.Any(o => o.UniqueId == item.ToString()))
                                         this.CollectionsItems.Add(new Models.UI.HomeItem
                                         {
-                                            UniqueId = item,
+                                            UniqueId = item.ToString(),
                                             IndexOf = i
                                         });
-                                    guidesToLoad[i] = GetGuide(item);
+                                    guidesToLoad[i] = GetGuide(item.ToString());
 
                                 }
 
@@ -688,18 +688,18 @@ namespace iFixit.Domain.ViewModels
 
         #endregion
 
-        private async Task<Models.REST.V0_1.Collections> getCollections(int idx)
+        private async Task<Models.REST.V2_0.Collections> getCollections(int idx)
         {
 
             try
             {
-                Models.REST.V0_1.Collections collections = new Models.REST.V0_1.Collections();
+                var collections = new Models.REST.V2_0.Collections();
                 LoadingCounter++;
                 var isCollectionsCached = await _storageService.Exists(Constants.COLLECTIONS, new TimeSpan(0, 12, 0, 0));
                 if (isCollectionsCached)
                 {
                     var rd = await _storageService.ReadData(Constants.COLLECTIONS);
-                    collections = rd.LoadFromJson<Models.REST.V0_1.Collections>();
+                    collections = rd.LoadFromJson<Models.REST.V2_0.Collections>();
                 }
                 else
                 {
@@ -853,7 +853,7 @@ namespace iFixit.Domain.ViewModels
             }
             else
             {
-                throw new ArgumentException("Where's the guide?" + idGuide);
+                //throw new ArgumentException("Where's the guide?" + idGuide);
             }
 
 

@@ -64,6 +64,7 @@
     <Compile Include="Models\REST\V1_1\Favorites.cs" />
     <Compile Include="Models\REST\V1_1\Login.cs" />
     <Compile Include="Models\REST\V2_0\Category.cs" />
+    <Compile Include="Models\REST\V2_0\Collections.cs" />
     <Compile Include="Models\REST\V2_0\Favorites.cs" />
     <Compile Include="Models\REST\V2_0\Guide.cs" />
     <Compile Include="Models\REST\V2_0\Guides.cs" />

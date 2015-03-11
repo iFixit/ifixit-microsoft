@@ -1,139 +1,175 @@
-﻿<code:PageBase
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:code="clr-namespace:iFixit.WP8.UI.Code"
-    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
-    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity" 
-    xmlns:Command="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras"
-    xmlns:cmd="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras"
-    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit" 
-    xmlns:cimbalinoBehaviors="clr-namespace:Cimbalino.Phone.Toolkit.Behaviors;assembly=Cimbalino.Phone.Toolkit"
-    xmlns:delay="clr-namespace:Delay;assembly=PhonePerformance"
-    xmlns:telerikPrimitives="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Primitives"
-    xmlns:telerikSlideView="clr-namespace:Telerik.Windows.Controls.SlideView;assembly=Telerik.Windows.Controls.Primitives"
-    xmlns:telerikCore="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Core"
-    telerikCore:InteractionEffectManager.IsInteractionEnabled="True"
-	xmlns:CodeConverters="clr-namespace:iFixit.WP8.UI.Code"
-    xmlns:code4FunControls="clr-namespace:Coding4Fun.Toolkit.Controls;assembly=Coding4Fun.Toolkit.Controls"
-
-    x:Class="iFixit.WP8.UI.Views.About"
-    FontFamily="{StaticResource PhoneFontFamilyNormal}"
-    FontSize="{StaticResource PhoneFontSizeNormal}"
-    Foreground="{StaticResource PhoneForegroundBrush}"
-    SupportedOrientations="PortraitOrLandscape" Orientation="Portrait"
-    mc:Ignorable="d"
-    shell:SystemTray.IsVisible="False" shell:SystemTray.Opacity="0"
-    DataContext="{Binding About, Mode=OneWay, Source={StaticResource Locator}}" 
-  
-    >
-    <code:PageBase.Resources>
+﻿<CodeConverters:PageBase x:Class="iFixit.WP8.UI.Views.About"
+                         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                         xmlns:CodeConverters="clr-namespace:iFixit.WP8.UI.Code"
+                         xmlns:Command="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras"
+                         xmlns:cimbalinoBehaviors="clr-namespace:Cimbalino.Phone.Toolkit.Behaviors;assembly=Cimbalino.Phone.Toolkit"
+                         xmlns:cmd="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Platform"
+                         xmlns:code="clr-namespace:iFixit.WP8.UI.Code"
+                         xmlns:code4FunControls="clr-namespace:Coding4Fun.Toolkit.Controls;assembly=Coding4Fun.Toolkit.Controls"
+                         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                         xmlns:delay="clr-namespace:Delay;assembly=PhonePerformance"
+                         xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+                         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                         xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+                         xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+                         xmlns:telerikCore="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Core"
+                         xmlns:telerikPrimitives="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Primitives"
+                         xmlns:telerikSlideView="clr-namespace:Telerik.Windows.Controls.SlideView;assembly=Telerik.Windows.Controls.Primitives"
+                         xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+                         DataContext="{Binding About,
+                                               Mode=OneWay,
+                                               Source={StaticResource Locator}}"
+                         FontFamily="{StaticResource PhoneFontFamilyNormal}"
+                         FontSize="{StaticResource PhoneFontSizeNormal}"
+                         Foreground="{StaticResource PhoneForegroundBrush}"
+                         Orientation="Portrait"
+                         SupportedOrientations="PortraitOrLandscape"
+                         shell:SystemTray.IsVisible="False"
+                         shell:SystemTray.Opacity="0"
+                         telerikCore:InteractionEffectManager.IsInteractionEnabled="True"
+                         mc:Ignorable="d">
+    <CodeConverters:PageBase.Resources>
         <Style x:Key="HyperlinkButtonStyle1" TargetType="HyperlinkButton">
-            <Setter Property="Foreground" Value="{StaticResource PhoneForegroundBrush}"/>
-            <Setter Property="Background" Value="Transparent"/>
-            <Setter Property="FontSize" Value="{StaticResource PhoneFontSizeMedium}"/>
-            <Setter Property="Padding" Value="0"/>
+            <Setter Property="Foreground" Value="{StaticResource PhoneForegroundBrush}" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="FontSize" Value="{StaticResource PhoneFontSizeMedium}" />
+            <Setter Property="Padding" Value="0" />
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="HyperlinkButton">
                         <Border Background="Transparent">
                             <VisualStateManager.VisualStateGroups>
                                 <VisualStateGroup x:Name="CommonStates">
-                                    <VisualState x:Name="Normal"/>
-                                    <VisualState x:Name="MouseOver"/>
+                                    <VisualState x:Name="Normal" />
+                                    <VisualState x:Name="MouseOver" />
                                     <VisualState x:Name="Pressed">
                                         <Storyboard>
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="TextElement">
-                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource PhoneAccentBrush}"/>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="TextElement" Storyboard.TargetProperty="Foreground">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource PhoneAccentBrush}" />
                                             </ObjectAnimationUsingKeyFrames>
                                         </Storyboard>
                                     </VisualState>
                                     <VisualState x:Name="Disabled">
                                         <Storyboard>
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="TextElement">
-                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource PhoneDisabledBrush}"/>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="TextElement" Storyboard.TargetProperty="Foreground">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource PhoneDisabledBrush}" />
                                             </ObjectAnimationUsingKeyFrames>
                                         </Storyboard>
                                     </VisualState>
                                 </VisualStateGroup>
                             </VisualStateManager.VisualStateGroups>
-                            <Border Background="{TemplateBinding Background}" Margin="{StaticResource PhoneHorizontalMargin}" Padding="{TemplateBinding Padding}">
-                                <TextBlock x:Name="TextElement" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Text="{TemplateBinding Content}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" FontWeight="Bold" FontSize="18.667" LineStackingStrategy="BlockLineHeight" TextWrapping="Wrap"/>
+                            <Border Margin="{StaticResource PhoneHorizontalMargin}"
+                                    Background="{TemplateBinding Background}"
+                                    Padding="{TemplateBinding Padding}">
+                                <TextBlock x:Name="TextElement"
+                                           HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                           VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                           FontSize="18.667"
+                                           FontWeight="Bold"
+                                           LineStackingStrategy="BlockLineHeight"
+                                           Text="{TemplateBinding Content}"
+                                           TextWrapping="Wrap" />
                             </Border>
                         </Border>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
         </Style>
-        <CodeConverters:SubStringConverter x:Key="SubStringConverter"/>
-        <CodeConverters:TextEmptyHideConverter x:Key="TextEmptyHideConverter"/>
+        <CodeConverters:SubStringConverter x:Key="SubStringConverter" />
+        <CodeConverters:TextEmptyHideConverter x:Key="TextEmptyHideConverter" />
 
         <DataTemplate x:Key="NewsItems">
 
-            <Grid MinHeight="150" Margin="0,0,6,6" >
+            <Grid MinHeight="150" Margin="0,0,6,6">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"></RowDefinition>
-                    <RowDefinition></RowDefinition>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="155"/>
-                    <ColumnDefinition/>
+                    <ColumnDefinition Width="155" />
+                    <ColumnDefinition />
                 </Grid.ColumnDefinitions>
-                <TextBlock Grid.ColumnSpan="2"  FontWeight="Bold" FontSize="24" 
-                           Text="{Binding Title}"   Foreground="{StaticResource BlackBrush}" TextWrapping="Wrap" ></TextBlock>
-                <Border  BorderBrush="{StaticResource SecondaryBackgroundBrush}" BorderThickness="1"
-					 Grid.Row="1" Width="155" Height="155" Background="{StaticResource PlaceHolderBackgroundBrush}" >
+                <TextBlock Grid.ColumnSpan="2"
+                           FontSize="24"
+                           FontWeight="Bold"
+                           Foreground="{StaticResource BlackBrush}"
+                           Text="{Binding Title}"
+                           TextWrapping="Wrap" />
+                <Border Grid.Row="1"
+                        Width="155"
+                        Height="155"
+                        Background="{StaticResource PlaceHolderBackgroundBrush}"
+                        BorderBrush="{StaticResource SecondaryBackgroundBrush}"
+                        BorderThickness="1">
 
-                    <code4FunControls:SuperImage PlaceholderImageSource="/Assets/NoImage_300x225.jpg" 
-						Stretch="UniformToFill"  PlaceholderImageStretch="Uniform" 
-						Source="{Binding ImageUrl}" />
+                    <code4FunControls:SuperImage PlaceholderImageSource="/Assets/NoImage_300x225.jpg"
+                                                 PlaceholderImageStretch="Uniform"
+                                                 Source="{Binding ImageUrl}"
+                                                 Stretch="UniformToFill" />
 
                 </Border>
 
-                <StackPanel Grid.Column="1" Grid.Row="1" Margin="0,0,0,0"  >
+                <StackPanel Grid.Row="1"
+                            Grid.Column="1"
+                            Margin="0,0,0,0">
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock TextWrapping="Wrap" Text="{Binding Author}" 
-                		HorizontalAlignment="Left"	VerticalAlignment="Center"	
-                		Foreground="{StaticResource FourthBackgroundBrush}" Margin="12,0,0,0" Style="{StaticResource PhoneTextSmallStyle}" />
-                        <TextBlock TextWrapping="Wrap" Text="{Binding PubDate}" 
-                		HorizontalAlignment="Left"	VerticalAlignment="Center"	
-                		Foreground="{StaticResource FourthBackgroundBrush}" Margin="12,0,0,0" Style="{StaticResource PhoneTextSmallStyle}" />
+                        <TextBlock Margin="12,0,0,0"
+                                   HorizontalAlignment="Left"
+                                   VerticalAlignment="Center"
+                                   Foreground="{StaticResource FourthBackgroundBrush}"
+                                   Style="{StaticResource PhoneTextSmallStyle}"
+                                   Text="{Binding Author}"
+                                   TextWrapping="Wrap" />
+                        <TextBlock Margin="12,0,0,0"
+                                   HorizontalAlignment="Left"
+                                   VerticalAlignment="Center"
+                                   Foreground="{StaticResource FourthBackgroundBrush}"
+                                   Style="{StaticResource PhoneTextSmallStyle}"
+                                   Text="{Binding PubDate}"
+                                   TextWrapping="Wrap" />
                     </StackPanel>
-                    <TextBlock TextWrapping="Wrap" Text="{Binding Summary, Converter={StaticResource SubStringConverter}, ConverterParameter=100}" 
-                		HorizontalAlignment="Left"	VerticalAlignment="Center"	
-                		Foreground="{StaticResource FourthBackgroundBrush}" Margin="12,0,0,0" Style="{StaticResource PhoneTextNormalStyle}" />
+                    <TextBlock Margin="12,0,0,0"
+                               HorizontalAlignment="Left"
+                               VerticalAlignment="Center"
+                               Foreground="{StaticResource FourthBackgroundBrush}"
+                               Style="{StaticResource PhoneTextNormalStyle}"
+                               Text="{Binding Summary,
+                                              Converter={StaticResource SubStringConverter},
+                                              ConverterParameter=100}"
+                               TextWrapping="Wrap" />
                 </StackPanel>
 
             </Grid>
 
         </DataTemplate>
-    </code:PageBase.Resources>
+    </CodeConverters:PageBase.Resources>
 
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
-            <cmd:EventToCommand Command="{Binding Load, Mode=OneWay}"   />
+            <cmd:EventToCommand Command="{Binding Load, Mode=OneWay}" />
         </i:EventTrigger>
     </i:Interaction.Triggers>
 
     <Grid x:Name="LayoutRoot" Background="{StaticResource MainBackgroundBrush}">
 
 
-        <phone:Pivot x:Name="MainInfo" 
-                     SelectedIndex="{Binding DataContext.SelectedIndex,ElementName=LayoutRoot}"
+        <phone:Pivot x:Name="MainInfo"
+                     Background="{StaticResource ThirdBackgroundBrush}"
                      HeaderTemplate="{StaticResource MasterPivotHeader}"
-                     Background="{StaticResource ThirdBackgroundBrush}" >
+                     SelectedIndex="{Binding DataContext.SelectedIndex,
+                                             ElementName=LayoutRoot}">
             <phone:PivotItem Header="{Binding Labels.Translation.Mission, Source={StaticResource LabelsManager}}">
                 <ScrollViewer>
-                    <StackPanel >
-                        <RichTextBox Foreground="{StaticResource FourthBackgroundBrush}" 
-                                     >
+                    <StackPanel>
+                        <RichTextBox Foreground="{StaticResource FourthBackgroundBrush}">
                             <Paragraph>
-                                <Run FontWeight="Bold" FontSize="24" Text="How to Contribute"/>
+                                <Run FontSize="24"
+                                     FontWeight="Bold"
+                                     Text="How to Contribute" />
                             </Paragraph>
                             <Paragraph>
-                                <Run Text="We're building the free repair manual for everything, and we need your help. It's easy to get started—just click the edit button on any page and make an improvement!"/>
+                                <Run Text="We're building the free repair manual for everything, and we need your help. It's easy to get started—just click the edit button on any page and make an improvement!" />
                             </Paragraph>
 
                             <Paragraph>
@@ -143,10 +179,10 @@
                                         <Run.Foreground>
                                             <SolidColorBrush Color="#FF006EDB">
                                                 <SolidColorBrush.RelativeTransform>
-                                                    <MatrixTransform Matrix="Identity"/>
+                                                    <MatrixTransform Matrix="Identity" />
                                                 </SolidColorBrush.RelativeTransform>
                                                 <SolidColorBrush.Transform>
-                                                    <MatrixTransform Matrix="Identity"/>
+                                                    <MatrixTransform Matrix="Identity" />
                                                 </SolidColorBrush.Transform>
                                             </SolidColorBrush>
                                         </Run.Foreground>
@@ -157,342 +193,352 @@
 
 
                             <Paragraph>
-                                <Run/>
+                                <Run />
                             </Paragraph>
                         </RichTextBox>
 
-                        <RichTextBox Foreground="{StaticResource FourthBackgroundBrush}" 
-                                     >
+                        <RichTextBox Foreground="{StaticResource FourthBackgroundBrush}">
                             <Paragraph>
-                                <Run FontWeight="Bold" FontSize="24" Text="Helpful Resources"/>
+                                <Run FontSize="24"
+                                     FontWeight="Bold"
+                                     Text="Helpful Resources" />
                             </Paragraph>
                             <Paragraph>
-                                <Run Text="We've got some useful pages that will teach you how to take photos and write your own repair manual, help us build and organize a Q&amp;A knowledge base, and add new kinds of devices to iFixit. And a whole lot more."/>
+                                <Run Text="We've got some useful pages that will teach you how to take photos and write your own repair manual, help us build and organize a Q&amp;A knowledge base, and add new kinds of devices to iFixit. And a whole lot more." />
                             </Paragraph>
                             <Paragraph>
-                                <Run/>
+                                <Run />
                             </Paragraph>
                             <Paragraph>
-                                <Run FontWeight="Bold" FontStyle="Italic" FontSize="21.333" Text="Getting Started"/>
+                                <Run FontSize="21.333"
+                                     FontStyle="Italic"
+                                     FontWeight="Bold"
+                                     Text="Getting Started" />
                             </Paragraph>
                             <Paragraph>
-                                <Run Text="-"/>
+                                <Run Text="-" />
                                 <Hyperlink NavigateUri="http://www.ifixit.com/Info/User_Account" TargetName="_blank">
-                                    <Run  FontWeight="Bold"  Text="User Accounts">
+                                    <Run FontWeight="Bold" Text="User Accounts">
                                         <Run.Foreground>
                                             <SolidColorBrush Color="#FF006EDB">
                                                 <SolidColorBrush.RelativeTransform>
-                                                    <MatrixTransform Matrix="Identity"/>
+                                                    <MatrixTransform Matrix="Identity" />
                                                 </SolidColorBrush.RelativeTransform>
                                                 <SolidColorBrush.Transform>
-                                                    <MatrixTransform Matrix="Identity"/>
+                                                    <MatrixTransform Matrix="Identity" />
                                                 </SolidColorBrush.Transform>
                                             </SolidColorBrush>
                                         </Run.Foreground>
                                     </Run>
                                 </Hyperlink>
 
-                                <Run Text="— How to register and fill out your account."/>
+                                <Run Text="— How to register and fill out your account." />
                             </Paragraph>
                             <Paragraph>
-                                <Run Text="-"/>
+                                <Run Text="-" />
                                 <Hyperlink NavigateUri="http://www.ifixit.com/Info/Repair_Guide" TargetName="_blank">
                                     <Run FontWeight="Bold" Text="Repair Guides ">
                                         <Run.Foreground>
                                             <SolidColorBrush Color="#FF006EDB">
                                                 <SolidColorBrush.RelativeTransform>
-                                                    <MatrixTransform Matrix="Identity"/>
+                                                    <MatrixTransform Matrix="Identity" />
                                                 </SolidColorBrush.RelativeTransform>
                                                 <SolidColorBrush.Transform>
-                                                    <MatrixTransform Matrix="Identity"/>
+                                                    <MatrixTransform Matrix="Identity" />
                                                 </SolidColorBrush.Transform>
                                             </SolidColorBrush>
                                         </Run.Foreground>
                                     </Run>
                                 </Hyperlink>
-                                <Run Text="— How to create a Repair Guide."/>
+                                <Run Text="— How to create a Repair Guide." />
                             </Paragraph>
                             <Paragraph>
-                                <Run Text="-"/>
+                                <Run Text="-" />
                                 <Hyperlink NavigateUri="http://www.ifixit.com/Info/Teardown" TargetName="_blank">
                                     <Run FontWeight="Bold" Text="Teardowns ">
                                         <Run.Foreground>
                                             <SolidColorBrush Color="#FF006EDB">
                                                 <SolidColorBrush.RelativeTransform>
-                                                    <MatrixTransform Matrix="Identity"/>
+                                                    <MatrixTransform Matrix="Identity" />
                                                 </SolidColorBrush.RelativeTransform>
                                                 <SolidColorBrush.Transform>
-                                                    <MatrixTransform Matrix="Identity"/>
+                                                    <MatrixTransform Matrix="Identity" />
                                                 </SolidColorBrush.Transform>
                                             </SolidColorBrush>
                                         </Run.Foreground>
                                     </Run>
                                 </Hyperlink>
-                                <Run Text="— How to create a Teardown."/>
+                                <Run Text="— How to create a Teardown." />
                             </Paragraph>
                             <Paragraph>
-                                <Run Text="-"/>
+                                <Run Text="-" />
                                 <Hyperlink NavigateUri="http://www.ifixit.com/Info/Device_Page" TargetName="_blank">
                                     <Run FontWeight="Bold" Text="Device Pages ">
                                         <Run.Foreground>
                                             <SolidColorBrush Color="#FF006EDB">
                                                 <SolidColorBrush.RelativeTransform>
-                                                    <MatrixTransform Matrix="Identity"/>
+                                                    <MatrixTransform Matrix="Identity" />
                                                 </SolidColorBrush.RelativeTransform>
                                                 <SolidColorBrush.Transform>
-                                                    <MatrixTransform Matrix="Identity"/>
+                                                    <MatrixTransform Matrix="Identity" />
                                                 </SolidColorBrush.Transform>
                                             </SolidColorBrush>
                                         </Run.Foreground>
                                     </Run>
                                 </Hyperlink>
 
-                                <Run Text="— How to create a Device Page."/>
+                                <Run Text="— How to create a Device Page." />
                             </Paragraph>
                             <Paragraph>
-                                <Run Text="-"/>
-                                <Hyperlink TargetName="_blank" NavigateUri="http://www.ifixit.com/Info/Troubleshooting">
+                                <Run Text="-" />
+                                <Hyperlink NavigateUri="http://www.ifixit.com/Info/Troubleshooting" TargetName="_blank">
                                     <Run FontWeight="Bold" Text="Troubleshooting Pages ">
                                         <Run.Foreground>
                                             <SolidColorBrush Color="#FF006EDB">
                                                 <SolidColorBrush.RelativeTransform>
-                                                    <MatrixTransform Matrix="Identity"/>
+                                                    <MatrixTransform Matrix="Identity" />
                                                 </SolidColorBrush.RelativeTransform>
                                                 <SolidColorBrush.Transform>
-                                                    <MatrixTransform Matrix="Identity"/>
+                                                    <MatrixTransform Matrix="Identity" />
                                                 </SolidColorBrush.Transform>
                                             </SolidColorBrush>
                                         </Run.Foreground>
                                     </Run>
                                 </Hyperlink>
-                                <Run Text="— How to create a Troubleshooting Page."/>
+                                <Run Text="— How to create a Troubleshooting Page." />
                             </Paragraph>
                             <Paragraph>
-                                <Run Text="-"/>
-                                <Hyperlink TargetName="_blank" NavigateUri="http://www.ifixit.com/Help/Item_Page">
+                                <Run Text="-" />
+                                <Hyperlink NavigateUri="http://www.ifixit.com/Help/Item_Page" TargetName="_blank">
                                     <Run FontWeight="Bold" Text="Item Page ">
                                         <Run.Foreground>
                                             <SolidColorBrush Color="#FF006EDB">
                                                 <SolidColorBrush.RelativeTransform>
-                                                    <MatrixTransform Matrix="Identity"/>
+                                                    <MatrixTransform Matrix="Identity" />
                                                 </SolidColorBrush.RelativeTransform>
                                                 <SolidColorBrush.Transform>
-                                                    <MatrixTransform Matrix="Identity"/>
+                                                    <MatrixTransform Matrix="Identity" />
                                                 </SolidColorBrush.Transform>
                                             </SolidColorBrush>
                                         </Run.Foreground>
                                     </Run>
                                 </Hyperlink>
-                                <Run Text="— How to create a Item Page."/>
+                                <Run Text="— How to create a Item Page." />
                             </Paragraph>
                             <Paragraph>
-                                <Run Text="-"/>
-                                <Hyperlink TargetName="_blank" NavigateUri="http://www.ifixit.com/Help/Answers">
+                                <Run Text="-" />
+                                <Hyperlink NavigateUri="http://www.ifixit.com/Help/Answers" TargetName="_blank">
                                     <Run FontWeight="Bold" Text="Answers ">
                                         <Run.Foreground>
                                             <SolidColorBrush Color="#FF006EDB">
                                                 <SolidColorBrush.RelativeTransform>
-                                                    <MatrixTransform Matrix="Identity"/>
+                                                    <MatrixTransform Matrix="Identity" />
                                                 </SolidColorBrush.RelativeTransform>
                                                 <SolidColorBrush.Transform>
-                                                    <MatrixTransform Matrix="Identity"/>
+                                                    <MatrixTransform Matrix="Identity" />
                                                 </SolidColorBrush.Transform>
                                             </SolidColorBrush>
                                         </Run.Foreground>
                                     </Run>
                                 </Hyperlink>
-                                <Run Text="— Information on Answers."/>
+                                <Run Text="— Information on Answers." />
                             </Paragraph>
                             <Paragraph>
-                                <Run/>
+                                <Run />
                             </Paragraph>
                         </RichTextBox>
-                        <RichTextBox Foreground="{StaticResource FourthBackgroundBrush}" 
-                                     >
+                        <RichTextBox Foreground="{StaticResource FourthBackgroundBrush}">
                             <Paragraph>
-                                <Run FontWeight="Bold" FontStyle="Italic" Text="Taking Photos"/>
+                                <Run FontStyle="Italic"
+                                     FontWeight="Bold"
+                                     Text="Taking Photos" />
                             </Paragraph>
                             <Paragraph>
-                                <Run Text="-"/>
-                                <Hyperlink TargetName="_blank" NavigateUri="http://www.ifixit.com/Guide/Installing+A+Guitar+String/718/1">
+                                <Run Text="-" />
+                                <Hyperlink NavigateUri="http://www.ifixit.com/Guide/Installing+A+Guitar+String/718/1" TargetName="_blank">
                                     <Run FontWeight="Bold" Text="Taking guide photos ">
                                         <Run.Foreground>
                                             <SolidColorBrush Color="#FF006EDB">
                                                 <SolidColorBrush.RelativeTransform>
-                                                    <MatrixTransform Matrix="Identity"/>
+                                                    <MatrixTransform Matrix="Identity" />
                                                 </SolidColorBrush.RelativeTransform>
                                                 <SolidColorBrush.Transform>
-                                                    <MatrixTransform Matrix="Identity"/>
+                                                    <MatrixTransform Matrix="Identity" />
                                                 </SolidColorBrush.Transform>
                                             </SolidColorBrush>
                                         </Run.Foreground>
                                     </Run>
                                 </Hyperlink>
-                                <Run Text="— Step-by-step walkthrough of how to use a simple lighting and camera setup."/>
+                                <Run Text="— Step-by-step walkthrough of how to use a simple lighting and camera setup." />
                             </Paragraph>
                             <Paragraph>
-                                <Run Text="-"/>
-                                <Hyperlink TargetName="_blank" NavigateUri="http://www.ifixit.com/Info/Camera_Operating_Instructions">
+                                <Run Text="-" />
+                                <Hyperlink NavigateUri="http://www.ifixit.com/Info/Camera_Operating_Instructions" TargetName="_blank">
                                     <Run FontWeight="Bold" Text="Camera tips ">
                                         <Run.Foreground>
                                             <SolidColorBrush Color="#FF006EDB">
                                                 <SolidColorBrush.RelativeTransform>
-                                                    <MatrixTransform Matrix="Identity"/>
+                                                    <MatrixTransform Matrix="Identity" />
                                                 </SolidColorBrush.RelativeTransform>
                                                 <SolidColorBrush.Transform>
-                                                    <MatrixTransform Matrix="Identity"/>
+                                                    <MatrixTransform Matrix="Identity" />
                                                 </SolidColorBrush.Transform>
                                             </SolidColorBrush>
                                         </Run.Foreground>
                                     </Run>
                                 </Hyperlink>
-                                <Run Text="— Useful tips and camera settings for common consumer cameras."/>
+                                <Run Text="— Useful tips and camera settings for common consumer cameras." />
                             </Paragraph>
                         </RichTextBox>
-                        <RichTextBox Foreground="{StaticResource FourthBackgroundBrush}" 
-                                     >
+                        <RichTextBox Foreground="{StaticResource FourthBackgroundBrush}">
                             <Paragraph>
-                                <Run/>
+                                <Run />
                             </Paragraph>
                             <Paragraph>
-                                <Run FontWeight="Bold" FontStyle="Italic" FontSize="21.333" Text="Guide Creation"/>
+                                <Run FontSize="21.333"
+                                     FontStyle="Italic"
+                                     FontWeight="Bold"
+                                     Text="Guide Creation" />
                             </Paragraph>
 
                             <Paragraph>
-                                <Run Text="-"/>
-                                <Hyperlink TargetName="_blank" NavigateUri="http://www.ifixit.com/Info/Writing_Guides">
+                                <Run Text="-" />
+                                <Hyperlink NavigateUri="http://www.ifixit.com/Info/Writing_Guides" TargetName="_blank">
                                     <Run FontWeight="Bold" Text="Writing Guides  ">
                                         <Run.Foreground>
                                             <SolidColorBrush Color="#FF006EDB">
                                                 <SolidColorBrush.RelativeTransform>
-                                                    <MatrixTransform Matrix="Identity"/>
+                                                    <MatrixTransform Matrix="Identity" />
                                                 </SolidColorBrush.RelativeTransform>
                                                 <SolidColorBrush.Transform>
-                                                    <MatrixTransform Matrix="Identity"/>
+                                                    <MatrixTransform Matrix="Identity" />
                                                 </SolidColorBrush.Transform>
                                             </SolidColorBrush>
                                         </Run.Foreground>
                                     </Run>
                                 </Hyperlink>
-                                <Run Text="— How to write an awesome guide."/>
+                                <Run Text="— How to write an awesome guide." />
                             </Paragraph>
                             <Paragraph>
-                                <Run Text="-"/>
-                                <Hyperlink TargetName="_blank" NavigateUri="http://www.ifixit.com/Info/Repair_Guide_FAQ">
+                                <Run Text="-" />
+                                <Hyperlink NavigateUri="http://www.ifixit.com/Info/Repair_Guide_FAQ" TargetName="_blank">
                                     <Run FontWeight="Bold" Text="Repair Guide FAQ">
                                         <Run.Foreground>
                                             <SolidColorBrush Color="#FF006EDB">
                                                 <SolidColorBrush.RelativeTransform>
-                                                    <MatrixTransform Matrix="Identity"/>
+                                                    <MatrixTransform Matrix="Identity" />
                                                 </SolidColorBrush.RelativeTransform>
                                                 <SolidColorBrush.Transform>
-                                                    <MatrixTransform Matrix="Identity"/>
+                                                    <MatrixTransform Matrix="Identity" />
                                                 </SolidColorBrush.Transform>
                                             </SolidColorBrush>
                                         </Run.Foreground>
                                     </Run>
                                 </Hyperlink>
-                                <Run Text="— Why write repair guides?"/>
+                                <Run Text="— Why write repair guides?" />
                             </Paragraph>
                             <Paragraph>
-                                <Run Text="-"/>
-                                <Hyperlink TargetName="_blank" NavigateUri="http://www.ifixit.com/Info/Teardown_FAQ">
+                                <Run Text="-" />
+                                <Hyperlink NavigateUri="http://www.ifixit.com/Info/Teardown_FAQ" TargetName="_blank">
                                     <Run FontWeight="Bold" Text="Teardown FAQ ">
                                         <Run.Foreground>
                                             <SolidColorBrush Color="#FF006EDB">
                                                 <SolidColorBrush.RelativeTransform>
-                                                    <MatrixTransform Matrix="Identity"/>
+                                                    <MatrixTransform Matrix="Identity" />
                                                 </SolidColorBrush.RelativeTransform>
                                                 <SolidColorBrush.Transform>
-                                                    <MatrixTransform Matrix="Identity"/>
+                                                    <MatrixTransform Matrix="Identity" />
                                                 </SolidColorBrush.Transform>
                                             </SolidColorBrush>
                                         </Run.Foreground>
                                     </Run>
                                 </Hyperlink>
-                                <Run Text="— Why write gadget teardowns?"/>
+                                <Run Text="— Why write gadget teardowns?" />
                             </Paragraph>
                             <Paragraph>
-                                <Run Text="-"/>
-                                <Hyperlink TargetName="_blank" NavigateUri="http://www.ifixit.com/Info/Use_Guidelines">
+                                <Run Text="-" />
+                                <Hyperlink NavigateUri="http://www.ifixit.com/Info/Use_Guidelines" TargetName="_blank">
                                     <Run FontWeight="Bold" Text="Use Guidelines ">
                                         <Run.Foreground>
                                             <SolidColorBrush Color="#FF006EDB">
                                                 <SolidColorBrush.RelativeTransform>
-                                                    <MatrixTransform Matrix="Identity"/>
+                                                    <MatrixTransform Matrix="Identity" />
                                                 </SolidColorBrush.RelativeTransform>
                                                 <SolidColorBrush.Transform>
-                                                    <MatrixTransform Matrix="Identity"/>
+                                                    <MatrixTransform Matrix="Identity" />
                                                 </SolidColorBrush.Transform>
                                             </SolidColorBrush>
                                         </Run.Foreground>
                                     </Run>
                                 </Hyperlink>
-                                <Run Text="— Dos and don'ts for successfully engaging with our community."/>
+                                <Run Text="— Dos and don'ts for successfully engaging with our community." />
                             </Paragraph>
                             <Paragraph>
-                                <Run Text="-"/>
-                                <Hyperlink TargetName="_blank" NavigateUri="http://www.ifixit.com/Info/Device_Nomenclature">
+                                <Run Text="-" />
+                                <Hyperlink NavigateUri="http://www.ifixit.com/Info/Device_Nomenclature" TargetName="_blank">
                                     <Run FontWeight="Bold" Text="Device Nomenclature ">
                                         <Run.Foreground>
                                             <SolidColorBrush Color="#FF006EDB">
                                                 <SolidColorBrush.RelativeTransform>
-                                                    <MatrixTransform Matrix="Identity"/>
+                                                    <MatrixTransform Matrix="Identity" />
                                                 </SolidColorBrush.RelativeTransform>
                                                 <SolidColorBrush.Transform>
-                                                    <MatrixTransform Matrix="Identity"/>
+                                                    <MatrixTransform Matrix="Identity" />
                                                 </SolidColorBrush.Transform>
                                             </SolidColorBrush>
                                         </Run.Foreground>
                                     </Run>
                                 </Hyperlink>
-                                <Run Text="— How to properly name device pages."/>
+                                <Run Text="— How to properly name device pages." />
                             </Paragraph>
                             <Paragraph>
-                                <Run/>
+                                <Run />
                             </Paragraph>
                             <Paragraph>
-                                <Run FontWeight="Bold" FontStyle="Italic" FontSize="21.333" Text="Administration and Moderation Help"/>
+                                <Run FontSize="21.333"
+                                     FontStyle="Italic"
+                                     FontWeight="Bold"
+                                     Text="Administration and Moderation Help" />
                             </Paragraph>
                             <Paragraph>
-                                <Run Text="-"/>
-                                <Hyperlink TargetName="_blank" NavigateUri="http://www.ifixit.com/Help/#section-Site_Configuration_Management">
+                                <Run Text="-" />
+                                <Hyperlink NavigateUri="http://www.ifixit.com/Help/#section-Site_Configuration_Management" TargetName="_blank">
                                     <Run FontWeight="Bold" Text="Administration and Moderation Help ">
                                         <Run.Foreground>
                                             <SolidColorBrush Color="#FF006EDB">
                                                 <SolidColorBrush.RelativeTransform>
-                                                    <MatrixTransform Matrix="Identity"/>
+                                                    <MatrixTransform Matrix="Identity" />
                                                 </SolidColorBrush.RelativeTransform>
                                                 <SolidColorBrush.Transform>
-                                                    <MatrixTransform Matrix="Identity"/>
+                                                    <MatrixTransform Matrix="Identity" />
                                                 </SolidColorBrush.Transform>
                                             </SolidColorBrush>
                                         </Run.Foreground>
                                     </Run>
                                 </Hyperlink>
-                                <Run Text="— Administrator tools and their descriptions."/>
+                                <Run Text="— Administrator tools and their descriptions." />
                             </Paragraph>
                             <Paragraph>
-                                <Run Text="-"/>
-                                <Hyperlink TargetName="_blank" NavigateUri="http://www.ifixit.com/Help">
+                                <Run Text="-" />
+                                <Hyperlink NavigateUri="http://www.ifixit.com/Help" TargetName="_blank">
                                     <Run FontWeight="Bold" Text="Help Documentation">
                                         <Run.Foreground>
                                             <SolidColorBrush Color="#FF006EDB">
                                                 <SolidColorBrush.RelativeTransform>
-                                                    <MatrixTransform Matrix="Identity"/>
+                                                    <MatrixTransform Matrix="Identity" />
                                                 </SolidColorBrush.RelativeTransform>
                                                 <SolidColorBrush.Transform>
-                                                    <MatrixTransform Matrix="Identity"/>
+                                                    <MatrixTransform Matrix="Identity" />
                                                 </SolidColorBrush.Transform>
                                             </SolidColorBrush>
                                         </Run.Foreground>
                                     </Run>
                                 </Hyperlink>
-                                <Run Text="— The place to go to read up on the many features of iFixit."/>
+                                <Run Text="— The place to go to read up on the many features of iFixit." />
                             </Paragraph>
                             <Paragraph>
 
-                                <Run Text="Get excited and start teaching repair!"/>
+                                <Run Text="Get excited and start teaching repair!" />
                             </Paragraph>
                         </RichTextBox>
                     </StackPanel>
@@ -500,134 +546,185 @@
             </phone:PivotItem>
 
             <phone:PivotItem Header="{Binding Labels.Translation.News, Source={StaticResource LabelsManager}}">
-                <telerikPrimitives:RadDataBoundListBox 
-                    x:Name="NewsList" 
-							Margin="12,0,0,0"
-							ItemsSource="{Binding News}" 
-                            SelectedItem="{Binding SelectedItem}"
-							ItemTemplate="{StaticResource NewsItems}" 
-							EmptyContentDisplayMode ="Always"						   
-							  >
+                <telerikPrimitives:RadDataBoundListBox x:Name="NewsList"
+                                                       Margin="12,0,0,0"
+                                                       EmptyContentDisplayMode="Always"
+                                                       ItemTemplate="{StaticResource NewsItems}"
+                                                       ItemsSource="{Binding News}"
+                                                       SelectedItem="{Binding SelectedItem}">
 
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="ItemTap">
-                            <cmd:EventToCommand Command="{Binding GoToNewsItem, Mode=OneWay}"
-								CommandParameter="{Binding SelectedItem, ElementName=NewsList}"/>
+                            <cmd:EventToCommand Command="{Binding GoToNewsItem, Mode=OneWay}" CommandParameter="{Binding SelectedItem, ElementName=NewsList}" />
 
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
                     <telerikPrimitives:RadDataBoundListBox.EmptyContentTemplate>
                         <DataTemplate>
-                            <StackPanel></StackPanel>
+                            <StackPanel />
                         </DataTemplate>
                     </telerikPrimitives:RadDataBoundListBox.EmptyContentTemplate>
                     <telerikPrimitives:RadDataBoundListBox.EmptyContent>
                         <DataTemplate>
-                            <TextBlock></TextBlock>
+                            <TextBlock />
                         </DataTemplate>
                     </telerikPrimitives:RadDataBoundListBox.EmptyContent>
                 </telerikPrimitives:RadDataBoundListBox>
 
             </phone:PivotItem>
 
-            <phone:PivotItem Header="{Binding Labels.Translation.Support, Source={StaticResource LabelsManager}}" BorderBrush="{StaticResource SecondaryBackgroundBrush}">
+            <phone:PivotItem BorderBrush="{StaticResource SecondaryBackgroundBrush}" Header="{Binding Labels.Translation.Support, Source={StaticResource LabelsManager}}">
                 <ScrollViewer Margin="6,0,0,0">
                     <StackPanel>
 
 
 
-                        <Button Style="{StaticResource BorderLessGridButton02}" HorizontalAlignment="Left" HorizontalContentAlignment="Stretch">
+                        <Button HorizontalAlignment="Left"
+                                HorizontalContentAlignment="Stretch"
+                                Style="{StaticResource BorderLessGridButton02}">
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="Tap">
-                                    <cmd:EventToCommand Command="{Binding DataContext.GoToItem, ElementName=LayoutRoot, Mode=OneWay}"
-                            			CommandParameter="http://ifixit.com/answers"/>
+                                    <cmd:EventToCommand Command="{Binding DataContext.GoToItem, ElementName=LayoutRoot, Mode=OneWay}" CommandParameter="http://ifixit.com/answers" />
 
                                 </i:EventTrigger>
                             </i:Interaction.Triggers>
                             <Grid Margin="0,0,0,12">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="125"/>
-                                    <ColumnDefinition  Width="*"/>
+                                    <ColumnDefinition Width="125" />
+                                    <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
-                                <Border VerticalAlignment="Top" Width="125" Height="105" BorderThickness="2" BorderBrush="{StaticResource SecondaryBackgroundBrush}" >
-                                    <Image Source="/iFixit.WP8.UI;component/Assets/Pages/About/iFixit-icon.png" Stretch="Fill"/>
+                                <Border Width="125"
+                                        Height="105"
+                                        VerticalAlignment="Top"
+                                        BorderBrush="{StaticResource SecondaryBackgroundBrush}"
+                                        BorderThickness="2">
+                                    <Image Source="/iFixit.WP8.UI;component/Assets/Pages/About/iFixit-icon.png" Stretch="Fill" />
                                 </Border>
-                                <StackPanel VerticalAlignment="top"  Grid.Column="1" >
-                                    <HyperlinkButton TargetName="_blank" Content="Need help with a specific repair?" HorizontalAlignment="Left" Foreground="{StaticResource HighlightBrush}" Style="{StaticResource HyperlinkButtonStyle1}" NavigateUri="http://ifixit.com/answers"/>
-                                    <TextBlock TextWrapping="Wrap" Text="Ask our knowledgeable community" Foreground="{StaticResource FourthBackgroundBrush}" Margin="12,0,0,0"/>
+                                <StackPanel Grid.Column="1" VerticalAlignment="top">
+                                    <HyperlinkButton HorizontalAlignment="Left"
+                                                     Content="Need help with a specific repair?"
+                                                     Foreground="{StaticResource HighlightBrush}"
+                                                     NavigateUri="http://ifixit.com/answers"
+                                                     Style="{StaticResource HyperlinkButtonStyle1}"
+                                                     TargetName="_blank" />
+                                    <TextBlock Margin="12,0,0,0"
+                                               Foreground="{StaticResource FourthBackgroundBrush}"
+                                               Text="Ask our knowledgeable community"
+                                               TextWrapping="Wrap" />
                                 </StackPanel>
                             </Grid>
                         </Button>
-                        <Button Style="{StaticResource BorderLessGridButton02}" HorizontalContentAlignment="Stretch">
+                        <Button HorizontalContentAlignment="Stretch" Style="{StaticResource BorderLessGridButton02}">
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="Tap">
-                                    <cmd:EventToCommand Command="{Binding DataContext.GoToItem, ElementName=LayoutRoot, Mode=OneWay}"
-                            			CommandParameter="http://www.dozuki.com/"/>
+                                    <cmd:EventToCommand Command="{Binding DataContext.GoToItem, ElementName=LayoutRoot, Mode=OneWay}" CommandParameter="http://www.dozuki.com/" />
 
                                 </i:EventTrigger>
                             </i:Interaction.Triggers>
                             <Grid Margin="0,0,0,12">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="125"/>
-                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="125" />
+                                    <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
 
-                                <Border VerticalAlignment="Top" Width="125" Height="105" BorderThickness="2" BorderBrush="{StaticResource SecondaryBackgroundBrush}" Grid.Row="3">
-                                    <Image Source="/iFixit.WP8.UI;component/Assets/Pages/About/Dozuki-icon.png" Stretch="Fill"/>
+                                <Border Grid.Row="3"
+                                        Width="125"
+                                        Height="105"
+                                        VerticalAlignment="Top"
+                                        BorderBrush="{StaticResource SecondaryBackgroundBrush}"
+                                        BorderThickness="2">
+                                    <Image Source="/iFixit.WP8.UI;component/Assets/Pages/About/Dozuki-icon.png" Stretch="Fill" />
                                 </Border>
 
 
 
-                                <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="1" >
-                                    <HyperlinkButton TargetName="_blank" Content="Interested in iFixit's software?" HorizontalAlignment="Left" Foreground="{StaticResource HighlightBrush}" Style="{StaticResource HyperlinkButtonStyle1}" NavigateUri="http://www.dozuki.com/"/>
-                                    <TextBlock TextWrapping="Wrap" Text="Discover Dokuzi, the platform behind it" Foreground="{StaticResource FourthBackgroundBrush}" Margin="12,0,0,0"/>
+                                <StackPanel Grid.Column="1"
+                                            HorizontalAlignment="Left"
+                                            VerticalAlignment="Top">
+                                    <HyperlinkButton HorizontalAlignment="Left"
+                                                     Content="Interested in iFixit's software?"
+                                                     Foreground="{StaticResource HighlightBrush}"
+                                                     NavigateUri="http://www.dozuki.com/"
+                                                     Style="{StaticResource HyperlinkButtonStyle1}"
+                                                     TargetName="_blank" />
+                                    <TextBlock Margin="12,0,0,0"
+                                               Foreground="{StaticResource FourthBackgroundBrush}"
+                                               Text="Discover Dokuzi, the platform behind it"
+                                               TextWrapping="Wrap" />
                                 </StackPanel>
                             </Grid>
                         </Button>
-                        <Button Style="{StaticResource BorderLessGridButton02}" HorizontalContentAlignment="Stretch">
+                        <Button HorizontalContentAlignment="Stretch" Style="{StaticResource BorderLessGridButton02}">
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="Tap">
-                                    <cmd:EventToCommand Command="{Binding DataContext.GoToItem, ElementName=LayoutRoot, Mode=OneWay}"
-                            			CommandParameter="http://meta.ifixit.com"/>
+                                    <cmd:EventToCommand Command="{Binding DataContext.GoToItem, ElementName=LayoutRoot, Mode=OneWay}" CommandParameter="http://meta.ifixit.com" />
 
                                 </i:EventTrigger>
                             </i:Interaction.Triggers>
                             <Grid Margin="0,0,0,12">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="125"/>
-                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="125" />
+                                    <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
-                                <Border VerticalAlignment="Top" Width="125" Height="105" BorderThickness="2" BorderBrush="{StaticResource SecondaryBackgroundBrush}" >
-                                    <Image Source="/iFixit.WP8.UI;component/Assets/Pages/About/iFixit-meta.png" Stretch="Fill"/>
+                                <Border Width="125"
+                                        Height="105"
+                                        VerticalAlignment="Top"
+                                        BorderBrush="{StaticResource SecondaryBackgroundBrush}"
+                                        BorderThickness="2">
+                                    <Image Source="/iFixit.WP8.UI;component/Assets/Pages/About/iFixit-meta.png" Stretch="Fill" />
                                 </Border>
-                                <Grid Grid.Column="1" >
+                                <Grid Grid.Column="1">
                                     <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center">
-                                        <HyperlinkButton TargetName="_blank" Content="Want to discuss iFixit things?" HorizontalAlignment="Left" Foreground="{StaticResource HighlightBrush}" Style="{StaticResource HyperlinkButtonStyle1}" NavigateUri="http://meta.ifixit.com"/>
-                                        <TextBlock TextWrapping="Wrap" Text="Join the discussion on meta.ifixit.com" Foreground="{StaticResource FourthBackgroundBrush}" Margin="12,0,0,0"/>
+                                        <HyperlinkButton HorizontalAlignment="Left"
+                                                         Content="Want to discuss iFixit things?"
+                                                         Foreground="{StaticResource HighlightBrush}"
+                                                         NavigateUri="http://meta.ifixit.com"
+                                                         Style="{StaticResource HyperlinkButtonStyle1}"
+                                                         TargetName="_blank" />
+                                        <TextBlock Margin="12,0,0,0"
+                                                   Foreground="{StaticResource FourthBackgroundBrush}"
+                                                   Text="Join the discussion on meta.ifixit.com"
+                                                   TextWrapping="Wrap" />
                                     </StackPanel>
                                 </Grid>
                             </Grid>
                         </Button>
-                        <Button Style="{StaticResource BorderLessGridButton02}" HorizontalContentAlignment="Stretch" Height="118" Width="450">
+                        <Button Width="450"
+                                Height="118"
+                                HorizontalContentAlignment="Stretch"
+                                Style="{StaticResource BorderLessGridButton02}">
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="Tap">
-                                    <cmd:EventToCommand Command="{Binding DataContext.GoToItem, ElementName=LayoutRoot, Mode=OneWay}"
-                            			CommandParameter="https://github.com/ifixit/ifixit-microsoft"/>
+                                    <cmd:EventToCommand Command="{Binding DataContext.GoToItem, ElementName=LayoutRoot, Mode=OneWay}" CommandParameter="https://github.com/ifixit/ifixit-microsoft" />
 
                                 </i:EventTrigger>
                             </i:Interaction.Triggers>
                             <Grid Margin="0,0,0,12">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="125"/>
-                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="125" />
+                                    <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
 
-                                <Border VerticalAlignment="Top" Width="125" Height="105" BorderThickness="2" BorderBrush="{StaticResource SecondaryBackgroundBrush}">
-                                    <Image Source="/iFixit.WP8.UI;component/Assets/Pages/About/github-icon.png" Stretch="Fill"/>
+                                <Border Width="125"
+                                        Height="105"
+                                        VerticalAlignment="Top"
+                                        BorderBrush="{StaticResource SecondaryBackgroundBrush}"
+                                        BorderThickness="2">
+                                    <Image Source="/iFixit.WP8.UI;component/Assets/Pages/About/github-icon.png" Stretch="Fill" />
                                 </Border>
-                                <StackPanel VerticalAlignment="Center" Grid.Column="1" Margin="0,0,0,20">
-                                    <HyperlinkButton Content="Find a bug?" TargetName="_blank" NavigateUri="https://github.com/ifixit/ifixit-microsoft" HorizontalAlignment="Left" Foreground="{StaticResource HighlightBrush}" Style="{StaticResource HyperlinkButtonStyle1}"/>
-                                    <TextBlock TextWrapping="Wrap" Text="Submit a bug on our Github repository" Foreground="{StaticResource FourthBackgroundBrush}" Margin="12,0,0,0"/>
+                                <StackPanel Grid.Column="1"
+                                            Margin="0,0,0,20"
+                                            VerticalAlignment="Center">
+                                    <HyperlinkButton HorizontalAlignment="Left"
+                                                     Content="Find a bug?"
+                                                     Foreground="{StaticResource HighlightBrush}"
+                                                     NavigateUri="https://github.com/ifixit/ifixit-microsoft"
+                                                     Style="{StaticResource HyperlinkButtonStyle1}"
+                                                     TargetName="_blank" />
+                                    <TextBlock Margin="12,0,0,0"
+                                               Foreground="{StaticResource FourthBackgroundBrush}"
+                                               Text="Submit a bug on our Github repository"
+                                               TextWrapping="Wrap" />
                                 </StackPanel>
                             </Grid>
                         </Button>
@@ -649,11 +746,14 @@
 
 
 
-        <ProgressBar VerticalAlignment="Top"
-        		IsIndeterminate="True" 
-        		Visibility="{Binding IsLoading, Converter={StaticResource BooleanToVisibilityConverter}}" 
-				x:Name="_performanceProgressBar" Height="10" Foreground="{StaticResource FourthBackgroundBrush}"/>
+        <ProgressBar x:Name="_performanceProgressBar"
+                     Height="10"
+                     VerticalAlignment="Top"
+                     Foreground="{StaticResource FourthBackgroundBrush}"
+                     IsIndeterminate="True"
+                     Visibility="{Binding IsLoading,
+                                          Converter={StaticResource BooleanToVisibilityConverter}}" />
 
     </Grid>
 
-</code:PageBase>
+</CodeConverters:PageBase>
