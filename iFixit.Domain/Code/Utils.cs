@@ -170,7 +170,7 @@ namespace iFixit.Domain.Code
             {
                 Debug.WriteLine(string.Format("getting from service :{0}", idCategory));
                 category = await Broker.GetCategory(idCategory);
-                await _storageService.WriteData(Constants.CATEGORIES + idCategory, await category.SaveAsJson());
+                await _storageService.WriteData(Constants.CATEGORIES + idCategory,  category.SaveAsJson());
                 Debug.WriteLine(string.Format("caching from service :{0}", idCategory));
             }
 
@@ -178,14 +178,13 @@ namespace iFixit.Domain.Code
             return category;
         }
 
-        public static Task<string> SaveAsJson(this object objectToSave)
+        public static string SaveAsJson(this object objectToSave)
         {
             try
             {
                 if (objectToSave == null) return null;
-                var st = new JsonSerializerSettings();
-                st.StringEscapeHandling = StringEscapeHandling.EscapeHtml;
-                return JsonConvert.SerializeObjectAsync(objectToSave, Formatting.None, st);
+                var st = new JsonSerializerSettings {StringEscapeHandling = StringEscapeHandling.EscapeHtml};
+                return JsonConvert.SerializeObject(objectToSave, Formatting.None, st);
             }
             catch (Exception ex)
             {
@@ -195,20 +194,20 @@ namespace iFixit.Domain.Code
             }
         }
 
-        public static Task<TJson> LoadFromJsonAsync<TJson>(this string jsonString)
-        {
-            try
-            {
-                Debug.WriteLine("jsonString==" + jsonString);
-                return JsonConvert.DeserializeObjectAsync<TJson>(jsonString);
-            }
-            catch (Exception ex)
-            {
+        //public static Task<TJson> LoadFromJsonAsync<TJson>(this string jsonString)
+        //{
+        //    try
+        //    {
+        //        Debug.WriteLine("jsonString==" + jsonString);
+        //        return JsonConvert.DeserializeObject<TJson>(jsonString);
+        //    }
+        //    catch (Exception ex)
+        //    {
 
-                Debug.WriteLine(ex.Message);
-                throw;
-            }
-        }
+        //        Debug.WriteLine(ex.Message);
+        //        throw;
+        //    }
+        //}
 
         public static TJson LoadFromJson<TJson>(this string jsonString)
         {

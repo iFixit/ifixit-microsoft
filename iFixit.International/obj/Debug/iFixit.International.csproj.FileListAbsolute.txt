@@ -26,3 +26,10 @@ D:\Projects\GIT\ifixit-microsoft\iFixit.International\obj\Debug\iFixit.Internati
 D:\Projects\GIT\ifixit-microsoft\iFixit.International\obj\Debug\iFixit.International.csproj.GenerateResource.Cache
 D:\Projects\GIT\ifixit-microsoft\iFixit.International\obj\Debug\iFixit.International.dll
 D:\Projects\GIT\ifixit-microsoft\iFixit.International\obj\Debug\iFixit.International.pdb
+C:\cmorgado\Projects\Personal\iFixit\iFixit.International\bin\Debug\iFixit.International.dll
+C:\cmorgado\Projects\Personal\iFixit\iFixit.International\bin\Debug\iFixit.International.pdb
+C:\cmorgado\Projects\Personal\iFixit\iFixit.International\obj\Debug\iFixit.International.csprojResolveAssemblyReference.cache
+C:\cmorgado\Projects\Personal\iFixit\iFixit.International\obj\Debug\iFixit.International.Translation.resources
+C:\cmorgado\Projects\Personal\iFixit\iFixit.International\obj\Debug\iFixit.International.csproj.GenerateResource.Cache
+C:\cmorgado\Projects\Personal\iFixit\iFixit.International\obj\Debug\iFixit.International.dll
+C:\cmorgado\Projects\Personal\iFixit\iFixit.International\obj\Debug\iFixit.International.pdb

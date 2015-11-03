@@ -704,7 +704,7 @@ namespace iFixit.Domain.ViewModels
                 else
                 {
                     collections = await Broker.GetCollections();
-                    await _storageService.WriteData(Constants.COLLECTIONS, await collections.SaveAsJson());
+                    await _storageService.WriteData(Constants.COLLECTIONS,  collections.SaveAsJson());
 
                 }
 
@@ -767,7 +767,7 @@ namespace iFixit.Domain.ViewModels
                 if (_settingsService.IsConnectedToInternet())
                 {
                     var r = await Broker.GetFavorites(AppBase.Current.User);
-                    await _storageService.WriteData(Constants.FAVORITES, await r.SaveAsJson());
+                    await _storageService.WriteData(Constants.FAVORITES,  r.SaveAsJson());
                     BindFavorites(r);
                 }
                 else
@@ -823,23 +823,23 @@ namespace iFixit.Domain.ViewModels
         {
             LoadingCounter++;
             string cachedItemName = string.Format(Constants.GUIDE, idGuide);
-            Debug.WriteLine(string.Format("going for guide :{0}", idGuide));
+            Debug.WriteLine($"going for guide :{idGuide}");
             var isCategoryCached = await _storageService.Exists(cachedItemName, new TimeSpan(5, 0, 0, 0));
 
             RESTModels.Guide.RootObject guide = null;
             if (isCategoryCached)
             {
-                Debug.WriteLine(string.Format("going for cached :{0}", idGuide));
+                Debug.WriteLine($"going for cached :{idGuide}");
                 var rd = await _storageService.ReadData(cachedItemName);
-                Debug.WriteLine(string.Format("cached :{0} : {1}", idGuide, rd));
+                Debug.WriteLine($"cached :{idGuide} : {rd}");
                 guide = rd.LoadFromJson<RESTModels.Guide.RootObject>();
             }
             else
             {
-                Debug.WriteLine(string.Format("Calling Guide :{0}", idGuide));
+                Debug.WriteLine($"Calling Guide :{idGuide}");
                 guide = await Broker.GetGuide(idGuide);
-                Debug.WriteLine(string.Format("Saving Guide :{0}", idGuide));
-                await _storageService.WriteData(cachedItemName, await guide.SaveAsJson());
+                Debug.WriteLine($"Saving Guide :{idGuide}");
+                await _storageService.WriteData(cachedItemName,  guide.SaveAsJson());
             }
 
 
@@ -867,22 +867,22 @@ namespace iFixit.Domain.ViewModels
         {
 
             LoadingCounter++;
-            Debug.WriteLine(string.Format("going for category :{0}", idCategory));
+            Debug.WriteLine($"going for category :{idCategory}");
             var isCategoryCached = await _storageService.Exists(Constants.CATEGORIES + idCategory, new TimeSpan(5, 0, 0, 0));
             RESTModels.Category.RootObject category = null;
             if (isCategoryCached)
             {
-                Debug.WriteLine(string.Format("get from cache category :{0}", idCategory));
+                Debug.WriteLine($"get from cache category :{idCategory}");
                 var rd = await _storageService.ReadData(Constants.CATEGORIES + idCategory);
                 category = rd.LoadFromJson<RESTModels.Category.RootObject>();
             }
             else
             {
-                Debug.WriteLine(string.Format("get from service category :{0}", idCategory));
+                Debug.WriteLine($"get from service category :{idCategory}");
                 category = await Broker.GetCategory(idCategory);
 
-                await _storageService.WriteData(Constants.CATEGORIES + idCategory, await category.SaveAsJson());
-                Debug.WriteLine(string.Format("saved category :{0}", idCategory));
+                await _storageService.WriteData(Constants.CATEGORIES + idCategory,  category.SaveAsJson());
+                Debug.WriteLine($"saved category :{idCategory}");
             }
             if (category.image != null)
             {

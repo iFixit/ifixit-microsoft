@@ -192,7 +192,7 @@ namespace iFixit.Domain.ViewModels
                                   var user = await Broker.DoLogin(this.Email, this.Password);
                                   if (user != null && user.authToken != null)
                                   {
-                                      _storageService.Save(Constants.AUTHORIZATION, await user.SaveAsJson());
+                                      _storageService.Save(Constants.AUTHORIZATION,  user.SaveAsJson());
                                       BindAuthentication(user);
 
                                       _uxService.DoLogin();

@@ -301,7 +301,7 @@ namespace iFixit.Domain.ViewModels
                                  LoadingCounter++;
                                  Debug.WriteLine("Going for Guide :" + AppBase.Current.GuideId);
                                  rp = await Broker.GetGuide(AppBase.Current.GuideId);
-                                 _storageService.Save(fileName, await rp.SaveAsJson());
+                                 _storageService.Save(fileName,  rp.SaveAsJson());
                                  Debug.WriteLine("Caching Guide :" + AppBase.Current.GuideId);
 
                                  await BindGuide(rp);

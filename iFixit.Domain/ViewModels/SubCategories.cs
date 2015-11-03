@@ -474,7 +474,7 @@ namespace iFixit.Domain.ViewModels
                 else
                 {
                     category = await Broker.GetCategory(idCategory);
-                    await _storageService.WriteData(Constants.CATEGORIES + idCategory, await category.SaveAsJson());
+                    await _storageService.WriteData(Constants.CATEGORIES + idCategory,  category.SaveAsJson());
                 }
                 if (category.image != null)
                 {

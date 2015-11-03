@@ -1,7 +1,6 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
@@ -9,7 +8,6 @@ using System.Text;
 using System.Threading.Tasks;
 using iFixit.Domain.Code;
 using System.IO;
-using System.Net.Http.Headers;
 using AdvancedREI.Net.Http.Compression;
 
 namespace iFixit.Domain.Services.V1_1
@@ -17,49 +15,49 @@ namespace iFixit.Domain.Services.V1_1
     public class ServiceBroker
     {
         const string BaseUrl = "https://www.iFixit.com/";
-        private const string CATEGORIES = "api/1.1/categories";
-        private const string CATEGORY = "api/1.1/categories/{0}";
-        private const string GUIDES = "api/1.1/guides";
-        private const string GUIDE = "api/1.1/guides/{0}";
-        private const string COLLECTIONS = "api/0.1/collections";
+        private const string Categories = "api/1.1/categories";
+        private const string Category = "api/1.1/categories/{0}";
+        private const string Guides = "api/1.1/guides";
+        private const string Guide = "api/1.1/guides/{0}";
+        private const string Collections = "api/0.1/collections";
         private const string SEARCH_GUIDES = "api/1.1/search/{0}?filter=teardown,guide&limit=20&offset={1}";
         private const string SEARCH_PRODUCTS = "api/1.1/search/{0}?filter={1}&offset={2}&limit=20";
         private const string SEARCH_DEVICE = "api/1.1/search/{0}?filter={1}&offset={2}&limit=20";
-        private const string GENERIC_SEARCH = "api/1.1/search/{0}?filter={1}&offset={2}&limit=20";
-        private const string LOGIN = "api/1.1/user/token";
-        private const string USER_REGISTRATION = "api/1.1/users";
-        private const string FAVORITES = "api/1.1/users/{0}/favorites";
-        private const string FAVORITES_ACTION = "api/1.1/user/favorites/guides/{0}";
-        private CompressedHttpClientHandler handler = new CompressedHttpClientHandler();
-        private HttpClient client = null;
+        private const string GenericSearch = "api/1.1/search/{0}?filter={1}&offset={2}&limit=20";
+        private const string Login = "api/1.1/user/token";
+        private const string UserRegistration = "api/1.1/users";
+        private const string Favorites = "api/1.1/users/{0}/favorites";
+        private const string FavoritesAction = "api/1.1/user/favorites/guides/{0}";
+        private CompressedHttpClientHandler _handler = new CompressedHttpClientHandler();
+        private HttpClient _client = null;
 
 
 
 
-        public enum SEARCH_FILTERS { guide = 0, teardown = 1, wiki = 2, category = 3, item = 4, info = 5, question = 6, product = 7, device = 8 };
+        public enum SearchFilters { Guide = 0, Teardown = 1, Wiki = 2, Category = 3, Item = 4, Info = 5, Question = 6, Product = 7, Device = 8 };
 
-        public async Task<byte[]> GetImage(string Url)
+        public async Task<byte[]> GetImage(string url)
         {
-            HttpResponseMessage response = await client.GetAsync(Url.ToString());
+            var response = await _client.GetAsync(url.ToString());
             response.EnsureSuccessStatusCode();
 
             return await response.Content.ReadAsByteArrayAsync();
         }
 
-        public async Task<iFixit.Domain.Models.REST.V1_1.Favorites.RootObject[]> RemoveFavorites(Models.UI.User user, string guideId)
+        public async Task<Models.REST.V1_1.Favorites.RootObject[]> RemoveFavorites(Models.UI.User user, string guideId)
         {
-            iFixit.Domain.Models.REST.V1_1.Favorites.RootObject[] Result = null;
+            Models.REST.V1_1.Favorites.RootObject[] Result = null;
 
             try
             {
-                StringBuilder Url = new StringBuilder();
-                Url.Append(BaseUrl).AppendFormat(FAVORITES_ACTION, guideId);
+                var url = new StringBuilder();
+                url.Append(BaseUrl).AppendFormat(FavoritesAction, guideId);
 
                 AddAuthorizationHeader(user);
 
-                HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Delete, new Uri(Url.ToString(), UriKind.RelativeOrAbsolute));
+                var request = new HttpRequestMessage(HttpMethod.Delete, new Uri(url.ToString(), UriKind.RelativeOrAbsolute));
 
-                var result = await client.SendAsync(request);
+                var result = await _client.SendAsync(request);
                 var content = await result.Content.ReadAsStringAsync();
 
                 Debug.WriteLine(content);
@@ -77,17 +75,17 @@ namespace iFixit.Domain.Services.V1_1
             return Result;
         }
 
-        public async Task<iFixit.Domain.Models.REST.V1_1.Favorites.RootObject[]> AddFavorites(Models.UI.User user, string guideId)
+        public async Task<Models.REST.V1_1.Favorites.RootObject[]> AddFavorites(Models.UI.User user, string guideId)
         {
-            iFixit.Domain.Models.REST.V1_1.Favorites.RootObject[] Result = null;
+            Models.REST.V1_1.Favorites.RootObject[] Result = null;
 
             try
             {
-                StringBuilder Url = new StringBuilder();
-                Url.Append(BaseUrl).AppendFormat(FAVORITES_ACTION, guideId);
+                var url = new StringBuilder();
+                url.Append(BaseUrl).AppendFormat(FavoritesAction, guideId);
                 AddAuthorizationHeader(user);
-                HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Put, new Uri(Url.ToString(), UriKind.RelativeOrAbsolute));
-                var result = await client.SendAsync(request);
+                var request = new HttpRequestMessage(HttpMethod.Put, new Uri(url.ToString(), UriKind.RelativeOrAbsolute));
+                var result = await _client.SendAsync(request);
                 var content = await result.Content.ReadAsStringAsync();
                 Debug.WriteLine(content);
                 //Result = JsonConvert.DeserializeObject<iFixit.Domain.Models.REST.V1_1.Favorites.RootObject[]>(content);
@@ -105,17 +103,17 @@ namespace iFixit.Domain.Services.V1_1
             return Result;
         }
 
-        public async Task<iFixit.Domain.Models.REST.V1_1.Favorites.RootObject[]> GetFavorites(Models.UI.User user)
+        public async Task<Models.REST.V1_1.Favorites.RootObject[]> GetFavorites(Models.UI.User user)
         {
 
-            StringBuilder Url = new StringBuilder();
-            Url.Append(BaseUrl).AppendFormat(FAVORITES, user.UserId);
+            var url = new StringBuilder();
+            url.Append(BaseUrl).AppendFormat(Favorites, user.UserId);
             AddAuthorizationHeader(user);
 
             try
             {
 
-                return await ReturnHTTPGet<iFixit.Domain.Models.REST.V1_1.Favorites.RootObject[]>(Url.ToString());
+                return await ReturnHttpGet<Models.REST.V1_1.Favorites.RootObject[]>(url.ToString());
 
             }
             catch (HttpRequestException hex)
@@ -132,23 +130,26 @@ namespace iFixit.Domain.Services.V1_1
 
         public async Task<Models.REST.V1_1.Login.Output.RootObject> DoLogin(string email, string password)
         {
-            Models.REST.V1_1.Login.Output.RootObject Result = new Models.REST.V1_1.Login.Output.RootObject();
-            StringBuilder Url = new StringBuilder();
-            Url.Append(BaseUrl).Append(LOGIN);
+            var Result = new Models.REST.V1_1.Login.Output.RootObject();
+            var url = new StringBuilder();
+            url.Append(BaseUrl).Append(Login);
             RemoveAuthorizationHeader();
             try
             {
 
 
-                Models.REST.V1_1.Login.Input.RootObject Login = new Models.REST.V1_1.Login.Input.RootObject { email = email, password = password };
+                var login = new Models.REST.V1_1.Login.Input.RootObject { email = email, password = password };
 
-                string Parameters = await Login.SaveAsJson();
+                var parameters =  login.SaveAsJson();
 
-                HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, new Uri(Url.ToString(), UriKind.RelativeOrAbsolute));
-                request.Content = new StreamContent(new MemoryStream(System.Text.Encoding.UTF8.GetBytes(Parameters)));
+                var request = new HttpRequestMessage(HttpMethod.Post,
+                    new Uri(url.ToString(), UriKind.RelativeOrAbsolute))
+                {
+                    Content = new StreamContent(new MemoryStream(Encoding.UTF8.GetBytes(parameters)))
+                };
 
 
-                var result = await client.SendAsync(request);
+                var result = await _client.SendAsync(request);
                 var content = await result.Content.ReadAsStringAsync();
                 Result = JsonConvert.DeserializeObject<Models.REST.V1_1.Login.Output.RootObject>(content);
                 Result.email = email;
@@ -169,20 +170,20 @@ namespace iFixit.Domain.Services.V1_1
 
         public async Task<string> DoLogout(Models.UI.User user)
         {
-            string Result = string.Empty;
+            var Result = string.Empty;
 
             try
             {
-                StringBuilder Url = new StringBuilder();
-                Url.Append(BaseUrl).Append(LOGIN);
+                var url = new StringBuilder();
+                url.Append(BaseUrl).Append(Login);
 
                 AddAuthorizationHeader(user);
 
 
-                HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Delete, new Uri(Url.ToString(), UriKind.RelativeOrAbsolute));
+                var request = new HttpRequestMessage(HttpMethod.Delete, new Uri(url.ToString(), UriKind.RelativeOrAbsolute));
 
 
-                var result = await client.SendAsync(request);
+                var result = await _client.SendAsync(request);
                 var content = await result.Content.ReadAsStringAsync();
 
                 Debug.WriteLine(content);
@@ -206,21 +207,24 @@ namespace iFixit.Domain.Services.V1_1
         public async Task<Models.REST.V1_1.Login.Output.RootObject> RegistrationLogin(string email, string username, string password)
         {
             Models.REST.V1_1.Login.Output.RootObject Result = null;
-            StringBuilder Url = new StringBuilder();
-            Url.Append(BaseUrl).Append(USER_REGISTRATION);
+            var url = new StringBuilder();
+            url.Append(BaseUrl).Append(UserRegistration);
             RemoveAuthorizationHeader();
             try
             {
 
-                Models.REST.V1_1.Registration.Input.RootObject UserAccount = new Models.REST.V1_1.Registration.Input.RootObject { email = email, password = password, username = username };
+                var userAccount = new Models.REST.V1_1.Registration.Input.RootObject { email = email, password = password, username = username };
 
-                string Parameters = await UserAccount.SaveAsJson();
+                var parameters =  userAccount.SaveAsJson();
 
-                HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, new Uri(Url.ToString(), UriKind.RelativeOrAbsolute));
-                request.Content = new StreamContent(new MemoryStream(System.Text.Encoding.UTF8.GetBytes(Parameters)));
+                var request = new HttpRequestMessage(HttpMethod.Post,
+                    new Uri(url.ToString(), UriKind.RelativeOrAbsolute))
+                {
+                    Content = new StreamContent(new MemoryStream(Encoding.UTF8.GetBytes(parameters)))
+                };
 
 
-                var result = await client.SendAsync(request);
+                var result = await _client.SendAsync(request);
                 var content = await result.Content.ReadAsStringAsync();
                 if (!result.IsSuccessStatusCode)
                 {
@@ -245,13 +249,13 @@ namespace iFixit.Domain.Services.V1_1
 
         public async Task<Models.REST.V0_1.Collections> GetCollections()
         {
-            StringBuilder Url = new StringBuilder();
-            Url.Append(BaseUrl).Append(COLLECTIONS);
+            var url = new StringBuilder();
+            url.Append(BaseUrl).Append(Collections);
             RemoveAuthorizationHeader();
             try
             {
 
-                return await ReturnHTTPGet<Models.REST.V0_1.Collections>(Url.ToString());
+                return await ReturnHttpGet<Models.REST.V0_1.Collections>(url.ToString());
 
             }
             catch (HttpRequestException hex)
@@ -271,12 +275,12 @@ namespace iFixit.Domain.Services.V1_1
         public async Task<Models.REST.V1_1.Category.RootObject> GetCategory(string uniqueId)
         {
 
-            StringBuilder Url = new StringBuilder();
-            Url.Append(BaseUrl).AppendFormat(CATEGORY, uniqueId);
+            var url = new StringBuilder();
+            url.Append(BaseUrl).AppendFormat(Category, uniqueId);
             RemoveAuthorizationHeader();
             try
             {
-                return await ReturnHTTPGet<Models.REST.V1_1.Category.RootObject>(Url.ToString());
+                return await ReturnHttpGet<Models.REST.V1_1.Category.RootObject>(url.ToString());
 
             }
             catch (HttpRequestException hex)
@@ -299,12 +303,12 @@ namespace iFixit.Domain.Services.V1_1
         public async Task<Models.REST.V1_1.Search.Guide.RootObject> SearchGuides(string searchTerm, int currentPage)
         {
 
-            StringBuilder Url = new StringBuilder();
-            Url.Append(BaseUrl).AppendFormat(SEARCH_GUIDES, searchTerm, currentPage);
+            var url = new StringBuilder();
+            url.Append(BaseUrl).AppendFormat(SEARCH_GUIDES, searchTerm, currentPage);
             RemoveAuthorizationHeader();
             try
             {
-                return await ReturnHTTPGet<Models.REST.V1_1.Search.Guide.RootObject>(Url.ToString());
+                return await ReturnHttpGet<Models.REST.V1_1.Search.Guide.RootObject>(url.ToString());
 
             }
             catch (HttpRequestException hex)
@@ -322,13 +326,13 @@ namespace iFixit.Domain.Services.V1_1
 
         public async Task<Models.REST.V1_1.Search.Product.RootObject> SearchProducts(string searchTerm, int currentPage)
         {
-            StringBuilder Url = new StringBuilder();
-            Url.Append(BaseUrl).AppendFormat(SEARCH_PRODUCTS, searchTerm, SEARCH_FILTERS.product.convertToString(), currentPage);
+            var url = new StringBuilder();
+            url.Append(BaseUrl).AppendFormat(SEARCH_PRODUCTS, searchTerm, SearchFilters.Product.convertToString(), currentPage);
             RemoveAuthorizationHeader();
 
             try
             {
-                return await ReturnHTTPGet<Models.REST.V1_1.Search.Product.RootObject>(Url.ToString());
+                return await ReturnHttpGet<Models.REST.V1_1.Search.Product.RootObject>(url.ToString());
 
             }
             catch (HttpRequestException hex)
@@ -346,13 +350,13 @@ namespace iFixit.Domain.Services.V1_1
         public async Task<Models.REST.V1_1.Search.Device.RootObject> SearchDevice(string searchTerm, int currentPage)
         {
 
-            StringBuilder Url = new StringBuilder();
-            Url.Append(BaseUrl).AppendFormat(SEARCH_DEVICE, searchTerm, SEARCH_FILTERS.device.convertToString(), currentPage);
+            var url = new StringBuilder();
+            url.Append(BaseUrl).AppendFormat(SEARCH_DEVICE, searchTerm, SearchFilters.Device.convertToString(), currentPage);
             RemoveAuthorizationHeader();
 
             try
             {
-                return await ReturnHTTPGet<Models.REST.V1_1.Search.Device.RootObject>(Url.ToString());
+                return await ReturnHttpGet<Models.REST.V1_1.Search.Device.RootObject>(url.ToString());
 
             }
             catch (HttpRequestException hex)
@@ -367,10 +371,10 @@ namespace iFixit.Domain.Services.V1_1
 
         }
 
-        private void getChilden(JToken jto, string ParentName, Models.UI.Category parentCategory)
+        private void GetChilden(JToken jto, string parentName, Models.UI.Category parentCategory)
         {
 
-            var name = ((Newtonsoft.Json.Linq.JProperty)(jto)).Name;
+            var name = ((JProperty)(jto)).Name;
 
             var newC = new Models.UI.Category { Name = name, Items = new System.Collections.ObjectModel.ObservableCollection<Models.UI.Category>() };
 
@@ -378,62 +382,62 @@ namespace iFixit.Domain.Services.V1_1
             {
                 foreach (var jt in jto.Values())
                 {
-                    var names = ((Newtonsoft.Json.Linq.JProperty)(jt)).Name;
+                    var names = ((JProperty)(jt)).Name;
                     Debug.WriteLine(name + ":" + names);
 
                     var children = new Models.UI.Category { UniqueId = names, Name = names, Items = new System.Collections.ObjectModel.ObservableCollection<Models.UI.Category>() };
                     parentCategory.Items.Add(children);
 
                     if (jt.Values().Count() > 0)
-                        getChilden(jt, name, children);
+                        GetChilden(jt, name, children);
 
                 }
             }
             else
             {
 
-                Debug.WriteLine(ParentName + ":" + name);
+                Debug.WriteLine(parentName + ":" + name);
                 parentCategory.Items.Add(newC);
             }
         }
 
         public async Task<Models.UI.Category> GetCategories()
         {
-            Models.UI.Category Categories = new Models.UI.Category();
+            var categories = new Models.UI.Category();
 
 
             try
             {
-                StringBuilder Url = new StringBuilder();
-                Url.Append(BaseUrl).Append(CATEGORIES);
+                var url = new StringBuilder();
+                url.Append(BaseUrl).Append(Categories);
                 RemoveAuthorizationHeader();
-                HttpResponseMessage response = await client.GetAsync(Url.ToString());
+                var response = await _client.GetAsync(url.ToString());
                 response.EnsureSuccessStatusCode();
                 var content = await response.Content.ReadAsStringAsync();
                 Debug.WriteLine(content);
-                var RootJSON = JObject.Parse(content);
+                var rootJson = JObject.Parse(content);
 
-                Categories.Name = "root";
-                Categories.Items = new System.Collections.ObjectModel.ObservableCollection<Models.UI.Category>();
+                categories.Name = "root";
+                categories.Items = new System.Collections.ObjectModel.ObservableCollection<Models.UI.Category>();
 
-                foreach (var item in RootJSON)
+                foreach (var item in rootJson)
                 {
                     var itemname = item.Key;
                     var itemvalue = item.Value;
 
 
                     var newC = new Models.UI.Category { Order = RootCategoryOrder(itemname), UniqueId = itemname, Name = itemname, Items = new System.Collections.ObjectModel.ObservableCollection<Models.UI.Category>() };
-                    Categories.Items.Add(newC);
+                    categories.Items.Add(newC);
 
                     foreach (var jt in item.Value)
                     {
-                        var name = ((Newtonsoft.Json.Linq.JProperty)(jt)).Name;
+                        var name = ((JProperty)(jt)).Name;
                         Debug.WriteLine(itemname + ":" + name);
 
                         var children = new Models.UI.Category { UniqueId = name, Name = name, Items = new System.Collections.ObjectModel.ObservableCollection<Models.UI.Category>() };
                         newC.Items.Add(children);
                         if (jt.Values().Count() > 0)
-                            getChilden(jt, itemname, children);
+                            GetChilden(jt, itemname, children);
 
 
                     }
@@ -452,29 +456,29 @@ namespace iFixit.Domain.Services.V1_1
                 throw ex;
             }
 
-            var x = Categories.Items.OrderBy(o => o.Order);
-            Models.UI.Category Y = new Models.UI.Category();
+            var x = categories.Items.OrderBy(o => o.Order);
+            var y = new Models.UI.Category();
             foreach (var catOrder in x)
             {
-                Y.Items.Add(catOrder);
+                y.Items.Add(catOrder);
             }
 
-            return Y;
+            return y;
         }
 
         public async Task<Models.REST.V1_1.Guide.RootObject> GetGuide(string guideId)
         {
 
-            StringBuilder Url = new StringBuilder();
-            Url.Append(BaseUrl).AppendFormat(GUIDE, guideId);
+            var url = new StringBuilder();
+            url.Append(BaseUrl).AppendFormat(Guide, guideId);
             RemoveAuthorizationHeader();
             try
             {
 
                 //  return await ReturnHTTPGet<Models.REST.V1_1.Guide.RootObject>(Url.ToString());
 
-                Debug.WriteLine(Url);
-                HttpResponseMessage response = await client.GetAsync(Url.ToString());
+                Debug.WriteLine(url);
+                var response = await _client.GetAsync(url.ToString());
                 response.EnsureSuccessStatusCode();
 
                 var content = await response.Content.ReadAsStringAsync();
@@ -501,13 +505,13 @@ namespace iFixit.Domain.Services.V1_1
 
         }
 
-        private async Task<T> ReturnHTTPGet<T>(string Url)
+        private async Task<T> ReturnHttpGet<T>(string url)
         {
 
             try
             {
-                Debug.WriteLine(Url);
-                HttpResponseMessage response = await client.GetAsync(Url.ToString());
+                Debug.WriteLine(url);
+                var response = await _client.GetAsync(url.ToString());
                 response.EnsureSuccessStatusCode();
 
                 var content = await response.Content.ReadAsStringAsync();
@@ -533,24 +537,24 @@ namespace iFixit.Domain.Services.V1_1
 
         private void RemoveAuthorizationHeader()
         {
-            if (client.DefaultRequestHeaders.Any(o => o.Key == "Authorization"))
-                client.DefaultRequestHeaders.Remove("Authorization");
+            if (_client.DefaultRequestHeaders.Any(o => o.Key == "Authorization"))
+                _client.DefaultRequestHeaders.Remove("Authorization");
         }
 
         private void AddAuthorizationHeader(Models.UI.User user)
         {
-            if (!client.DefaultRequestHeaders.Any(o => o.Key == "Authorization"))
-                client.DefaultRequestHeaders.Add("Authorization", string.Format("api {0}", user.Token));
+            if (!_client.DefaultRequestHeaders.Any(o => o.Key == "Authorization"))
+                _client.DefaultRequestHeaders.Add("Authorization", string.Format("api {0}", user.Token));
         }
 
-        private Models.UI.Category Recursive(JToken jTk, Models.UI.Category Parent)
+        private Models.UI.Category Recursive(JToken jTk, Models.UI.Category parent)
         {
             return new Models.UI.Category();
         }
 
-        private int RootCategoryOrder(string UniqueId)
+        private int RootCategoryOrder(string uniqueId)
         {
-            switch (UniqueId.ToLower())
+            switch (uniqueId.ToLower())
             {
                 case "pc":
                     return 0;
@@ -590,7 +594,7 @@ namespace iFixit.Domain.Services.V1_1
 
         public ServiceBroker()
         {
-            client = new HttpClient();
+            _client = new HttpClient();
             //client = new HttpClient(handler);
             //client.Timeout = new TimeSpan(0, 0, 15);
         }

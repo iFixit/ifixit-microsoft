@@ -68,9 +68,9 @@ namespace iFixit.Domain.ViewModels
         }
 
 
-        protected Dictionary<ServiceBroker.SEARCH_FILTERS, RESTModels.Search.Guide.Common> SearchSectionResult = new Dictionary<ServiceBroker.SEARCH_FILTERS, RESTModels.Search.Guide.Common>();
-        protected Dictionary<ServiceBroker.SEARCH_FILTERS, int> SearchSectionCurrentPage = new Dictionary<ServiceBroker.SEARCH_FILTERS, int>();
-        protected Dictionary<ServiceBroker.SEARCH_FILTERS, bool> SearchSectionCurrentLoading = new Dictionary<ServiceBroker.SEARCH_FILTERS, bool>();
+        protected Dictionary<ServiceBroker.SearchFilters, RESTModels.Search.Guide.Common> SearchSectionResult = new Dictionary<ServiceBroker.SearchFilters, RESTModels.Search.Guide.Common>();
+        protected Dictionary<ServiceBroker.SearchFilters, int> SearchSectionCurrentPage = new Dictionary<ServiceBroker.SearchFilters, int>();
+        protected Dictionary<ServiceBroker.SearchFilters, bool> SearchSectionCurrentLoading = new Dictionary<ServiceBroker.SearchFilters, bool>();
 
         private SearchResultItem _selectedGuide;
         public SearchResultItem SelectedGuide
@@ -536,7 +536,7 @@ namespace iFixit.Domain.ViewModels
             if (_settingsService.IsConnectedToInternet())
             {
 
-                if (SearchSectionCurrentPage[ServiceBroker.SEARCH_FILTERS.guide] != 0)
+                if (SearchSectionCurrentPage[ServiceBroker.SearchFilters.Guide] != 0)
                     await SearchGuides();
             }
 
@@ -566,7 +566,7 @@ namespace iFixit.Domain.ViewModels
         {
             if (_settingsService.IsConnectedToInternet())
             {
-                if (SearchSectionCurrentPage[ServiceBroker.SEARCH_FILTERS.device] != 0)
+                if (SearchSectionCurrentPage[ServiceBroker.SearchFilters.Device] != 0)
                     await SearchDevices();
             }
 
@@ -595,7 +595,7 @@ namespace iFixit.Domain.ViewModels
         {
             if (_settingsService.IsConnectedToInternet())
             {
-                if (SearchSectionCurrentPage[ServiceBroker.SEARCH_FILTERS.product] != 0)
+                if (SearchSectionCurrentPage[ServiceBroker.SearchFilters.Product] != 0)
                     await SearchProducts();
             }
 
@@ -613,14 +613,14 @@ namespace iFixit.Domain.ViewModels
         private async Task SearchGuides()
         {
 
-            if (!SearchSectionCurrentLoading[ServiceBroker.SEARCH_FILTERS.guide])
+            if (!SearchSectionCurrentLoading[ServiceBroker.SearchFilters.Guide])
                 if (GuidesMore)
 
                     try
                     {
                         LoadingCounter++;
-                        SearchSectionCurrentLoading[ServiceBroker.SEARCH_FILTERS.guide] = true;
-                        var Result = await Broker.SearchGuides(AppBase.Current.SearchTerm, SearchSectionCurrentPage[ServiceBroker.SEARCH_FILTERS.guide]);
+                        SearchSectionCurrentLoading[ServiceBroker.SearchFilters.Guide] = true;
+                        var Result = await Broker.SearchGuides(AppBase.Current.SearchTerm, SearchSectionCurrentPage[ServiceBroker.SearchFilters.Guide]);
                         this.GuidesItemLabel = string.Format("{0} ({1})", International.Translation.Guides, Result.totalResults);
                         this.GuidesMore = Result.moreResults;
                         if (Result != null)
@@ -639,9 +639,9 @@ namespace iFixit.Domain.ViewModels
                                     Guides.Add(newItem);
                             }
 
-                            SearchSectionCurrentPage[ServiceBroker.SEARCH_FILTERS.guide] += 1;
-                            SearchSectionCurrentLoading[ServiceBroker.SEARCH_FILTERS.guide] = false;
-                            SearchSectionResult[ServiceBroker.SEARCH_FILTERS.guide] = (RESTModels.Search.Guide.Common)Result;
+                            SearchSectionCurrentPage[ServiceBroker.SearchFilters.Guide] += 1;
+                            SearchSectionCurrentLoading[ServiceBroker.SearchFilters.Guide] = false;
+                            SearchSectionResult[ServiceBroker.SearchFilters.Guide] = (RESTModels.Search.Guide.Common)Result;
 
                             if (Result.totalResults == 0)
                                 GuidesDescription = International.Translation.NoGuidesFound;
@@ -662,13 +662,13 @@ namespace iFixit.Domain.ViewModels
         private async Task SearchDevices()
         {
 
-            if (!SearchSectionCurrentLoading[ServiceBroker.SEARCH_FILTERS.device])
+            if (!SearchSectionCurrentLoading[ServiceBroker.SearchFilters.Device])
                 if (DevicesMore)
                     try
                     {
                         LoadingCounter++;
                         var Result = await Broker.SearchDevice(AppBase.Current.SearchTerm
-                            , SearchSectionCurrentPage[ServiceBroker.SEARCH_FILTERS.device]);
+                            , SearchSectionCurrentPage[ServiceBroker.SearchFilters.Device]);
                         this.DevicesItemsLabel = string.Format("{0} ({1})", International.Translation.Devices, Result.totalResults);
                         DevicesMore = Result.moreResults;
 
@@ -689,7 +689,7 @@ namespace iFixit.Domain.ViewModels
                             else
                                 throw new ArgumentException("item repetido");
                         }
-                        SearchSectionCurrentPage[ServiceBroker.SEARCH_FILTERS.device] += 1;
+                        SearchSectionCurrentPage[ServiceBroker.SearchFilters.Device] += 1;
 
                         if (Result.totalResults == 0)
                             DevicesDescription = International.Translation.NoDevicesFound;
@@ -711,12 +711,12 @@ namespace iFixit.Domain.ViewModels
 
         private async Task SearchProducts()
         {
-            if (!SearchSectionCurrentLoading[ServiceBroker.SEARCH_FILTERS.product])
+            if (!SearchSectionCurrentLoading[ServiceBroker.SearchFilters.Product])
                 if (ProductsMore)
                     try
                     {
                         LoadingCounter++;
-                        var Result = await Broker.SearchProducts(AppBase.Current.SearchTerm, SearchSectionCurrentPage[ServiceBroker.SEARCH_FILTERS.product]);
+                        var Result = await Broker.SearchProducts(AppBase.Current.SearchTerm, SearchSectionCurrentPage[ServiceBroker.SearchFilters.Product]);
                         this.ProductsItemsLabel = string.Format("{0} ({1})", International.Translation.Devices, Result.totalResults);
                         this.ProductsMore = Result.moreResults;
                         foreach (var item in Result.results)
@@ -735,7 +735,7 @@ namespace iFixit.Domain.ViewModels
                             if (!Products.Contains(newItem))
                                 Products.Add(newItem);
                         }
-                        SearchSectionCurrentPage[ServiceBroker.SEARCH_FILTERS.product] += 1;
+                        SearchSectionCurrentPage[ServiceBroker.SearchFilters.Product] += 1;
 
                         if (Result.totalResults == 0)
                             ProductsDescription = International.Translation.NoProductsFound;
@@ -754,16 +754,16 @@ namespace iFixit.Domain.ViewModels
 
         private void ResetPageCounters()
         {
-            SearchSectionCurrentPage = new Dictionary<ServiceBroker.SEARCH_FILTERS, int>();
-            foreach (ServiceBroker.SEARCH_FILTERS p in Enum.GetValues(typeof(ServiceBroker.SEARCH_FILTERS)))
+            SearchSectionCurrentPage = new Dictionary<ServiceBroker.SearchFilters, int>();
+            foreach (ServiceBroker.SearchFilters p in Enum.GetValues(typeof(ServiceBroker.SearchFilters)))
             {
                 SearchSectionCurrentPage.Add(p, 0);
             }
 
 
 
-            SearchSectionResult = new Dictionary<ServiceBroker.SEARCH_FILTERS, RESTModels.Search.Guide.Common>();
-            foreach (ServiceBroker.SEARCH_FILTERS p in Enum.GetValues(typeof(ServiceBroker.SEARCH_FILTERS)))
+            SearchSectionResult = new Dictionary<ServiceBroker.SearchFilters, RESTModels.Search.Guide.Common>();
+            foreach (ServiceBroker.SearchFilters p in Enum.GetValues(typeof(ServiceBroker.SearchFilters)))
             {
                 SearchSectionResult.Add(p, null);
             }
@@ -775,7 +775,7 @@ namespace iFixit.Domain.ViewModels
         {
 
 
-            foreach (ServiceBroker.SEARCH_FILTERS p in Enum.GetValues(typeof(Services.V2_0.ServiceBroker.SEARCH_FILTERS)))
+            foreach (ServiceBroker.SearchFilters p in Enum.GetValues(typeof(Services.V2_0.ServiceBroker.SearchFilters)))
             {
                 SearchSectionCurrentLoading.Add(p, false);
             }
