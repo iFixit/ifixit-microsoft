@@ -52,7 +52,7 @@ namespace iFixit.Domain.Models.REST.V1_0.Guide
         public string text_raw { get; set; }
         public string bullet { get; set; }
         public int level { get; set; }
-        public int lineid { get; set; }
+        public int? lineid { get; set; }
         public string text_rendered { get; set; }
     }
 
