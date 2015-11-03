@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace iFixit.Domain.Interfaces
+﻿namespace iFixit.Domain.Interfaces
 {
 
         public enum NavigationModes { New = 0, Back = 1, Forward = 2, Refresh = 3, Reset = 4 }

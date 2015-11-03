@@ -1,17 +1,13 @@
 ﻿using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using iFixit.Domain.Models;
 using ServicesEngine = iFixit.Domain.Services.V2_0;
 using RESTModels = iFixit.Domain.Models.REST.V2_0;
 using System.Text.RegularExpressions;
 using System.Collections.ObjectModel;
 using iFixit.Domain.Services;
-using System.Linq;
 using System.Xml.Linq;
 
 namespace iFixit.Domain.Code
@@ -19,17 +15,15 @@ namespace iFixit.Domain.Code
     public static class Utils
     {
 
-        public static async Task<ObservableCollection<Models.UI.RssItem>> LoadRss(Interfaces.IUxService _uxService, Interfaces.ISettings _settingsService)
+        public static async Task<ObservableCollection<Models.UI.RssItem>> LoadRss(Interfaces.IUxService uxService, Interfaces.ISettings settingsService)
         {
 
-            if (_settingsService.IsConnectedToInternet())
+            if (settingsService.IsConnectedToInternet())
             {
-                ObservableCollection<Models.UI.RssItem> News = new ObservableCollection<Models.UI.RssItem>();
-                NewsBroker nBroker = new NewsBroker();
+                var news = new ObservableCollection<Models.UI.RssItem>();
+                var nBroker = new NewsBroker();
 
                 var xml = await nBroker.GetNews();
-
-                var itemNodes = xml.Nodes();
 
                 var morenodes = (from n in xml.Descendants("rss") select n).Descendants("item").Select(x => new
                 Models.UI.RssItem
@@ -50,88 +44,84 @@ namespace iFixit.Domain.Code
                 }).ToList();
 
 
-                News.Clear();
+                news.Clear();
                 foreach (var item in morenodes)
                 {
                     item.DateString = item.PubDate.ToString("MMM dd, yyyy");
-                    News.Add(item);
+                    news.Add(item);
                 }
-                return News;
+                return news;
             }
             else
             {
-                await _uxService.ShowAlert(International.Translation.NoConnection);
+                await uxService.ShowAlert(International.Translation.NoConnection);
                 return null;
 
             }
         }
 
-        public static async Task DoLogOut(Interfaces.IStorage _storageService, Interfaces.IUxService _uxService, ServicesEngine.ServiceBroker Broker)
+        public static async Task DoLogOut(Interfaces.IStorage storageService, Interfaces.IUxService uxService, ServicesEngine.ServiceBroker broker)
         {
-            await Broker.DoLogout(AppBase.Current.User);
+            await broker.DoLogout(AppBase.Current.User);
             AppBase.Current.User = null;
-            _storageService.Delete(Constants.AUTHORIZATION);
+            await storageService.Delete(Constants.AUTHORIZATION);
 
         }
 
         public static ObservableCollection<Models.UI.Category> CreateBreadCrumb(Models.UI.Category selectedCategory, RESTModels.Category.RootObject selectedItem, string root)
         {
 
-            ObservableCollection<Models.UI.Category> BreadCrumb = new ObservableCollection<Models.UI.Category>();
+            var breadCrumb = new ObservableCollection<Models.UI.Category>();
 
             selectedItem.ancestors.Reverse();
 
-            for (int i = 1; i < selectedItem.ancestors.Count; i++)
+            for (var i = 1; i < selectedItem.ancestors.Count; i++)
             {
                 var item = selectedItem.ancestors[i];
            
                 var ancestor = selectedItem.ancestors[i - 1];
           
 
-                string itemName = item;
+                var itemName = item;
 
-                if (BreadCrumb.Any(o => o.UniqueId == ancestor))
+                if (breadCrumb.Any(o => o.UniqueId == ancestor))
                 {
                  itemName=   itemName.Replace(ancestor + " ", "");
                 }
 
-                BreadCrumb.Add(new Models.UI.Category { Name = itemName, UniqueId = item, IndexOf = 1 });
+                breadCrumb.Add(new Models.UI.Category { Name = itemName, UniqueId = item, IndexOf = 1 });
 
             }
-            var BreadCrumbCategoryName = root;
+            var breadCrumbCategoryName = root;
             if (selectedItem.ancestors.Count > 1)
             {
-                for (int i = 0; i < selectedItem.ancestors.Count(); i++)
+                for (var i = 0; i < selectedItem.ancestors.Count(); i++)
                 {
                     var ancestor = selectedItem.ancestors[i];
-                    if (BreadCrumb.Any(o => o.UniqueId == ancestor))
+                    if (breadCrumb.Any(o => o.UniqueId == ancestor))
                     {
-                        if (i==selectedItem.ancestors.Count-1)
-                            BreadCrumbCategoryName = BreadCrumbCategoryName.Replace(BreadCrumb.Single(o=>o.UniqueId==ancestor).Name, "");
-                        else
-
-                        BreadCrumbCategoryName = BreadCrumbCategoryName.Replace(ancestor + " ", "");
+                        breadCrumbCategoryName = i==selectedItem.ancestors.Count-1 ? breadCrumbCategoryName.Replace(breadCrumb.Single(o=>o.UniqueId==ancestor).Name, "") : breadCrumbCategoryName.Replace(ancestor + " ", "");
                     }
                 }
                 
                 //BreadCrumbCategoryName = BreadCrumbCategoryName;//;.TrimStart(selectedItem.ancestors[selectedItem.ancestors.Count - 1].ToCharArray());
             }
 
-            BreadCrumb.Add(new Models.UI.Category { Name = BreadCrumbCategoryName, UniqueId = selectedCategory.UniqueId, IndexOf = 1 });
+            breadCrumb.Add(new Models.UI.Category { Name = breadCrumbCategoryName, UniqueId = selectedCategory.UniqueId, IndexOf = 1 });
 
 
-            return BreadCrumb;
+            return breadCrumb;
         }
 
         public static DateTime UnixTimeStampToDateTime(double unixTimeStamp)
         {
             // Unix timestamp is seconds past epoch
-            System.DateTime dtDateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0);
+            var dtDateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0);
             dtDateTime = dtDateTime.AddSeconds(unixTimeStamp).ToLocalTime();
             return dtDateTime;
         }
 
-        public static string StripHTML(string text)
+        public static string StripHtml(string text)
         {
             return Regex.Replace(text, @"<(.|\n)*?>", string.Empty);
         }
@@ -141,37 +131,37 @@ namespace iFixit.Domain.Code
             return url.Substring(url.LastIndexOf('/') + 1);
         }
 
-        public static String convertToString(this Enum eff)
+        public static string ConvertToString(this Enum eff)
         {
 
             return Enum.GetName(eff.GetType(), eff);
 
         }
 
-        public static EnumType converToEnum<EnumType>(this String enumValue)
+        public static EnumType ConverToEnum<EnumType>(this string enumValue)
         {
             return (EnumType)Enum.Parse(typeof(EnumType), enumValue);
         }
 
 
-        public static async Task<RESTModels.Category.RootObject> GetCategoryContent(string idCategory, iFixit.Domain.Interfaces.IStorage _storageService, ServicesEngine.ServiceBroker Broker)
+        public static async Task<RESTModels.Category.RootObject> GetCategoryContent(string idCategory, Interfaces.IStorage storageService, ServicesEngine.ServiceBroker broker)
         {
 
-            Debug.WriteLine(string.Format("going for :{0}", idCategory));
-            var isCategoryCached = await _storageService.Exists(Constants.CATEGORIES + idCategory, new TimeSpan(0, 12, 0, 0));
-            RESTModels.Category.RootObject category = null;
+            Debug.WriteLine($"going for :{idCategory}");
+            var isCategoryCached = await storageService.Exists(Constants.CATEGORIES + idCategory, new TimeSpan(0, 12, 0, 0));
+            RESTModels.Category.RootObject category;
             if (isCategoryCached)
             {
-                var rd = await _storageService.ReadData(Constants.CATEGORIES + idCategory);
+                var rd = await storageService.ReadData(Constants.CATEGORIES + idCategory);
                 category = rd.LoadFromJson<RESTModels.Category.RootObject>();
-                Debug.WriteLine(string.Format("loaded from cache :{0}", idCategory));
+                Debug.WriteLine($"loaded from cache :{idCategory}");
             }
             else
             {
-                Debug.WriteLine(string.Format("getting from service :{0}", idCategory));
-                category = await Broker.GetCategory(idCategory);
-                await _storageService.WriteData(Constants.CATEGORIES + idCategory,  category.SaveAsJson());
-                Debug.WriteLine(string.Format("caching from service :{0}", idCategory));
+                Debug.WriteLine($"getting from service :{idCategory}");
+                category = await broker.GetCategory(idCategory);
+                await storageService.WriteData(Constants.CATEGORIES + idCategory,  category.SaveAsJson());
+                Debug.WriteLine($"caching from service :{idCategory}");
             }
 
             // Process(category.contents_raw);

@@ -259,15 +259,15 @@ namespace iFixit.Domain.Services.V2_0
                 return await ReturnHttpGet<Models.REST.V2_0.Collections>(url.ToString());
 
             }
-            catch (HttpRequestException hex)
+            catch (HttpRequestException )
             {
 
-                throw hex;
+                throw;
             }
-            catch (Exception ex)
+            catch (Exception )
             {
 
-                throw ex;
+                throw ;
             }
 
 
@@ -337,7 +337,7 @@ namespace iFixit.Domain.Services.V2_0
         {
             var url = new StringBuilder();
             var offset = currentPage * _limit;
-            url.Append(BaseUrl).AppendFormat(SEARCH_PRODUCTS, searchTerm, SearchFilters.Product.convertToString(), offset, _limit);
+            url.Append(BaseUrl).AppendFormat(SEARCH_PRODUCTS, searchTerm, SearchFilters.Product.ConvertToString(), offset, _limit);
             RemoveAuthorizationHeader();
 
             try
@@ -362,7 +362,7 @@ namespace iFixit.Domain.Services.V2_0
 
             var url = new StringBuilder();
             var offset = currentPage * _limit;
-            url.Append(BaseUrl).AppendFormat(SEARCH_DEVICE, searchTerm, SearchFilters.Device.convertToString(), offset, _limit);
+            url.Append(BaseUrl).AppendFormat(SEARCH_DEVICE, searchTerm, SearchFilters.Device.ConvertToString(), offset, _limit);
             RemoveAuthorizationHeader();
 
             try

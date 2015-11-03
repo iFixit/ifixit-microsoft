@@ -14,58 +14,52 @@ namespace iFixit.Domain.ViewModels
     {
 
 
-        private Models.UI.RssItem _SelectedItem;
+        private Models.UI.RssItem _selectedItem;
         public Models.UI.RssItem SelectedItem
         {
-            get { return this._SelectedItem; }
+            get { return _selectedItem; }
             set
             {
-                if (_SelectedItem != value)
-                {
-                    _SelectedItem = value;
-                    NotifyPropertyChanged();
-                }
+                if (_selectedItem == value) return;
+                _selectedItem = value;
+                NotifyPropertyChanged();
             }
         }
 
 
-        private ObservableCollection<Models.UI.RssItem> _News = new ObservableCollection<Models.UI.RssItem>();
+        private ObservableCollection<Models.UI.RssItem> _news = new ObservableCollection<Models.UI.RssItem>();
         public ObservableCollection<Models.UI.RssItem> News
         {
-            get { return this._News; }
+            get { return _news; }
             set
             {
-                if (_News != value)
-                {
-                    _News = value;
-                    NotifyPropertyChanged();
-                }
+                if (_news == value) return;
+                _news = value;
+                NotifyPropertyChanged();
             }
         }
 
 
-        private int _SelectedIndex = 0;
+        private int _selectedIndex;
         public int SelectedIndex
         {
-            get { return this._SelectedIndex; }
+            get { return _selectedIndex; }
             set
             {
-                if (_SelectedIndex != value)
-                {
-                    _SelectedIndex = value;
-                    NotifyPropertyChanged();
-                }
+                if (_selectedIndex == value) return;
+                _selectedIndex = value;
+                NotifyPropertyChanged();
             }
         }
 
 
-        private RelayCommand<string> _GoToItem;
+        private RelayCommand<string> _goToItem;
         public RelayCommand<string> GoToItem
         {
             get
             {
-                return _GoToItem ?? (_GoToItem = new RelayCommand<string>(
-                async (item) =>
+                return _goToItem ?? (_goToItem = new RelayCommand<string>(
+                async item =>
                 {
 
                     try
@@ -75,10 +69,10 @@ namespace iFixit.Domain.ViewModels
                         SelectedItem = null;
 
                     }
-                    catch (Exception ex)
+                    catch (Exception )
                     {
                         LoadingCounter--;
-                        throw ex;
+                        throw ;
                     }
 
                 }));
@@ -86,13 +80,13 @@ namespace iFixit.Domain.ViewModels
 
         }
 
-        private RelayCommand<Models.UI.RssItem> _GoToNewsItem;
+        private RelayCommand<Models.UI.RssItem> _goToNewsItem;
         public RelayCommand<Models.UI.RssItem> GoToNewsItem
         {
             get
             {
-                return _GoToNewsItem ?? (_GoToNewsItem = new RelayCommand<Models.UI.RssItem>(
-                async (item) =>
+                return _goToNewsItem ?? (_goToNewsItem = new RelayCommand<Models.UI.RssItem>(
+                async item =>
                 {
 
                     try
@@ -102,10 +96,10 @@ namespace iFixit.Domain.ViewModels
                         SelectedItem = null;
 
                     }
-                    catch (Exception ex)
+                    catch (Exception)
                     {
                         LoadingCounter--;
-                        throw ex;
+                        throw;
                     }
 
                 }));
@@ -114,26 +108,26 @@ namespace iFixit.Domain.ViewModels
         }
 
 
-        private RelayCommand _Load;
+        private RelayCommand _load;
         public RelayCommand Load
         {
             get
             {
-                return _Load ?? (_Load = new RelayCommand(
+                return _load ?? (_load = new RelayCommand(
                 async () =>
                 {
 
                     try
                     {
                         LoadingCounter++;
-                        SelectedIndex = this.NavigationParameter<int>();
+                        SelectedIndex = NavigationParameter<int>();
                         await LoadRss();
                         LoadingCounter--;
                     }
-                    catch (Exception ex)
+                    catch (Exception )
                     {
                         LoadingCounter--;
-                        throw ex;
+                        throw ;
                     }
 
                 }));
@@ -147,11 +141,9 @@ namespace iFixit.Domain.ViewModels
 
             if (_settingsService.IsConnectedToInternet())
             {
-                NewsBroker nBroker = new NewsBroker();
+                var nBroker = new NewsBroker();
 
                 var xml = await nBroker.GetNews();
-
-                var itemNodes = xml.Nodes();
 
                 var morenodes = (from n in xml.Descendants("rss") select n).Descendants("item").Select(x => new
                 Models.UI.RssItem
@@ -186,12 +178,12 @@ namespace iFixit.Domain.ViewModels
 
         }
 
-        public About(INavigation<Domain.Interfaces.NavigationModes> navigationService, IStorage storageService, ISettings settingsService, IUxService uxService, IPeerConnector peerConnector)
+        public About(INavigation<NavigationModes> navigationService, IStorage storageService, ISettings settingsService, IUxService uxService, IPeerConnector peerConnector)
             : base(navigationService, storageService, settingsService, uxService, peerConnector)
         {
 
 
-            this.PageTitle = International.Translation.About;
+            PageTitle = International.Translation.About;
         }
     }
 }

@@ -2,10 +2,6 @@
 using iFixit.Domain.Code;
 using iFixit.Domain.Interfaces;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace iFixit.Domain.ViewModels
 {
@@ -14,15 +10,15 @@ namespace iFixit.Domain.ViewModels
 
 
 
-        private Models.UI.User _User;
+        private Models.UI.User _user;
         public Models.UI.User User
         {
-            get { return this._User; }
+            get { return this._user; }
             set
             {
-                if (_User != value)
+                if (_user != value)
                 {
-                    _User = value;
+                    _user = value;
                     NotifyPropertyChanged();
                 }
             }
@@ -30,12 +26,12 @@ namespace iFixit.Domain.ViewModels
         
         
 
-        private RelayCommand _LoadProfile;
+        private RelayCommand _loadProfile;
         public RelayCommand LoadProfile
         {
             get
             {
-                return _LoadProfile ?? (_LoadProfile = new RelayCommand(
+                return _loadProfile ?? (_loadProfile = new RelayCommand(
                   () =>
                   {
 
@@ -46,10 +42,10 @@ namespace iFixit.Domain.ViewModels
 
 
                       }
-                      catch (Exception ex)
+                      catch (Exception )
                       {
                           LoadingCounter--;
-                          throw ex;
+                          throw ;
                       }
 
                   }));
@@ -57,12 +53,12 @@ namespace iFixit.Domain.ViewModels
 
         }
 
-        private RelayCommand _DoLogout;
+        private RelayCommand _doLogout;
         public RelayCommand DoLogout
         {
             get
             {
-                return _DoLogout ?? (_DoLogout = new RelayCommand(
+                return _doLogout ?? (_doLogout = new RelayCommand(
                  async () =>
                  {
 
@@ -73,10 +69,10 @@ namespace iFixit.Domain.ViewModels
                          _uxService.DoLogOff();
                          LoadingCounter--;
                      }
-                     catch (Exception ex)
+                     catch (Exception )
                      {
                          LoadingCounter--;
-                         throw ex;
+                         throw ;
                      }
 
                  }));

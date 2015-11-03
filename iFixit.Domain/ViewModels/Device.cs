@@ -3,11 +3,8 @@ using iFixit.Domain.Code;
 using iFixit.Domain.Interfaces;
 using iFixit.Domain.Models.UI;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using ServicesEngine = iFixit.Domain.Services.V2_0;
 using RESTModels = iFixit.Domain.Models.REST.V2_0;
 
@@ -21,103 +18,93 @@ namespace iFixit.Domain.ViewModels
         public string DeviceId { get; set; }
         public string MainImage { get; set; }
 
-        private string _DeviceTitle;
+        private string _deviceTitle;
         public string DeviceTitle
         {
-            get { return _DeviceTitle; }
+            get { return _deviceTitle; }
             set
             {
-                if (value != _DeviceTitle)
+                if (value != _deviceTitle)
                 {
-                    _DeviceTitle = value;
+                    _deviceTitle = value;
                     NotifyPropertyChanged();
                 }
             }
         }
 
-        private string _CategoryBreadcrumb;
+        private string _categoryBreadcrumb;
         public string CategoryBreadcrumb
         {
-            get { return this._CategoryBreadcrumb; }
+            get { return _categoryBreadcrumb; }
             set
             {
-                if (_CategoryBreadcrumb != value)
-                {
-                    _CategoryBreadcrumb = value;
-                    NotifyPropertyChanged();
-                }
+                if (_categoryBreadcrumb == value) return;
+                _categoryBreadcrumb = value;
+                NotifyPropertyChanged();
             }
         }
 
 
-        private SearchResultItem _SelectedItem;
+        private SearchResultItem _selectedItem;
         public SearchResultItem SelectedItem
         {
-            get { return this._SelectedItem; }
+            get { return _selectedItem; }
             set
             {
-                if (_SelectedItem != value)
-                {
-                    _SelectedItem = value;
-                    NotifyPropertyChanged();
-                }
+                if (_selectedItem == value) return;
+                _selectedItem = value;
+                NotifyPropertyChanged();
             }
         }
 
 
-        private ObservableCollection<Models.UI.Tool> _Tools = new ObservableCollection<Models.UI.Tool>();
-        public ObservableCollection<Models.UI.Tool> Tools
+        private ObservableCollection<Tool> _tools = new ObservableCollection<Tool>();
+        public ObservableCollection<Tool> Tools
         {
-            get { return _Tools; }
+            get { return _tools; }
             set
             {
-                if (value != _Tools)
-                {
-                    _Tools = value;
-                    NotifyPropertyChanged();
-                }
+                if (value == _tools) return;
+                _tools = value;
+                NotifyPropertyChanged();
             }
         }
 
-        private ObservableCollection<Models.UI.Category> _BreadCrumb = new ObservableCollection<Models.UI.Category>();
-        public ObservableCollection<Models.UI.Category> BreadCrumb
+        private ObservableCollection<Category> _breadCrumb = new ObservableCollection<Category>();
+        public ObservableCollection<Category> BreadCrumb
         {
-            get { return this._BreadCrumb; }
+            get { return _breadCrumb; }
             set
             {
-                if (_BreadCrumb != value)
-                {
-                    _BreadCrumb = value;
-                    NotifyPropertyChanged();
-                }
+                if (_breadCrumb == value) return;
+                _breadCrumb = value;
+                NotifyPropertyChanged();
             }
         }
 
 
-        private ObservableCollection<Models.UI.IDevicePage> _DevicePages = new ObservableCollection<Models.UI.IDevicePage>();
-        public ObservableCollection<Models.UI.IDevicePage> DevicePages
+        private ObservableCollection<IDevicePage> _devicePages = new ObservableCollection<IDevicePage>();
+        public ObservableCollection<IDevicePage> DevicePages
         {
-            get { return _DevicePages; }
+            get { return _devicePages; }
             set
             {
-                if (value != _DevicePages)
-                {
-                    _DevicePages = value;
-                    NotifyPropertyChanged();
-                }
+                if (value == _devicePages) return;
+                _devicePages = value;
+                NotifyPropertyChanged();
             }
         }
         #endregion
 
         #region "commands"
 
-        private RelayCommand<Models.UI.SearchResultItem> _GoToGuide;
-        public RelayCommand<Models.UI.SearchResultItem> GoToGuide
+        private RelayCommand<SearchResultItem> _goToGuide;
+        public RelayCommand<SearchResultItem> GoToGuide
         {
             get
             {
-                return _GoToGuide ?? (_GoToGuide = new RelayCommand<Models.UI.SearchResultItem>(
-                 (item) =>
+                return _goToGuide ?? (_goToGuide = new RelayCommand<SearchResultItem>(
+                 item =>
                  {
                      LoadingCounter++;
                      try
@@ -127,23 +114,23 @@ namespace iFixit.Domain.ViewModels
                          SelectedItem = null;
                          LoadingCounter--;
                      }
-                     catch (Exception ex)
+                     catch (Exception)
                      {
                          LoadingCounter--;
-                         throw ex;
+                         throw;
                      }
 
                  }));
             }
         }
 
-        private RelayCommand<Models.UI.Category> _GoToCategory;
-        public RelayCommand<Models.UI.Category> GoToCategory
+        private RelayCommand<Category> _goToCategory;
+        public RelayCommand<Category> GoToCategory
         {
             get
             {
-                return _GoToCategory ?? (_GoToCategory = new RelayCommand<Models.UI.Category>(
-               async (selectedCategory) =>
+                return _goToCategory ?? (_goToCategory = new RelayCommand<Category>(
+               async selectedCategory =>
                {
 
                    try
@@ -166,10 +153,10 @@ namespace iFixit.Domain.ViewModels
 
                        LoadingCounter--;
                    }
-                   catch (Exception ex)
+                   catch (Exception )
                    {
                        LoadingCounter--;
-                       throw ex;
+                       throw;
                    }
 
                }));
@@ -177,12 +164,12 @@ namespace iFixit.Domain.ViewModels
 
         }
 
-        private RelayCommand _Load;
+        private RelayCommand _load;
         public RelayCommand Load
         {
             get
             {
-                return _Load ?? (_Load = new RelayCommand(async
+                return _load ?? (_load = new RelayCommand(async
                  () =>
                 {
                     if (_settingsService.IsConnectedToInternet())
@@ -196,19 +183,19 @@ namespace iFixit.Domain.ViewModels
                                 DevicePages.Clear();
 
 
-                                var selectedCategory = this.NavigationParameter<Models.UI.Category>();
+                                var selectedCategory = NavigationParameter<Category>();
 
                                 var selectedItem = await Utils.GetCategoryContent(selectedCategory.UniqueId, _storageService, Broker);
 
-                                var GuidesPage = new Models.UI.DeviceListingPage { PageType = Models.UI.DevicePageType.GuideListing, PageTitle = iFixit.International.Translation.Guides };
+                                var guidesPage = new DeviceListingPage { PageType = DevicePageType.GuideListing, PageTitle = International.Translation.Guides };
 
 
-                                string CategoryName = selectedItem.wiki_title;
+                                var categoryName = selectedItem.wiki_title;
 
                                 /**/
                                 BreadCrumb.Clear();
 
-                                this.BreadCrumb = Utils.CreateBreadCrumb(selectedCategory, selectedItem, CategoryName);
+                                BreadCrumb = Utils.CreateBreadCrumb(selectedCategory, selectedItem, categoryName);
                                 CategoryBreadcrumb = BreadCrumb.Last().Name;
                                 BreadCrumb.Remove(BreadCrumb.Last());
 
@@ -216,7 +203,7 @@ namespace iFixit.Domain.ViewModels
 
                                 foreach (var guide in selectedItem.guides)
                                 {
-                                    var result = new Models.UI.SearchResultItem { IndexOf = 1, Name = guide.title.Trim().Replace("&quot;", "''"), Summary = guide.type.ToUpper() };
+                                    var result = new SearchResultItem { IndexOf = 1, Name = guide.title.Trim().Replace("&quot;", "''"), Summary = guide.type.ToUpper() };
 
 
                                     if (guide.image != null)
@@ -226,23 +213,20 @@ namespace iFixit.Domain.ViewModels
                                     }
                                     result.UniqueId = guide.guideid.ToString();
                                     
-                                    GuidesPage.Items.Add(result);
+                                    guidesPage.Items.Add(result);
 
                                 }
 
-                                if (GuidesPage.Items.Count > 0)
-                                    GuidesPage.HasItems = string.Empty;
-                                else
-                                    GuidesPage.HasItems = string.Format(International.Translation.NoGuidesOnCategoryX, CategoryName);
+                                guidesPage.HasItems = guidesPage.Items.Count > 0 ? string.Empty : string.Format(International.Translation.NoGuidesOnCategoryX, categoryName);
 
-                                DevicePages.Add(GuidesPage);
+                                DevicePages.Add(guidesPage);
 
 
-                                DevicePages.Add(new Models.UI.DeviceIntroPage
+                                DevicePages.Add(new DeviceIntroPage
                                 {
                                     PageTitle = selectedItem.wiki_title.ToLower(),
                                     Image = selectedItem.image != null ? selectedItem.image.medium : "",
-                                    PageType = Models.UI.DevicePageType.Intro,
+                                    PageType = DevicePageType.Intro,
                                     Summary = selectedItem.contents_rendered.Replace("&nbsp;&para;&nbsp;", ""),
                                     DisplayTitle = _uxService.SanetizeHTML( selectedItem.display_title)
                                 });
@@ -254,10 +238,10 @@ namespace iFixit.Domain.ViewModels
                                 LoadingCounter--;
 
                             }
-                            catch (Exception ex)
+                            catch (Exception )
                             {
                                 LoadingCounter--;
-                                throw ex;
+                                throw;
                             }
                         }
                     }
@@ -276,7 +260,7 @@ namespace iFixit.Domain.ViewModels
         #endregion
 
 
-        public Device(INavigation<Domain.Interfaces.NavigationModes> navigationService, IStorage storageService, ISettings settingsService, IUxService uxService, IPeerConnector peerConnector)
+        public Device(INavigation<NavigationModes> navigationService, IStorage storageService, ISettings settingsService, IUxService uxService, IPeerConnector peerConnector)
             : base(navigationService, storageService, settingsService, uxService, peerConnector)
         {
 

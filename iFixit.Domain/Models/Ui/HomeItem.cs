@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace iFixit.Domain.Models.UI
+﻿namespace iFixit.Domain.Models.UI
 {
     public class CustomGridBase : ModelBase
     {

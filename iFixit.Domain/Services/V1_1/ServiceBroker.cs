@@ -327,7 +327,7 @@ namespace iFixit.Domain.Services.V1_1
         public async Task<Models.REST.V1_1.Search.Product.RootObject> SearchProducts(string searchTerm, int currentPage)
         {
             var url = new StringBuilder();
-            url.Append(BaseUrl).AppendFormat(SEARCH_PRODUCTS, searchTerm, SearchFilters.Product.convertToString(), currentPage);
+            url.Append(BaseUrl).AppendFormat(SEARCH_PRODUCTS, searchTerm, SearchFilters.Product.ConvertToString(), currentPage);
             RemoveAuthorizationHeader();
 
             try
@@ -351,7 +351,7 @@ namespace iFixit.Domain.Services.V1_1
         {
 
             var url = new StringBuilder();
-            url.Append(BaseUrl).AppendFormat(SEARCH_DEVICE, searchTerm, SearchFilters.Device.convertToString(), currentPage);
+            url.Append(BaseUrl).AppendFormat(SEARCH_DEVICE, searchTerm, SearchFilters.Device.ConvertToString(), currentPage);
             RemoveAuthorizationHeader();
 
             try

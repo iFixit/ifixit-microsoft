@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using GalaSoft.MvvmLight.Command;
+﻿using System.Collections.ObjectModel;
 
 namespace iFixit.Domain.Models.UI
 {
@@ -15,46 +9,40 @@ namespace iFixit.Domain.Models.UI
 
     public class Flag : ModelBase
     {
-        private string _Title;
+        private string _title;
         public string Title
         {
-            get { return _Title; }
+            get { return _title; }
             set
             {
-                if (value != _Title)
-                {
-                    _Title = value;
-                    NotifyPropertyChanged();
-                }
+                if (value == _title) return;
+                _title = value;
+                NotifyPropertyChanged();
             }
 
 
         }
-        private string _Text;
+        private string _text;
         public string Text
         {
-            get { return _Text; }
+            get { return _text; }
             set
             {
-                if (value != _Text)
-                {
-                    _Text = value;
-                    NotifyPropertyChanged();
-                }
+                if (value == _text) return;
+                _text = value;
+                NotifyPropertyChanged();
             }
         }
 
-        private string _Type;
+        private string _type;
         public string Type
         {
-            get { return this._Type; }
+            get { return _type; }
             set
             {
-                if (_Type != value)
-                {
-                    _Type = value;
-                    NotifyPropertyChanged();
-                }
+                if (_type == value) return;
+                _type = value;
+                NotifyPropertyChanged();
             }
         }
     }
@@ -66,85 +54,75 @@ namespace iFixit.Domain.Models.UI
     public class GuideBasePage : ModelBase, IGuidePagePage
     {
 
-        private string _PageTitle;
+        private string _pageTitle;
         public string PageTitle
         {
-            get { return this._PageTitle; }
+            get { return _pageTitle; }
             set
             {
-                if (_PageTitle != value)
-                {
-                    _PageTitle = value;
-                    NotifyPropertyChanged();
-                }
+                if (_pageTitle == value) return;
+                _pageTitle = value;
+                NotifyPropertyChanged();
             }
         }
 
 
-        private GuidesPageTypes _Type;
+        private GuidesPageTypes _type;
         public GuidesPageTypes Type
         {
-            get { return this._Type; }
+            get { return _type; }
             set
             {
-                if (_Type != value)
-                {
-                    _Type = value;
-                    NotifyPropertyChanged();
-                }
+                if (_type == value) return;
+                _type = value;
+                NotifyPropertyChanged();
             }
         }
 
 
-        private string _PageType;
+        private string _pageType;
         public string PageType
         {
-            get { return this._PageType; }
+            get { return _pageType; }
             set
             {
-                if (_PageType != value)
-                {
-                    _PageType = value;
-                    NotifyPropertyChanged();
-                }
+                if (_pageType == value) return;
+                _pageType = value;
+                NotifyPropertyChanged();
             }
         }
 
-        private string _StepTitle;
+        private string _stepTitle;
         public string StepTitle
         {
-            get { return this._StepTitle; }
+            get { return _stepTitle; }
             set
             {
-                if (_StepTitle != value)
-                {
-                    _StepTitle = value;
-                    NotifyPropertyChanged();
-                }
+                if (_stepTitle == value) return;
+                _stepTitle = value;
+                NotifyPropertyChanged();
             }
         }
     }
 
     public class GuidePrerequisites : GuideBasePage
     {
-        private ObservableCollection<SearchResultItem> _Items = new ObservableCollection<SearchResultItem>();
+        private ObservableCollection<SearchResultItem> _items = new ObservableCollection<SearchResultItem>();
         public ObservableCollection<SearchResultItem> Items
         {
-            get { return _Items; }
+            get { return _items; }
             set
             {
-                if (value != _Items)
-                {
-                    _Items = value;
-                    NotifyPropertyChanged();
-                }
+                if (value == _items) return;
+                _items = value;
+                NotifyPropertyChanged();
             }
         }
 
         public GuidePrerequisites()
         {
-            this.PageType = "prerequisites";
-            this.Type = GuidesPageTypes.Prerequisites;
+            PageType = "prerequisites";
+            Type = GuidesPageTypes.Prerequisites;
         }
     }
 
@@ -152,252 +130,218 @@ namespace iFixit.Domain.Models.UI
     {
 
 
-        private string _Subject;
+        private string _subject;
         public string Subject
         {
-            get { return _Subject; }
+            get { return _subject; }
             set
             {
-                if (value != _Subject)
-                {
-                    _Subject = value;
-                    NotifyPropertyChanged();
-                }
+                if (value == _subject) return;
+                _subject = value;
+                NotifyPropertyChanged();
             }
         }
 
-        private string _Difficulty;
+        private string _difficulty;
         public string Difficulty
         {
-            get { return _Difficulty; }
+            get { return _difficulty; }
             set
             {
-                if (value != _Difficulty)
-                {
-                    _Difficulty = value;
-                    NotifyPropertyChanged();
-                }
+                if (value == _difficulty) return;
+                _difficulty = value;
+                NotifyPropertyChanged();
             }
         }
 
-        private string _TimeRequired;
+        private string _timeRequired;
         public string TimeRequired
         {
-            get { return _TimeRequired; }
+            get { return _timeRequired; }
             set
             {
-                if (value != _TimeRequired)
-                {
-                    _TimeRequired = value;
-                    NotifyPropertyChanged();
-                }
+                if (value == _timeRequired) return;
+                _timeRequired = value;
+                NotifyPropertyChanged();
             }
         }
 
 
-        private string _Summary;
+        private string _summary;
         public string Summary
         {
-            get { return _Summary; }
+            get { return _summary; }
             set
             {
-                if (value != _Summary)
-                {
-                    _Summary = value;
-                    NotifyPropertyChanged();
-                }
+                if (value == _summary) return;
+                _summary = value;
+                NotifyPropertyChanged();
             }
         }
 
-        private string _Introduction;
+        private string _introduction;
         public string Introduction
         {
-            get { return _Introduction; }
+            get { return _introduction; }
             set
             {
-                if (value != _Introduction)
-                {
-                    _Introduction = value;
-                    NotifyPropertyChanged();
-                }
+                if (value == _introduction) return;
+                _introduction = value;
+                NotifyPropertyChanged();
             }
         }
 
 
-        private string _TypeOfGuide;
+        private string _typeOfGuide;
         public string TypeOfGuide
         {
-            get { return _TypeOfGuide; }
+            get { return _typeOfGuide; }
             set
             {
-                if (value != _TypeOfGuide)
-                {
-                    _TypeOfGuide = value;
-                    NotifyPropertyChanged();
-                }
+                if (value == _typeOfGuide) return;
+                _typeOfGuide = value;
+                NotifyPropertyChanged();
             }
         }
 
-        private string _Author;
+        private string _author;
         public string Author
         {
-            get { return _Author; }
+            get { return _author; }
             set
             {
-                if (value != _Author)
-                {
-                    _Author = value;
-                    NotifyPropertyChanged();
-                }
+                if (value == _author) return;
+                _author = value;
+                NotifyPropertyChanged();
             }
         }
 
-        private bool _HasPartsAndTools = false;
+        private bool _hasPartsAndTools = false;
         public bool HasPartsAndTools
         {
-            get { return this._HasPartsAndTools; }
+            get { return _hasPartsAndTools; }
             set
             {
-                if (_HasPartsAndTools != value)
-                {
-                    _HasPartsAndTools = value;
-                    NotifyPropertyChanged();
-                }
+                if (_hasPartsAndTools == value) return;
+                _hasPartsAndTools = value;
+                NotifyPropertyChanged();
             }
         }
 
-        private bool _HasPreRequisites = false;
+        private bool _hasPreRequisites = false;
         public bool HasPreRequisites
         {
-            get { return this._HasPreRequisites; }
+            get { return _hasPreRequisites; }
             set
             {
-                if (_HasPreRequisites != value)
-                {
-                    _HasPreRequisites = value;
-                    NotifyPropertyChanged();
-                }
+                if (_hasPreRequisites == value) return;
+                _hasPreRequisites = value;
+                NotifyPropertyChanged();
             }
         }
 
 
-        private ObservableCollection<SearchResultItem> _PreRequisites = new ObservableCollection<SearchResultItem>();
+        private ObservableCollection<SearchResultItem> _preRequisites = new ObservableCollection<SearchResultItem>();
         public ObservableCollection<SearchResultItem> PreRequisites
         {
-            get { return _PreRequisites; }
+            get { return _preRequisites; }
             set
             {
-                if (value != _PreRequisites)
-                {
-                    _PreRequisites = value;
+                if (value == _preRequisites) return;
+                _preRequisites = value;
 
-                    NotifyPropertyChanged();
-                }
+                NotifyPropertyChanged();
             }
         }
 
 
-        private bool _HasTools = false;
+        private bool _hasTools = false;
         public bool HasTools
         {
-            get { return this._HasTools; }
+            get { return _hasTools; }
             set
             {
-                if (_HasTools != value)
-                {
-                    _HasTools = value;
-                    NotifyPropertyChanged();
-                }
+                if (_hasTools == value) return;
+                _hasTools = value;
+                NotifyPropertyChanged();
             }
         }
 
-        private ObservableCollection<Tool> _Tools = new ObservableCollection<Tool>();
+        private ObservableCollection<Tool> _tools = new ObservableCollection<Tool>();
         public ObservableCollection<Tool> Tools
         {
-            get { return _Tools; }
+            get { return _tools; }
             set
             {
-                if (value != _Tools)
-                {
-                    _Tools = value;
+                if (value == _tools) return;
+                _tools = value;
 
-                    NotifyPropertyChanged();
-                }
+                NotifyPropertyChanged();
             }
         }
 
-        private bool _HasParts = false;
+        private bool _hasParts = false;
         public bool HasParts
         {
-            get { return this._HasParts; }
+            get { return _hasParts; }
             set
             {
-                if (_HasParts != value)
-                {
-                    _HasParts = value;
-                    NotifyPropertyChanged();
-                }
+                if (_hasParts == value) return;
+                _hasParts = value;
+                NotifyPropertyChanged();
             }
         }
-        private ObservableCollection<Tool> _Parts = new ObservableCollection<Tool>();
+        private ObservableCollection<Tool> _parts = new ObservableCollection<Tool>();
         public ObservableCollection<Tool> Parts
         {
-            get { return _Parts; }
+            get { return _parts; }
             set
             {
-                if (value != _Parts)
-                {
-                    _Tools = value;
+                if (value == _parts) return;
+                _tools = value;
 
-                    NotifyPropertyChanged();
-                }
+                NotifyPropertyChanged();
             }
         }
 
 
-        private ObservableCollection<Flag> _Flags = new ObservableCollection<Flag>();
+        private ObservableCollection<Flag> _flags = new ObservableCollection<Flag>();
         public ObservableCollection<Flag> Flags
         {
-            get { return _Flags; }
+            get { return _flags; }
             set
             {
-                if (value != _Flags)
-                {
-                    _Flags = value;
+                if (value == _flags) return;
+                _flags = value;
 
-                    NotifyPropertyChanged();
-                }
+                NotifyPropertyChanged();
             }
         }
 
 
-        private bool _HasDocuments;
+        private bool _hasDocuments;
         public bool HasDocuments
         {
             get { return Documents.Count > 0; }
             set
             {
-                if (_HasDocuments != value)
-                {
-                    _HasDocuments = value;
-                    NotifyPropertyChanged();
-                }
+                if (_hasDocuments == value) return;
+                _hasDocuments = value;
+                NotifyPropertyChanged();
             }
         }
 
 
-        private ObservableCollection<Document> _Documents = new ObservableCollection<Document>();
+        private ObservableCollection<Document> _documents = new ObservableCollection<Document>();
         public ObservableCollection<Document> Documents
         {
-            get { return this._Documents; }
+            get { return _documents; }
             set
             {
-                if (_Documents != value)
-                {
-                    _Documents = value;
-                    NotifyPropertyChanged();
-                    NotifyPropertyChanged("HasDocuments");
-                }
+                if (_documents == value) return;
+                _documents = value;
+                NotifyPropertyChanged();
+                NotifyPropertyChanged("HasDocuments");
             }
         }
 
@@ -405,59 +349,37 @@ namespace iFixit.Domain.Models.UI
         public GuideIntro()
         {
 
-            this.PageType = "intro";
-            this.Type = GuidesPageTypes.Intro;
+            PageType = "intro";
+            Type = GuidesPageTypes.Intro;
         }
     }
 
-    //public class Guide : ModelBase
-    //{
 
-
-    //    private ObservableCollection<IGuidePagePage> _Pages = new ObservableCollection<IGuidePagePage>();
-    //    public ObservableCollection<IGuidePagePage> Pages
-    //    {
-    //        get { return _Pages; }
-    //        set
-    //        {
-    //            if (value != _Pages)
-    //            {
-    //                _Pages = value;
-    //                NotifyPropertyChanged();
-    //            }
-    //        }
-    //    }
-
-    //}
 
     public class GuideStepVideo : ModelBase
     {
 
-        private string _VideoUrl = string.Empty;
+        private string _videoUrl = string.Empty;
         public string VideoUrl
         {
-            get { return this._VideoUrl; }
+            get { return _videoUrl; }
             set
             {
-                if (_VideoUrl != value)
-                {
-                    _VideoUrl = value;
-                    NotifyPropertyChanged();
-                }
+                if (_videoUrl == value) return;
+                _videoUrl = value;
+                NotifyPropertyChanged();
             }
         }
 
-        private string _ImageUrl = string.Empty;
+        private string _imageUrl = string.Empty;
         public string ImageUrl
         {
-            get { return this._ImageUrl; }
+            get { return _imageUrl; }
             set
             {
-                if (_ImageUrl != value)
-                {
-                    _ImageUrl = value;
-                    NotifyPropertyChanged();
-                }
+                if (_imageUrl == value) return;
+                _imageUrl = value;
+                NotifyPropertyChanged();
             }
         }
 
@@ -467,17 +389,15 @@ namespace iFixit.Domain.Models.UI
     public class GuideStepItem : GuideBasePage
     {
 
-        private int _StepIndex;
+        private int _stepIndex;
         public int StepIndex
         {
-            get { return _StepIndex; }
+            get { return _stepIndex; }
             set
             {
-                if (value != _StepIndex)
-                {
-                    _StepIndex = value;
-                    NotifyPropertyChanged();
-                }
+                if (value == _stepIndex) return;
+                _stepIndex = value;
+                NotifyPropertyChanged();
             }
         }
 
@@ -487,102 +407,88 @@ namespace iFixit.Domain.Models.UI
             get { return _index; }
             set
             {
-                if (value != _index)
-                {
-                    _index = value;
-                    NotifyPropertyChanged();
-                }
+                if (value == _index) return;
+                _index = value;
+                NotifyPropertyChanged();
             }
         }
 
 
-        private GuideStepVideo _Video = new GuideStepVideo();
+        private GuideStepVideo _video = new GuideStepVideo();
         public GuideStepVideo Video
         {
-            get { return this._Video; }
+            get { return _video; }
             set
             {
-                if (_Video != value)
-                {
-                    _Video = value;
-                    NotifyPropertyChanged();
-                }
+                if (_video == value) return;
+                _video = value;
+                NotifyPropertyChanged();
             }
         }
 
 
 
-        private bool _PlayVideo = false;
+        private bool _playVideo = false;
         public bool PlayVideo
         {
-            get { return _PlayVideo; }
+            get { return _playVideo; }
             set
             {
-                if (value != _PlayVideo)
-                {
-                    _PlayVideo = value;
-                    NotifyPropertyChanged();
-                }
+                if (value == _playVideo) return;
+                _playVideo = value;
+                NotifyPropertyChanged();
             }
         }
 
-        private GuideStepImage _MainImage = new GuideStepImage();
+        private GuideStepImage _mainImage = new GuideStepImage();
         public GuideStepImage MainImage
         {
-            get { return _MainImage; }
+            get { return _mainImage; }
             set
             {
-                if (value != _MainImage)
-                {
-                    _MainImage = value;
-                    NotifyPropertyChanged();
-                }
+                if (value == _mainImage) return;
+                _mainImage = value;
+                NotifyPropertyChanged();
             }
         }
 
 
-        private ObservableCollection<GuideStepLine> _Lines = new ObservableCollection<GuideStepLine>();
+        private ObservableCollection<GuideStepLine> _lines = new ObservableCollection<GuideStepLine>();
         public ObservableCollection<GuideStepLine> Lines
         {
-            get { return _Lines; }
+            get { return _lines; }
             set
             {
-                if (value != _Lines)
-                {
-                    _Lines = value;
-                    NotifyPropertyChanged();
-                }
+                if (value == _lines) return;
+                _lines = value;
+                NotifyPropertyChanged();
             }
         }
 
 
 
-        private ObservableCollection<GuideStepImage> _Images = new ObservableCollection<GuideStepImage>();
+        private ObservableCollection<GuideStepImage> _images = new ObservableCollection<GuideStepImage>();
         public ObservableCollection<GuideStepImage> Images
         {
-            get { return _Images; }
+            get { return _images; }
             set
             {
-                if (value != _Images)
-                {
-                    _Images = value;
-                    NotifyPropertyChanged();
-                }
+                if (value == _images) return;
+                _images = value;
+                NotifyPropertyChanged();
             }
         }
 
 
-        private bool _ShowListImages=true;
+        private bool _showListImages=true;
         public bool ShowListImages
         {
-            get { return this._ShowListImages; }
+            get { return _showListImages; }
             set
             {
-                if (_ShowListImages != value)
-                {
-                    _ShowListImages = value;
-                    NotifyPropertyChanged();
-                }
+                if (_showListImages == value) return;
+                _showListImages = value;
+                NotifyPropertyChanged();
             }
         }
 
@@ -590,8 +496,8 @@ namespace iFixit.Domain.Models.UI
 
         public GuideStepItem()
         {
-            this.PageType = "step";
-            this.Type = GuidesPageTypes.Step;
+            PageType = "step";
+            Type = GuidesPageTypes.Step;
         }
 
     }
@@ -599,90 +505,78 @@ namespace iFixit.Domain.Models.UI
     public class GuideStepImage : ModelBase
     {
 
-        private int _ImageIndex;
+        private int _imageIndex;
         public int ImageIndex
         {
-            get { return _ImageIndex; }
+            get { return _imageIndex; }
             set
             {
-                if (value != _ImageIndex)
-                {
-                    _ImageIndex = value;
-                    NotifyPropertyChanged();
-                }
+                if (value == _imageIndex) return;
+                _imageIndex = value;
+                NotifyPropertyChanged();
             }
         }
 
 
-        private string _ImageId;
+        private string _imageId;
         public string ImageId
         {
-            get { return _ImageId; }
+            get { return _imageId; }
             set
             {
-                if (value != _ImageId)
-                {
-                    _ImageId = value;
-                    NotifyPropertyChanged();
-                }
+                if (value == _imageId) return;
+                _imageId = value;
+                NotifyPropertyChanged();
             }
         }
 
 
-        private int _StepIndex;
+        private int _stepIndex;
         public int StepIndex
         {
-            get { return _StepIndex; }
+            get { return _stepIndex; }
             set
             {
-                if (value != _StepIndex)
-                {
-                    _StepIndex = value;
-                    NotifyPropertyChanged();
-                }
+                if (value == _stepIndex) return;
+                _stepIndex = value;
+                NotifyPropertyChanged();
             }
         }
 
 
-        private string _MediumImageUrl;
+        private string _mediumImageUrl;
         public string MediumImageUrl
         {
-            get { return _MediumImageUrl; }
+            get { return _mediumImageUrl; }
             set
             {
-                if (value != _MediumImageUrl)
-                {
-                    _MediumImageUrl = value;
-                    NotifyPropertyChanged();
-                }
+                if (value == _mediumImageUrl) return;
+                _mediumImageUrl = value;
+                NotifyPropertyChanged();
             }
         }
 
-        private string _LargeImageUrl;
+        private string _largeImageUrl;
         public string LargeImageUrl
         {
-            get { return _LargeImageUrl; }
+            get { return _largeImageUrl; }
             set
             {
-                if (value != _LargeImageUrl)
-                {
-                    _LargeImageUrl = value;
-                    NotifyPropertyChanged();
-                }
+                if (value == _largeImageUrl) return;
+                _largeImageUrl = value;
+                NotifyPropertyChanged();
             }
         }
 
-        private string _SmallImageUrl;
+        private string _smallImageUrl;
         public string SmallImageUrl
         {
-            get { return this._SmallImageUrl; }
+            get { return _smallImageUrl; }
             set
             {
-                if (_SmallImageUrl != value)
-                {
-                    _SmallImageUrl = value;
-                    NotifyPropertyChanged();
-                }
+                if (_smallImageUrl == value) return;
+                _smallImageUrl = value;
+                NotifyPropertyChanged();
             }
         }
 
@@ -755,138 +649,120 @@ namespace iFixit.Domain.Models.UI
             }
         }
 
-        private GuideStepLineIcon _GuideIcon;
+        private GuideStepLineIcon _guideIcon;
         public GuideStepLineIcon GuideIcon
         {
-            get { return _GuideIcon; }
+            get { return _guideIcon; }
             set
             {
-                if (value != _GuideIcon)
-                {
-                    _GuideIcon = value;
-                    NotifyPropertyChanged();
-                }
+                if (value == _guideIcon) return;
+                _guideIcon = value;
+                NotifyPropertyChanged();
             }
         }
 
 
-        private string _Icon;
+        private string _icon;
         public string Icon
         {
-            get { return _Icon; }
+            get { return _icon; }
             set
             {
-                if (value != _Icon)
-                {
-                    _Icon = value;
-                    NotifyPropertyChanged();
-                }
+                if (value == _icon) return;
+                _icon = value;
+                NotifyPropertyChanged();
             }
         }
 
 
-        private string _BulletColor;
+        private string _bulletColor;
         public string BulletColor
         {
-            get { return _BulletColor; }
+            get { return _bulletColor; }
             set
             {
-                if (value != _BulletColor)
-                {
-                    _BulletColor = value;
-                    NotifyPropertyChanged();
-                }
+                if (value == _bulletColor) return;
+                _bulletColor = value;
+                NotifyPropertyChanged();
             }
         }
 
 
 
-        private AdvancedText _Body = new AdvancedText();
+        private AdvancedText _body = new AdvancedText();
         public AdvancedText Body
         {
-            get { return _Body; }
+            get { return _body; }
             set
             {
-                if (value != _Body)
-                {
-                    _Body = value;
-                    NotifyPropertyChanged();
-                }
+                if (value == _body) return;
+                _body = value;
+                NotifyPropertyChanged();
             }
         }
 
 
-        private string _Index;
+        private string _index;
         public string Index
         {
-            get { return _Index; }
+            get { return _index; }
             set
             {
-                if (value != _Index)
-                {
-                    _Index = value;
-                    NotifyPropertyChanged();
-                }
+                if (value == _index) return;
+                _index = value;
+                NotifyPropertyChanged();
             }
         }
 
 
-        private string _Title;
+        private string _title;
         public string Title
         {
-            get { return _Title; }
+            get { return _title; }
             set
             {
-                if (value != _Title)
-                {
-                    _Title = value;
-                    NotifyPropertyChanged();
-                }
+                if (value == _title) return;
+                _title = value;
+                NotifyPropertyChanged();
             }
         }
 
 
-        private string _VoiceText;
+        private string _voiceText;
         public string VoiceText
         {
-            get { return this._VoiceText; }
+            get { return _voiceText; }
             set
             {
-                if (_VoiceText != value)
-                {
-                    _VoiceText = value;
-                    NotifyPropertyChanged();
-                }
+                if (_voiceText == value) return;
+                _voiceText = value;
+                NotifyPropertyChanged();
             }
         }
 
 
-        private bool _BeingRead = false;
+        private bool _beingRead = false;
         public bool BeingRead
         {
-            get { return this._BeingRead; }
+            get { return _beingRead; }
             set
             {
-                if (_BeingRead != value)
-                {
-                    _BeingRead = value;
-                    NotifyPropertyChanged();
-                }
+                if (_beingRead == value) return;
+                _beingRead = value;
+                NotifyPropertyChanged();
             }
         }
 
 
-        private int _Level;
+        private int _level;
         public int Level
         {
-            get { return _Level; }
+            get { return _level; }
             set
             {
-                if (value != _Level)
-                {
-                    _Level = value;
-                    NotifyPropertyChanged();
-                }
+                if (value == _level) return;
+                _level = value;
+                NotifyPropertyChanged();
             }
         }
 

@@ -12,22 +12,24 @@ namespace iFixit.UI.Services
     {
         private async Task<IDictionary<string, string>> SendPostToUriAsync(string targetUri, string content)
         {
-            HttpClientHandler handler = new HttpClientHandler();
-            handler.UseDefaultCredentials = true;
-            handler.AllowAutoRedirect = false;
+            var handler = new HttpClientHandler
+            {
+                UseDefaultCredentials = true,
+                AllowAutoRedirect = false
+            };
 
-            HttpClient client = new HttpClient(handler);
+            var client = new HttpClient(handler);
 
             HttpContent httpContent = new StringContent(content);
             httpContent.Headers.ContentType = new MediaTypeHeaderValue("application/x-www-form-urlencoded");
 
-            HttpResponseMessage response = await client.PostAsync(targetUri, httpContent);
+            var response = await client.PostAsync(targetUri, httpContent);
 
-            Dictionary<string, string> headers = new Dictionary<string, string>();
+            var headers = new Dictionary<string, string>();
 
             foreach (var header in response.Headers)
             {
-                string headerValue = string.Empty;
+                string headerValue;
 
                 if (header.Value.Count() == 1)
                 {
@@ -35,7 +37,7 @@ namespace iFixit.UI.Services
                 }
                 else
                 {
-                    StringBuilder stringValue = new StringBuilder();
+                    var stringValue = new StringBuilder();
 
                     foreach (var value in header.Value)
                     {

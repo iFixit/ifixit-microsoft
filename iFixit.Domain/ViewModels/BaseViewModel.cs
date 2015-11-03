@@ -1,11 +1,7 @@
 ﻿using GalaSoft.MvvmLight.Command;
 using iFixit.Domain.Interfaces;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using iFixit.Domain.Code;
-using Logger = iFixit.UI.Services.Logger;
 using ServicesEngine = iFixit.Domain.Services.V2_0;
 using RESTModels = iFixit.Domain.Models.REST.V2_0;
 
@@ -74,11 +70,9 @@ namespace iFixit.Domain.ViewModels
             get { return isLoading; }
             set
             {
-                if (value != isLoading)
-                {
-                    isLoading = value;
-                    NotifyPropertyChanged();
-                }
+                if (value == isLoading) return;
+                isLoading = value;
+                NotifyPropertyChanged();
             }
         }
 
@@ -88,11 +82,9 @@ namespace iFixit.Domain.ViewModels
             get { return pageTitle; }
             set
             {
-                if (value != pageTitle)
-                {
-                    pageTitle = value;
-                    NotifyPropertyChanged();
-                }
+                if (value == pageTitle) return;
+                pageTitle = value;
+                NotifyPropertyChanged();
             }
         }
 
@@ -103,11 +95,9 @@ namespace iFixit.Domain.ViewModels
             get { return appName; }
             set
             {
-                if (value != appName)
-                {
-                    appName = value;
-                    NotifyPropertyChanged();
-                }
+                if (value == appName) return;
+                appName = value;
+                NotifyPropertyChanged();
             }
         }
 
@@ -124,17 +114,15 @@ namespace iFixit.Domain.ViewModels
         }
 
 
-        private bool _IsAuthenticated = false;
+        private bool _isAuthenticated = false;
         public bool IsAuthenticated
         {
-            get { return this._IsAuthenticated; }
+            get { return this._isAuthenticated; }
             set
             {
-                if (_IsAuthenticated != value)
-                {
-                    _IsAuthenticated = value;
-                    NotifyPropertyChanged();
-                }
+                if (_isAuthenticated == value) return;
+                _isAuthenticated = value;
+                NotifyPropertyChanged();
             }
         }
 
@@ -142,12 +130,12 @@ namespace iFixit.Domain.ViewModels
 
         #endregion
 
-        private RelayCommand<int> _GoToAbout;
+        private RelayCommand<int> _goToAbout;
         public RelayCommand<int> GoToAbout
         {
             get
             {
-                return _GoToAbout ?? (_GoToAbout = new RelayCommand<int>(
+                return _goToAbout ?? (_goToAbout = new RelayCommand<int>(
                  (idx) =>
                  {
                      LoadingCounter++;
@@ -157,10 +145,10 @@ namespace iFixit.Domain.ViewModels
                          _navigationService.Navigate<About>(false, idx);
                          LoadingCounter--;
                      }
-                     catch (Exception ex)
+                     catch (Exception )
                      {
                          LoadingCounter--;
-                         throw ex;
+                         throw ;
                      }
 
                  }));
@@ -168,12 +156,12 @@ namespace iFixit.Domain.ViewModels
 
         }
 
-        private RelayCommand _GoHome;
+        private RelayCommand _goHome;
         public RelayCommand GoHome
         {
             get
             {
-                return _GoHome ?? (_GoHome = new RelayCommand(
+                return _goHome ?? (_goHome = new RelayCommand(
                   () =>
                   {
 
@@ -184,10 +172,10 @@ namespace iFixit.Domain.ViewModels
                           LoadingCounter--;
 
                       }
-                      catch (Exception ex)
+                      catch (Exception )
                       {
                           LoadingCounter--;
-                          throw ex;
+                          throw ;
                       }
 
                   }));
@@ -195,12 +183,12 @@ namespace iFixit.Domain.ViewModels
 
         }
 
-        private RelayCommand _GoSearchResults;
+        private RelayCommand _goSearchResults;
         public RelayCommand GoSearchResults
         {
             get
             {
-                return _GoSearchResults ?? (_GoSearchResults = new RelayCommand(
+                return _goSearchResults ?? (_goSearchResults = new RelayCommand(
                   () =>
                   {
 
@@ -211,10 +199,10 @@ namespace iFixit.Domain.ViewModels
                           LoadingCounter--;
 
                       }
-                      catch (Exception ex)
+                      catch (Exception )
                       {
                           LoadingCounter--;
-                          throw ex;
+                          throw ;
                       }
 
                   }));
@@ -222,12 +210,12 @@ namespace iFixit.Domain.ViewModels
 
         }
 
-        private RelayCommand _GoBack;
+        private RelayCommand _goBack;
         public RelayCommand GoBack
         {
             get
             {
-                return _GoBack ?? (_GoBack = new RelayCommand(
+                return _goBack ?? (_goBack = new RelayCommand(
                   () =>
                   {
 
@@ -237,7 +225,7 @@ namespace iFixit.Domain.ViewModels
                           _navigationService.GoBack();
 
                       }
-                      catch (Exception ex)
+                      catch (Exception )
                       {
                           LoadingCounter--;
                           //throw ex;
@@ -248,12 +236,12 @@ namespace iFixit.Domain.ViewModels
 
         }
 
-        private RelayCommand _OpenSpeech;
+        private RelayCommand _openSpeech;
         public RelayCommand OpenSpeech
         {
             get
             {
-                return _OpenSpeech ?? (_OpenSpeech = new RelayCommand(
+                return _openSpeech ?? (_openSpeech = new RelayCommand(
                  async () =>
                  {
 
@@ -263,10 +251,10 @@ namespace iFixit.Domain.ViewModels
                          await _uxService.OpenSpeechUI();
 
                      }
-                     catch (Exception ex)
+                     catch (Exception )
                      {
                          LoadingCounter--;
-                         throw ex;
+                         throw ;
                      }
 
                  }));
@@ -274,12 +262,12 @@ namespace iFixit.Domain.ViewModels
 
         }
 
-        private RelayCommand _GoToSearch;
+        private RelayCommand _goToSearch;
         public RelayCommand GoToSearch
         {
             get
             {
-                return _GoToSearch ?? (_GoToSearch = new RelayCommand(
+                return _goToSearch ?? (_goToSearch = new RelayCommand(
                  () =>
                  {
                      LoadingCounter++;
@@ -290,22 +278,22 @@ namespace iFixit.Domain.ViewModels
                          _uxService.OpenSearch();
                          LoadingCounter--;
                      }
-                     catch (Exception ex)
+                     catch (Exception )
                      {
                          LoadingCounter--;
-                         throw ex;
+                         throw ;
                      }
 
                  }));
             }
         }
 
-        private RelayCommand _DoLogin;
+        private RelayCommand _doLogin;
         public RelayCommand DoLogin
         {
             get
             {
-                return _DoLogin ?? (_DoLogin = new RelayCommand(
+                return _doLogin ?? (_doLogin = new RelayCommand(
                   () =>
                   {
 
@@ -325,10 +313,10 @@ namespace iFixit.Domain.ViewModels
 
 
                       }
-                      catch (Exception ex)
+                      catch (Exception )
                       {
                           LoadingCounter--;
-                          throw ex;
+                          throw ;
                       }
 
                   }));
@@ -382,7 +370,7 @@ namespace iFixit.Domain.ViewModels
         public event EventHandler<ConnectionStatusChangedEventArgs> ConnectionStatusChanged;
         public event EventHandler<GuideReceivedEventArgs> GuideReceived;
 
-        void _peerConnector_GuideReceived(object sender, GuideReceivedEventArgs e)
+        static void _peerConnector_GuideReceived(object sender, GuideReceivedEventArgs e)
         {
             throw new NotImplementedException();
         }
@@ -405,8 +393,7 @@ namespace iFixit.Domain.ViewModels
                     break;
             }
 
-            if (ConnectionStatusChanged != null)
-                ConnectionStatusChanged(this, new ConnectionStatusChangedEventArgs() { Status = e.Status });
+            ConnectionStatusChanged?.Invoke(this, new ConnectionStatusChangedEventArgs() { Status = e.Status });
         }
 
 

@@ -1,16 +1,15 @@
 ﻿using GalaSoft.MvvmLight.Command;
 using iFixit.Domain.Code;
 using iFixit.Domain.Interfaces;
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using ServicesEngine = iFixit.Domain.Services.V2_0;
 using RESTModels = iFixit.Domain.Models.REST.V2_0;
 using System.Diagnostics;
+using iFixit.Domain.Models.UI;
 
 namespace iFixit.Domain.ViewModels
 {
@@ -21,199 +20,179 @@ namespace iFixit.Domain.ViewModels
 
         private string currentGuideId = string.Empty;
 
-        private bool _BeingRead = false;
+        private bool _beingRead = false;
         public bool BeingRead
         {
-            get { return this._BeingRead; }
+            get { return _beingRead; }
             set
             {
-                if (_BeingRead != value)
-                {
-                    _BeingRead = value;
-                    NotifyPropertyChanged();
-                }
+                if (_beingRead == value) return;
+                _beingRead = value;
+                NotifyPropertyChanged();
             }
         }
 
 
-        private string _FullImagePath;
+        private string _fullImagePath;
         public string FullImagePath
         {
-            get { return this._FullImagePath; }
+            get { return _fullImagePath; }
             set
             {
-                if (_FullImagePath != value)
-                {
-                    _FullImagePath = value;
-                    NotifyPropertyChanged();
-                }
+                if (_fullImagePath == value) return;
+                _fullImagePath = value;
+                NotifyPropertyChanged();
             }
         }
 
 
-        private bool _ShowingFullImage = false;
+        private bool _showingFullImage = false;
         public bool ShowingFullImage
         {
-            get { return this._ShowingFullImage; }
+            get { return _showingFullImage; }
             set
             {
 
-                _ShowingFullImage = value;
+                _showingFullImage = value;
                 NotifyPropertyChanged();
 
             }
         }
 
 
-        private int _SelectedPageIndex = 0;
+        private int _selectedPageIndex = 0;
         public int SelectedPageIndex
         {
             get
             {
 
-                return _SelectedPageIndex;
+                return _selectedPageIndex;
             }
             set
             {
-                if (_SelectedPageIndex != value)
+                if (_selectedPageIndex != value)
                 {
-                    _SelectedPageIndex = value;
+                    _selectedPageIndex = value;
                     NotifyPropertyChanged();
                 }
             }
         }
 
 
-        private Models.UI.GuideBasePage _SelectedPage;
-        public Models.UI.GuideBasePage SelectedPage
+        private GuideBasePage _selectedPage;
+        public GuideBasePage SelectedPage
         {
-            get { return this._SelectedPage; }
+            get { return _selectedPage; }
             set
             {
-                if (_SelectedPage != value)
+                if (_selectedPage != value)
                 {
-                    _SelectedPage = value;
+                    _selectedPage = value;
                     NotifyPropertyChanged();
                 }
             }
         }
 
 
-        private int _SelectedStepLine = 0;
+        private int _selectedStepLine = 0;
         public int SelectedStepLine
         {
-            get { return this._SelectedStepLine; }
+            get { return _selectedStepLine; }
             set
             {
-                if (_SelectedStepLine != value)
-                {
-                    _SelectedStepLine = value;
-                    NotifyPropertyChanged();
-                }
+                if (_selectedStepLine == value) return;
+                _selectedStepLine = value;
+                NotifyPropertyChanged();
             }
         }
 
 
-        private string _GuideUrl;
+        private string _guideUrl;
         public string GuideUrl
         {
-            get { return _GuideUrl; }
+            get { return _guideUrl; }
             set
             {
-                if (value != _GuideUrl)
-                {
-                    _GuideUrl = value;
-                    NotifyPropertyChanged();
-                }
+                if (value == _guideUrl) return;
+                _guideUrl = value;
+                NotifyPropertyChanged();
             }
         }
 
 
-        private string _GuideTitle;
+        private string _guideTitle;
         public string GuideTitle
         {
-            get { return _GuideTitle; }
+            get { return _guideTitle; }
             set
             {
-                if (value != _GuideTitle)
-                {
-                    _GuideTitle = value;
-                    NotifyPropertyChanged();
-                }
+                if (value == _guideTitle) return;
+                _guideTitle = value;
+                NotifyPropertyChanged();
             }
         }
 
 
-        private string _Dificulty;
+        private string _dificulty;
         public string Dificulty
         {
-            get { return _Dificulty; }
+            get { return _dificulty; }
             set
             {
-                if (value != _Dificulty)
-                {
-                    _Dificulty = value;
-                    NotifyPropertyChanged();
-                }
+                if (value == _dificulty) return;
+                _dificulty = value;
+                NotifyPropertyChanged();
             }
         }
 
 
-        private string _Author;
+        private string _author;
         public string Author
         {
-            get { return _Author; }
+            get { return _author; }
             set
             {
-                if (value != _Author)
-                {
-                    _Author = value;
-                    NotifyPropertyChanged();
-                }
+                if (value == _author) return;
+                _author = value;
+                NotifyPropertyChanged();
             }
         }
 
-        private string _GuideMainImage;
+        private string _guideMainImage;
         public string GuideMainImage
         {
-            get { return _GuideMainImage; }
+            get { return _guideMainImage; }
             set
             {
-                if (value != _GuideMainImage)
-                {
-                    _GuideMainImage = value;
-                    NotifyPropertyChanged();
-                }
+                if (value == _guideMainImage) return;
+                _guideMainImage = value;
+                NotifyPropertyChanged();
             }
         }
 
-        private ObservableCollection<Models.UI.GuideBasePage> _Items = new ObservableCollection<Models.UI.GuideBasePage>();
-        public ObservableCollection<Models.UI.GuideBasePage> Items
+        private ObservableCollection<GuideBasePage> _items = new ObservableCollection<GuideBasePage>();
+        public ObservableCollection<GuideBasePage> Items
         {
-            get { return this._Items; }
+            get { return _items; }
             set
             {
-                if (_Items != value)
-                {
-                    _Items = value;
-                    NotifyPropertyChanged();
-                }
+                if (_items == value) return;
+                _items = value;
+                NotifyPropertyChanged();
             }
         }
 
 
 
-        private bool _NotFavorite = true;
+        private bool _notFavorite = true;
         public bool NotFavorite
         {
-            get { return this._NotFavorite; }
+            get { return _notFavorite; }
             set
             {
-                if (_NotFavorite != value)
-                {
-                    _NotFavorite = value;
-                    NotifyPropertyChanged();
-                }
+                if (_notFavorite == value) return;
+                _notFavorite = value;
+                NotifyPropertyChanged();
             }
         }
 
@@ -222,22 +201,22 @@ namespace iFixit.Domain.ViewModels
 
         #region Commands
 
-        private RelayCommand<Models.UI.SearchResultItem> _GoToGuide;
-        public RelayCommand<Models.UI.SearchResultItem> GoToGuide
+        private RelayCommand<SearchResultItem> _goToGuide;
+        public RelayCommand<SearchResultItem> GoToGuide
         {
             get
             {
-                return _GoToGuide ?? (_GoToGuide = new RelayCommand<Models.UI.SearchResultItem>(
-                 (SelectedGuide) =>
+                return _goToGuide ?? (_goToGuide = new RelayCommand<SearchResultItem>(
+                 selectedGuide =>
                  {
 
                      try
                      {
                          LoadingCounter++;
-                         AppBase.Current.GuideId = SelectedGuide.UniqueId;
+                         AppBase.Current.GuideId = selectedGuide.UniqueId;
                          _uxService.CancelSpeech();
-                         _navigationService.Navigate<Guide>(true, SelectedGuide.UniqueId);
-                         SelectedGuide = null;
+                         _navigationService.Navigate<Guide>(true, selectedGuide.UniqueId);
+                         selectedGuide = null;
                          LoadingCounter--;
                      }
                      catch (Exception ex)
@@ -250,13 +229,13 @@ namespace iFixit.Domain.ViewModels
             }
         }
 
-        private RelayCommand<string> _ShowVideo;
+        private RelayCommand<string> _showVideo;
         public RelayCommand<string> ShowVideo
         {
             get
             {
-                return _ShowVideo ?? (_ShowVideo = new RelayCommand<string>(
-                    (url) =>
+                return _showVideo ?? (_showVideo = new RelayCommand<string>(
+                    url =>
                     {
                         _uxService.CancelSpeech();
                         _uxService.ShowVideo(url);
@@ -266,16 +245,16 @@ namespace iFixit.Domain.ViewModels
         }
 
 
-        private RelayCommand _GetGuide;
+        private RelayCommand _getGuide;
         public RelayCommand GetGuide
         {
             get
             {
-                return _GetGuide ?? (_GetGuide = new RelayCommand(
+                return _getGuide ?? (_getGuide = new RelayCommand(
                  async () =>
                  {
                      LoadingCounter++;
-                     AppBase.Current.GuideId = this.NavigationParameter<string>();
+                     AppBase.Current.GuideId = NavigationParameter<string>();
 
 
                      //TODO: Check if Guide is in Favorites List no need to Download
@@ -309,10 +288,10 @@ namespace iFixit.Domain.ViewModels
                                  LoadingCounter--;
 
                              }
-                             catch (Exception ex)
+                             catch (Exception)
                              {
                                  LoadingCounter--;
-                                 throw ex;
+                                 throw;
                              }
 
                          }
@@ -336,12 +315,12 @@ namespace iFixit.Domain.ViewModels
             }
         }
 
-        private async Task<string> ImagePathTranslated(string Url)
+        private async Task<string> ImagePathTranslated(string url)
         {
-            var isFavorite = await _storageService.FolderExists(string.Format(Constants.GUIDE_CACHE_FOLDER, this.currentGuideId));
+            var isFavorite = await _storageService.FolderExists(string.Format(Constants.GUIDE_CACHE_FOLDER, currentGuideId));
             //TODO: 
-            string imagePath = Url;
-            this.NotFavorite = !isFavorite;
+            var imagePath = url;
+            NotFavorite = !isFavorite;
 
             //if (this.IsOffline || isFavorite)
             //{
@@ -362,16 +341,16 @@ namespace iFixit.Domain.ViewModels
             // DANGEROUS
             currentGuideId = AppBase.Current.GuideId;
 
-            this.GuideTitle = rp.title;
-            this.GuideUrl = rp.url;
+            GuideTitle = rp.title;
+            GuideUrl = rp.url;
 
             if (!string.IsNullOrEmpty(rp.author.username))
-                this.Author = string.Format(International.Translation.GuideBy, rp.author.username);
+                Author = string.Format(International.Translation.GuideBy, rp.author.username);
 
             if (rp.image != null)
-                this.GuideMainImage = rp.image.large;
+                GuideMainImage = rp.image.large;
 
-            Models.UI.GuideIntro firstPage = new Models.UI.GuideIntro()
+            var firstPage = new GuideIntro()
             {
                 TypeOfGuide = rp.type
                 ,
@@ -381,7 +360,7 @@ namespace iFixit.Domain.ViewModels
                 ,
                 PageTitle = International.Translation.Intro
                 ,
-                Type = Models.UI.GuidesPageTypes.Intro
+                Type = GuidesPageTypes.Intro
                 ,
                 StepTitle = International.Translation.Intro
                 ,
@@ -423,10 +402,10 @@ namespace iFixit.Domain.ViewModels
 
 
 
-            for (int i = 0; i < rp.parts.Count(); i++)
+            for (var i = 0; i < rp.parts.Count(); i++)
             {
                 var item = rp.parts[i];
-                firstPage.Parts.Add(new Models.UI.Tool
+                firstPage.Parts.Add(new Tool
                 {
                     Image = await ImagePathTranslated(item.thumbnail),
                     Title = GeneratePartName(item),
@@ -437,10 +416,10 @@ namespace iFixit.Domain.ViewModels
                 firstPage.HasParts = true;
 
 
-            for (int i = 0; i < rp.tools.Count(); i++)
+            for (var i = 0; i < rp.tools.Count(); i++)
             {
                 var item = rp.tools[i];
-                firstPage.Tools.Add(new Models.UI.Tool
+                firstPage.Tools.Add(new Tool
                 {
                     Image = await ImagePathTranslated(item.thumbnail),
                     Title = item.text,
@@ -452,10 +431,10 @@ namespace iFixit.Domain.ViewModels
 
 
 
-            for (int i = 0; i < rp.documents.Count(); i++)
+            for (var i = 0; i < rp.documents.Count(); i++)
             {
                 var item = rp.documents[i];
-                firstPage.Documents.Add(new Models.UI.Document
+                firstPage.Documents.Add(new Document
                 {
                     DocumentId = item.documentid
 
@@ -482,30 +461,30 @@ namespace iFixit.Domain.ViewModels
 
 
 
-            int stepNum = 1;
+            var stepNum = 1;
             foreach (var item in rp.steps)
             {
-                Models.UI.GuideStepItem newStep = new Models.UI.GuideStepItem
+                var newStep = new GuideStepItem
                 {
                     index = item.orderby,
                     PageTitle = string.Format("{0} - {1}", International.Translation.Step, stepNum)
                     ,
-                    Type = Models.UI.GuidesPageTypes.Step
+                    Type = GuidesPageTypes.Step
                     ,
                     StepTitle = string.Format(International.Translation.StepNum, stepNum)
                     ,
                     StepIndex = stepNum
                 };
-                int m = 0;
+                var m = 0;
                 foreach (var lineitem in item.lines)
                 {
-                    newStep.Lines.Add(new Models.UI.GuideStepLine
+                    newStep.Lines.Add(new GuideStepLine
                     {
                         Index = (m + 1).ToString(),
                         Title = lineitem.text_rendered,
-                        VoiceText = Utils.StripHTML(lineitem.text_rendered),
-                        BulletColor = Models.UI.GuideStepLine.SetIconColor(lineitem.bullet),
-                        GuideIcon = Models.UI.GuideStepLine.SetIcon(lineitem.bullet),
+                        VoiceText = Utils.StripHtml(lineitem.text_rendered),
+                        BulletColor = GuideStepLine.SetIconColor(lineitem.bullet),
+                        GuideIcon = GuideStepLine.SetIcon(lineitem.bullet),
                         Level = lineitem.level
                     });
                     m++;
@@ -518,12 +497,12 @@ namespace iFixit.Domain.ViewModels
                 {
                     if (item.media.videodata != null)
                     {
-                        newStep.Video = new Models.UI.GuideStepVideo
+                        newStep.Video = new GuideStepVideo
                         {
                             VideoUrl = item.media.videodata.encodings.Where(o => o.mime == "video/mp4").First().url,
                             ImageUrl = item.media.videodata.image.image.medium
                         };
-                        newStep.MainImage = new Models.UI.GuideStepImage
+                        newStep.MainImage = new GuideStepImage
                         {
                             MediumImageUrl = item.media.videodata.image.image.medium
                         };
@@ -531,7 +510,7 @@ namespace iFixit.Domain.ViewModels
                     else
                     {
 
-                        int n = 0;
+                        var n = 0;
 
                         if (item.media.type == "image")
                         {
@@ -542,7 +521,7 @@ namespace iFixit.Domain.ViewModels
                             {
 
                                 if (n == 0)
-                                    newStep.MainImage = new Models.UI.GuideStepImage
+                                    newStep.MainImage = new GuideStepImage
                                     {
                                         MediumImageUrl = media != null ? await ImagePathTranslated(media.medium) : ""
                                         ,
@@ -553,7 +532,7 @@ namespace iFixit.Domain.ViewModels
 
 
 
-                                newStep.Images.Add(new Models.UI.GuideStepImage
+                                newStep.Images.Add(new GuideStepImage
                                 {
                                     StepIndex = stepNum,
                                     ImageIndex = m,
@@ -583,7 +562,7 @@ namespace iFixit.Domain.ViewModels
                     newStep.ShowListImages = newStep.Images.Count > 1;
                 }
 
-                this.Items.Add(newStep);
+                Items.Add(newStep);
 
                 stepNum++;
             }
@@ -591,7 +570,7 @@ namespace iFixit.Domain.ViewModels
 
         private static string GeneratePartName(RESTModels.Guide.Part item)
         {
-            string title = item.text;
+            var title = item.text;
             // return string.Format("{0}, {1}, {2}", item.text, item.notes, item.type).TrimEnd(',');
             if (!string.IsNullOrEmpty(item.notes))
                 title += ", " + item.notes;
@@ -601,12 +580,12 @@ namespace iFixit.Domain.ViewModels
             return title;
         }
 
-        private RelayCommand _PauseTextSpeech;
+        private RelayCommand _pauseTextSpeech;
         public RelayCommand PauseTextSpeech
         {
             get
             {
-                return _PauseTextSpeech ?? (_PauseTextSpeech = new RelayCommand(
+                return _pauseTextSpeech ?? (_pauseTextSpeech = new RelayCommand(
                   () =>
                   {
 
@@ -617,10 +596,10 @@ namespace iFixit.Domain.ViewModels
                           _uxService.CancelSpeech();
 
                       }
-                      catch (Exception ex)
+                      catch (Exception)
                       {
                           LoadingCounter--;
-                          throw ex;
+                          throw ;
                       }
 
                   }));
@@ -628,32 +607,28 @@ namespace iFixit.Domain.ViewModels
 
         }
 
-        private RelayCommand _FFTextSpeech;
+        private RelayCommand _ffTextSpeech;
         public RelayCommand FFTextSpeech
         {
             get
             {
-                return _FFTextSpeech ?? (_FFTextSpeech = new RelayCommand(
+                return _ffTextSpeech ?? (_ffTextSpeech = new RelayCommand(
                   async () =>
                   {
 
                       try
                       {
                           BeingRead = false;
-                          if (SelectedPageIndex < Items.Count)
-                          {
-                              SelectedStepLine++;
-                              SelectedPageIndex++;
-                              _uxService.CancelSpeech();
-                              await _uxService.OpenTextSpeechUI(this);
-                          }
-
-
+                          if (SelectedPageIndex >= Items.Count) return;
+                          SelectedStepLine++;
+                          SelectedPageIndex++;
+                          _uxService.CancelSpeech();
+                          await _uxService.OpenTextSpeechUI(this);
                       }
-                      catch (Exception ex)
+                      catch (Exception )
                       {
 
-                          throw ex;
+                          throw ;
                       }
 
                   }));
@@ -661,27 +636,23 @@ namespace iFixit.Domain.ViewModels
 
         }
 
-        private RelayCommand _RWTextSpeech;
+        private RelayCommand _rwTextSpeech;
         public RelayCommand RWTextSpeech
         {
             get
             {
-                return _RWTextSpeech ?? (_RWTextSpeech = new RelayCommand(
+                return _rwTextSpeech ?? (_rwTextSpeech = new RelayCommand(
                  async () =>
                  {
 
                      try
                      {
                          BeingRead = false;
-                         if (SelectedPageIndex > 0)
-                         {
-                             SelectedStepLine--;
-                             SelectedPageIndex--;
-                             _uxService.CancelSpeech();
-                             await _uxService.OpenTextSpeechUI(this);
-                         }
-
-
+                         if (SelectedPageIndex <= 0) return;
+                         SelectedStepLine--;
+                         SelectedPageIndex--;
+                         _uxService.CancelSpeech();
+                         await _uxService.OpenTextSpeechUI(this);
                      }
                      catch (Exception ex)
                      {
@@ -694,12 +665,12 @@ namespace iFixit.Domain.ViewModels
 
         }
 
-        private RelayCommand _StopTextSpeech;
+        private RelayCommand _stopTextSpeech;
         public RelayCommand StopTextSpeech
         {
             get
             {
-                return _StopTextSpeech ?? (_StopTextSpeech = new RelayCommand(
+                return _stopTextSpeech ?? (_stopTextSpeech = new RelayCommand(
                   () =>
                   {
 
@@ -722,12 +693,12 @@ namespace iFixit.Domain.ViewModels
 
         }
 
-        private RelayCommand _Share;
+        private RelayCommand _share;
         public RelayCommand Share
         {
             get
             {
-                return _Share ?? (_Share = new RelayCommand(
+                return _share ?? (_share = new RelayCommand(
                   () =>
                   {
 
@@ -735,13 +706,13 @@ namespace iFixit.Domain.ViewModels
                       {
 
                           _uxService.CancelSpeech();
-                          _uxService.Share(this.GuideUrl, this.GuideTitle);
+                          _uxService.Share(GuideUrl, GuideTitle);
 
                       }
-                      catch (Exception ex)
+                      catch (Exception )
                       {
                           LoadingCounter--;
-                          throw ex;
+                          throw ;
                       }
 
                   }));
@@ -749,12 +720,12 @@ namespace iFixit.Domain.ViewModels
 
         }
 
-        private RelayCommand _AddFavorite;
+        private RelayCommand _addFavorite;
         public RelayCommand AddFavorite
         {
             get
             {
-                return _AddFavorite ?? (_AddFavorite = new RelayCommand(
+                return _addFavorite ?? (_addFavorite = new RelayCommand(
                   async () =>
                   {
 
@@ -772,41 +743,28 @@ namespace iFixit.Domain.ViewModels
                           {
                               LoadingCounter++;
 
-                              List<string> ImagesToDownload = new List<string>();
-                              foreach (var item in Items)
+                              var imagesToDownload = new List<string>();
+                              foreach (var step in Items.Where(item => item.Type == GuidesPageTypes.Step).Cast<GuideStepItem>())
                               {
-                                  if (item.Type == Models.UI.GuidesPageTypes.Step)
-                                  {
-                                      var step = (Models.UI.GuideStepItem)item;
+                                  imagesToDownload.Add(step.MainImage.MediumImageUrl);
 
-                                      ImagesToDownload.Add(step.MainImage.MediumImageUrl);
-
-                                      foreach (var image in step.Images)
-                                      {
-                                          if (image != null)
-                                          {
-                                              ImagesToDownload.Add(image.MediumImageUrl);
-
-                                          }
-
-                                      }
-                                  }
+                                  imagesToDownload.AddRange(from image in step.Images where image != null select image.MediumImageUrl);
                               }
 
-                              await Broker.AddFavorites(AppBase.Current.User, this.currentGuideId);
+                              await Broker.AddFavorites(AppBase.Current.User, currentGuideId);
 
-                              int HowMany = ImagesToDownload.Count();
-                              Debug.WriteLine("downloading: " + HowMany.ToString());
-                              int Index = 1;
-                              foreach (var item in ImagesToDownload)
+                              var howMany = imagesToDownload.Count();
+                              Debug.WriteLine("downloading: " + howMany);
+                              var index = 1;
+                              foreach (var item in imagesToDownload)
                               {
-                                  Debug.WriteLine("downloading: " + Index.ToString());
+                                  Debug.WriteLine("downloading: " + index);
                                   var a = await Broker.GetImage(item);
 
-                                  string imageName = item.Substring(item.LastIndexOf('/') + 1);
-                                  await _storageService.WriteBinary(string.Format(Constants.GUIDE_CACHE_FOLDER, this.currentGuideId), imageName, a);
-                                  Debug.WriteLine("downloaded: " + Index.ToString());
-                                  Index++;
+                                  var imageName = item.Substring(item.LastIndexOf('/') + 1);
+                                  await _storageService.WriteBinary(string.Format(Constants.GUIDE_CACHE_FOLDER, currentGuideId), imageName, a);
+                                  Debug.WriteLine("downloaded: " + index);
+                                  index++;
                               }
 
 
@@ -821,10 +779,10 @@ namespace iFixit.Domain.ViewModels
 
 
                       }
-                      catch (Exception ex)
+                      catch (Exception )
                       {
                           LoadingCounter--;
-                          throw ex;
+                          throw ;
                       }
 
                   }));
@@ -833,12 +791,12 @@ namespace iFixit.Domain.ViewModels
         }
 
 
-        private RelayCommand _DeleteFavorite;
+        private RelayCommand _deleteFavorite;
         public RelayCommand DeleteFavorite
         {
             get
             {
-                return _DeleteFavorite ?? (_DeleteFavorite = new RelayCommand(
+                return _deleteFavorite ?? (_deleteFavorite = new RelayCommand(
                  async () =>
                  {
                      LoadingCounter++;
@@ -852,12 +810,12 @@ namespace iFixit.Domain.ViewModels
             }
         }
 
-        private RelayCommand _OpenTextSpeech;
+        private RelayCommand _openTextSpeech;
         public RelayCommand OpenTextSpeech
         {
             get
             {
-                return _OpenTextSpeech ?? (_OpenTextSpeech = new RelayCommand(
+                return _openTextSpeech ?? (_openTextSpeech = new RelayCommand(
                  async () =>
                  {
 
@@ -868,10 +826,10 @@ namespace iFixit.Domain.ViewModels
                          await _uxService.OpenTextSpeechUI(this);
 
                      }
-                     catch (Exception ex)
+                     catch (Exception )
                      {
 
-                         throw ex;
+                         throw ;
                      }
 
                  }));
@@ -879,13 +837,13 @@ namespace iFixit.Domain.ViewModels
 
         }
 
-        private RelayCommand<string> _ShowFullImage;
+        private RelayCommand<string> _showFullImage;
         public RelayCommand<string> ShowFullImage
         {
             get
             {
-                return _ShowFullImage ?? (_ShowFullImage = new RelayCommand<string>(
-                 async (image) =>
+                return _showFullImage ?? (_showFullImage = new RelayCommand<string>(
+                 async image =>
                  {
 
                      try
@@ -895,10 +853,10 @@ namespace iFixit.Domain.ViewModels
                          FullImagePath = await ImagePathTranslated(image);
 
                      }
-                     catch (Exception ex)
+                     catch (Exception)
                      {
                          LoadingCounter--;
-                         throw ex;
+                         throw;
                      }
 
                  }));
@@ -906,19 +864,19 @@ namespace iFixit.Domain.ViewModels
 
         }
 
-        private RelayCommand<Models.UI.GuideStepImage> _SwapImage;
-        public RelayCommand<Models.UI.GuideStepImage> SwapImage
+        private RelayCommand<GuideStepImage> _swapImage;
+        public RelayCommand<GuideStepImage> SwapImage
         {
             get
             {
-                return _SwapImage ?? (_SwapImage = new RelayCommand<Models.UI.GuideStepImage>(
-                  (image) =>
+                return _swapImage ?? (_swapImage = new RelayCommand<GuideStepImage>(
+                  image =>
                   {
 
                       try
                       {
-                          var filt = this.Items.Where(o => o.Type == Models.UI.GuidesPageTypes.Step).ToList();
-                          foreach (Models.UI.GuideStepItem item in filt)
+                          var filt = Items.Where(o => o.Type == GuidesPageTypes.Step).ToList();
+                          foreach (GuideStepItem item in filt)
                           {
                               if (item.Images.Any(o => o == image))
                                   item.MainImage = image;
@@ -927,10 +885,10 @@ namespace iFixit.Domain.ViewModels
 
 
                       }
-                      catch (Exception ex)
+                      catch (Exception )
                       {
                           LoadingCounter--;
-                          throw ex;
+                          throw ;
                       }
 
                   }));
@@ -939,12 +897,12 @@ namespace iFixit.Domain.ViewModels
         }
 
 
-        private RelayCommand _ShareNFC;
+        private RelayCommand _shareNfc;
         public RelayCommand ShareNFC
         {
             get
             {
-                return _ShareNFC ?? (_ShareNFC = new RelayCommand(
+                return _shareNfc ?? (_shareNfc = new RelayCommand(
                   () =>
                   {
 
@@ -954,10 +912,10 @@ namespace iFixit.Domain.ViewModels
                           StartSharingSession();
 
                       }
-                      catch (Exception ex)
+                      catch (Exception )
                       {
                           LoadingCounter--;
-                          throw ex;
+                          throw ;
                       }
 
                   }));
@@ -972,16 +930,16 @@ namespace iFixit.Domain.ViewModels
         public void Reset()
         {
             Items.Clear();
-            Items = new ObservableCollection<Models.UI.GuideBasePage>();
-            this.SelectedPage = null;
+            Items = new ObservableCollection<GuideBasePage>();
+            SelectedPage = null;
             // = new ObservableCollection<Models.UI.GuideBasePage>();
-            this.ShowingFullImage = false;
-            this.FullImagePath = string.Empty;
-            this.SelectedPageIndex = 0;
-            this.SelectedStepLine = 0;
-            this.GuideTitle = string.Empty;
-            this.GuideUrl = string.Empty;
-            this.Author = string.Empty;
+            ShowingFullImage = false;
+            FullImagePath = string.Empty;
+            SelectedPageIndex = 0;
+            SelectedStepLine = 0;
+            GuideTitle = string.Empty;
+            GuideUrl = string.Empty;
+            Author = string.Empty;
 
         }
 
@@ -998,20 +956,17 @@ namespace iFixit.Domain.ViewModels
 
         public void SendPictureToPeer(byte[] imageBytes)
         {
-            if (!this.IsConnected)
+            if (!IsConnected)
             {
                 StartSharingSession();
             }
             else
             {
-                if (_peerConnector != null)
-                {
-                    _peerConnector.SendGuideAsync(imageBytes);
-                }
+                _peerConnector?.SendGuideAsync(imageBytes);
             }
         }
 
-        public Guide(INavigation<Domain.Interfaces.NavigationModes> navigationService, IStorage storageService, ISettings settingsService, IUxService uxService, IPeerConnector peerConnector)
+        public Guide(INavigation<NavigationModes> navigationService, IStorage storageService, ISettings settingsService, IUxService uxService, IPeerConnector peerConnector)
             : base(navigationService, storageService, settingsService, uxService, peerConnector)
         {
             Reset();

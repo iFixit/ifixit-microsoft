@@ -8,47 +8,41 @@ namespace iFixit.UI.Services
 {
     public static class Logger
     {
-        private static int _max = 500;
-
         /// <summary> 
         /// max number of line logged by the system 
         /// </summary> 
-        public static int MaxSize
-        {
-            get { return _max; }
-            set { _max = value; }
-        }
+        public static int MaxSize { get; set; } = 500;
 
-        private static bool _enabled = true;
         /// <summary> 
         /// enable/disable store logging 
         /// </summary> 
-        public static bool Enabled
-        {
-            get { return _enabled; }
-            set { _enabled = value; }
-        }
+        public static bool Enabled { get; set; } = true;
 
-        private static List<string> buffer { get; set; }
+        private static List<string> Buffer { get; set; }
 
         public static void WriteLine(Exception e)
         {
-            WriteLine("EXCEPTION {0} {1} STACK TRACE {2}", e.Message, e.InnerException != null ? " HAS INNER EXCEPTION" : "", e.StackTrace);
-            if (e.InnerException != null)
+            while (true)
             {
-                WriteLine(e.InnerException);
+                WriteLine("EXCEPTION {0} {1} STACK TRACE {2}", e.Message, e.InnerException != null ? " HAS INNER EXCEPTION" : "", e.StackTrace);
+                if (e.InnerException != null)
+                {
+                    e = e.InnerException;
+                    continue;
+                }
+                break;
             }
         }
 
         public static void WriteLine(string format, params object[] args)
         {
-            string s = string.Format(format, args);
+            var s = string.Format(format, args);
             WriteLine(s);
         }
 
         public static void WriteLine(string line)
         {
-            StringBuilder sb = new StringBuilder();
+            var sb = new StringBuilder();
             sb.Append(DateTime.Now.ToString("yyyyMMddhhmss"));
             sb.Append("TID");
            // sb.Append(Thread.CurrentThread.ManagedThreadId);
@@ -57,16 +51,16 @@ namespace iFixit.UI.Services
 
             if (Enabled)
             {
-                if (buffer == null)
+                if (Buffer == null)
                 {
-                    buffer = new System.Collections.Generic.List<string>();
+                    Buffer = new List<string>();
                 }
 
-                buffer.Add(sb.ToString());
+                Buffer.Add(sb.ToString());
 
-                while (buffer.Count() > MaxSize)
+                while (Buffer.Count() > MaxSize)
                 {
-                    buffer.RemoveAt(0);
+                    Buffer.RemoveAt(0);
                 }
             }
 
@@ -75,18 +69,18 @@ namespace iFixit.UI.Services
 
         public static void Load(StreamReader stream)
         {
-            buffer = new List<string>();
+            Buffer = new List<string>();
 
             while (!stream.EndOfStream)
             {
-                buffer.Add(stream.ReadLine());
+                Buffer.Add(stream.ReadLine());
             }
         }
 
      
         public static void Save(StreamWriter stream)
         {
-            foreach (string s in buffer)
+            foreach (var s in Buffer)
             {
                 stream.WriteLine(s);
             }
@@ -94,14 +88,12 @@ namespace iFixit.UI.Services
 
         public static string GetStoredLog()
         {
-            StringBuilder sb = new StringBuilder();
+            var sb = new StringBuilder();
 
-            if (buffer != null)
+            if (Buffer == null) return sb.ToString();
+            foreach (var s in Buffer)
             {
-                foreach (string s in buffer)
-                {
-                    sb.AppendLine(s);
-                }
+                sb.AppendLine(s);
             }
 
             return sb.ToString();
