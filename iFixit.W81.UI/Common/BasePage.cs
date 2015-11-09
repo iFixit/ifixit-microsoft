@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Windows.UI.Xaml.Navigation;
+﻿using Windows.UI.Xaml.Navigation;
 
 namespace iFixit.W81.UI.Common
 {
@@ -13,7 +8,7 @@ namespace iFixit.W81.UI.Common
         {
             var viewModel = this.DataContext as Domain.ViewModels.BaseViewModel;
             string p = e.Parameter != null ? e.Parameter.ToString() : "";// as string;
-            viewModel.navigationParameterJson = p;
+            viewModel.NavigationParameterJson = p;
             viewModel.CanGoBack = this.Frame.CanGoBack;
             switch (e.NavigationMode)
             {

@@ -3,77 +3,67 @@
     public class User : ModelBase
     {
 
-        private string _Email;
+         string _email;
         public string Email
         {
-            get { return this._Email; }
+            get { return this._email; }
             set
             {
-                if (_Email != value)
-                {
-                    _Email = value;
-                    NotifyPropertyChanged();
-                }
+                if (_email == value) return;
+                _email = value;
+                NotifyPropertyChanged();
             }
         }
         
 
-        private string _Token;
+         string _token;
         public string Token
         {
-            get { return this._Token; }
+            get { return this._token; }
             set
             {
-                if (_Token != value)
-                {
-                    _Token = value;
-                    NotifyPropertyChanged();
-                }
+                if (_token == value) return;
+                _token = value;
+                NotifyPropertyChanged();
             }
         }
 
 
-        private string _UserName;
+         string _userName;
         public string UserName
         {
-            get { return this._UserName; }
+            get { return this._userName; }
             set
             {
-                if (_UserName != value)
-                {
-                    _UserName = value;
-                    NotifyPropertyChanged();
-                }
+                if (_userName == value) return;
+                _userName = value;
+                NotifyPropertyChanged();
             }
         }
 
 
-        private int _UserId;
+         int _userId;
         public int UserId
         {
-            get { return this._UserId; }
+            get { return this._userId; }
             set
             {
-                if (_UserId != value)
-                {
-                    _UserId = value;
-                    NotifyPropertyChanged();
-                }
+                if (_userId == value) return;
+                _userId = value;
+                NotifyPropertyChanged();
             }
         }
 
 
-        private string _ImageUrl;
+         string _imageUrl;
         public string ImageUrl
         {
-            get { return this._ImageUrl; }
+            get { return this._imageUrl; }
             set
             {
-                if (_ImageUrl != value)
-                {
-                    _ImageUrl = value;
-                    NotifyPropertyChanged();
-                }
+                if (_imageUrl == value) return;
+                _imageUrl = value;
+                NotifyPropertyChanged();
             }
         }
 

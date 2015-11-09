@@ -33,7 +33,7 @@ namespace iFixit.WP8.UI.Code
             {
 
             }
-            viewModel.navigationParameterJson = p;
+            viewModel.NavigationParameterJson = p;
 
 
             switch (e.NavigationMode)

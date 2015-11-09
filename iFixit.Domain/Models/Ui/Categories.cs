@@ -20,136 +20,118 @@ namespace iFixit.Domain.Models.UI
     {
 
 
-        private string _Content;
+         string _content;
         public string Content
         {
-            get { return this._Content; }
+            get { return _content; }
             set
             {
-                if (_Content != value)
-                {
-                    _Content = value;
-                    NotifyPropertyChanged();
-                }
+                if (_content == value) return;
+                _content = value;
+                NotifyPropertyChanged();
             }
         }
         
-        private CategoryPage _Type;
+         CategoryPage _type;
         public CategoryPage Type
         {
-            get { return this._Type; }
+            get { return _type; }
             set
             {
-                if (_Type != value)
-                {
-                    _Type = value;
-                    NotifyPropertyChanged();
-                }
+                if (_type == value) return;
+                _type = value;
+                NotifyPropertyChanged();
             }
         }
         
 
-        private string _Name;
+         string _name;
         public string Name
         {
-            get { return this._Name; }
+            get { return _name; }
             set
             {
-                if (_Name != value)
-                {
-                    _Name = value;
-                    NotifyPropertyChanged();
-                }
+                if (_name == value) return;
+                _name = value;
+                NotifyPropertyChanged();
             }
         }
 
 
-        private int _Childrens;
+         int _childrens;
         public int Childrens
         {
-            get { return this._Childrens; }
+            get { return _childrens; }
             set
             {
-                if (_Childrens != value)
-                {
-                    _Childrens = value;
-                    NotifyPropertyChanged();
-                }
+                if (_childrens == value) return;
+                _childrens = value;
+                NotifyPropertyChanged();
             }
         }
 
 
-        private string _UniqueId;
+         string _uniqueId;
         public string UniqueId
         {
-            get { return this._UniqueId; }
+            get { return _uniqueId; }
             set
             {
-                if (_UniqueId != value)
-                {
-                    _UniqueId = value;
-                    NotifyPropertyChanged();
-                }
+                if (_uniqueId == value) return;
+                _uniqueId = value;
+                NotifyPropertyChanged();
             }
         }
 
-        private string _ImageUrl;
+         string _imageUrl;
         public string ImageUrl
         {
-            get { return this._ImageUrl; }
+            get { return _imageUrl; }
             set
             {
-                if (_ImageUrl != value)
-                {
-                    _ImageUrl = value;
-                    NotifyPropertyChanged();
-                }
+                if (_imageUrl == value) return;
+                _imageUrl = value;
+                NotifyPropertyChanged();
             }
         }
 
-        private ObservableCollection<Category> _Items = new ObservableCollection<Category>();
+         ObservableCollection<Category> _items = new ObservableCollection<Category>();
         public ObservableCollection<Category> Items
         {
-            get { return this._Items; }
+            get { return _items; }
             set
             {
-                if (_Items != value)
-                {
-                    _Items = value;
-                    NotifyPropertyChanged();
-                }
+                if (_items == value) return;
+                _items = value;
+                NotifyPropertyChanged();
             }
         }
 
 
 
-        private int _Order = 0;
+         int _order ;
         public int Order
         {
-            get { return this._Order; }
+            get { return _order; }
             set
             {
-                if (_Order != value)
-                {
-                    _Order = value;
-                    NotifyPropertyChanged();
-                }
+                if (_order == value) return;
+                _order = value;
+                NotifyPropertyChanged();
             }
         }
 
 
 
-        private bool _IsGroup = false;
+         bool _isGroup ;
         public bool IsGroup
         {
-            get { return this._IsGroup; }
+            get { return _isGroup; }
             set
             {
-                if (_IsGroup != value)
-                {
-                    _IsGroup = value;
-                    NotifyPropertyChanged();
-                }
+                if (_isGroup == value) return;
+                _isGroup = value;
+                NotifyPropertyChanged();
             }
         }
 

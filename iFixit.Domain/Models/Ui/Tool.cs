@@ -3,17 +3,15 @@
 
     public class Document : Tool
     {
-        private int  _DocumentId;
+         int  _documentId;
         public int DocumentId
         {
-            get { return _DocumentId; }
+            get { return _documentId; }
             set
             {
-                if (value != _DocumentId)
-                {
-                    _DocumentId = value;
-                    NotifyPropertyChanged();
-                }
+                if (value == _documentId) return;
+                _documentId = value;
+                NotifyPropertyChanged();
             }
         }
     }
@@ -21,47 +19,41 @@
     public class Tool : ModelBase
     {
 
-        private string _Title;
+        private string _title;
         public string Title
         {
-            get { return _Title; }
+            get { return _title; }
             set
             {
-                if (value != _Title)
-                {
-                    _Title = value;
-                    NotifyPropertyChanged();
-                }
+                if (value == _title) return;
+                _title = value;
+                NotifyPropertyChanged();
             }
         }
 
 
-        private string _Url;
+         string _Url;
         public string Url
         {
             get { return _Url; }
             set
             {
-                if (value != _Url)
-                {
-                    _Url = value;
-                    NotifyPropertyChanged();
-                }
+                if (value == _Url) return;
+                _Url = value;
+                NotifyPropertyChanged();
             }
         }
 
 
-        private string _Image;
+         string _image;
         public string Image
         {
-            get { return _Image; }
+            get { return _image; }
             set
             {
-                if (value != _Image)
-                {
-                    _Image = value;
-                    NotifyPropertyChanged();
-                }
+                if (value == _image) return;
+                _image = value;
+                NotifyPropertyChanged();
             }
         }
 

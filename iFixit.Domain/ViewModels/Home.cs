@@ -115,7 +115,7 @@ namespace iFixit.Domain.ViewModels
         }
 
 
-        bool _selectionMode = false;
+        bool _selectionMode;
         public bool SelectionMode
         {
             get { return _selectionMode; }
@@ -166,7 +166,7 @@ namespace iFixit.Domain.ViewModels
         }
 
 
-         bool _hasFavorites = false;
+         bool _hasFavorites;
         public bool HasFavorites
         {
             get { return _hasFavorites; }
@@ -180,7 +180,7 @@ namespace iFixit.Domain.ViewModels
 
 
 
-         bool _isLoggedIn=false;
+         bool _isLoggedIn;
         public bool IsLoggedIn
         {
             get { return _isLoggedIn; }
@@ -399,10 +399,10 @@ namespace iFixit.Domain.ViewModels
                          }
                          LoadingCounter--;
                      }
-                     catch (Exception ex)
+                     catch (Exception )
                      {
                          LoadingCounter--;
-                         throw ex;
+                         throw ;
                      }
 
                  }));
@@ -619,7 +619,7 @@ namespace iFixit.Domain.ViewModels
                               
 
                             }
-                            catch (Exception ex)
+                            catch (Exception)
                             {
                                 LoadingCounter--;
 
@@ -689,7 +689,7 @@ namespace iFixit.Domain.ViewModels
             {
                 _uxService.ShowAlert(string.Format(International.Translation.ErrorGetting, "collections", ex.Message)).RunSynchronously();
                 LoadingCounter--;
-                throw ex;
+                throw ;
             }
 
         }

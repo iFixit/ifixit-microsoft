@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
+using Windows.ApplicationModel.Search;
 using Windows.Data.Html;
 using Windows.System;
 using Windows.UI;
@@ -41,12 +39,12 @@ namespace iFixit.W8.UI.Services
             var template = ToastNotificationManager.GetTemplateContent(ToastTemplateType.ToastText01);
             template.GetElementsByTagName("text")[0].InnerText = m;
 
-            ToastNotification t = new ToastNotification(template);
+            var t = new ToastNotification(template);
 
             ToastNotificationManager.CreateToastNotifier().Show(t);
         }
 
-        public string PrepHTML(string content, string BackgroundColor, string FontColor)
+        public string PrepHTML(string content, string backgroundColor, string fontColor)
         {
             return content;
         }
@@ -67,9 +65,9 @@ namespace iFixit.W8.UI.Services
             throw new NotImplementedException();
         }
 
-        public void OpenIe(string Url)
+        public void OpenIe(string url)
         {
-            Launcher.LaunchUriAsync(new Uri(Url));
+            Launcher.LaunchUriAsync(new Uri(url));
         }
 
         public void Share(string url, string title)
@@ -79,10 +77,8 @@ namespace iFixit.W8.UI.Services
 
         public void OpenSearch()
         {
-            Windows.ApplicationModel.Search.SearchPane a;
-            a = Windows.ApplicationModel.Search.SearchPane.GetForCurrentView();
+            var a = SearchPane.GetForCurrentView();
             a.Show();
-
         }
 
         public void CancelSpeech()
@@ -100,12 +96,12 @@ namespace iFixit.W8.UI.Services
             throw new NotImplementedException();
         }
 
-        public Task OpenBrowser(string Url)
+        public Task OpenBrowser(string url)
         {
-            return Task.Run(() => { OpenIe(Url); });
+            return Task.Run(() => { OpenIe(url); });
         }
 
-        public void ShowVideo(string Url)
+        public void ShowVideo(string url)
         {
             throw new NotImplementedException();
         }
@@ -113,39 +109,43 @@ namespace iFixit.W8.UI.Services
 
         public void GoToLogin()
         {
-            Windows.UI.Xaml.Controls.SettingsFlyout settings = new Windows.UI.Xaml.Controls.SettingsFlyout();
-            settings.Width = 500;
-            settings.HeaderBackground = new SolidColorBrush(Color.FromArgb(255, 0, 113, 206));
-            settings.HeaderForeground = new SolidColorBrush(Colors.White);
-            settings.Title = International.Translation.Login;
-            settings.Content = new iFixit.W81.UI.Views.UC.Login();
+            var settings = new Windows.UI.Xaml.Controls.SettingsFlyout
+            {
+                Width = 500,
+                HeaderBackground = new SolidColorBrush(Color.FromArgb(255, 0, 113, 206)),
+                HeaderForeground = new SolidColorBrush(Colors.White),
+                Title = International.Translation.Login,
+                Content = new iFixit.W81.UI.Views.UC.Login()
+            };
             settings.Show();
         }
 
         public void GoToProfile()
         {
-            Windows.UI.Xaml.Controls.SettingsFlyout settings = new Windows.UI.Xaml.Controls.SettingsFlyout();
-            settings.Width = 500;
-            settings.HeaderBackground = new SolidColorBrush(Color.FromArgb(255, 0, 113, 206));
-            settings.HeaderForeground = new SolidColorBrush(Colors.White);
-            settings.Title = International.Translation.Profile;
-            settings.Content = new iFixit.W81.UI.Views.UC.Profile();
+            var settings = new Windows.UI.Xaml.Controls.SettingsFlyout
+            {
+                Width = 500,
+                HeaderBackground = new SolidColorBrush(Color.FromArgb(255, 0, 113, 206)),
+                HeaderForeground = new SolidColorBrush(Colors.White),
+                Title = International.Translation.Profile,
+                Content = new iFixit.W81.UI.Views.UC.Profile()
+            };
             settings.Show();
         }
 
         public void DoLogin()
         {
             var f = Window.Current.Content as Frame;
-            f.Navigate(f.Content.GetType());
-            f.GoBack();
+            if (f?.Content != null) f.Navigate(f.Content.GetType());
+            f?.GoBack();
             //  f.Focus(FocusState.Programmatic);
         }
 
         public void DoLogOff()
         {
             var f = Window.Current.Content as Frame;
-            f.Navigate(f.Content.GetType());
-            f.GoBack();
+            if (f?.Content != null) f.Navigate(f.Content.GetType());
+            f?.GoBack();
             //   f.Focus(FocusState.Programmatic);
         }
     }

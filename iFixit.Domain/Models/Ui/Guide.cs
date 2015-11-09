@@ -9,7 +9,7 @@ namespace iFixit.Domain.Models.UI
 
     public class Flag : ModelBase
     {
-        private string _title;
+        string _title;
         public string Title
         {
             get { return _title; }
@@ -22,7 +22,7 @@ namespace iFixit.Domain.Models.UI
 
 
         }
-        private string _text;
+         string _text;
         public string Text
         {
             get { return _text; }
@@ -34,7 +34,7 @@ namespace iFixit.Domain.Models.UI
             }
         }
 
-        private string _type;
+         string _type;
         public string Type
         {
             get { return _type; }
@@ -54,7 +54,7 @@ namespace iFixit.Domain.Models.UI
     public class GuideBasePage : ModelBase, IGuidePagePage
     {
 
-        private string _pageTitle;
+         string _pageTitle;
         public string PageTitle
         {
             get { return _pageTitle; }
@@ -67,7 +67,7 @@ namespace iFixit.Domain.Models.UI
         }
 
 
-        private GuidesPageTypes _type;
+         GuidesPageTypes _type;
         public GuidesPageTypes Type
         {
             get { return _type; }
@@ -80,7 +80,7 @@ namespace iFixit.Domain.Models.UI
         }
 
 
-        private string _pageType;
+         string _pageType;
         public string PageType
         {
             get { return _pageType; }
@@ -92,7 +92,7 @@ namespace iFixit.Domain.Models.UI
             }
         }
 
-        private string _stepTitle;
+         string _stepTitle;
         public string StepTitle
         {
             get { return _stepTitle; }
@@ -107,7 +107,7 @@ namespace iFixit.Domain.Models.UI
 
     public class GuidePrerequisites : GuideBasePage
     {
-        private ObservableCollection<SearchResultItem> _items = new ObservableCollection<SearchResultItem>();
+         ObservableCollection<SearchResultItem> _items = new ObservableCollection<SearchResultItem>();
         public ObservableCollection<SearchResultItem> Items
         {
             get { return _items; }
@@ -130,7 +130,7 @@ namespace iFixit.Domain.Models.UI
     {
 
 
-        private string _subject;
+         string _subject;
         public string Subject
         {
             get { return _subject; }
@@ -142,7 +142,7 @@ namespace iFixit.Domain.Models.UI
             }
         }
 
-        private string _difficulty;
+         string _difficulty;
         public string Difficulty
         {
             get { return _difficulty; }
@@ -154,7 +154,7 @@ namespace iFixit.Domain.Models.UI
             }
         }
 
-        private string _timeRequired;
+         string _timeRequired;
         public string TimeRequired
         {
             get { return _timeRequired; }
@@ -167,7 +167,7 @@ namespace iFixit.Domain.Models.UI
         }
 
 
-        private string _summary;
+         string _summary;
         public string Summary
         {
             get { return _summary; }
@@ -179,7 +179,7 @@ namespace iFixit.Domain.Models.UI
             }
         }
 
-        private string _introduction;
+         string _introduction;
         public string Introduction
         {
             get { return _introduction; }
@@ -192,7 +192,7 @@ namespace iFixit.Domain.Models.UI
         }
 
 
-        private string _typeOfGuide;
+         string _typeOfGuide;
         public string TypeOfGuide
         {
             get { return _typeOfGuide; }
@@ -204,7 +204,7 @@ namespace iFixit.Domain.Models.UI
             }
         }
 
-        private string _author;
+         string _author;
         public string Author
         {
             get { return _author; }
@@ -216,7 +216,7 @@ namespace iFixit.Domain.Models.UI
             }
         }
 
-        private bool _hasPartsAndTools = false;
+         bool _hasPartsAndTools ;
         public bool HasPartsAndTools
         {
             get { return _hasPartsAndTools; }
@@ -228,7 +228,7 @@ namespace iFixit.Domain.Models.UI
             }
         }
 
-        private bool _hasPreRequisites = false;
+         bool _hasPreRequisites ;
         public bool HasPreRequisites
         {
             get { return _hasPreRequisites; }
@@ -241,7 +241,7 @@ namespace iFixit.Domain.Models.UI
         }
 
 
-        private ObservableCollection<SearchResultItem> _preRequisites = new ObservableCollection<SearchResultItem>();
+         ObservableCollection<SearchResultItem> _preRequisites = new ObservableCollection<SearchResultItem>();
         public ObservableCollection<SearchResultItem> PreRequisites
         {
             get { return _preRequisites; }
@@ -255,7 +255,7 @@ namespace iFixit.Domain.Models.UI
         }
 
 
-        private bool _hasTools = false;
+         bool _hasTools ;
         public bool HasTools
         {
             get { return _hasTools; }
@@ -267,7 +267,7 @@ namespace iFixit.Domain.Models.UI
             }
         }
 
-        private ObservableCollection<Tool> _tools = new ObservableCollection<Tool>();
+         ObservableCollection<Tool> _tools = new ObservableCollection<Tool>();
         public ObservableCollection<Tool> Tools
         {
             get { return _tools; }
@@ -280,7 +280,7 @@ namespace iFixit.Domain.Models.UI
             }
         }
 
-        private bool _hasParts = false;
+         bool _hasParts ;
         public bool HasParts
         {
             get { return _hasParts; }
@@ -291,7 +291,7 @@ namespace iFixit.Domain.Models.UI
                 NotifyPropertyChanged();
             }
         }
-        private ObservableCollection<Tool> _parts = new ObservableCollection<Tool>();
+         ObservableCollection<Tool> _parts = new ObservableCollection<Tool>();
         public ObservableCollection<Tool> Parts
         {
             get { return _parts; }
@@ -319,7 +319,7 @@ namespace iFixit.Domain.Models.UI
         }
 
 
-        private bool _hasDocuments;
+         bool _hasDocuments;
         public bool HasDocuments
         {
             get { return Documents.Count > 0; }
@@ -359,7 +359,7 @@ namespace iFixit.Domain.Models.UI
     public class GuideStepVideo : ModelBase
     {
 
-        private string _videoUrl = string.Empty;
+         string _videoUrl = string.Empty;
         public string VideoUrl
         {
             get { return _videoUrl; }
@@ -428,7 +428,7 @@ namespace iFixit.Domain.Models.UI
 
 
 
-        private bool _playVideo = false;
+         bool _playVideo ;
         public bool PlayVideo
         {
             get { return _playVideo; }
@@ -440,7 +440,7 @@ namespace iFixit.Domain.Models.UI
             }
         }
 
-        private GuideStepImage _mainImage = new GuideStepImage();
+         GuideStepImage _mainImage = new GuideStepImage();
         public GuideStepImage MainImage
         {
             get { return _mainImage; }
@@ -453,7 +453,7 @@ namespace iFixit.Domain.Models.UI
         }
 
 
-        private ObservableCollection<GuideStepLine> _lines = new ObservableCollection<GuideStepLine>();
+         ObservableCollection<GuideStepLine> _lines = new ObservableCollection<GuideStepLine>();
         public ObservableCollection<GuideStepLine> Lines
         {
             get { return _lines; }
@@ -467,7 +467,7 @@ namespace iFixit.Domain.Models.UI
 
 
 
-        private ObservableCollection<GuideStepImage> _images = new ObservableCollection<GuideStepImage>();
+         ObservableCollection<GuideStepImage> _images = new ObservableCollection<GuideStepImage>();
         public ObservableCollection<GuideStepImage> Images
         {
             get { return _images; }
@@ -480,7 +480,7 @@ namespace iFixit.Domain.Models.UI
         }
 
 
-        private bool _showListImages=true;
+         bool _showListImages=true;
         public bool ShowListImages
         {
             get { return _showListImages; }
@@ -505,7 +505,7 @@ namespace iFixit.Domain.Models.UI
     public class GuideStepImage : ModelBase
     {
 
-        private int _imageIndex;
+         int _imageIndex;
         public int ImageIndex
         {
             get { return _imageIndex; }
@@ -518,7 +518,7 @@ namespace iFixit.Domain.Models.UI
         }
 
 
-        private string _imageId;
+         string _imageId;
         public string ImageId
         {
             get { return _imageId; }
@@ -531,7 +531,7 @@ namespace iFixit.Domain.Models.UI
         }
 
 
-        private int _stepIndex;
+         int _stepIndex;
         public int StepIndex
         {
             get { return _stepIndex; }
@@ -556,7 +556,7 @@ namespace iFixit.Domain.Models.UI
             }
         }
 
-        private string _largeImageUrl;
+         string _largeImageUrl;
         public string LargeImageUrl
         {
             get { return _largeImageUrl; }
@@ -728,7 +728,7 @@ namespace iFixit.Domain.Models.UI
         }
 
 
-        private string _voiceText;
+         string _voiceText;
         public string VoiceText
         {
             get { return _voiceText; }
@@ -741,7 +741,7 @@ namespace iFixit.Domain.Models.UI
         }
 
 
-        private bool _beingRead = false;
+         bool _beingRead ;
         public bool BeingRead
         {
             get { return _beingRead; }

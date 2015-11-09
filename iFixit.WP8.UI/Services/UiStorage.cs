@@ -147,18 +147,18 @@ namespace iFixit.UI.Services
         }
               
 
-        public void Save(string StorageId, string Content)
+        public void Save(string storageId, string content)
         {
             try
             {
                 using (IsolatedStorageFile store = IsolatedStorageFile.GetUserStoreForApplication())
                 {
 
-                    using (IsolatedStorageFileStream fileStream = new IsolatedStorageFileStream(StorageId.CleanCharacters(), FileMode.Create, store))
+                    using (IsolatedStorageFileStream fileStream = new IsolatedStorageFileStream(storageId.CleanCharacters(), FileMode.Create, store))
                     {
                         using (StreamWriter stream = new StreamWriter(fileStream))
                         {
-                            stream.Write(Content);
+                            stream.Write(content);
                             Debug.WriteLine("wrote file");
                         }
                     }
@@ -192,9 +192,9 @@ namespace iFixit.UI.Services
             return Result;
         }
 
-        public async Task Delete(string StorageId)
+        public async Task Delete(string storageId)
         {
-            var file = await baseFolder.GetFileAsync(StorageId.CleanCharacters());
+            var file = await baseFolder.GetFileAsync(storageId.CleanCharacters());
             await file.DeleteAsync();
         }
 

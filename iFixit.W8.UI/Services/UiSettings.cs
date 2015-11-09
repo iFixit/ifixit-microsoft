@@ -1,14 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Windows.ApplicationModel;
 using Windows.Networking.Connectivity;
 
 namespace iFixit.W8.UI.Services
 {
-  public  class UiSettings:iFixit.Domain.Interfaces.ISettings
+  public  class UiSettings:Domain.Interfaces.ISettings
     {
         public string AppName()
         {
@@ -17,8 +13,8 @@ namespace iFixit.W8.UI.Services
 
         public string AppVersion()
         {
-            PackageVersion version = Package.Current.Id.Version;
-            return string.Format("{0}.{1}", version.Major, version.Minor);
+            var version = Package.Current.Id.Version;
+            return $"{version.Major}.{version.Minor}";
         }
 
         public string AppKey()

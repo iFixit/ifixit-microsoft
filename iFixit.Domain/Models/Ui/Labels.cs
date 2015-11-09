@@ -5,19 +5,17 @@ namespace iFixit.Domain.Models.UI
 
     public class LabelsManager : ModelBase
     {
-        private International.PublicInternational label;
+         International.PublicInternational _label;
 
         public International.PublicInternational Labels
         {
 
-            get { return label; }
+            get { return _label; }
             set
             {
-                if (value != label)
-                {
-                    label = value;
-                    NotifyPropertyChanged();
-                }
+                if (value == _label) return;
+                _label = value;
+                NotifyPropertyChanged();
             }
         }
         public LabelsManager()

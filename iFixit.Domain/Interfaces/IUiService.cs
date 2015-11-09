@@ -11,7 +11,7 @@ namespace iFixit.Domain.Interfaces
 
         Task ShowToast(string m);
 
-        string PrepHTML(string content, string BackgroundColor, string FontColor);
+        string PrepHTML(string content, string backgroundColor, string fontColor);
 
         string CleanHTML(string content);
 
@@ -31,9 +31,9 @@ namespace iFixit.Domain.Interfaces
 
         Task OpenTextSpeechUI(ViewModels.Guide pagesToRead);
 
-        Task OpenBrowser(string Url);
+        Task OpenBrowser(string url);
 
-        void ShowVideo(string Url);
+        void ShowVideo(string url);
 
         void GoToLogin();
 

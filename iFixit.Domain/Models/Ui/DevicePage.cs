@@ -12,32 +12,28 @@ namespace iFixit.Domain.Models.UI
     public class DevicePage : ModelBase, IDevicePage
     {
 
-        private string _PageTitle;
+         string _pageTitle;
         public string PageTitle
         {
-            get { return _PageTitle; }
+            get { return _pageTitle; }
             set
             {
-                if (value != _PageTitle)
-                {
-                    _PageTitle = value;
-                    NotifyPropertyChanged();
-                }
+                if (value == _pageTitle) return;
+                _pageTitle = value;
+                NotifyPropertyChanged();
             }
         }
 
 
-        private DevicePageType _PageType;
+         DevicePageType _pageType;
         public DevicePageType PageType
         {
-            get { return _PageType; }
+            get { return _pageType; }
             set
             {
-                if (value != _PageType)
-                {
-                    _PageType = value;
-                    NotifyPropertyChanged();
-                }
+                if (value == _pageType) return;
+                _pageType = value;
+                NotifyPropertyChanged();
             }
         }
 
@@ -45,91 +41,79 @@ namespace iFixit.Domain.Models.UI
 
     public class DeviceIntroPage : DevicePage
     {
-        private int _NrSolutions;
+         int _nrSolutions;
         public int NrSolutions
         {
-            get { return _NrSolutions; }
+            get { return _nrSolutions; }
             set
             {
-                if (value != _NrSolutions)
-                {
-                    _NrSolutions = value;
-                    NotifyPropertyChanged();
-                }
+                if (value == _nrSolutions) return;
+                _nrSolutions = value;
+                NotifyPropertyChanged();
             }
         }
 
 
-        private string _DisplayTitle;
+         string _displayTitle;
         public string DisplayTitle
         {
-            get { return this._DisplayTitle; }
+            get { return _displayTitle; }
             set
             {
-                if (_DisplayTitle != value)
-                {
-                    _DisplayTitle = value;
-                    NotifyPropertyChanged();
-                }
+                if (_displayTitle == value) return;
+                _displayTitle = value;
+                NotifyPropertyChanged();
             }
         }
         
 
-        private string _SolutionLink;
+         string _solutionLink;
         public string SolutionLink
         {
-            get { return _SolutionLink; }
+            get { return _solutionLink; }
             set
             {
-                if (value != _SolutionLink)
-                {
-                    _SolutionLink = value;
-                    NotifyPropertyChanged();
-                }
+                if (value == _solutionLink) return;
+                _solutionLink = value;
+                NotifyPropertyChanged();
             }
         }
 
 
-        private string _Categories;
+         string _categories;
         public string Categories
         {
-            get { return _Categories; }
+            get { return _categories; }
             set
             {
-                if (value != _Categories)
-                {
-                    _Categories = value;
-                    NotifyPropertyChanged();
-                }
+                if (value == _categories) return;
+                _categories = value;
+                NotifyPropertyChanged();
             }
         }
 
 
-        private string _Summary;
+         string _summary;
         public string Summary
         {
-            get { return _Summary; }
+            get { return _summary; }
             set
             {
-                if (value != _Summary)
-                {
-                    _Summary = value;
-                    NotifyPropertyChanged();
-                }
+                if (value == _summary) return;
+                _summary = value;
+                NotifyPropertyChanged();
             }
         }
 
-        private string _Image;
+         string _image;
         public string Image
         {
-            get { return _Image; }
+            get { return _image; }
             set
             {
-                if (value != _Image)
-                {
-                    _Image = value;
-                    NotifyPropertyChanged();
-                }
+                if (value == _image) return;
+                _image = value;
+                NotifyPropertyChanged();
             }
         }
     }
@@ -137,33 +121,29 @@ namespace iFixit.Domain.Models.UI
     public class DeviceListingPage : DevicePage
     {
 
-        private string _HasItems;
+         string _hasItems;
         public string HasItems
         {
-            get { return _HasItems; }
+            get { return _hasItems; }
             set
             {
-                if (_HasItems != value)
-                {
-                    _HasItems = value;
-                    NotifyPropertyChanged();
-                }
+                if (_hasItems == value) return;
+                _hasItems = value;
+                NotifyPropertyChanged();
             }
         }
 
 
-        private ObservableCollection<SearchResultItem> _Items = new ObservableCollection<SearchResultItem>();
+        private ObservableCollection<SearchResultItem> _items = new ObservableCollection<SearchResultItem>();
         public ObservableCollection<SearchResultItem> Items
         {
-            get { return _Items; }
+            get { return _items; }
             set
             {
-                if (value != _Items)
-                {
-                    _Items = value;
-                    NotifyPropertyChanged();
-                    NotifyPropertyChanged("HasItems");
-                }
+                if (value == _items) return;
+                _items = value;
+                NotifyPropertyChanged();
+                NotifyPropertyChanged("HasItems");
             }
         }
     }

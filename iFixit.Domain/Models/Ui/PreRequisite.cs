@@ -3,48 +3,42 @@
     public class PreRequesites : ModelBase
     {
 
-        private string _Title;
+         string _title;
         public string Title
         {
-            get { return _Title; }
+            get { return _title; }
             set
             {
-                if (value != _Title)
-                {
-                    _Title = value;
-                    NotifyPropertyChanged();
-                }
+                if (value == _title) return;
+                _title = value;
+                NotifyPropertyChanged();
             }
         }
 
 
-        private string _View;
+         string _view;
         public string View
         {
-            get { return _View; }
+            get { return _view; }
             set
             {
-                if (value != _View)
-                {
-                    _View = value;
-                    NotifyPropertyChanged();
-                }
+                if (value == _view) return;
+                _view = value;
+                NotifyPropertyChanged();
             }
         }
 
 
 
-        private int _GuideId;
+         int _guideId;
         public int GuideId
         {
-            get { return _GuideId; }
+            get { return _guideId; }
             set
             {
-                if (value != _GuideId)
-                {
-                    _GuideId = value;
-                    NotifyPropertyChanged();
-                }
+                if (value == _guideId) return;
+                _guideId = value;
+                NotifyPropertyChanged();
             }
         }
 

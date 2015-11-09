@@ -2,14 +2,14 @@
 {
     public class CustomGridBase : ModelBase
     {
-        private int _IndexOf = 0;
+         int _indexOf = 0;
         public int IndexOf
         {
-            get { return (this._IndexOf == 0) ? 2 : 1; }
+            get { return (this._indexOf == 0) ? 2 : 1; }
             set
             {
 
-                _IndexOf = value;
+                _indexOf = value;
                 NotifyPropertyChanged();
 
             }
@@ -19,59 +19,51 @@
     public class HomeItem : CustomGridBase
     {
 
-        private string _ImageUrl;
+         string _imageUrl;
         public string ImageUrl
         {
-            get { return this._ImageUrl; }
+            get { return this._imageUrl; }
             set
             {
-                if (_ImageUrl != value)
-                {
-                    _ImageUrl = value;
-                    NotifyPropertyChanged();
-                }
+                if (_imageUrl == value) return;
+                _imageUrl = value;
+                NotifyPropertyChanged();
             }
         }
 
-        private string _BigImageUrl;
+        private string _bigImageUrl;
         public string BigImageUrl
         {
-            get { return this._BigImageUrl; }
+            get { return this._bigImageUrl; }
             set
             {
-                if (_BigImageUrl != value)
-                {
-                    _BigImageUrl = value;
-                    NotifyPropertyChanged();
-                }
+                if (_bigImageUrl == value) return;
+                _bigImageUrl = value;
+                NotifyPropertyChanged();
             }
         }
 
-        private string _Name;
+        private string _name;
         public string Name
         {
-            get { return this._Name; }
+            get { return this._name; }
             set
             {
-                if (_Name != value)
-                {
-                    _Name = value;
-                    NotifyPropertyChanged();
-                }
+                if (_name == value) return;
+                _name = value;
+                NotifyPropertyChanged();
             }
         }
 
-        private string _UniqueId;
+        private string _uniqueId;
         public string UniqueId
         {
-            get { return this._UniqueId; }
+            get { return this._uniqueId; }
             set
             {
-                if (_UniqueId != value)
-                {
-                    _UniqueId = value;
-                    NotifyPropertyChanged();
-                }
+                if (_uniqueId == value) return;
+                _uniqueId = value;
+                NotifyPropertyChanged();
             }
         }
 

@@ -31,7 +31,7 @@ namespace iFixit.UI.Services
         {
             return html;
         }
-        public Task OpenBrowser(string Url)
+        public Task OpenBrowser(string url)
         {
 
             return Task.Factory.StartNew(() =>
@@ -40,17 +40,17 @@ namespace iFixit.UI.Services
                 {
                     Cimbalino.Phone.Toolkit.Services.WebBrowserService bw = new Cimbalino.Phone.Toolkit.Services.WebBrowserService();
 
-                    bw.Show(Url);
+                    bw.Show(url);
                 });
             });
 
 
         }
 
-        public void ShowVideo(string Url)
+        public void ShowVideo(string url)
         {
             MediaPlayerLauncher mediaPlayerLauncher = new MediaPlayerLauncher();
-            mediaPlayerLauncher.Media = new Uri(Url, UriKind.Absolute);
+            mediaPlayerLauncher.Media = new Uri(url, UriKind.Absolute);
             mediaPlayerLauncher.Show();
         }
 
@@ -259,7 +259,7 @@ namespace iFixit.UI.Services
             return HttpUtility.HtmlDecode(Result);
         }
 
-        public string PrepHTML(string baseHTML, string BackgroundColor, string FontColor)
+        public string PrepHTML(string baseHTML, string backgroundColor, string fontColor)
         {
 
             string expn = "<.*?>";

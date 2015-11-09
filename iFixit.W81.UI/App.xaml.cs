@@ -1,22 +1,12 @@
 ﻿using iFixit.Domain;
 using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Windows.UI;
 using Windows.UI.ApplicationSettings;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 
 // The Blank Application template is documented at http://go.microsoft.com/fwlink/?LinkId=234227
@@ -30,10 +20,10 @@ namespace iFixit.W81.UI
     {
         private static Windows.UI.Core.CoreDispatcher _dispatcher = Window.Current.Dispatcher;
 
-        public static Windows.UI.Core.CoreDispatcher dispatcher
+        public static Windows.UI.Core.CoreDispatcher Dispatcher
         {
-            get { return App._dispatcher; }
-            set { App._dispatcher = value; }
+            get { return _dispatcher; }
+            set { _dispatcher = value; }
         }
 
         /// <summary>
@@ -42,10 +32,10 @@ namespace iFixit.W81.UI
         /// </summary>
         public App()
         {
-            this.InitializeComponent();
-            this.Suspending += OnSuspending;
-            Domain.AppBase.Current.ExtendeInfoApp = true;
-            Domain.AppBase.Current.HiResApp = true;
+            InitializeComponent();
+            Suspending += OnSuspending;
+            AppBase.Current.ExtendeInfoApp = true;
+            AppBase.Current.HiResApp = true;
         }
 
         /// <summary>
@@ -59,20 +49,19 @@ namespace iFixit.W81.UI
 #if DEBUG
             if (System.Diagnostics.Debugger.IsAttached)
             {
-                this.DebugSettings.EnableFrameRateCounter = true;
+                DebugSettings.EnableFrameRateCounter = true;
             }
 #endif
 
-            Frame rootFrame = Window.Current.Content as Frame;
+            var rootFrame = Window.Current.Content as Frame;
             SettingsPane.GetForCurrentView().CommandsRequested += App_CommandsRequested;
             // Do not repeat app initialization when the Window already has content,
             // just ensure that the window is active
             if (rootFrame == null)
             {
                 // Create a Frame to act as the navigation context and navigate to the first page
-                rootFrame = new Frame();
+                rootFrame = new Frame {Language = Windows.Globalization.ApplicationLanguages.Languages[0]};
                 // Set the default language
-                rootFrame.Language = Windows.Globalization.ApplicationLanguages.Languages[0];
 
                 rootFrame.NavigationFailed += OnNavigationFailed;
 
@@ -104,17 +93,19 @@ namespace iFixit.W81.UI
             if (AppBase.Current.User == null)
             {
 
-                SettingsCommand aboutsc = new SettingsCommand("LoginW", International.Translation.Login, (x) =>
+                var aboutsc = new SettingsCommand("LoginW", International.Translation.Login, x =>
                 {
 
 
 
-                    Windows.UI.Xaml.Controls.SettingsFlyout settings = new Windows.UI.Xaml.Controls.SettingsFlyout();
-                    settings.Width = 500;
-                    settings.HeaderBackground = new SolidColorBrush(Color.FromArgb(255, 0, 113, 206));
-                    settings.HeaderForeground = new SolidColorBrush(Colors.White);
-                    settings.Title = International.Translation.Login;
-                    settings.Content = new iFixit.W81.UI.Views.UC.Login();
+                    var settings = new SettingsFlyout
+                    {
+                        Width = 500,
+                        HeaderBackground = new SolidColorBrush(Color.FromArgb(255, 0, 113, 206)),
+                        HeaderForeground = new SolidColorBrush(Colors.White),
+                        Title = International.Translation.Login,
+                        Content = new Views.UC.Login()
+                    };
                     settings.Show();
                     
 
@@ -125,15 +116,17 @@ namespace iFixit.W81.UI
             else
             {
 
-                SettingsCommand aboutsc = new SettingsCommand("ProfileFlyout", International.Translation.Profile, (x) =>
+                var aboutsc = new SettingsCommand("ProfileFlyout", International.Translation.Profile, x =>
                 {
 
-                    Windows.UI.Xaml.Controls.SettingsFlyout settings = new Windows.UI.Xaml.Controls.SettingsFlyout();
-                    settings.Width = 500;
-                    settings.HeaderBackground = new SolidColorBrush(Color.FromArgb(255, 0, 113, 206));
-                    settings.HeaderForeground = new SolidColorBrush(Colors.White);
-                    settings.Title = International.Translation.Profile;
-                                        settings.Content = new iFixit.W81.UI.Views.UC.Profile();
+                    var settings = new SettingsFlyout
+                    {
+                        Width = 500,
+                        HeaderBackground = new SolidColorBrush(Color.FromArgb(255, 0, 113, 206)),
+                        HeaderForeground = new SolidColorBrush(Colors.White),
+                        Title = International.Translation.Profile,
+                        Content = new Views.UC.Profile()
+                    };
                     settings.Show();
 
 
@@ -145,33 +138,33 @@ namespace iFixit.W81.UI
                 args.Request.ApplicationCommands.Add(aboutsc);
 
 
-                SettingsCommand newsCommand = new SettingsCommand("logout", International.Translation.Logout
-                    , (uiCommand) => { Logout(); });
+                var newsCommand = new SettingsCommand("logout", International.Translation.Logout
+                    , uiCommand => { Logout(); });
                 args.Request.ApplicationCommands.Add(newsCommand);
 
 
 
             }
-            SettingsCommand privacyPolicyCommand = new SettingsCommand("privacyPolicy", "Privacy Policy", (uiCommand) => { LaunchPrivacyPolicyUrl("http://www.ifixit.com/Info/Privacy"); });
+            var privacyPolicyCommand = new SettingsCommand("privacyPolicy", "Privacy Policy", uiCommand => { LaunchPrivacyPolicyUrl("http://www.ifixit.com/Info/Privacy"); });
             args.Request.ApplicationCommands.Add(privacyPolicyCommand);
         }
 
 
         async void Logout()
         {
-            iFixit.Shared.UI.Services.UiStorage _storageService = new Shared.UI.Services.UiStorage();
-            iFixit.W8.UI.Services.UiUx _uxService = new iFixit.W8.UI.Services.UiUx();
-            iFixit.W8.UI.Services.UiSettings _settingsService = new iFixit.W8.UI.Services.UiSettings();
-            Domain.Services.V2_0.ServiceBroker Broker = new Domain.Services.V2_0.ServiceBroker(_settingsService.AppKey(), _settingsService.AppVersion());
-            await Domain.Code.Utils.DoLogOut(_storageService, _uxService, Broker);
+            var storageService = new Shared.UI.Services.UiStorage();
+            var uxService = new W8.UI.Services.UiUx();
+            var settingsService = new W8.UI.Services.UiSettings();
+            var broker = new Domain.Services.V2_0.ServiceBroker(settingsService.AppKey(), settingsService.AppVersion());
+            await Domain.Code.Utils.DoLogOut(storageService, uxService, broker);
 
-            await _uxService.ShowToast(International.Translation.LogoutSuccessfull);
-            _uxService.DoLogOff();
+            await uxService.ShowToast(International.Translation.LogoutSuccessfull);
+            uxService.DoLogOff();
         }
 
         async void LaunchPrivacyPolicyUrl(string url)
         {
-            Uri privacyPolicyUrl = new Uri(url);
+            var privacyPolicyUrl = new Uri(url);
             var result = await Windows.System.Launcher.LaunchUriAsync(privacyPolicyUrl);
         }
         /// <summary>
@@ -204,13 +197,9 @@ namespace iFixit.W81.UI
 
             base.OnSearchActivated(args);
             var previousContent = Window.Current.Content;
-            var frame = previousContent as Frame;
+            var frame = previousContent as Frame ?? new Frame();
 
-            if (frame == null)
-            {
-                frame = new Frame();
-            }
-            dispatcher = Windows.UI.Xaml.Window.Current.Dispatcher;
+            Dispatcher = Window.Current.Dispatcher;
             AppBase.Current.SearchTerm = args.QueryText;
             frame.Navigate(typeof(Views.SearchResult), args.QueryText);
             Window.Current.Content = frame;

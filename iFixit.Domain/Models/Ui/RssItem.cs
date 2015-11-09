@@ -5,108 +5,94 @@ namespace iFixit.Domain.Models.UI
     public class RssItem:ModelBase
     {
 
-        private string _Title;
+         string _title;
         public string Title
         {
-            get { return this._Title; }
+            get { return this._title; }
             set
             {
-                if (_Title != value)
-                {
-                    _Title = value;
-                    NotifyPropertyChanged();
-                }
+                if (_title == value) return;
+                _title = value;
+                NotifyPropertyChanged();
             }
         }
 
 
-        private string _ImageUrl;
+         string _imageUrl;
         public string ImageUrl
         {
-            get { return this._ImageUrl; }
+            get { return this._imageUrl; }
             set
             {
-                if (_ImageUrl != value)
-                {
-                    _ImageUrl = value;
-                    NotifyPropertyChanged();
-                }
+                if (_imageUrl == value) return;
+                _imageUrl = value;
+                NotifyPropertyChanged();
             }
         }
 
 
-        private string _Summary;
+         string _summary;
         public string Summary
         {
-            get { return  this._Summary; }
+            get { return  this._summary; }
             set
             {
-                if (_Summary != value)
-                {
-                    _Summary = value;
-                    NotifyPropertyChanged();
-                }
+                if (_summary == value) return;
+                _summary = value;
+                NotifyPropertyChanged();
             }
         }
 
 
-        private string _Url;
+         string _url;
         public string Url
         {
-            get { return this._Url; }
+            get { return this._url; }
             set
             {
-                if (_Url != value)
-                {
-                    _Url = value;
-                    NotifyPropertyChanged();
-                }
+                if (_url == value) return;
+                _url = value;
+                NotifyPropertyChanged();
             }
         }
 
 
-        private string _Author;
+         string _author;
         public string Author
         {
-            get { return this._Author; }
+            get { return this._author; }
             set
             {
-                if (_Author != value)
-                {
-                    _Author = value;
-                    NotifyPropertyChanged();
-                }
+                if (_author == value) return;
+                _author = value;
+                NotifyPropertyChanged();
             }
         }
         
 
-        private DateTime _PubDate;
+         DateTime _pubDate;
         public DateTime PubDate
         {
             get { return 
-                this._PubDate.ToLocalTime(); }
+                this._pubDate.ToLocalTime(); }
             set
             {
-                if (_PubDate != value)
-                {
-                    _PubDate = value;
-                    NotifyPropertyChanged();
-                }
+                if (_pubDate == value) return;
+                _pubDate = value;
+                NotifyPropertyChanged();
             }
         }
 
 
-        private string _DateString;
+         string _dateString;
         public string DateString
         {
-            get { return this._DateString; }
+            get { return this._dateString; }
             set
             {
-                if (_DateString != value)
-                {
-                    _DateString = value;
-                    NotifyPropertyChanged();
-                }
+                if (_dateString == value) return;
+                _dateString = value;
+                NotifyPropertyChanged();
             }
         }
         

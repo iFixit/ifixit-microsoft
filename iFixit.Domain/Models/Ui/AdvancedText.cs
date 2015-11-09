@@ -5,17 +5,15 @@ namespace iFixit.Domain.Models.UI
     public class AdvancedText : ModelBase
     {
 
-        private ObservableCollection<AdvancedTextItem> _Content;
+        private ObservableCollection<AdvancedTextItem> _content;
         public ObservableCollection<AdvancedTextItem> Content
         {
-            get { return _Content; }
+            get { return _content; }
             set
             {
-                if (value != _Content)
-                {
-                    _Content = value;
-                    NotifyPropertyChanged();
-                }
+                if (value == _content) return;
+                _content = value;
+                NotifyPropertyChanged();
             }
         }
 
@@ -27,11 +25,11 @@ namespace iFixit.Domain.Models.UI
         public AdvancedText FromStringToAdvancedText(string input)
         {
 
-            AdvancedText Result = new AdvancedText();
+            var result = new AdvancedText();
 
 
 
-            return Result;
+            return result;
         }
 
 
@@ -42,32 +40,28 @@ namespace iFixit.Domain.Models.UI
     public class AdvancedTextItem : ModelBase
     {
 
-        private string _Text;
+        private string _text;
         public string Text
         {
-            get { return _Text; }
+            get { return _text; }
             set
             {
-                if (value != _Text)
-                {
-                    _Text = value;
-                    NotifyPropertyChanged();
-                }
+                if (value == _text) return;
+                _text = value;
+                NotifyPropertyChanged();
             }
         }
 
 
-        private TextItemType _Type;
+        private TextItemType _type;
         public TextItemType Type
         {
-            get { return _Type; }
+            get { return _type; }
             set
             {
-                if (value != _Type)
-                {
-                    _Type = value;
-                    NotifyPropertyChanged();
-                }
+                if (value == _type) return;
+                _type = value;
+                NotifyPropertyChanged();
             }
         }
 

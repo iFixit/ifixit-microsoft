@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace iFixit.Domain.Models.REST.V2_0.Guides
+﻿namespace iFixit.Domain.Models.REST.V2_0.Guides
 {
     public class Image
     {

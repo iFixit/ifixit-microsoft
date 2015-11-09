@@ -10,156 +10,136 @@ namespace iFixit.Domain.ViewModels
 
         #region "properties"
 
-        private string _ButtonLabel = International.Translation.Login;
+        private string _buttonLabel = International.Translation.Login;
         public string ButtonLabel
         {
-            get { return this._ButtonLabel; }
+            get { return _buttonLabel; }
             set
             {
-                if (_ButtonLabel != value)
-                {
-                    _ButtonLabel = value;
-                    NotifyPropertyChanged();
-                }
+                if (_buttonLabel == value) return;
+                _buttonLabel = value;
+                NotifyPropertyChanged();
             }
         }
 
 
-        private string _Email;
+        private string _email;
         public string Email
         {
-            get { return this._Email; }
+            get { return _email; }
             set
             {
-                if (_Email != value)
-                {
-                    _Email = value;
-                    NotifyPropertyChanged();
-                }
+                if (_email == value) return;
+                _email = value;
+                NotifyPropertyChanged();
             }
         }
 
 
-        private string _Password;
+        private string _password;
         public string Password
         {
-            get { return this._Password; }
+            get { return _password; }
             set
             {
-                if (_Password != value)
-                {
-                    _Password = value;
-                    NotifyPropertyChanged();
-                }
+                if (_password == value) return;
+                _password = value;
+                NotifyPropertyChanged();
             }
         }
 
 
-        private string _ConfirmationPassword;
+        private string _confirmationPassword;
         public string ConfirmationPassword
         {
-            get { return this._ConfirmationPassword; }
+            get { return _confirmationPassword; }
             set
             {
-                if (_ConfirmationPassword != value)
-                {
-                    _ConfirmationPassword = value;
+                if (_confirmationPassword == value) return;
+                _confirmationPassword = value;
 
-                    NotifyPropertyChanged();
-                }
+                NotifyPropertyChanged();
             }
         }
 
 
-        private bool _RegistrationProcess = false;
+         bool _registrationProcess;
         public bool RegistrationProcess
         {
-            get { return this._RegistrationProcess; }
+            get { return _registrationProcess; }
             set
             {
-                if (_RegistrationProcess != value)
-                {
-                    _RegistrationProcess = value;
+                if (_registrationProcess == value) return;
+                _registrationProcess = value;
 
-                    NotifyPropertyChanged();
-                }
+                NotifyPropertyChanged();
             }
         }
 
 
-        private string _UserName;
+        string _userName;
         public string UserName
         {
-            get { return this._UserName; }
+            get { return _userName; }
             set
             {
-                if (_UserName != value)
-                {
-                    _UserName = value;
-                    NotifyPropertyChanged();
-                }
+                if (_userName == value) return;
+                _userName = value;
+                NotifyPropertyChanged();
             }
         }
 
 
-        private int _MenuIndex = 0;
+        int _menuIndex ;
         public int MenuIndex
         {
-            get { return this._MenuIndex; }
+            get { return _menuIndex; }
             set
             {
-                if (_MenuIndex != value)
-                {
-                    _MenuIndex = value;
-                    NotifyPropertyChanged();
-                }
+                if (_menuIndex == value) return;
+                _menuIndex = value;
+                NotifyPropertyChanged();
             }
         }
 
 
-        private bool _DoLoginProcess = true;
+        bool _doLoginProcess = true;
         public bool DoLoginProcess
         {
-            get { return this._DoLoginProcess; }
+            get { return _doLoginProcess; }
             set
             {
-                if (_DoLoginProcess != value)
-                {
-                    _DoLoginProcess = value;
-                    NotifyPropertyChanged();
-                }
+                if (_doLoginProcess == value) return;
+                _doLoginProcess = value;
+                NotifyPropertyChanged();
             }
         }
 
 
-        private bool _RecoverPasswordProcess = false;
+         bool _recoverPasswordProcess ;
         public bool RecoverPasswordProcess
         {
-            get { return this._RecoverPasswordProcess; }
+            get { return _recoverPasswordProcess; }
             set
             {
-                if (_RecoverPasswordProcess != value)
-                {
-                    _RecoverPasswordProcess = value;
+                if (_recoverPasswordProcess == value) return;
+                _recoverPasswordProcess = value;
 
-                    NotifyPropertyChanged();
-                }
+                NotifyPropertyChanged();
             }
         }
 
 
 
-        private string _ServiceMessages;
+         string _serviceMessages;
         public string ServiceMessages
         {
-            get { return this._ServiceMessages; }
+            get { return _serviceMessages; }
             set
             {
-                if (_ServiceMessages != value)
-                {
-                    _ServiceMessages = value;
-                    NotifyPropertyChanged();
-                }
+                if (_serviceMessages == value) return;
+                _serviceMessages = value;
+                NotifyPropertyChanged();
             }
         }
 
@@ -167,26 +147,26 @@ namespace iFixit.Domain.ViewModels
         #endregion
 
 
-        private RelayCommand _DoLoginP;
+        private RelayCommand _doLoginP;
         public RelayCommand DoLoginP
         {
             get
             {
-                return _DoLoginP ?? (_DoLoginP = new RelayCommand(
+                return _doLoginP ?? (_doLoginP = new RelayCommand(
                   async () =>
                   {
-                      string hasError = string.Empty;
+                      var hasError = string.Empty;
                       ServiceMessages = string.Empty;
                       try
                       {
-                          if (this.DoLoginProcess)
+                          if (DoLoginProcess)
                           {
-                              if (!string.IsNullOrEmpty(this.Email) && !string.IsNullOrEmpty(this.Password))
+                              if (!string.IsNullOrEmpty(Email) && !string.IsNullOrEmpty(Password))
                               {
                                   LoadingCounter++;
 
-                                  var user = await Broker.DoLogin(this.Email, this.Password);
-                                  if (user != null && user.authToken != null)
+                                  var user = await Broker.DoLogin(Email, Password);
+                                  if (user?.authToken != null)
                                   {
                                       _storageService.Save(Constants.AUTHORIZATION,  user.SaveAsJson());
                                       BindAuthentication(user);
@@ -217,13 +197,13 @@ namespace iFixit.Domain.ViewModels
 
                               try
                               {
-                                  if (this.Password == this.ConfirmationPassword && !string.IsNullOrEmpty(this.Email) && !string.IsNullOrEmpty(this.UserName))
+                                  if (Password == ConfirmationPassword && !string.IsNullOrEmpty(Email) && !string.IsNullOrEmpty(UserName))
                                   {
                                       LoadingCounter++;
-                                      var result = await Broker.RegistrationLogin(this.Email, this.UserName, this.Password);
+                                      var result = await Broker.RegistrationLogin(Email, UserName, Password);
 
-                                      this.RegistrationProcess = false;
-                                      this.DoLoginProcess = true;
+                                      RegistrationProcess = false;
+                                      DoLoginProcess = true;
                                       BindAuthentication(result);
                                       LoadingCounter--;
                                       _uxService.DoLogin();
@@ -232,12 +212,12 @@ namespace iFixit.Domain.ViewModels
                                   }
                                   else
                                   {
-                                      if (string.IsNullOrEmpty(this.Email) || string.IsNullOrEmpty(this.UserName) || string.IsNullOrEmpty(this.Password) || string.IsNullOrEmpty(this.ConfirmationPassword))
+                                      if (string.IsNullOrEmpty(Email) || string.IsNullOrEmpty(UserName) || string.IsNullOrEmpty(Password) || string.IsNullOrEmpty(ConfirmationPassword))
                                       {
                                           await _uxService.ShowAlert(International.Translation.FillForm);
                                           LoadingCounter--;
                                       }
-                                      else if (this.Password != this.ConfirmationPassword)
+                                      else if (Password != ConfirmationPassword)
                                       {
                                           await _uxService.ShowAlert(International.Translation.SamePassword);
                                           LoadingCounter--;
@@ -274,10 +254,10 @@ namespace iFixit.Domain.ViewModels
 
 
                       }
-                      catch (Exception ex)
+                      catch (Exception )
                       {
                           LoadingCounter--;
-                          throw ex;
+                          throw ;
                       }
 
                   }));
@@ -285,12 +265,12 @@ namespace iFixit.Domain.ViewModels
 
         }
 
-        private RelayCommand _DoCancel;
+        private RelayCommand _doCancel;
         public RelayCommand DoCancel
         {
             get
             {
-                return _DoCancel ?? (_DoCancel = new RelayCommand(
+                return _doCancel ?? (_doCancel = new RelayCommand(
                    () =>
                    {
 
@@ -300,16 +280,16 @@ namespace iFixit.Domain.ViewModels
                            RegistrationProcess = false;
                            RecoverPasswordProcess = false;
                            DoLoginProcess = true;
-                           this.Email = this.Password = this.ConfirmationPassword = this.UserName = string.Empty;
+                           Email = Password = ConfirmationPassword = UserName = string.Empty;
 
                            ButtonLabel = International.Translation.Login;
 
 
                        }
-                       catch (Exception ex)
+                       catch (Exception )
                        {
 
-                           throw ex;
+                           throw ;
                        }
 
                    }));
@@ -318,12 +298,12 @@ namespace iFixit.Domain.ViewModels
         }
 
 
-        private RelayCommand _StartRegistration;
+        private RelayCommand _startRegistration;
         public RelayCommand StartRegistration
         {
             get
             {
-                return _StartRegistration ?? (_StartRegistration = new RelayCommand(
+                return _startRegistration ?? (_startRegistration = new RelayCommand(
                    () =>
                    {
 
@@ -336,10 +316,10 @@ namespace iFixit.Domain.ViewModels
                            DoLoginProcess = false;
 
                        }
-                       catch (Exception ex)
+                       catch (Exception )
                        {
                            LoadingCounter--;
-                           throw ex;
+                           throw ;
                        }
 
                    }));
@@ -347,12 +327,12 @@ namespace iFixit.Domain.ViewModels
 
         }
 
-        private RelayCommand _StartRecoverPassword;
+        private RelayCommand _startRecoverPassword;
         public RelayCommand StartRecoverPassword
         {
             get
             {
-                return _StartRecoverPassword ?? (_StartRecoverPassword = new RelayCommand(
+                return _startRecoverPassword ?? (_startRecoverPassword = new RelayCommand(
                    () =>
                    {
 
@@ -365,10 +345,10 @@ namespace iFixit.Domain.ViewModels
                            DoLoginProcess = false;
 
                        }
-                       catch (Exception ex)
+                       catch (Exception )
                        {
                            LoadingCounter--;
-                           throw ex;
+                           throw ;
                        }
 
                    }));
@@ -377,12 +357,12 @@ namespace iFixit.Domain.ViewModels
         }
 
 
-        public Login(INavigation<Domain.Interfaces.NavigationModes> navigationService, IStorage storageService, ISettings settingsService, IUxService uxService, IPeerConnector peerConnector)
+        public Login(INavigation<NavigationModes> navigationService, IStorage storageService, ISettings settingsService, IUxService uxService, IPeerConnector peerConnector)
             : base(navigationService, storageService, settingsService, uxService, peerConnector)
         {
 
 
-            this.PageTitle = International.Translation.Login;
+            PageTitle = International.Translation.Login;
         }
     }
 }

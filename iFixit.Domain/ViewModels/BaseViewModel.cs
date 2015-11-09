@@ -20,17 +20,17 @@ namespace iFixit.Domain.ViewModels
 
         #region Properties
 
-        public string navigationParameterJson;
+        public string NavigationParameterJson;
 
         public T NavigationParameter<T>()
         {
-            return navigationParameterJson.LoadFromJson<T>();
+            return NavigationParameterJson.LoadFromJson<T>();
         }
 
 
         public Interfaces.NavigationModes NavigationType { get; set; }
 
-        private bool _IsOffline = false;
+         bool _IsOffline = false;
         public bool IsOffline
         {
             get { return !_settingsService.IsConnectedToInternet(); }
@@ -38,7 +38,7 @@ namespace iFixit.Domain.ViewModels
         }
 
 
-        private int loadingCounter = 0;
+         int loadingCounter = 0;
         public int LoadingCounter
         {
             get { return loadingCounter; }
@@ -64,57 +64,57 @@ namespace iFixit.Domain.ViewModels
             }
         }
 
-        private bool isLoading = false;
+         bool _isLoading ;
         public bool IsLoading
         {
-            get { return isLoading; }
+            get { return _isLoading; }
             set
             {
-                if (value == isLoading) return;
-                isLoading = value;
+                if (value == _isLoading) return;
+                _isLoading = value;
                 NotifyPropertyChanged();
             }
         }
 
-        private string pageTitle = string.Empty;
+         string _pageTitle = string.Empty;
         public string PageTitle
         {
-            get { return pageTitle; }
+            get { return _pageTitle; }
             set
             {
-                if (value == pageTitle) return;
-                pageTitle = value;
+                if (value == _pageTitle) return;
+                _pageTitle = value;
                 NotifyPropertyChanged();
             }
         }
 
 
-        private string appName = "IFIXIT";
+         string _appName = "IFIXIT";
         public string ApplicationName
         {
-            get { return appName; }
+            get { return _appName; }
             set
             {
-                if (value == appName) return;
-                appName = value;
+                if (value == _appName) return;
+                _appName = value;
                 NotifyPropertyChanged();
             }
         }
 
 
-        private bool _CanGoBack=false;
+         bool _canGoBack=false;
         public bool CanGoBack
         {
-            get { return _CanGoBack; }
+            get { return _canGoBack; }
             set
             {
-                _CanGoBack = value;
+                _canGoBack = value;
                 NotifyPropertyChanged();
             }
         }
 
 
-        private bool _isAuthenticated = false;
+         bool _isAuthenticated = false;
         public bool IsAuthenticated
         {
             get { return this._isAuthenticated; }

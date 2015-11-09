@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Text;
 
 namespace iFixit.Domain.Code
@@ -8,10 +9,9 @@ namespace iFixit.Domain.Code
         public static string CleanCharacters(this string fileName)
         {
             StringBuilder sb = new StringBuilder();
-            foreach (char c in fileName)
+            foreach (var c in from char c in fileName where Char.IsLetter(c) || Char.IsNumber(c) select c)
             {
-                if (Char.IsLetter(c) || Char.IsNumber(c))
-                    sb.Append(c);
+                sb.Append(c);
             }
 
             return sb.ToString();

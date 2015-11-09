@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace iFixit.Domain.Models.REST.V1_1.Registration.Error
+﻿namespace iFixit.Domain.Models.REST.V1_1.Registration.Error
 {
     public class RootObject
     {

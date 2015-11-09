@@ -1,8 +1,4 @@
-﻿using System;
-using System.Net;
-using System.Windows;
-
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace iFixit.Domain.Models.REST.V0_1
 {

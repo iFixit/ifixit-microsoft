@@ -12,12 +12,12 @@ namespace iFixit.Domain.Interfaces
         Task<bool> Exists(string fileName, TimeSpan expitation);
         Task<string> ReadData(string fileName);
 
-        void Save(string StorageId, string Content);
+        void Save(string storageId, string content);
         Task WriteData(string fileName, string content);
         Task WriteBinary(string folder, string fileName, byte[] content);
       
 
-        Task Delete(string StorageId);
+        Task Delete(string storageId);
         string BasePath();
     }
 }

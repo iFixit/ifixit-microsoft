@@ -2,76 +2,66 @@
 {
     public class ProductItemList : ModelBase
     {
-        private string _UniqueId;
+        private string _uniqueId;
         public string UniqueId
         {
-            get { return this._UniqueId; }
+            get { return _uniqueId; }
             set
             {
-                if (_UniqueId != value)
-                {
-                    _UniqueId = value;
-                    NotifyPropertyChanged();
-                }
+                if (_uniqueId == value) return;
+                _uniqueId = value;
+                NotifyPropertyChanged();
             }
         }
 
 
 
-        private string _Title;
+        private string _title;
         public string Title
         {
-            get { return this._Title; }
+            get { return _title; }
             set
             {
-                if (_Title != value)
-                {
-                    _Title = value;
-                    NotifyPropertyChanged();
-                }
+                if (_title == value) return;
+                _title = value;
+                NotifyPropertyChanged();
             }
         }
 
-        private string _Summary;
+        private string _summary;
         public string Summary
         {
-            get { return this._Summary; }
+            get { return _summary; }
             set
             {
-                if (_Summary != value)
-                {
-                    _Summary = value;
-                    NotifyPropertyChanged();
-                }
+                if (_summary == value) return;
+                _summary = value;
+                NotifyPropertyChanged();
             }
         }
 
-        private double _Price;
+        double _price;
         public double Price
         {
-            get { return this._Price; }
+            get { return _price; }
             set
             {
-                if (_Price != value)
-                {
-                    _Price = value;
-                    NotifyPropertyChanged();
-                }
+                if (_price == value) return;
+                _price = value;
+                NotifyPropertyChanged();
             }
         }
 
 
-        private string _ImageUrl;
+         string _imageUrl;
         public string ImageUrl
         {
-            get { return this._ImageUrl; }
+            get { return _imageUrl; }
             set
             {
-                if (_ImageUrl != value)
-                {
-                    _ImageUrl = value;
-                    NotifyPropertyChanged();
-                }
+                if (_imageUrl == value) return;
+                _imageUrl = value;
+                NotifyPropertyChanged();
             }
         }
 
@@ -80,106 +70,92 @@
     public class SearchResultItem : CustomGridBase
     {
 
-        private string _UniqueId;
+         string _uniqueId;
         public string UniqueId
         {
-            get { return this._UniqueId; }
+            get { return _uniqueId; }
             set
             {
-                if (_UniqueId != value)
-                {
-                    _UniqueId = value;
-                    NotifyPropertyChanged();
-                }
+                if (_uniqueId == value) return;
+                _uniqueId = value;
+                NotifyPropertyChanged();
             }
         }
 
 
 
-        private string _Name;
+         string _name;
         public string Name
         {
-            get { return this._Name; }
+            get { return _name; }
             set
             {
-                if (_Name != value)
-                {
-                    _Name = value;
-                    NotifyPropertyChanged();
-                }
+                if (_name == value) return;
+                _name = value;
+                NotifyPropertyChanged();
             }
         }
 
 
-        private string _Summary;
+         string _summary;
         public string Summary
         {
-            get { return this._Summary; }
+            get { return _summary; }
             set
             {
-                if (_Summary != value)
-                {
-                    _Summary = value;
-                    NotifyPropertyChanged();
-                }
+                if (_summary == value) return;
+                _summary = value;
+                NotifyPropertyChanged();
             }
         }
 
 
-        private string _ImageUrl;
+        private string _imageUrl;
         public string ImageUrl
         {
-            get { return this._ImageUrl; }
+            get { return _imageUrl; }
             set
             {
-                if (_ImageUrl != value)
-                {
-                    _ImageUrl = value;
-                    NotifyPropertyChanged();
-                }
+                if (_imageUrl == value) return;
+                _imageUrl = value;
+                NotifyPropertyChanged();
             }
         }
 
-        private string _BigImageUrl;
+         string _bigImageUrl;
         public string BigImageUrl
         {
-            get { return this._BigImageUrl; }
+            get { return _bigImageUrl; }
             set
             {
-                if (_BigImageUrl != value)
-                {
-                    _BigImageUrl = value;
-                    NotifyPropertyChanged();
-                }
+                if (_bigImageUrl == value) return;
+                _bigImageUrl = value;
+                NotifyPropertyChanged();
             }
         }
 
-        private string _Author;
+         string _author;
         public string Author
         {
-            get { return this._Author; }
+            get { return _author; }
             set
             {
-                if (_Author != value)
-                {
-                    _Author = value;
-                    NotifyPropertyChanged();
-                }
+                if (_author == value) return;
+                _author = value;
+                NotifyPropertyChanged();
             }
         }
 
 
-        private string _GuideType;
+         string _guideType;
         public string GuideType
         {
-            get { return this._GuideType; }
+            get { return _guideType; }
             set
             {
-                if (_GuideType != value)
-                {
-                    _GuideType = value;
-                    NotifyPropertyChanged();
-                }
+                if (_guideType == value) return;
+                _guideType = value;
+                NotifyPropertyChanged();
             }
         }
 
