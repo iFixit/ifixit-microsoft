@@ -21,10 +21,11 @@
     <SccProvider>SAK</SccProvider>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
-    <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
+    <AppxAutoIncrementPackageRevision>False</AppxAutoIncrementPackageRevision>
     <AppxBundlePlatforms>neutral</AppxBundlePlatforms>
-    <PackageCertificateThumbprint>24167D5F800CD2C9828EC843B193C2EF9AB1943D</PackageCertificateThumbprint>
+    <PackageCertificateThumbprint>74207C696CD6C36538263D39E38EBDA8639D0EE6</PackageCertificateThumbprint>
     <NuGetPackageImportStamp>0f946156</NuGetPackageImportStamp>
+    <AppxBundle>Always</AppxBundle>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>

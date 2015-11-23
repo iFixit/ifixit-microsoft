@@ -46,38 +46,29 @@ namespace iFixit.UI.Services
             switch (e.NavigationMode)
             {
                 case System.Windows.Navigation.NavigationMode.Back:
-                    navigationType = Domain.Interfaces.NavigationModes.Back;
+                    NavigationType = Domain.Interfaces.NavigationModes.Back;
                     break;
                 case System.Windows.Navigation.NavigationMode.Forward:
-                    navigationType = Domain.Interfaces.NavigationModes.Forward;
+                    NavigationType = Domain.Interfaces.NavigationModes.Forward;
                     break;
                 case System.Windows.Navigation.NavigationMode.New:
-                    navigationType = Domain.Interfaces.NavigationModes.New;
+                    NavigationType = Domain.Interfaces.NavigationModes.New;
                     break;
                 case System.Windows.Navigation.NavigationMode.Refresh:
-                    navigationType = Domain.Interfaces.NavigationModes.Refresh;
+                    NavigationType = Domain.Interfaces.NavigationModes.Refresh;
                     break;
                 case System.Windows.Navigation.NavigationMode.Reset:
-                    navigationType = Domain.Interfaces.NavigationModes.Refresh;
+                    NavigationType = Domain.Interfaces.NavigationModes.Refresh;
                     break;
                 default:
                     break;
             }
         }
 
-        private Frame RootFrame
-        {
-            get { return Application.Current.RootVisual as Frame; }
-        }
+        private Frame RootFrame => Application.Current.RootVisual as Frame;
 
 
-        public bool CanGoBack
-        {
-            get
-            {
-                return RootFrame.CanGoBack;
-            }
-        }
+        public bool CanGoBack => RootFrame.CanGoBack;
 
 
         //public static TJson DecodeNavigationParameter<TJson>(NavigationContext context)
@@ -102,15 +93,13 @@ namespace iFixit.UI.Services
             var navParameter = string.Empty;
             if (parameter != null)
             {
-                navParameter = "?param=" + parameter.SaveAsJson().Result;
+                navParameter = "?param=" + parameter.SaveAsJson();
             }
 
-            if (ViewModelRouting.ContainsKey(typeof(TDestinationViewModel)))
-            {
-                var page = ViewModelRouting[typeof(TDestinationViewModel)];
+            if (!ViewModelRouting.ContainsKey(typeof (TDestinationViewModel))) return;
+            var page = ViewModelRouting[typeof(TDestinationViewModel)];
 
-                this.RootFrame.Navigate(new Uri("/" + page + navParameter, UriKind.Relative));
-            }
+            RootFrame.Navigate(new Uri("/" + page + navParameter, UriKind.Relative));
         }
 
         public void Navigate<TDestinationViewModel>(bool sameContext, object parameter)
@@ -127,11 +116,6 @@ namespace iFixit.UI.Services
         }
 
 
-
-        private Domain.Interfaces.NavigationModes navigationType;
-        public Domain.Interfaces.NavigationModes NavigationType { get { return navigationType; } }
-
-
-
+        public Domain.Interfaces.NavigationModes NavigationType { get; private set; }
     }
 }
