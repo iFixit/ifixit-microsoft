@@ -130,19 +130,19 @@ namespace iFixit.Domain.ViewModels
 
         #endregion
 
-        private RelayCommand<int> _goToAbout;
-        public RelayCommand<int> GoToAbout
+        private RelayCommand<string> _goToAbout;
+        public RelayCommand<string> GoToAbout
         {
             get
             {
-                return _goToAbout ?? (_goToAbout = new RelayCommand<int>(
+                return _goToAbout ?? (_goToAbout = new RelayCommand<string>(
                  (idx) =>
                  {
                      LoadingCounter++;
                      try
                      {
 
-                         _navigationService.Navigate<About>(false, idx);
+                         _navigationService.Navigate<About>(false, int.Parse( idx));
                          LoadingCounter--;
                      }
                      catch (Exception )
